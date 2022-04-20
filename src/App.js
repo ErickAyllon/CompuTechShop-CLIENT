@@ -8,6 +8,6 @@ function App() {
       <LoginButton />
     </div>
   );
-}
+} 
 
 export default App;
