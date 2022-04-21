@@ -1,13 +1,17 @@
 import "./App.css";
-import LoginButton from "./Components/LoginButton";
+import Home from "./Components/Home/Home";
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
+
 
 function App() {
   return (
-    <div className="App">
-      <h1> ¡Esta es mí rama, vieja!</h1>
-      <LoginButton />
-    </div>
+  <BrowserRouter>
+    <Routes> 
+      <Route path='/home' element={<Home />} />
+    </Routes>
+  </BrowserRouter >
+
   );
-} 
-// 
+}
+
 export default App;
