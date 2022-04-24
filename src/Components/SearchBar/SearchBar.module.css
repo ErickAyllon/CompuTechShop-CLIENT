@@ -12,7 +12,7 @@
   .searchBarContainer input {
     text-align: center;
     width: 100%;
-    color: #CE2211;
+    color: yellow;
     border: 0;
     background: transparent;
     border-radius: 20px 0 0 20px;
@@ -51,8 +51,8 @@
     
   .searchBarContainer button:hover {
     color: black;
-    background: #CE2211;
-    border-color: #CE2211;
+    background: yellow;
+    border-color: yellow;
   }
   
   .searchBarContainer button:active {
