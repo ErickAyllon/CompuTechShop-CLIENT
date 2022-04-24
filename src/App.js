@@ -8,11 +8,11 @@ function App() {
   <BrowserRouter>
     <Routes>
       <Route path='/' element={<Home />} />
-      {/* <Route path='/home/:id' element={<Detalle/>}/>
+      {/* <Route path='/home/:id' element={<Detail/>}/>
       <Route path='/pago' element={<Pago/>}/>
       <Route path='/envio' element={<Envio/>}/>
-      <Route path='/producto' element={<CrearProducto/>}/>
-      <Route path='/perfil' element={<MiPerfil/>}/> */}
+      <Route path='/producto' element={<CreateProduct/>}/>
+      <Route path='/perfil' element={<Profile/>}/> */}
    </Routes>
   </BrowserRouter >
   );

@@ -4,12 +4,13 @@ import LoginButton from '../LoginButton'
 import Profile from '../Profile'
 import { useAuth0 } from "@auth0/auth0-react";
 import styles from './NavBar.module.css'
+import SearchBar from '../SearchBar/SearchBar';
 
-function Searchbar() {
+function NavBar() {
   const { isAuthenticated } = useAuth0();
   return (
     <nav className={styles.NavBar}>
-      NavBar
+      <SearchBar />
       <div className={styles.auth0}>
         {isAuthenticated ? <LogOutButton /> : <LoginButton />}
         <Profile />
@@ -18,4 +19,4 @@ function Searchbar() {
   )
 }
 
-export default Searchbar
+export default NavBar
