@@ -1,19 +1,16 @@
 import React from 'react'
 import styles from './Home.module.css'
-import LogOutButton from '../LogOutButton'
-import LoginButton from '../LoginButton'
-import Profile from '../Profile'
-import { useAuth0 } from "@auth0/auth0-react";
+import NavBar from '../NavBar/Navbar'
+import Footer from '../../Footer/Footer'
 
 function Home() {
-    const { isAuthenticated } = useAuth0();
   return (
     <div className={styles.home}>
-        <div className="App">
-            <h1>Funca viejaaaaaaaaa</h1>
-            {isAuthenticated ? <LogOutButton /> : <LoginButton />}
-        </div>
-      <Profile />
+      <NavBar />
+      <div className={styles.homeContent}>
+        <h1>Home</h1>
+      </div>
+      <Footer />
     </div>
   )
 }

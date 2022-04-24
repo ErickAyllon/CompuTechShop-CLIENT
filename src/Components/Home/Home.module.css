@@ -1,3 +1,12 @@
 .home {
-    background-color: red;
+    background-color: rgb(255, 255, 255);
+    height: 100vh;
+
+}
+
+.homeContent {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%,-50%);
 }
