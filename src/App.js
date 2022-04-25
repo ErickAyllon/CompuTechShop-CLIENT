@@ -7,10 +7,10 @@ function App() {
       <Routes>
         <Route path="/" element={<Home />} />
         {/* <Route path='/home/:id' element={<Detail/>}/>
-      <Route path='/pago' element={<Pago/>}/>
+      <Route path='/payment' element={<Pago/>}/>
       <Route path='/envio' element={<Envio/>}/>
-      <Route path='/producto' element={<CreateProduct/>}/>
-      <Route path='/perfil' element={<Profile/>}/> */}
+      <Route path='/product' element={<CreateProduct/>}/>
+      <Route path='/profile' element={<Profile/>}/> */}
       </Routes>
     </BrowserRouter>
   );
