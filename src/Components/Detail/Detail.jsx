@@ -1,11 +1,11 @@
 import {React} from 'react'
-import {styles} from './Detalle.modules.css'
+import styles from './Detail.modules.css'
 
-export default function Detalle (){
+function Detail (){
   return (
   <div>
       <h1>Hola, ¡soy un producto!</h1> 
   </div>
-
-  
 )}
+
+export default Detail

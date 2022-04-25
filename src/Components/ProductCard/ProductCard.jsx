@@ -1,7 +1,7 @@
 import {React} from 'react'
-import {styles} from './CardProducto.modules.css'
+import {styles} from './ProductCard.modules.css'
 
-export default function CardProducto({name, price, image, id, description}){
+function ProductCard({name, price, image, id, description}){
     return (
         <div>
            <h3>{name}</h3>
@@ -12,3 +12,5 @@ export default function CardProducto({name, price, image, id, description}){
         </div>
     )
 }
+
+export default ProductCard
