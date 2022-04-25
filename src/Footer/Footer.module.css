@@ -1,0 +1,33 @@
+.footerContainer {
+    position: absolute;
+    bottom: 0;
+    background-color: rgba(220, 217, 217, 0.573);
+    border-top: 1px solid rgba(0, 0, 0, 0.3);;
+    box-shadow: 0 0 5px 1px black;
+    color: black;
+    width: 100%;
+}
+
+.footer {
+    display: flex;
+    margin: 10px 50px 10px 50px;
+}
+
+.footer p {
+    margin-bottom: 0;
+}
+
+.copyrightFooter {
+    margin: auto;
+    font-size: .8rem;
+    width: 700px;
+    align-items: center;
+}
+
+.extrasFooter {
+    display:inline-flex;
+    justify-content: space-between;
+    width: 100%;
+    margin-left: 50px;
+    align-items: center;
+}

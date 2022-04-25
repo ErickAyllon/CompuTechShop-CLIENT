@@ -1,0 +1,21 @@
+.profile {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.profile h2 {
+    font-size: 1rem;
+    margin-bottom: 0;
+    margin-left: 5px;
+    margin-right: 10px;
+    letter-spacing: .05rem;
+}
+
+.profileImg {
+    border-radius: 100%;
+    width: 30px;
+    height: auto;
+    right: 0;
+}
+

@@ -1,0 +1,78 @@
+.searchBarContainer {
+    /* margin: 0 auto; */
+    display: flex;
+    width: 350px;
+    height: auto;
+    background: rgba(0, 0, 0, 0.845);
+    border-radius: 5px;
+    border: 1px solid rgba(255, 255, 255, 0.202);
+    font-size: 1rem;
+  }
+  
+  .searchBarContainer input {
+    text-align: center;
+    width: 100%;
+    color: yellow;
+    border: 0;
+    background: transparent;
+    border-radius: 20px 0 0 20px;
+    letter-spacing: .1rem;
+    background-image: url('../../Images/searching.png');
+    background-size: auto;
+    background-repeat: no-repeat;
+    margin: auto 0;
+    margin-left: 20px;
+  }
+  
+  .searchBarContainer input::placeholder{
+    color: gray;
+  }
+    
+  .searchBarContainer input:focus {
+    outline: 0;
+    background: transparent;
+  }
+  
+  .searchBarContainer button {
+    letter-spacing: .1rem;
+    position: relative;
+    float: right;
+    border: 0;
+    padding: 0;
+    cursor: pointer;
+    height: 30px;
+    width: 150px;
+    color: #EFFCD5;
+    background: transparent;
+    border-left: 1px solid black;
+    /* border-radius: 0 5px 5px 0; */
+    transition: .5s;
+  }
+    
+  .searchBarContainer button:hover {
+    color: black;
+    background: yellow;
+    border-color: yellow;
+  }
+  
+  .searchBarContainer button:active {
+    box-shadow: 0px 0px 50px 0px #e1e1e1;
+  }
+  
+  .searchBarContainer button:focus {
+    outline: 0;
+  }
+  
+  .searchBarInput:focus::placeholder {
+    color: transparent;
+  }
+  
+  @media only screen and (max-width: 700px) {
+    /* .searchBarContainer input {
+      width: 100px;
+    }
+  
+    .searchBarContainer button {
+      width: 25px;
+    } */
+  }
