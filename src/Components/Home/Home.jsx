@@ -1,11 +1,11 @@
 import React from 'react'
+import 'bootstrap/dist/css/bootstrap.css';
 import styles from './Home.module.css'
 import NavBar from '../NavBar/Navbar'
 import Footer from '../Footer/Footer'
-import 'bootstrap/dist/css/bootstrap.css';
-
 import Carousel from 'react-bootstrap/Carousel';
 import Categories from '../Categories/Categories';
+
 
 function Home() {
   return (

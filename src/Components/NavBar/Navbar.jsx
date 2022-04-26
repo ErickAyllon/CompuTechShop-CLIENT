@@ -25,7 +25,7 @@ function NavBar() {
       </div>
       </nav>
 
-      <div className={styles.navCategories}>
+      {/* <div className={styles.navCategories}>
         <Dropdown className="d-inline mx-2" id="dropDown">
           <Dropdown.Toggle id="dropstart-autoclose-true">
             Categories
@@ -39,7 +39,7 @@ function NavBar() {
             <Dropdown.Item href="#">Keyboards</Dropdown.Item>
           </Dropdown.Menu>
         </Dropdown>
-      </div>
+      </div> */}
     </div>
   )
 }
