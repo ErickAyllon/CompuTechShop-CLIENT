@@ -1,3 +1,33 @@
 .home {
-    background-color: red;
+    background-color: rgb(255, 255, 255);
+    background-color: black;
+    color: white;
+    height: 100vh;
+}
+
+.homeContent {
+    width: 100%;
+}
+
+.carouselContainer {
+    margin: auto;
+    margin-top: 50px;
+}
+
+.carouselContainer img {
+    max-height: 400px;
+}
+
+h4 {
+    text-align: center;
+}
+
+@media only screen and (max-width: 768px) {
+    .home {
+        width: 100vw;
+        position:relative;
+    }
+    .carouselContainer img {
+        height: 250px;
+    }
 }
