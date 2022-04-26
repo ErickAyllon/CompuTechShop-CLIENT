@@ -49,12 +49,12 @@
     } */
     .auth0 {
       position: relative;
-      right: 8px;
+      right: 5px;
     }
     .logo {
       position: relative;
-      left: 8px;
-
+      left: 5px;
+      margin-left: 10px;
     }
     .searchBarCall {
       margin: 0 auto;

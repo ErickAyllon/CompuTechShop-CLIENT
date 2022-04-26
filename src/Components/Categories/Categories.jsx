@@ -12,19 +12,27 @@ function Categories() {
             <span>Laptops</span>
         </div>
         <div className={styles.category}>
-            <img src="https://img.icons8.com/ios-filled/100/ffffff/monitor--v1.png"/>
+            <Link to='/monitors'>
+                <img src="https://img.icons8.com/ios-filled/100/ffffff/monitor--v1.png"/>
+            </Link>
             <span>Monitors</span>
         </div>
         <div className={styles.category}>
-            <img src="https://img.icons8.com/ios-filled/100/ffffff/generic-mouse.png"/>
+            <Link to='/monitors'>
+                <img src="https://img.icons8.com/ios-filled/100/ffffff/generic-mouse.png"/>
+            </Link>
             <span>Mouses</span>
         </div>
         <div className={styles.category}>
-            <img src="https://img.icons8.com/ios-filled/50/ffffff/headset.png"/>
+            <Link to='/monitors'>
+                <img src="https://img.icons8.com/ios-filled/50/ffffff/headset.png"/>
+            </Link>
             <span>Headsets</span>
         </div>
         <div className={styles.category}>
-            <img src="https://img.icons8.com/ios-filled/100/ffffff/keyboard.png"/>    
+            <Link to='/monitors'>
+                <img src="https://img.icons8.com/ios-filled/100/ffffff/keyboard.png"/>
+            </Link>   
             <span>Keyboards</span>
         </div>
 
