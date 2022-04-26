@@ -6,15 +6,15 @@ import { useAuth0 } from "@auth0/auth0-react";
 import styles from './NavBar.module.css'
 import SearchBar from '../SearchBar/SearchBar';
 import { Link } from 'react-router-dom';
+import { Dropdown } from 'react-bootstrap';
 
 function NavBar() {
   const { isAuthenticated } = useAuth0();
   return (
+    <div>
     <nav className={styles.NavBar}>
       <div className={styles.logo}>
-        <Link to="/">
-          
-        </Link>
+        <Link to="/" />
       </div>
       <div className={styles.searchBarCall}>
         <SearchBar />
@@ -23,7 +23,25 @@ function NavBar() {
         <Profile />
         {isAuthenticated ? <LogOutButton /> : <LoginButton />}
       </div>
-    </nav>
+      </nav>
+
+      <div className={styles.navCategories}>
+        <Dropdown className="d-inline mx-2" id="dropDown">
+          <Dropdown.Toggle id="dropstart-autoclose-true">
+            Categories
+          </Dropdown.Toggle>
+
+          <Dropdown.Menu >
+            <Dropdown.Item href="https://listado.mercadolibre.com.ar/notebooks#D[A:notebooks]" target="_blank">Notebooks</Dropdown.Item>
+            <Dropdown.Item href="#">Monitors</Dropdown.Item>
+            <Dropdown.Item href="#">Mouses</Dropdown.Item>
+            <Dropdown.Item href="#">Headsets</Dropdown.Item>
+            <Dropdown.Item href="#">Keyboards</Dropdown.Item>
+          </Dropdown.Menu>
+        </Dropdown>
+      </div>
+
+    </div>
   )
 }
 
