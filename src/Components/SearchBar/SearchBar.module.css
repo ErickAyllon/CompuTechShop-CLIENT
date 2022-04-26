@@ -68,11 +68,19 @@
   }
   
   @media only screen and (max-width: 700px) {
-    /* .searchBarContainer input {
-      width: 100px;
+    .searchBarContainer {
+      right: 20px;
+      width: 160px;
+      font-size: .7rem;
     }
-  
     .searchBarContainer button {
-      width: 25px;
-    } */
+      width: 70px;
+    }
+    .searchBarContainer input {
+      margin-left: 10px;
+      padding: 2px;
+    }
+    .searchBarContainer input {
+      background:none;
+    }
   }

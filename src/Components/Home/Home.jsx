@@ -12,8 +12,7 @@ function Home() {
       <NavBar />
       <div className={styles.homeContent}>
 
-      <div style={{ display: 'block', width: 1000, padding: 30 }}>
-        <h4>React-Bootstrap Carousel bebes</h4>
+      <div className={styles.carouselContainer} style={{ display: 'block', width: "auto", padding: 0 }}>
         <Carousel>
           <Carousel.Item interval={5000}>
             <img className="d-block w-100" src="https://dlcdnrog.asus.com/rog/media/1640742394134.jpg" alt="One" />
@@ -60,7 +59,6 @@ function Home() {
         </Carousel>
       </div>
   
-        {/* <h1>Home</h1> */}
       </div>
       <Footer />
     </div>
