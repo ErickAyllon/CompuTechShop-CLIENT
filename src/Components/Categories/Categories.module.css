@@ -1,0 +1,36 @@
+.categories {
+    text-align: center;
+    flex-direction: row;
+    display: flex;
+    justify-content: center;
+    width: auto;
+}
+.categories img {
+    height: 50px;
+    width: 50px;
+}
+
+.category {
+    margin: auto 30px auto 30px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+@media only screen and (max-width: 768px) {
+    .categories {
+        width: 400px;
+    }
+
+    .categories img {
+        height: 30px;
+        width: 30px;
+    }
+    .category {
+        margin: auto 10px auto 5px;
+        display: flex;
+        flex-direction: column;
+    }
+
+}

@@ -5,11 +5,12 @@ import Footer from '../Footer/Footer'
 import 'bootstrap/dist/css/bootstrap.css';
 
 import Carousel from 'react-bootstrap/Carousel';
+import Categories from '../Categories/Categories';
 
 function Home() {
   return (
     <div className={styles.home}>
-      <NavBar />
+      {/* <NavBar /> */}
       <div className={styles.homeContent}>
 
       <div className={styles.carouselContainer} style={{ display: 'block', width: "auto", padding: 0 }}>
@@ -58,9 +59,9 @@ function Home() {
           </Carousel.Item>
         </Carousel>
       </div>
-  
+      <Categories />
       </div>
-      <Footer />
+      {/* <Footer /> */}
     </div>
   )
 }
