@@ -13,9 +13,9 @@ function NavBar() {
   return (
     <div>
     <nav className={styles.NavBar}>
-      <div className={styles.logo}>
-        <Link to="/" />
-      </div>
+        <Link to="/" >
+      <div className={styles.logo} />
+        </Link>
       <div className={styles.searchBarCall}>
         <SearchBar />
       </div>
@@ -40,7 +40,6 @@ function NavBar() {
           </Dropdown.Menu>
         </Dropdown>
       </div>
-
     </div>
   )
 }
