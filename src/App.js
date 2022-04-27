@@ -6,6 +6,7 @@ import Laptops from './Components/Categories/Laptops/Laptops.jsx'
 import Monitors from "./Components/Categories/Monitors/Monitors";
 import Headsets from "./Components/Categories/Headsets/Headsets";
 import Keyboards from "./Components/Categories/Keyboards/Keyboards";
+import Admin from "./Components/Admin/Admin";
 
 function App() {
   return (
@@ -14,6 +15,7 @@ function App() {
       <Footer />
       <Routes>
         <Route path="/" element={<Home />} />
+        <Route path="/admin" element={<Admin />} />
         {/* <Route path='/home/:id' element={<Detail/>}/>
         <Route path='/payment' element={<Pago/>}/>
         <Route path='/envio' element={<Envio/>}/>

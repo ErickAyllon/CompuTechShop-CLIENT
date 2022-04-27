@@ -16,7 +16,7 @@ function PagionationC() {
   
   return (
     <div>
-    <Pagination className={styles.pagination}>
+    {/* <Pagination className={styles.pagination}>
         <Pagination.First />
         <Pagination.Prev />
         <Pagination.Item>{1}</Pagination.Item>
@@ -32,7 +32,7 @@ function PagionationC() {
         <Pagination.Item>{20}</Pagination.Item>
         <Pagination.Next />
         <Pagination.Last />
-    </Pagination>
+    </Pagination> */}
 
     <div style={{  padding: 30 }}>
       <Pagination style={{ width: '100%', justifyContent: 'center' }}>

@@ -1,5 +1,13 @@
-import React from "react";
+import { createStore, applyMiddleware, compose } from "redux";
+import rootReducer from "../Reducer/index";
+import thunk from "redux-thunk";
 
-export default function store() {
-  return <div>store</div>;
-}
+const store = createStore(
+  rootReducer,
+  compose(
+    applyMiddleware(thunk)
+    // la librería redux-devtools-extension tiene composeWithDevTools
+  ) //
+);
+
+export default store;
