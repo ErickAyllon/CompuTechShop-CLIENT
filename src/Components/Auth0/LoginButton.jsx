@@ -33,6 +33,7 @@ import styles from "./LoginButton.module.css";
 // }
 function LoginButton() {
   const { loginWithRedirect } = useAuth0();
+
   return (
     <button
       className={styles.logInButton}

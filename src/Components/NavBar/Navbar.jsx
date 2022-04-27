@@ -1,28 +1,27 @@
-import React from 'react'
-import Profile from '../Auth0/Profile.jsx'
-import LoginButton from '../Auth0/LoginButton.jsx'
-import LogOutButton from '../Auth0/LogOutButton.jsx'
+import React from "react";
+import Profile from "../Auth0/Profile.jsx";
+import LoginButton from "../Auth0/LoginButton.jsx";
+import LogOutButton from "../Auth0/LogOutButton.jsx";
 import { useAuth0 } from "@auth0/auth0-react";
-import styles from './NavBar.module.css'
-import SearchBar from '../SearchBar/SearchBar';
-import { Link } from 'react-router-dom';
-import { Dropdown } from 'react-bootstrap';
+import styles from "./NavBar.module.css";
+import SearchBar from "../SearchBar/SearchBar";
+import { Link } from "react-router-dom";
+import { Dropdown } from "react-bootstrap";
 
 function NavBar() {
   const { isAuthenticated } = useAuth0();
   return (
     <div>
-    <nav className={styles.NavBar}>
-        <Link to="/" >
-      <div className={styles.logo} />
+      <nav className={styles.NavBar}>
+        <Link to="/">
+          <div className={styles.logo} />
         </Link>
-      <div className={styles.searchBarCall}>
-        <SearchBar />
-      </div>
-      <div className={styles.auth0}>
-        <Profile />
-        {isAuthenticated ? <LogOutButton /> : <LoginButton />}
-      </div>
+        <div className={styles.searchBarCall}>
+          <SearchBar />
+        </div>
+        <div className={styles.auth0}>
+          {isAuthenticated ? <Profile /> : <LoginButton />}
+        </div>
       </nav>
 
       {/* <div className={styles.navCategories}>
@@ -41,7 +40,7 @@ function NavBar() {
         </Dropdown>
       </div> */}
     </div>
-  )
+  );
 }
 
-export default NavBar
+export default NavBar;
