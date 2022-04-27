@@ -24,3 +24,12 @@
     line-height: 100%;
     font-size: .8rem;
 }
+
+@media only screen and (max-width: 768px) {
+    .logOutButton {
+        width: 40px;
+    }
+    .logOutButton p {
+        font-size: .5rem;
+    }
+  }

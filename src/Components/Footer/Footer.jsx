@@ -15,6 +15,14 @@ function Footer() {
             <p>Work with us</p>
             <p>About</p>
           </div>
+          <div className={styles.socialMedia}>
+            <a href="https://www.instagram.com/" target="_blank" rel="noreferrer">
+              <img src="https://img.icons8.com/nolan/64/instagram-new.png" alt="socialLogo"/>
+            </a>
+            <a href="https://www.facebook.com/" target="_blank" rel="noreferrer">
+              <img src="https://img.icons8.com/nolan/64/facebook-new.png" alt="socialLogo"/> 
+            </a>
+          </div>
         </div>
     </div>
   )

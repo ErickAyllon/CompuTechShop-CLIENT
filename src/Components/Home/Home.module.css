@@ -2,7 +2,7 @@
     background-color: rgb(255, 255, 255);
     background-color: black;
     color: white;
-    height: 100vh;
+    height: 100%;
 }
 
 .homeContent {
@@ -11,7 +11,8 @@
 
 .carouselContainer {
     margin: auto;
-    margin-top: 50px;
+    margin-top: 2.5px;
+    margin-bottom: 25px;
 }
 
 .carouselContainer img {
