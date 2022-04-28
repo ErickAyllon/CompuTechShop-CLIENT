@@ -2,6 +2,13 @@
     color: white;
     text-align: center;
     justify-content: center;
-    margin-top: 15%;
+    margin-top: 2%;
+    position: relative;
+    min-height: 100vh;
+}
 
+.productsCardsContainer {
+    max-width: 1000px;
+    margin: 20px auto;
+    border: 1px solid black;
 }

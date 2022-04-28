@@ -2,6 +2,7 @@ import { GET_USER } from "../Actions";
 
 const initialState = {
   products: [],
+  allProducts: [],
   users: []
 }
 
@@ -10,7 +11,12 @@ function rootReducer (state = initialState, action) {
     case 'GET_PRODUCTS':
         return {
             ...state,
-            products: action.payload,
+            allProducts: action.payload,
+        }
+    case 'POST_PRODUCT':
+        return {
+          ...state,
+          allProducts: action.payload
         }
       case 'GET_USER':
         return{
@@ -21,7 +27,5 @@ function rootReducer (state = initialState, action) {
           return state;
     }
 }
-
-
 
 export default rootReducer;

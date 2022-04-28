@@ -1,0 +1,13 @@
+.adminContainer {
+    min-height: 100vh;
+}
+
+form {
+    margin-left: 45%;
+    margin-top: 15%;
+    justify-content: center;
+}
+
+form input {
+    display: flex;
+}
