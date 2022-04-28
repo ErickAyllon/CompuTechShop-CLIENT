@@ -9,6 +9,7 @@ import Keyboards from "./Components/Categories/Keyboards/Keyboards";
 import Mouses from "./Components/Categories/Mouses/Mouses";
 import Admin from "./Components/Admin/Admin";
 import Profile from "./Components/Profile/Profile";
+// import AllProductos from "./Components/allProductos/AllProductos";
 
 function App() {
   return (
@@ -22,6 +23,7 @@ function App() {
         <Route path='/envio' element={<Envio/>}/>
         <Route path='/product' element={<CreateProduct/>}/>
       */}
+        {/* <Route path="/allProductos" element={<AllProductos />} /> */}
         <Route path="/profile" element={<Profile />} />
         <Route path="/laptops" element={<Laptops />} />
         <Route path="/monitors" element={<Monitors />} />

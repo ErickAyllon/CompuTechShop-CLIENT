@@ -5,7 +5,6 @@ import { useAuth0 } from "@auth0/auth0-react";
 
 import {getUser} from "../../Redux/Actions/index.js"
 import styles from "./Profile.module.css";
-import { Link } from "react-router-dom";
 import DropdownMenu from "react-bootstrap/esm/DropdownMenu";
 import { Dropdown } from "react-bootstrap";
 import LogOutButton from "./LogOutButton";
@@ -23,6 +22,8 @@ export default function Profile() {
 
 
   return (
+      
+
     isAuthenticated && (
       <div className={styles.profile}>
         <img className={styles.profileImg} src={user.picture} alt="profileImg" />
@@ -32,7 +33,7 @@ export default function Profile() {
         <h2>{user.email}</h2>
         <h2>{user.email_verified}</h2>
         <h2>{user.age}</h2>
-        <h2>{user.phone}</h2>
+        <h2>{user.phone}</h2>  
         <Dropdown>
           <Dropdown.Toggle variant="success" id="dropdown-basic">
             <img
@@ -50,5 +51,6 @@ export default function Profile() {
         </Dropdown>
       </div>
     )
+ 
   );
 }

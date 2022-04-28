@@ -1,4 +1,4 @@
-import { GET_USER } from "../Actions";
+import { GET_USER, FILTER_BY_CATEGORY_KEYBOARDS, FILTER_BY_CATEGORY_MONITOR, FILTER_BY_CATEGORY_MOUSES, FILTER_BY_CATEGORY_HEADSETS } from "../Actions";
 
 const initialState = {
   products: [],
@@ -12,6 +12,7 @@ function rootReducer (state = initialState, action) {
         return {
             ...state,
             allProducts: action.payload,
+            products: action.payload
         }
     case 'POST_PRODUCT':
         return {
@@ -23,6 +24,35 @@ function rootReducer (state = initialState, action) {
           ...state,
           users: action.payload
         }  
+        
+       case FILTER_BY_CATEGORY_MOUSES:
+         return {
+          ...state,
+          allProducts: action.payload,
+          products: action.payload
+         }
+
+      
+        case FILTER_BY_CATEGORY_MONITOR:
+        return {
+            ...state,
+            allProducts: action.payload,
+            products: action.payload
+        }
+        
+        case FILTER_BY_CATEGORY_KEYBOARDS:
+        return {
+            ...state,
+            allProducts: action.payload,
+            products: action.payload
+        }
+        case FILTER_BY_CATEGORY_HEADSETS:
+        return {
+            ...state,
+            allProducts: action.payload,
+            products: action.payload
+        }
+
         default:
           return state;
     }
