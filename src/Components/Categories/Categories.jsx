@@ -7,31 +7,31 @@ function Categories() {
     <div className={styles.categories}>
         <div className={styles.category}>
             <Link to='/laptops'>
-                <img src="https://img.icons8.com/ios-filled/100/ffffff/laptop.png"/>
+                <img src="https://img.icons8.com/ios-filled/100/ffffff/laptop.png" alt="categoryLogo"/>
             </Link>
             <span>Laptops</span>
         </div>
         <div className={styles.category}>
             <Link to='/monitors'>
-                <img src="https://img.icons8.com/ios-filled/100/ffffff/monitor--v1.png"/>
+                <img src="https://img.icons8.com/ios-filled/100/ffffff/imac.png" alt="categoryLogo"/>
             </Link>
             <span>Monitors</span>
         </div>
         <div className={styles.category}>
-            <Link to='/monitors'>
-                <img src="https://img.icons8.com/ios-filled/100/ffffff/generic-mouse.png"/>
+            <Link to='/mouses'>
+                <img src="https://img.icons8.com/ios-filled/100/ffffff/generic-mouse.png" alt="categoryLogo"/>
             </Link>
             <span>Mouses</span>
         </div>
         <div className={styles.category}>
-            <Link to='/monitors'>
-                <img src="https://img.icons8.com/ios-filled/50/ffffff/headset.png"/>
+            <Link to='/headsets'>
+                <img src="https://img.icons8.com/ios-filled/100/ffffff/headset.png" alt="categoryLogo"/>
             </Link>
             <span>Headsets</span>
         </div>
         <div className={styles.category}>
-            <Link to='/monitors'>
-                <img src="https://img.icons8.com/ios-filled/100/ffffff/keyboard.png"/>
+            <Link to='/keyboards'>
+                <img src="https://img.icons8.com/ios/100/ffffff/keyboard.png" alt="categoryLogo"/>
             </Link>   
             <span>Keyboards</span>
         </div>
