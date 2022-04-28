@@ -9,6 +9,7 @@ import Keyboards from "./Components/Categories/Keyboards/Keyboards";
 import Mouses from "./Components/Categories/Mouses/Mouses";
 import Admin from "./Components/Admin/Admin";
 import Profile from "./Components/Profile/Profile";
+import ProductDetail from "./Components/Detail/ProductDetail";
 
 function App() {
   return (
@@ -28,6 +29,7 @@ function App() {
         <Route path="/mouses" element={<Mouses />} />
         <Route path="/headsets" element={<Headsets />} />
         <Route path="/keyboards" element={<Keyboards />} />
+        <Route path="/:name" element={<ProductDetail />} />
       </Routes>
       <Footer />
     </BrowserRouter>

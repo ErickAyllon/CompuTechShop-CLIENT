@@ -28,3 +28,31 @@ export function postProducts(payload) {
         return response;
     }
 }
+
+export function getDetail(name) {
+    return async function (dispatch) {
+        try {
+            var json = await axios.get("http://localhost:3001/products?name=" + name);
+            return dispatch({
+                type: "GET_DETAILS",
+                payload: json.data
+            })
+        } catch (error) {
+            console.log(error);
+        }
+    }
+}
+
+export function getCategories() {
+    return async function(dispatch) {
+        try {
+            var json = await axios.get('http://localhost:3001/categories');
+            return dispatch({
+                type: 'GET_CATEGORIES',
+                payload: json.data
+            })
+        } catch (error) {
+            console.log(error);
+        }
+    }
+}

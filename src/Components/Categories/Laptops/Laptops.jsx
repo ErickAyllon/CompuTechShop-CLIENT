@@ -18,7 +18,6 @@ function Laptops() {
   return (
     <div className={styles.laptops}>
       <Categories />
-      This is path="/laptops"
       <div className={styles.productsCardsContainer}>
         {allProducts.map((el) => {
           return (
