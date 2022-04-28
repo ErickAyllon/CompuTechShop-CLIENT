@@ -6,6 +6,7 @@ import Laptops from "./Components/Categories/Laptops/Laptops.jsx";
 import Monitors from "./Components/Categories/Monitors/Monitors";
 import Headsets from "./Components/Categories/Headsets/Headsets";
 import Keyboards from "./Components/Categories/Keyboards/Keyboards";
+import Mouses from "./Components/Categories/Mouses/Mouses";
 import Admin from "./Components/Admin/Admin";
 import Profile from "./Components/Profile/Profile";
 
@@ -24,6 +25,7 @@ function App() {
         <Route path="/profile" element={<Profile />} />
         <Route path="/laptops" element={<Laptops />} />
         <Route path="/monitors" element={<Monitors />} />
+        <Route path="/mouses" element={<Mouses />} />
         <Route path="/headsets" element={<Headsets />} />
         <Route path="/keyboards" element={<Keyboards />} />
       </Routes>
