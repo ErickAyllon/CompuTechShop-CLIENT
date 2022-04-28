@@ -3,16 +3,19 @@ import styles from './Home.module.css'
 import NavBar from '../NavBar/Navbar'
 import Footer from '../Footer/Footer'
 import 'bootstrap/dist/css/bootstrap.css';
-
+import Profile from '../Auth0/Profile';
 import Carousel from 'react-bootstrap/Carousel';
 import Categories from '../Categories/Categories';
+import { Link } from 'react-router-dom';
 
 function Home() {
   return (
     <div className={styles.home}>
       {/* <NavBar /> */}
       <div className={styles.homeContent}>
-
+      <Link to='/Auth0/Profile'> 
+      <button>Profile<Profile/></button>
+      </Link>      
       <div className={styles.carouselContainer} style={{ display: 'block', width: "auto", padding: 0 }}>
         <Carousel>
           <Carousel.Item interval={3000}>

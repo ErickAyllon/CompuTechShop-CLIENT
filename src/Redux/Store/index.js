@@ -1,5 +1,7 @@
-import React from "react";
+import {legacy_createStore as createStore, applyMiddleware} from "redux";
+import {composeWithDevTools} from "redux-devtools-extension";
+import thunk from "redux-thunk";
+import rootReducer from "../reducer/reducer";
 
-export default function store() {
-  return <div>store</div>;
-}
+export const store = 
+createStore(rootReducer, composeWithDevTools(applyMiddleware(thunk)))

@@ -1,5 +1,8 @@
+import { GET_USER } from "../Actions";
+
 const initialState = {
-  products: []
+  products: [],
+  users: []
 }
 
 function rootReducer (state = initialState, action) {  
@@ -9,9 +12,16 @@ function rootReducer (state = initialState, action) {
             ...state,
             products: action.payload,
         }
+      case 'GET_USER':
+        return{
+          ...state,
+          users: action.payload
+        }  
         default:
           return state;
     }
 }
 
-export default reducer;
+
+
+export default rootReducer;
