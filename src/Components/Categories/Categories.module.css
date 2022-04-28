@@ -20,7 +20,7 @@
 
 @media only screen and (max-width: 768px) {
     .categories {
-        width: 400px;
+        width: 100%;
     }
 
     .categories img {
@@ -28,7 +28,7 @@
         width: 30px;
     }
     .category {
-        margin: auto 10px auto 5px;
+        margin: auto 5px auto 5px;
         display: flex;
         flex-direction: column;
     }

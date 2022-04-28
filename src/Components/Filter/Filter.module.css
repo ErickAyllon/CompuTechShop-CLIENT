@@ -1,0 +1,19 @@
+.filter {
+    margin: 0 auto;
+    color: black;
+    width: 400px;
+}
+
+.filterContainer {
+    background-color: white;
+    width: 90%;
+    margin: 20px auto;
+    min-height: 190px;
+}
+
+@media only screen and (max-width: 768px) {
+    .filter {
+        display: none;
+    }
+
+}
