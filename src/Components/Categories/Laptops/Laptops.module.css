@@ -10,5 +10,5 @@
 .productsCardsContainer {
     max-width: 1000px;
     margin: 20px auto;
-    border: 1px solid black;
+    box-shadow: 0 0 6px 1px white;;
 }
