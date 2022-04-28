@@ -23,6 +23,7 @@ function App() {
         <Route path='/envio' element={<Envio/>}/>
         <Route path='/product' element={<CreateProduct/>}/>
       */}
+        {/* <Route path="/allProductos" element={<AllProductos />} /> */}
         <Route path="/profile" element={<Profile />} />
         <Route path="/laptops" element={<Laptops />} />
         <Route path="/monitors" element={<Monitors />} />

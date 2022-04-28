@@ -35,3 +35,4 @@ function Laptops() {
 }
 
 export default Laptops
+

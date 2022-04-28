@@ -1,12 +1,45 @@
 import React from 'react'
 import styles from './Headsets.module.css'
-import Categories from '../Categories';
+import Categories from '../Categories'
+import {useDispatch, useSelector} from 'react-redux'
+import { useEffect } from 'react'
+import {filterByCategoryHeadsets} from '../../../Redux/Actions'
+import ProductCard from '../../ProductCard/ProductCard'
+import { Link } from 'react-router-dom';
 
 function Headsets() {
+ 
+    const allProducts = useSelector ((state) => state.allProducts);
+
+    const dispatch = useDispatch();
+  
+    useEffect(() => {
+      dispatch(filterByCategoryHeadsets());
+    }, [dispatch]);
+   
+  
   return (
-    <div className={styles.headsets}>
-      <Categories />
-      This is path="/headsets"
+    <div >
+      <Categories  />
+       <div >
+              {
+                  allProducts?.map(e=> {
+                     return (
+                         <div  key={e.id}>
+                        
+                     <ProductCard name={e.name}
+                      image={e.image}
+                      price={e.price}
+                      brand={e.brand}
+                      description={e.description}
+                      calification={e.calification}
+                      quantity={e.quantity}
+                    />
+                        </div>
+                     )})
+                  }          
+              </div>
+  
     </div>
   )
 }
