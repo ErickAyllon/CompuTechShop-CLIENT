@@ -19,11 +19,13 @@ function Laptops() {
     <div className={styles.laptops}>
       <Categories />
       This is path="/laptops"
-      <div>{allProducts.map((el) => {
-        return (
-            <ProductCard name={el.name} price={el.price} image={el.image} id={el.id} brand={el.brand} calification={el.calification} quantity={el.quantity}/>
-        )
-      })}</div>
+      <div className={styles.productsCardsContainer}>
+        {allProducts.map((el) => {
+          return (
+              <ProductCard name={el.name} price={el.price} image={el.image} id={el.id} brand={el.brand} description={el.description} calification={el.calification} quantity={el.quantity}/>
+          )
+        })}
+      </div>
       <PaginationC />
     </div>
   )

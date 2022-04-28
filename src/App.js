@@ -13,7 +13,6 @@ function App() {
   return (
     <BrowserRouter>
       <NavBar />
-      <Footer />
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/admin" element={<Admin />} />
@@ -28,6 +27,7 @@ function App() {
         <Route path="/headsets" element={<Headsets />} />
         <Route path="/keyboards" element={<Keyboards />} />
       </Routes>
+      <Footer />
     </BrowserRouter>
   );
 }

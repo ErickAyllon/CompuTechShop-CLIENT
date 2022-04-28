@@ -10,13 +10,21 @@ export function getProducts() {
     }
 }
 
+// export function postProducts(payload) { // Rompe
+//     console.log(payload);
+//     return async function(dispatch) {
+//         const response = await axios.post("http://localhost:3001/postProduct", payload);
+//         console.log(response.data);
+//         return dispatch({
+//             type: "POST_PRODUCT",
+//             payload: response.data
+//         })
+//     }
+// }
+
 export function postProducts(payload) {
-    console.log(payload);
-    return async function(dispatch) {
+    return async function() {
         const response = await axios.post("http://localhost:3001/postProduct", payload);
-        return dispatch({
-            type: "POST_PRODUCT",
-            payload: response.data
-        })
+        return response;
     }
 }
