@@ -3,5 +3,24 @@
     text-align: center;
     justify-content: center;
     margin-top: 2%;
+    position: relative;
     min-height: 100vh;
+}
+
+.productsCardsContainer {
+    max-width: 900px;
+    margin: 20px auto;
+    box-shadow: 0 0 5px 1px rgba(128, 128, 128, 0.664);;
+}
+
+.productsContainer {
+    display: flex;
+    margin: 0 auto;
+    max-width: 1400px;
+}
+
+@media only screen and (max-width: 768px) {
+    .productsContainer {
+        display:block;
+    }
 }

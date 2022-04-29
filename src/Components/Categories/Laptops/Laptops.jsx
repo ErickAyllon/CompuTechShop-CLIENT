@@ -5,6 +5,7 @@ import PaginationC from '../../Pagination/PaginationC';
 import { getProducts } from '../../../Redux/Actions';
 import { useSelector, useDispatch } from 'react-redux';
 import ProductCard from '../../ProductCard/ProductCard';
+import Filter from '../../Filter/Filter';
 
 function Laptops() {
   const allProducts = useSelector ((state) => state.allProducts);
@@ -18,17 +19,28 @@ function Laptops() {
   return (
     <div className={styles.laptops}>
       <Categories />
-      This is path="/laptops"
-      <div className={styles.productsCardsContainer}>
-        {allProducts.map((el) => {
-          return (
-              <ProductCard name={el.name} price={el.price} image={el.image} id={el.id} brand={el.brand} description={el.description} calification={el.calification} quantity={el.quantity}/>
-          )
-        })}
+      <div className={styles.productsContainer}>
+        <Filter />
+        <div className={styles.productsCardsContainer}>
+          {allProducts.map((el) => {
+            return (
+                <ProductCard 
+                  name={el.name} 
+                  price={el.price} 
+                  image={el.image} 
+                  id={el.id} 
+                  brand={el.brand} 
+                  description={el.description} 
+                  calification={el.calification} 
+                  quantity={el.quantity}/>
+            )
+          })}
+        </div>
       </div>
-      <PaginationC />
+        <PaginationC />
     </div>
   )
 }
 
 export default Laptops
+
