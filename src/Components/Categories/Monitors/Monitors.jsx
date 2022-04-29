@@ -1,13 +1,12 @@
-import React from 'react'
-import styles from './Monitors.module.css'
-import Categories from '../Categories'
-import {useDispatch, useSelector} from 'react-redux'
-import { useEffect } from 'react'
+import React, { useState, useEffect} from 'react'
+import { useParams } from 'react-router-dom';
+import { useSelector, useDispatch } from 'react-redux';
 import { filterByCategory } from '../../../Redux/Actions';
-import ProductCard from '../../ProductCard/ProductCard'
-import { Link } from 'react-router-dom';
-import Filter from '../../Filter/Filter'
 import PaginationC from '../../Pagination/PaginationC';
+import Categories from '../Categories';
+import ProductCard from '../../ProductCard/ProductCard';
+import Filter from '../../Filter/Filter';
+import styles from './Monitors.module.css'
 
 function Monitors() {
   const products = useSelector ((state) => state.products)
@@ -19,7 +18,6 @@ function Monitors() {
     dispatch(filterByCategory(category));
   }, [dispatch]);
    
-  
   return (
     <div className={styles.monitors}>
       <Categories />

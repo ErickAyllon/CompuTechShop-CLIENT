@@ -35,7 +35,6 @@ function rootReducer(state = initialState, action) {
         products: action.payload,
       }
     case "GET_PRODUCTS_BY_NAME":
-      console.log(state.products)
       return {
         ...state,
         products: action.payload,

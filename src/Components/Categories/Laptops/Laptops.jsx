@@ -12,7 +12,7 @@ function Laptops() {
   const products = useSelector ((state) => state.products)
   const dispatch = useDispatch();
   const category = 'Laptops';
-  // const {category} = useParams
+  // const {category} = useParams();
 
   useEffect(() => {
     dispatch(filterByCategory(category));
