@@ -24,7 +24,15 @@ function Laptops() {
         <div className={styles.productsCardsContainer}>
           {allProducts.map((el) => {
             return (
-                <ProductCard name={el.name} price={el.price} image={el.image} id={el.id} brand={el.brand} description={el.description} calification={el.calification} quantity={el.quantity}/>
+                <ProductCard 
+                  name={el.name} 
+                  price={el.price} 
+                  image={el.image} 
+                  id={el.id} 
+                  brand={el.brand} 
+                  description={el.description} 
+                  calification={el.calification} 
+                  quantity={el.quantity}/>
             )
           })}
         </div>

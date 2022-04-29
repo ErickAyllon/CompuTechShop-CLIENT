@@ -6,6 +6,8 @@ import { useEffect } from 'react'
 import {filterByCategoryHeadsets} from '../../../Redux/Actions'
 import ProductCard from '../../ProductCard/ProductCard'
 import { Link } from 'react-router-dom';
+import Filter from '../../Filter/Filter'
+import PaginationC from '../../Pagination/PaginationC';
 
 function Headsets() {
  
@@ -19,27 +21,27 @@ function Headsets() {
    
   
   return (
-    <div >
-      <Categories  />
-       <div >
-              {
-                  allProducts?.map(e=> {
-                     return (
-                         <div  key={e.id}>
-                        
-                     <ProductCard name={e.name}
-                      image={e.image}
-                      price={e.price}
-                      brand={e.brand}
-                      description={e.description}
-                      calification={e.calification}
-                      quantity={e.quantity}
-                    />
-                        </div>
-                     )})
-                  }          
-              </div>
-  
+    <div className={styles.headsets}>
+      <Categories />
+      <div className={styles.productsContainer}>
+        <Filter />
+        <div className={styles.productsCardsContainer}>
+          {allProducts.map((el) => {
+            return (
+                <ProductCard 
+                  name={el.name} 
+                  price={el.price} 
+                  image={el.image} 
+                  id={el.id} 
+                  brand={el.brand} 
+                  description={el.description} 
+                  calification={el.calification} 
+                  quantity={el.quantity}/>
+            )
+          })}
+        </div>
+      </div>
+        <PaginationC />
     </div>
   )
 }

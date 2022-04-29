@@ -4,6 +4,7 @@ import { getDetail } from '../../Redux/Actions/index.js'
 import { useSelector, useDispatch } from 'react-redux';
 import { useParams } from 'react-router-dom';
 import { Rating } from '@mui/material';
+import Categories from '../Categories/Categories';
 
 
 function ProductDetail (){
@@ -18,6 +19,7 @@ function ProductDetail (){
 
   return (
   <div className={styles.productDetail}>
+    <Categories />
     {
       product.length > 0 ?
         <div className={styles.productDetailContainer}>

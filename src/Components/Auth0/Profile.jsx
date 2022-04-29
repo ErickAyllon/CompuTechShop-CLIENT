@@ -26,14 +26,14 @@ export default function Profile() {
 
     isAuthenticated && (
       <div className={styles.profile}>
-        <img className={styles.profileImg} src={user.picture} alt="profileImg" />
+        {/* <img className={styles.profileImg} src={user.picture} alt="profileImg" />
         <h2>{user.name}</h2>
         <h2>{user.lastName}</h2>
         <h2>{user.nickname}</h2>
         <h2>{user.email}</h2>
         <h2>{user.email_verified}</h2>
         <h2>{user.age}</h2>
-        <h2>{user.phone}</h2>  
+        <h2>{user.phone}</h2>   */}
         <Dropdown>
           <Dropdown.Toggle variant="success" id="dropdown-basic">
             <img

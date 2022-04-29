@@ -10,6 +10,7 @@ import Mouses from "./Components/Categories/Mouses/Mouses";
 import Admin from "./Components/Admin/Admin";
 import Profile from "./Components/Profile/Profile";
 import ProductDetail from "./Components/Detail/ProductDetail";
+import NotFound404 from "./Components/NotFound404/NotFound404";
 
 function App() {
   return (
@@ -31,6 +32,7 @@ function App() {
         <Route path="/headsets" element={<Headsets />} />
         <Route path="/keyboards" element={<Keyboards />} />
         <Route path="/:name" element={<ProductDetail />} />
+        <Route path="*" element={<NotFound404 />} />
       </Routes>
       <Footer />
     </BrowserRouter>

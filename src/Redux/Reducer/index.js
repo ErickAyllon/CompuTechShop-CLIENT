@@ -10,6 +10,7 @@ const initialState = {
   products: [],
   allProducts: [],
   users: [],
+  productDetail: [],
 };
 
 function rootReducer(state = initialState, action) {
@@ -30,21 +31,23 @@ function rootReducer(state = initialState, action) {
         ...state,
         users: action.payload,
       };
-
+    case 'GET_DETAILS':
+      return {
+          ...state,
+          productDetail: action.payload
+      }
     case FILTER_BY_CATEGORY_MOUSES:
       return {
         ...state,
         allProducts: action.payload,
         products: action.payload,
       };
-
     case FILTER_BY_CATEGORY_MONITOR:
       return {
         ...state,
         allProducts: action.payload,
         products: action.payload,
       };
-
     case FILTER_BY_CATEGORY_KEYBOARDS:
       return {
         ...state,

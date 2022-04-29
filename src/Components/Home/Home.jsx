@@ -1,30 +1,19 @@
 import React from 'react'
 import 'bootstrap/dist/css/bootstrap.css';
 import styles from './Home.module.css'
-import NavBar from '../NavBar/Navbar'
-import Footer from '../Footer/Footer'
 import 'bootstrap/dist/css/bootstrap.css';
 import Profile from '../Auth0/Profile';
 import Carousel from 'react-bootstrap/Carousel';
 import Categories from '../Categories/Categories';
 import { Link } from 'react-router-dom';
-import {filterByCategory} from '../../Redux/Actions'
-import {useDispatch, useSelector} from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import ProductCard from '../ProductCard/ProductCard';
 
-
-
 function Home() {
-
-
-
   return (
     <div className={styles.home}>
-      {/* <NavBar /> */}
 
-      {/* <div>
-
-
+       {/* <div>
         <select onChange={(e) => handlefilterByCategory(e)}>
         <option disabled>All Products</option>
           <option value="Monitors">Monitors</option>
@@ -33,7 +22,7 @@ function Home() {
           <option value="Headsets">Headsets</option>
           <option value="Keyboards">Keyboards</option>
        </select>
-      </div> */}
+      </div>  */}
 
       <div className={styles.homeContent}>
       <Link to='/Auth0/Profile'> 
@@ -87,7 +76,6 @@ function Home() {
       </div>
       <Categories />
       </div>
-      {/* <Footer /> */}
     </div>
   )
 }
