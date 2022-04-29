@@ -19,6 +19,12 @@
     max-width: 1400px;
 }
 
+.paginationContainer {
+    background-color: gray;
+    width: 270px;
+    margin: 0 auto;
+}
+
 @media only screen and (max-width: 768px) {
     .productsContainer {
         display:block;

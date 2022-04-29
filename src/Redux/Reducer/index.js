@@ -28,37 +28,23 @@ function rootReducer(state = initialState, action) {
         ...state,
         users: action.payload,
       };
-    case "GET_DETAILS":
+    case 'GET_DETAILS':
       return {
-<<<<<<< HEAD
-        ...state,
-        productDetail: action.payload,
-      };
-=======
           ...state,
           productDetail: action.payload,
           products: [],
       }
->>>>>>> develop
     case "FILTER_BY_CATEGORY":
       return {
         ...state,
         products: action.payload,
-<<<<<<< HEAD
-      };
-=======
         productDetail: []
       }
->>>>>>> develop
     case "GET_PRODUCTS_BY_NAME":
       return {
         ...state,
         products: action.payload,
         allProducts: action.payload,
-<<<<<<< HEAD
-      };
-
-=======
         productDetail: []
       }
       case "POST_USER":
@@ -73,7 +59,6 @@ function rootReducer(state = initialState, action) {
           products: action.payload,
           
         }
->>>>>>> develop
     default:
       return state;
   }

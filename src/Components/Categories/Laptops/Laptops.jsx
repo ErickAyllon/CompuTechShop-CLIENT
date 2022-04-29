@@ -1,13 +1,3 @@
-<<<<<<< HEAD
-import React, { useEffect } from "react";
-import { useSelector, useDispatch } from "react-redux";
-import { filterByCategory } from "../../../Redux/Actions";
-import PaginationC from "../../Pagination/PaginationC";
-import Categories from "../Categories";
-import ProductCard from "../../ProductCard/ProductCard";
-import Filter from "../../Filter/Filter";
-import styles from "./Laptops.module.css";
-=======
 import React, { useState, useEffect} from 'react'
 import { useParams } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
@@ -18,17 +8,35 @@ import ProductCard from '../../ProductCard/ProductCard';
 import Filter from '../../Filter/Filter';
 import styles from './Laptops.module.css'
 import Loader from '../../Loader/Loader';
->>>>>>> develop
 
 function Laptops() {
-  const products = useSelector((state) => state.products);
+  const products = useSelector ((state) => state.products)
   const dispatch = useDispatch();
-  const category = "Laptops";
+  const category = 'Laptops';
   // const {category} = useParams();
 
   useEffect(() => {
     dispatch(filterByCategory(category));
   }, [dispatch]);
+
+  const [currentPage, setCurrentPage] = useState(1);
+  const productsPerPage = 3;
+  const indexLastProduct = currentPage * productsPerPage;
+  const indexFirstProduct = indexLastProduct - productsPerPage;
+  const currentProducts = products.slice(indexFirstProduct, indexLastProduct);
+  const [order, setOrder] = useState('');
+
+  const pagination = (pageNumber) => {
+    setCurrentPage(pageNumber);
+}
+
+    // <Pagination 
+    //   productsPerPage={productsPerPage} 
+    //   products={products.length} 
+    //   pagination={pagination} 
+    //   currentPage={currentPage} 
+    //   setCurrentPage={setCurrentPage}
+    // />
 
   return (
     <div className={styles.laptops}>
@@ -39,33 +47,38 @@ function Laptops() {
       <div className={styles.productsContainer}>
         <Filter />
         <div className={styles.productsCardsContainer}>
-          {products.map((el) => {
+          {currentProducts.map((el) => {
             return (
-              <ProductCard
-                name={el.name}
-                price={el.price}
-                image={el.image}
-                id={el.id}
-                brand={el.brand}
-                description={el.description}
-                calification={el.calification}
-                quantity={el.quantity}
-              />
-            );
+                <ProductCard 
+                  name={el.name} 
+                  price={el.price} 
+                  image={el.image} 
+                  id={el.id} 
+                  brand={el.brand} 
+                  description={el.description} 
+                  calification={el.calification} 
+                  quantity={el.quantity}/>
+            )
           })}
         </div>
       </div>
-<<<<<<< HEAD
-      <PaginationC />
-=======
-        <PaginationC />
+      <div className={styles.paginationContainer}>
+        <PaginationC 
+          category={category}
+          productsPerPage={productsPerPage} 
+          products={products.length} 
+          pagination={pagination} 
+          currentPage={currentPage} 
+          setCurrentPage={setCurrentPage}
+        />
+        </div>
       </>
           :
           <Loader />
       }
->>>>>>> develop
     </div>
-  );
+  )
 }
 
-export default Laptops;
+export default Laptops
+

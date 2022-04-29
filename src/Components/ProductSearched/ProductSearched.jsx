@@ -1,16 +1,3 @@
-<<<<<<< HEAD
-import React from "react";
-import styles from "./ProductSearched.module.css";
-import { useSelector } from "react-redux";
-import Categories from "../Categories/Categories";
-import Filter from "../Filter/Filter";
-import ProductCard from "../ProductCard/ProductCard";
-import PaginationC from "../Pagination/PaginationC.jsx";
-
-function ProductSearched() {
-  const products = useSelector((state) => state.products);
-
-=======
 import React from 'react'
 import styles from './ProductSearched.module.css'
 import {useDispatch, useSelector} from 'react-redux'
@@ -33,7 +20,6 @@ function ProductSearched() {
 //     dispatch(getProductsByName(name));
 //   }, [dispatch]);
   
->>>>>>> develop
   return (
     <div className={styles.searched}>
       <Categories />
@@ -45,23 +31,19 @@ function ProductSearched() {
         <div className={styles.productsCardsContainer}>
           {products.map((el) => {
             return (
-              <ProductCard
-                name={el.name}
-                price={el.price}
-                image={el.image}
-                id={el.id}
-                brand={el.brand}
-                description={el.description}
-                calification={el.calification}
-                quantity={el.quantity}
-              />
-            );
+                <ProductCard 
+                  name={el.name} 
+                  price={el.price} 
+                  image={el.image} 
+                  id={el.id} 
+                  brand={el.brand} 
+                  description={el.description} 
+                  calification={el.calification} 
+                  quantity={el.quantity}/>
+            )
           })}
         </div>
       </div>
-<<<<<<< HEAD
-      <PaginationC />
-=======
         <PaginationC />
         </>
           : 
@@ -69,9 +51,8 @@ function ProductSearched() {
             <ProductNotFound/>
           </div>
       }
->>>>>>> develop
     </div>
-  );
+  )
 }
 
-export default ProductSearched;
+export default ProductSearched
