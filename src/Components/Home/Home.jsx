@@ -13,16 +13,7 @@ function Home() {
   return (
     <div className={styles.home}>
 
-       {/* <div>
-        <select onChange={(e) => handlefilterByCategory(e)}>
-        <option disabled>All Products</option>
-          <option value="Monitors">Monitors</option>
-          <option value="Laptops">Laptops</option>
-          <option value="Mouses">Mouses</option>
-          <option value="Headsets">Headsets</option>
-          <option value="Keyboards">Keyboards</option>
-       </select>
-      </div>  */}
+     
 
       <div className={styles.homeContent}>
       <Link to='/Auth0/Profile'> 

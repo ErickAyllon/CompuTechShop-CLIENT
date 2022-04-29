@@ -66,6 +66,13 @@ export const filterByCategory = (category) => {
         })
     } 
 }
+export const POST_USER = 'POST_USER'
+export function postUser(payload) {
+    return async function() {
+        const response = await axios.post("http://localhost:3001/postUser", payload);
+        return response;
+    }
+ }
 
 export function getProductsByName(name) {
     return async function(dispatch) {
@@ -81,3 +88,13 @@ export function getProductsByName(name) {
     }
 }
 
+export const filterByBrand = (brand) => {
+    return async (dispatch) => {
+    var json = await axios.get('http://localhost:3001/productBrand?brand=' + brand);
+    
+        return dispatch({
+            type: 'FILTER_BY_BRAND',
+            payload: json.data
+        })
+    } 
+}

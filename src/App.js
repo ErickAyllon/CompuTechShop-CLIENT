@@ -12,6 +12,8 @@ import Profile from "./Components/Profile/Profile";
 import ProductDetail from "./Components/Detail/ProductDetail";
 import NotFound404 from "./Components/NotFound404/NotFound404";
 import AllProducts from "./Components/Categories/AllProducts/AllProducts";
+import ProfileForm from "./Components/Profile/ProfileForm";
+
 import ProductSearched from "./Components/ProductSearched/ProductSearched";
 //esto es una pruevita
 function App() {
@@ -37,6 +39,7 @@ function App() {
         <Route path="/:name" element={<ProductDetail />} />
         <Route path="/s/:search" element={<ProductSearched />} />
         <Route path="*" element={<NotFound404 />} />
+        <Route path="/user" element={<ProfileForm/>} />
       </Routes>
       <Footer />
     </BrowserRouter>
