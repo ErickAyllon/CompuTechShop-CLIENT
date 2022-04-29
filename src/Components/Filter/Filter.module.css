@@ -10,6 +10,7 @@
     margin: 20px auto;
     min-height: 190px;
     height: 95%;
+    box-shadow: 0 0 10px .2px rgba(255, 255, 255, 0.309);
 }
 
 

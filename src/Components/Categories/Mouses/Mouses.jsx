@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 import React from "react";
 import styles from "./Mouses.module.css";
 import Categories from "../Categories";
@@ -7,6 +8,20 @@ import { filterByCategory } from "../../../Redux/Actions";
 import ProductCard from "../../ProductCard/ProductCard";
 import Filter from "../../Filter/Filter";
 import PaginationC from "../../Pagination/PaginationC";
+=======
+
+import React from 'react'
+import styles from './Mouses.module.css'
+import Categories from '../Categories'
+import {useDispatch, useSelector} from 'react-redux'
+import { useEffect } from 'react'
+import {filterByCategory} from '../../../Redux/Actions'
+import ProductCard from '../../ProductCard/ProductCard'
+import { Link } from 'react-router-dom';
+import Filter from '../../Filter/Filter'
+import PaginationC from '../../Pagination/PaginationC';
+import Loader from '../../Loader/Loader'
+>>>>>>> develop
 
 function Mouses() {
   const products = useSelector((state) => state.products);
@@ -21,6 +36,9 @@ function Mouses() {
   return (
     <div className={styles.mouses}>
       <Categories />
+      {
+        products.length > 0 ?
+        <>
       <div className={styles.productsContainer}>
         <Filter />
         <div className={styles.productsCardsContainer}>
@@ -40,7 +58,15 @@ function Mouses() {
           })}
         </div>
       </div>
+<<<<<<< HEAD
       <PaginationC />
+=======
+        <PaginationC />
+      </>
+          :
+          <Loader />
+      }
+>>>>>>> develop
     </div>
   );
 }

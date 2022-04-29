@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 import React from "react";
 import styles from "./ProductSearched.module.css";
 import { useSelector } from "react-redux";
@@ -9,9 +10,36 @@ import PaginationC from "../Pagination/PaginationC.jsx";
 function ProductSearched() {
   const products = useSelector((state) => state.products);
 
+=======
+import React from 'react'
+import styles from './ProductSearched.module.css'
+import {useDispatch, useSelector} from 'react-redux'
+import { useEffect } from 'react'
+import { getProductsByName } from '../../Redux/Actions'
+import Categories from '../Categories/Categories'
+import Filter from '../Filter/Filter'
+import ProductCard from '../ProductCard/ProductCard'
+import PaginationC from '../Pagination/PaginationC.jsx'
+import { useParams } from 'react-router-dom'
+import ProductNotFound from '../ProductNotFound/ProductNotFound'
+
+function ProductSearched() {
+  const products = useSelector ((state) => state.products)
+  // const dispatch = useDispatch();
+
+  // const {name} = useParams
+
+//   useEffect(() => {
+//     dispatch(getProductsByName(name));
+//   }, [dispatch]);
+  
+>>>>>>> develop
   return (
     <div className={styles.searched}>
       <Categories />
+      {
+        products.length > 0 ?
+        <>
       <div className={styles.productsContainer}>
         <Filter />
         <div className={styles.productsCardsContainer}>
@@ -31,7 +59,17 @@ function ProductSearched() {
           })}
         </div>
       </div>
+<<<<<<< HEAD
       <PaginationC />
+=======
+        <PaginationC />
+        </>
+          : 
+          <div className={styles.productNotFoundContainer}>
+            <ProductNotFound/>
+          </div>
+      }
+>>>>>>> develop
     </div>
   );
 }

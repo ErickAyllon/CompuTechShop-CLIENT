@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 import React, { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { filterByCategory } from "../../../Redux/Actions";
@@ -6,6 +7,18 @@ import Categories from "../Categories";
 import ProductCard from "../../ProductCard/ProductCard";
 import Filter from "../../Filter/Filter";
 import styles from "./Monitors.module.css";
+=======
+import React, { useState, useEffect} from 'react'
+import { useParams } from 'react-router-dom';
+import { useSelector, useDispatch } from 'react-redux';
+import { filterByCategory } from '../../../Redux/Actions';
+import PaginationC from '../../Pagination/PaginationC';
+import Categories from '../Categories';
+import ProductCard from '../../ProductCard/ProductCard';
+import Filter from '../../Filter/Filter';
+import styles from './Monitors.module.css'
+import Loader from '../../Loader/Loader';
+>>>>>>> develop
 
 function Monitors() {
   const products = useSelector((state) => state.products);
@@ -20,6 +33,9 @@ function Monitors() {
   return (
     <div className={styles.monitors}>
       <Categories />
+      {
+        products.length > 0 ?
+        <>
       <div className={styles.productsContainer}>
         <Filter />
         <div className={styles.productsCardsContainer}>
@@ -39,7 +55,15 @@ function Monitors() {
           })}
         </div>
       </div>
+<<<<<<< HEAD
       <PaginationC />
+=======
+        <PaginationC />
+      </>
+          :
+          <Loader />
+      }
+>>>>>>> develop
     </div>
   );
 }

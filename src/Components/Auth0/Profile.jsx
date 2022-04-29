@@ -14,7 +14,7 @@ export default function Profile() {
           <Dropdown.Toggle variant="success" id="dropdown-basic">
             <img
               className={styles.profileImg}
-              src={user.picture}
+              src={user.picture || user.image}
               alt="profileImg"
             />
           </Dropdown.Toggle>

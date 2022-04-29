@@ -10,6 +10,7 @@ import { Link } from "react-router-dom";
 function Home() {
   return (
     <div className={styles.home}>
+<<<<<<< HEAD
       {/* <div>
         <select onChange={(e) => handlefilterByCategory(e)}>
         <option disabled>All Products</option>
@@ -20,6 +21,10 @@ function Home() {
           <option value="Keyboards">Keyboards</option>
        </select>
       </div>  */}
+=======
+
+     
+>>>>>>> develop
 
       <div className={styles.homeContent}>
         <Link to="/Auth0/Profile">
