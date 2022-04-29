@@ -24,22 +24,22 @@ function rootReducer(state = initialState, action) {
         ...state,
         users: action.payload,
       };
-    case 'GET_DETAILS':
+    case "GET_DETAILS":
       return {
-          ...state,
-          productDetail: action.payload
-      }
+        ...state,
+        productDetail: action.payload,
+      };
     case "FILTER_BY_CATEGORY":
       return {
         ...state,
         products: action.payload,
-      }
+      };
     case "GET_PRODUCTS_BY_NAME":
       return {
         ...state,
         products: action.payload,
         allProducts: action.payload,
-      }
+      };
 
     default:
       return state;

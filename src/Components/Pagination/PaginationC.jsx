@@ -1,22 +1,20 @@
-import React from 'react'
-import Pagination from 'react-bootstrap/Pagination'
-import styles from './PaginationC.module.css'
+import React from "react";
+import Pagination from "react-bootstrap/Pagination";
 
 function PaginationC() {
-
-  let active = 1
+  let active = 1;
   let items = [];
   for (let number = 1; number <= 5; number++) {
     items.push(
       <Pagination.Item key={number} active={number === active}>
         {number}
-      </Pagination.Item>,
+      </Pagination.Item>
     );
   }
-  
+
   return (
     <div>
-    {/* <Pagination className={styles.pagination}>
+      {/* <Pagination className={styles.pagination}>
         <Pagination.First />
         <Pagination.Prev />
         <Pagination.Item>{1}</Pagination.Item>
@@ -34,20 +32,19 @@ function PaginationC() {
         <Pagination.Last />
     </Pagination> */}
 
-    <div style={{  padding: 30 }}>
-      <Pagination style={{ width: '100%', justifyContent: 'center' }}>
-        <Pagination.Prev />
-        <Pagination.Ellipsis />
-        <Pagination.Item>{3}</Pagination.Item>
-        <Pagination.Item>{4}</Pagination.Item>
-        <Pagination.Item>{5}</Pagination.Item>
-        <Pagination.Ellipsis />
-        <Pagination.Next />
-      </Pagination>
+      <div style={{ padding: 30 }}>
+        <Pagination style={{ width: "100%", justifyContent: "center" }}>
+          <Pagination.Prev />
+          <Pagination.Ellipsis />
+          <Pagination.Item>{3}</Pagination.Item>
+          <Pagination.Item>{4}</Pagination.Item>
+          <Pagination.Item>{5}</Pagination.Item>
+          <Pagination.Ellipsis />
+          <Pagination.Next />
+        </Pagination>
+      </div>
     </div>
-    
-    </div>
-  )
+  );
 }
 
-export default PaginationC
+export default PaginationC;

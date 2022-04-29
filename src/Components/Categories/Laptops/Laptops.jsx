@@ -1,17 +1,16 @@
-import React, { useState, useEffect} from 'react'
-import { useParams } from 'react-router-dom';
-import { useSelector, useDispatch } from 'react-redux';
-import { filterByCategory } from '../../../Redux/Actions';
-import PaginationC from '../../Pagination/PaginationC';
-import Categories from '../Categories';
-import ProductCard from '../../ProductCard/ProductCard';
-import Filter from '../../Filter/Filter';
-import styles from './Laptops.module.css'
+import React, { useEffect } from "react";
+import { useSelector, useDispatch } from "react-redux";
+import { filterByCategory } from "../../../Redux/Actions";
+import PaginationC from "../../Pagination/PaginationC";
+import Categories from "../Categories";
+import ProductCard from "../../ProductCard/ProductCard";
+import Filter from "../../Filter/Filter";
+import styles from "./Laptops.module.css";
 
 function Laptops() {
-  const products = useSelector ((state) => state.products)
+  const products = useSelector((state) => state.products);
   const dispatch = useDispatch();
-  const category = 'Laptops';
+  const category = "Laptops";
   // const {category} = useParams();
 
   useEffect(() => {
@@ -26,23 +25,23 @@ function Laptops() {
         <div className={styles.productsCardsContainer}>
           {products.map((el) => {
             return (
-                <ProductCard 
-                  name={el.name} 
-                  price={el.price} 
-                  image={el.image} 
-                  id={el.id} 
-                  brand={el.brand} 
-                  description={el.description} 
-                  calification={el.calification} 
-                  quantity={el.quantity}/>
-            )
+              <ProductCard
+                name={el.name}
+                price={el.price}
+                image={el.image}
+                id={el.id}
+                brand={el.brand}
+                description={el.description}
+                calification={el.calification}
+                quantity={el.quantity}
+              />
+            );
           })}
         </div>
       </div>
-        <PaginationC />
+      <PaginationC />
     </div>
-  )
+  );
 }
 
-export default Laptops
-
+export default Laptops;
