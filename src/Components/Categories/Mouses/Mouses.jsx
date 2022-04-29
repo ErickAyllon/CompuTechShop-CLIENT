@@ -9,6 +9,7 @@ import ProductCard from '../../ProductCard/ProductCard'
 import { Link } from 'react-router-dom';
 import Filter from '../../Filter/Filter'
 import PaginationC from '../../Pagination/PaginationC';
+import Loader from '../../Loader/Loader'
 
 function Mouses() {
   const products = useSelector ((state) => state.products)
@@ -24,6 +25,9 @@ function Mouses() {
   return (
     <div className={styles.mouses}>
       <Categories />
+      {
+        products.length > 0 ?
+        <>
       <div className={styles.productsContainer}>
         <Filter />
         <div className={styles.productsCardsContainer}>
@@ -43,6 +47,10 @@ function Mouses() {
         </div>
       </div>
         <PaginationC />
+      </>
+          :
+          <Loader />
+      }
     </div>
   )
 }

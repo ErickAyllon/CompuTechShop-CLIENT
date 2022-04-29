@@ -7,6 +7,7 @@ import Categories from '../Categories';
 import ProductCard from '../../ProductCard/ProductCard';
 import Filter from '../../Filter/Filter';
 import styles from './Laptops.module.css'
+import Loader from '../../Loader/Loader';
 
 function Laptops() {
   const products = useSelector ((state) => state.products)
@@ -21,6 +22,9 @@ function Laptops() {
   return (
     <div className={styles.laptops}>
       <Categories />
+      {
+        products.length > 0 ?
+        <>
       <div className={styles.productsContainer}>
         <Filter />
         <div className={styles.productsCardsContainer}>
@@ -40,6 +44,10 @@ function Laptops() {
         </div>
       </div>
         <PaginationC />
+      </>
+          :
+          <Loader />
+      }
     </div>
   )
 }

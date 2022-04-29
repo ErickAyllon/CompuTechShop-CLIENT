@@ -7,6 +7,7 @@ import Categories from '../Categories';
 import ProductCard from '../../ProductCard/ProductCard';
 import Filter from '../../Filter/Filter';
 import styles from './Monitors.module.css'
+import Loader from '../../Loader/Loader';
 
 function Monitors() {
   const products = useSelector ((state) => state.products)
@@ -21,6 +22,9 @@ function Monitors() {
   return (
     <div className={styles.monitors}>
       <Categories />
+      {
+        products.length > 0 ?
+        <>
       <div className={styles.productsContainer}>
         <Filter />
         <div className={styles.productsCardsContainer}>
@@ -40,6 +44,10 @@ function Monitors() {
         </div>
       </div>
         <PaginationC />
+      </>
+          :
+          <Loader />
+      }
     </div>
   )
 }

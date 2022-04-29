@@ -13,6 +13,7 @@ function rootReducer(state = initialState, action) {
         ...state,
         allProducts: action.payload,
         products: action.payload,
+        productDetail: []
       };
     case "POST_PRODUCT":
       return {
@@ -27,18 +28,21 @@ function rootReducer(state = initialState, action) {
     case 'GET_DETAILS':
       return {
           ...state,
-          productDetail: action.payload
+          productDetail: action.payload,
+          products: [],
       }
     case "FILTER_BY_CATEGORY":
       return {
         ...state,
         products: action.payload,
+        productDetail: []
       }
     case "GET_PRODUCTS_BY_NAME":
       return {
         ...state,
         products: action.payload,
         allProducts: action.payload,
+        productDetail: []
       }
 
     default:

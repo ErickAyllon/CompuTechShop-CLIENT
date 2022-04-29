@@ -8,6 +8,7 @@ import ProductCard from '../../ProductCard/ProductCard'
 import { Link } from 'react-router-dom';
 import Filter from '../../Filter/Filter'
 import PaginationC from '../../Pagination/PaginationC';
+import Loader from '../../Loader/Loader'
 
 function Headsets() {
   const products = useSelector ((state) => state.products)
@@ -22,6 +23,9 @@ function Headsets() {
   return (
     <div className={styles.headsets}>
       <Categories />
+      {
+        products.length > 0 ?
+        <>
       <div className={styles.productsContainer}>
         <Filter />
         <div className={styles.productsCardsContainer}>
@@ -41,6 +45,10 @@ function Headsets() {
         </div>
       </div>
         <PaginationC />
+      </>
+          :
+          <Loader />
+      }
     </div>
   )
 }

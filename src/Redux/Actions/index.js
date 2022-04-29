@@ -51,7 +51,6 @@ export function getCategories() {
 }
 
 export function postProducts(payload) {
-    payload.name = payload.name.split("/").join("-")
     return async function() {
         const response = await axios.post("http://localhost:3001/postProduct", payload);
         return response;
