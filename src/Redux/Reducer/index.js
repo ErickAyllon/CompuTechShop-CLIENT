@@ -1,6 +1,6 @@
 const initialState = {
-  products: [],
   allProducts: [],
+  products: [],
   users: [],
   productDetail: [],
   filteredByCategory: [],
@@ -32,7 +32,14 @@ function rootReducer(state = initialState, action) {
     case "FILTER_BY_CATEGORY":
       return {
         ...state,
-        filteredByCategory: action.payload,
+        products: action.payload,
+      }
+    case "GET_PRODUCTS_BY_NAME":
+      console.log(state.products)
+      return {
+        ...state,
+        products: action.payload,
+        allProducts: action.payload,
       }
 
     default:

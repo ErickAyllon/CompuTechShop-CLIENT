@@ -1,27 +1,26 @@
 import React from 'react'
-import styles from './Keyboards.module.css'
-import Categories from '../Categories'
+import styles from './ProductSearched.module.css'
 import {useDispatch, useSelector} from 'react-redux'
 import { useEffect } from 'react'
-import {filterByCategory} from '../../../Redux/Actions'
-import ProductCard from '../../ProductCard/ProductCard'
-import { Link } from 'react-router-dom';
-import Filter from '../../Filter/Filter'
-import PaginationC from '../../Pagination/PaginationC';
+import { getProductsByName } from '../../Redux/Actions'
+import Categories from '../Categories/Categories'
+import Filter from '../Filter/Filter'
+import ProductCard from '../ProductCard/ProductCard'
+import PaginationC from '../Pagination/PaginationC.jsx'
+import { useParams } from 'react-router-dom'
 
-function Keyboards() {
+function ProductSearched() {
   const products = useSelector ((state) => state.products)
   const dispatch = useDispatch();
-  const category = 'Keyboards';
-  // const {category} = useParams
 
-  useEffect(() => {
-    dispatch(filterByCategory(category));
-  }, [dispatch]);
-   
+  const {name} = useParams
+
+//   useEffect(() => {
+//     dispatch(getProductsByName(name));
+//   }, [dispatch]);
   
   return (
-    <div className={styles.keyboards}>
+    <div className={styles.searched}>
       <Categories />
       <div className={styles.productsContainer}>
         <Filter />
@@ -46,4 +45,4 @@ function Keyboards() {
   )
 }
 
-export default Keyboards
+export default ProductSearched

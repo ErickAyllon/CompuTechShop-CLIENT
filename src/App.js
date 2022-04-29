@@ -12,6 +12,7 @@ import Profile from "./Components/Profile/Profile";
 import ProductDetail from "./Components/Detail/ProductDetail";
 import NotFound404 from "./Components/NotFound404/NotFound404";
 import AllProducts from "./Components/Categories/AllProducts/AllProducts";
+import ProductSearched from "./Components/ProductSearched/ProductSearched";
 
 function App() {
   return (
@@ -34,6 +35,7 @@ function App() {
         <Route path="/headsets" element={<Headsets />} />
         <Route path="/keyboards" element={<Keyboards />} />
         <Route path="/:name" element={<ProductDetail />} />
+        <Route path="/s/:search" element={<ProductSearched />} />
         <Route path="*" element={<NotFound404 />} />
       </Routes>
       <Footer />

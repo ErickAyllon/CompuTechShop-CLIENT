@@ -1,8 +1,13 @@
 import React, { useState } from 'react'
+import { useDispatch } from 'react-redux';
 import styles from './SearchBar.module.css'
+import {getProductsByName} from '../../Redux/Actions/index'
+import { useNavigate } from 'react-router-dom';
 
 function SearchBar() {
     const [name, setName] = useState("")
+    const dispatch = useDispatch();
+    const navigate = useNavigate();
 
     function handleInputChange(e) {
         e.preventDefault();
@@ -10,8 +15,11 @@ function SearchBar() {
     }
 
     function handleSubmit(e) {
+      console.log(name);
         e.preventDefault();
+        dispatch(getProductsByName(name));
         setName('');
+        navigate('/s/' + name)
     }
     
   return (

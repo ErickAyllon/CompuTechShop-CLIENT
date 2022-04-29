@@ -66,3 +66,17 @@ export const filterByCategory = (category) => {
     } 
 }
 
+export function getProductsByName(name) {
+    return async function(dispatch) {
+        try {
+            var json = await axios.get("http://localhost:3001/products?name=" + name);
+            return dispatch({
+                type: 'GET_PRODUCTS_BY_NAME',
+                payload: json.data
+            })
+        } catch(error) {
+            console.log(error);
+        }
+    }
+}
+
