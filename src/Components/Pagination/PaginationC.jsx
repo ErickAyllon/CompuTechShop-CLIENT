@@ -2,7 +2,7 @@ import React from 'react'
 import Pagination from 'react-bootstrap/Pagination'
 import styles from './PaginationC.module.css'
 
-function PagionationC() {
+function PaginationC() {
 
   let active = 1
   let items = [];
@@ -50,4 +50,4 @@ function PagionationC() {
   )
 }
 
-export default PagionationC
+export default PaginationC

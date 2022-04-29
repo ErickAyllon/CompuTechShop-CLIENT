@@ -11,7 +11,7 @@ import Filter from '../../Filter/Filter'
 import PaginationC from '../../Pagination/PaginationC';
 
 function Mouses() {
-  const products = useSelector ((state) => state.filteredByCategory)
+  const products = useSelector ((state) => state.products)
   const dispatch = useDispatch();
   const category = 'Mouses';
   // const {category} = useParams

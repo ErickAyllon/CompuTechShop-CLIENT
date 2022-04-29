@@ -25,6 +25,7 @@ export function getDetail(name) {
     return async function (dispatch) {
         try {
             var json = await axios.get("http://localhost:3001/products?name=" + name);
+            console.log(json)
             return dispatch({
                 type: "GET_DETAILS",
                 payload: json.data
@@ -50,6 +51,7 @@ export function getCategories() {
 }
 
 export function postProducts(payload) {
+    payload.name = payload.name.split("/").join("-")
     return async function() {
         const response = await axios.post("http://localhost:3001/postProduct", payload);
         return response;
@@ -72,3 +74,28 @@ export function postUser(payload) {
         return response;
     }
  }
+
+export function getProductsByName(name) {
+    return async function(dispatch) {
+        try {
+            var json = await axios.get("http://localhost:3001/products?name=" + name);
+            return dispatch({
+                type: 'GET_PRODUCTS_BY_NAME',
+                payload: json.data
+            })
+        } catch(error) {
+            console.log(error);
+        }
+    }
+}
+
+export const filterByBrand = (brand) => {
+    return async (dispatch) => {
+    var json = await axios.get('http://localhost:3001/productBrand?brand=' + brand);
+    
+        return dispatch({
+            type: 'FILTER_BY_BRAND',
+            payload: json.data
+        })
+    } 
+}

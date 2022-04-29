@@ -9,10 +9,10 @@ import Filter from '../../Filter/Filter';
 import styles from './Laptops.module.css'
 
 function Laptops() {
-  const products = useSelector ((state) => state.filteredByCategory)
+  const products = useSelector ((state) => state.products)
   const dispatch = useDispatch();
   const category = 'Laptops';
-  // const {category} = useParams
+  // const {category} = useParams();
 
   useEffect(() => {
     dispatch(filterByCategory(category));

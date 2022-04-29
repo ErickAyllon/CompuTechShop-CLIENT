@@ -1,25 +1,26 @@
-import React, { useState, useEffect} from 'react'
-import { useParams } from 'react-router-dom';
-import { useSelector, useDispatch } from 'react-redux';
-import { filterByCategory } from '../../../Redux/Actions';
-import PaginationC from '../../Pagination/PaginationC';
-import Categories from '../Categories';
-import ProductCard from '../../ProductCard/ProductCard';
-import Filter from '../../Filter/Filter';
-import styles from './Monitors.module.css'
+import React from 'react'
+import styles from './ProductSearched.module.css'
+import {useDispatch, useSelector} from 'react-redux'
+import { useEffect } from 'react'
+import { getProductsByName } from '../../Redux/Actions'
+import Categories from '../Categories/Categories'
+import Filter from '../Filter/Filter'
+import ProductCard from '../ProductCard/ProductCard'
+import PaginationC from '../Pagination/PaginationC.jsx'
+import { useParams } from 'react-router-dom'
 
-function Monitors() {
+function ProductSearched() {
   const products = useSelector ((state) => state.products)
   const dispatch = useDispatch();
-  const category = 'Monitors';
-  // const {category} = useParams
 
-  useEffect(() => {
-    dispatch(filterByCategory(category));
-  }, [dispatch]);
-   
+  const {name} = useParams
+
+//   useEffect(() => {
+//     dispatch(getProductsByName(name));
+//   }, [dispatch]);
+  
   return (
-    <div className={styles.monitors}>
+    <div className={styles.searched}>
       <Categories />
       <div className={styles.productsContainer}>
         <Filter />
@@ -44,4 +45,4 @@ function Monitors() {
   )
 }
 
-export default Monitors
+export default ProductSearched

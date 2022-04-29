@@ -10,7 +10,7 @@ import Filter from '../../Filter/Filter'
 import PaginationC from '../../Pagination/PaginationC';
 
 function Keyboards() {
-  const products = useSelector ((state) => state.filteredByCategory)
+  const products = useSelector ((state) => state.products)
   const dispatch = useDispatch();
   const category = 'Keyboards';
   // const {category} = useParams

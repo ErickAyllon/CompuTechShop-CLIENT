@@ -1,10 +1,12 @@
 const initialState = {
-  products: [],
   allProducts: [],
+  products: [],
   users: [],
   userOne:[],
   productDetail: [],
   filteredByCategory: [],
+  brand: [],
+  allBrands:[],
 };
 
 function rootReducer(state = initialState, action) {
@@ -33,14 +35,26 @@ function rootReducer(state = initialState, action) {
     case "FILTER_BY_CATEGORY":
       return {
         ...state,
-        filteredByCategory: action.payload,
+        products: action.payload,
+      }
+    case "GET_PRODUCTS_BY_NAME":
+      return {
+        ...state,
+        products: action.payload,
+        allProducts: action.payload,
       }
       case "POST_USER":
       return {
         ...state,
         userOne: action.payload,
       };
-
+      case "FILTER_BY_BRAND":
+      
+        return {
+          ...state,
+          products: action.payload,
+          
+        }
     default:
       return state;
   }

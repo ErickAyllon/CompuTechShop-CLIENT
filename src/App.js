@@ -14,6 +14,8 @@ import NotFound404 from "./Components/NotFound404/NotFound404";
 import AllProducts from "./Components/Categories/AllProducts/AllProducts";
 import ProfileForm from "./Components/Profile/ProfileForm";
 
+import ProductSearched from "./Components/ProductSearched/ProductSearched";
+//esto es una pruevita
 function App() {
   return (
     <BrowserRouter>
@@ -35,6 +37,7 @@ function App() {
         <Route path="/headsets" element={<Headsets />} />
         <Route path="/keyboards" element={<Keyboards />} />
         <Route path="/:name" element={<ProductDetail />} />
+        <Route path="/s/:search" element={<ProductSearched />} />
         <Route path="*" element={<NotFound404 />} />
         <Route path="/user" element={<ProfileForm/>} />
       </Routes>

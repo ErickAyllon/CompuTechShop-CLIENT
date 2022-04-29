@@ -15,6 +15,8 @@ function ProductDetail (){
     dispatch(getDetail(name));
   }, [dispatch]);
 
+
+
   const product = useSelector ((state) => state.productDetail);
 
   return (
