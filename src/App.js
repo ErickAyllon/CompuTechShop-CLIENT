@@ -11,6 +11,7 @@ import Admin from "./Components/Admin/Admin";
 import Profile from "./Components/Profile/Profile";
 import ProductDetail from "./Components/Detail/ProductDetail";
 import NotFound404 from "./Components/NotFound404/NotFound404";
+import AllProducts from "./Components/Categories/AllProducts/AllProducts";
 
 function App() {
   return (
@@ -26,6 +27,7 @@ function App() {
       */}
         {/* <Route path="/allProductos" element={<AllProductos />} /> */}
         <Route path="/profile" element={<Profile />} />
+        <Route path="/allproducts" element={<AllProducts />} />
         <Route path="/laptops" element={<Laptops />} />
         <Route path="/monitors" element={<Monitors />} />
         <Route path="/mouses" element={<Mouses />} />

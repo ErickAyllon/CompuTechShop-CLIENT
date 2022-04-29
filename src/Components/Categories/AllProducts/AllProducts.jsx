@@ -1,31 +1,29 @@
 import React from 'react'
-import styles from './Headsets.module.css'
+import styles from './AllProducts.module.css'
 import Categories from '../Categories'
 import {useDispatch, useSelector} from 'react-redux'
 import { useEffect } from 'react'
-import {filterByCategory} from '../../../Redux/Actions'
+import { getProducts} from '../../../Redux/Actions'
 import ProductCard from '../../ProductCard/ProductCard'
 import { Link } from 'react-router-dom';
 import Filter from '../../Filter/Filter'
 import PaginationC from '../../Pagination/PaginationC';
 
 function Headsets() {
-  const products = useSelector ((state) => state.filteredByCategory)
+  const allProducts = useSelector ((state) => state.allProducts)
   const dispatch = useDispatch();
-  const category = 'Headsets';
-  // const {category} = useParams
 
   useEffect(() => {
-    dispatch(filterByCategory(category));
+    dispatch(getProducts());
   }, [dispatch]);
   
   return (
-    <div className={styles.headsets}>
+    <div className={styles.allProducts}>
       <Categories />
       <div className={styles.productsContainer}>
         <Filter />
         <div className={styles.productsCardsContainer}>
-          {products.map((el) => {
+          {allProducts.map((el) => {
             return (
                 <ProductCard 
                   name={el.name} 

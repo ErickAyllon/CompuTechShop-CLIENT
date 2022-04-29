@@ -3,21 +3,21 @@ import styles from './Keyboards.module.css'
 import Categories from '../Categories'
 import {useDispatch, useSelector} from 'react-redux'
 import { useEffect } from 'react'
-import {filterByCategoryKeyboards} from '../../../Redux/Actions'
+import {filterByCategory} from '../../../Redux/Actions'
 import ProductCard from '../../ProductCard/ProductCard'
 import { Link } from 'react-router-dom';
 import Filter from '../../Filter/Filter'
 import PaginationC from '../../Pagination/PaginationC';
 
 function Keyboards() {
- 
-    const allProducts = useSelector ((state) => state.allProducts);
+  const products = useSelector ((state) => state.filteredByCategory)
+  const dispatch = useDispatch();
+  const category = 'Keyboards';
+  // const {category} = useParams
 
-    const dispatch = useDispatch();
-  
-    useEffect(() => {
-      dispatch(filterByCategoryKeyboards());
-    }, [dispatch]);
+  useEffect(() => {
+    dispatch(filterByCategory(category));
+  }, [dispatch]);
    
   
   return (
@@ -26,7 +26,7 @@ function Keyboards() {
       <div className={styles.productsContainer}>
         <Filter />
         <div className={styles.productsCardsContainer}>
-          {allProducts.map((el) => {
+          {products.map((el) => {
             return (
                 <ProductCard 
                   name={el.name} 

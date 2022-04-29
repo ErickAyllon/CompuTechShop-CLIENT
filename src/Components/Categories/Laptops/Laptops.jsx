@@ -1,19 +1,21 @@
 import React, { useState, useEffect} from 'react'
-import styles from './Laptops.module.css'
-import Categories from '../Categories';
-import PaginationC from '../../Pagination/PaginationC';
-import { getProducts } from '../../../Redux/Actions';
+import { useParams } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
+import { filterByCategory } from '../../../Redux/Actions';
+import PaginationC from '../../Pagination/PaginationC';
+import Categories from '../Categories';
 import ProductCard from '../../ProductCard/ProductCard';
 import Filter from '../../Filter/Filter';
+import styles from './Laptops.module.css'
 
 function Laptops() {
-  const allProducts = useSelector ((state) => state.allProducts);
-
+  const products = useSelector ((state) => state.filteredByCategory)
   const dispatch = useDispatch();
+  const category = 'Laptops';
+  // const {category} = useParams
 
   useEffect(() => {
-    dispatch(getProducts());
+    dispatch(filterByCategory(category));
   }, [dispatch]);
 
   return (
@@ -22,7 +24,7 @@ function Laptops() {
       <div className={styles.productsContainer}>
         <Filter />
         <div className={styles.productsCardsContainer}>
-          {allProducts.map((el) => {
+          {products.map((el) => {
             return (
                 <ProductCard 
                   name={el.name} 

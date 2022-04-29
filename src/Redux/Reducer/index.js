@@ -1,16 +1,9 @@
-import {
-  GET_USER,
-  FILTER_BY_CATEGORY_KEYBOARDS,
-  FILTER_BY_CATEGORY_MONITOR,
-  FILTER_BY_CATEGORY_MOUSES,
-  FILTER_BY_CATEGORY_HEADSETS,
-} from "../Actions";
-
 const initialState = {
   products: [],
   allProducts: [],
   users: [],
   productDetail: [],
+  filteredByCategory: [],
 };
 
 function rootReducer(state = initialState, action) {
@@ -36,30 +29,11 @@ function rootReducer(state = initialState, action) {
           ...state,
           productDetail: action.payload
       }
-    case FILTER_BY_CATEGORY_MOUSES:
+    case "FILTER_BY_CATEGORY":
       return {
         ...state,
-        allProducts: action.payload,
-        products: action.payload,
-      };
-    case FILTER_BY_CATEGORY_MONITOR:
-      return {
-        ...state,
-        allProducts: action.payload,
-        products: action.payload,
-      };
-    case FILTER_BY_CATEGORY_KEYBOARDS:
-      return {
-        ...state,
-        allProducts: action.payload,
-        products: action.payload,
-      };
-    case FILTER_BY_CATEGORY_HEADSETS:
-      return {
-        ...state,
-        allProducts: action.payload,
-        products: action.payload,
-      };
+        filteredByCategory: action.payload,
+      }
 
     default:
       return state;
