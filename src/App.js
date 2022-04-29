@@ -13,7 +13,7 @@ import ProductDetail from "./Components/Detail/ProductDetail";
 import NotFound404 from "./Components/NotFound404/NotFound404";
 import AllProducts from "./Components/Categories/AllProducts/AllProducts";
 import ProductSearched from "./Components/ProductSearched/ProductSearched";
-
+//esto es una pruevita
 function App() {
   return (
     <BrowserRouter>
