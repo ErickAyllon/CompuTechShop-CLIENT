@@ -12,6 +12,7 @@ import Profile from "./Components/Profile/Profile";
 import ProductDetail from "./Components/Detail/ProductDetail";
 import NotFound404 from "./Components/NotFound404/NotFound404";
 import AllProducts from "./Components/Categories/AllProducts/AllProducts";
+import ProfileForm from "./Components/Profile/ProfileForm";
 
 function App() {
   return (
@@ -35,6 +36,7 @@ function App() {
         <Route path="/keyboards" element={<Keyboards />} />
         <Route path="/:name" element={<ProductDetail />} />
         <Route path="*" element={<NotFound404 />} />
+        <Route path="/user" element={<ProfileForm/>} />
       </Routes>
       <Footer />
     </BrowserRouter>

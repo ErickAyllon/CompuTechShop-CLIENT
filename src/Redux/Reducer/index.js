@@ -2,6 +2,7 @@ const initialState = {
   products: [],
   allProducts: [],
   users: [],
+  userOne:[],
   productDetail: [],
   filteredByCategory: [],
 };
@@ -34,6 +35,11 @@ function rootReducer(state = initialState, action) {
         ...state,
         filteredByCategory: action.payload,
       }
+      case "POST_USER":
+      return {
+        ...state,
+        userOne: action.payload,
+      };
 
     default:
       return state;
