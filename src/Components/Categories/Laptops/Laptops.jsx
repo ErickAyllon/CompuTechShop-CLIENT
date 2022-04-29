@@ -19,6 +19,25 @@ function Laptops() {
     dispatch(filterByCategory(category));
   }, [dispatch]);
 
+  const [currentPage, setCurrentPage] = useState(1);
+  const productsPerPage = 3;
+  const indexLastProduct = currentPage * productsPerPage;
+  const indexFirstProduct = indexLastProduct - productsPerPage;
+  const currentProducts = products.slice(indexFirstProduct, indexLastProduct);
+  const [order, setOrder] = useState('');
+
+  const pagination = (pageNumber) => {
+    setCurrentPage(pageNumber);
+}
+
+    // <Pagination 
+    //   productsPerPage={productsPerPage} 
+    //   products={products.length} 
+    //   pagination={pagination} 
+    //   currentPage={currentPage} 
+    //   setCurrentPage={setCurrentPage}
+    // />
+
   return (
     <div className={styles.laptops}>
       <Categories />
@@ -28,7 +47,7 @@ function Laptops() {
       <div className={styles.productsContainer}>
         <Filter />
         <div className={styles.productsCardsContainer}>
-          {products.map((el) => {
+          {currentProducts.map((el) => {
             return (
                 <ProductCard 
                   name={el.name} 
@@ -43,7 +62,16 @@ function Laptops() {
           })}
         </div>
       </div>
-        <PaginationC />
+      <div className={styles.paginationContainer}>
+        <PaginationC 
+          category={category}
+          productsPerPage={productsPerPage} 
+          products={products.length} 
+          pagination={pagination} 
+          currentPage={currentPage} 
+          setCurrentPage={setCurrentPage}
+        />
+        </div>
       </>
           :
           <Loader />

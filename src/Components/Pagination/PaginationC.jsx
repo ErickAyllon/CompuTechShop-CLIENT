@@ -1,40 +1,55 @@
-import React from 'react'
-import Pagination from 'react-bootstrap/Pagination'
+import * as React from 'react';
+// import Pagination from 'react-bootstrap/Pagination'
 import styles from './PaginationC.module.css'
+import { Link, MemoryRouter, Route, Routes, useLocation } from 'react-router-dom';
+import Pagination from '@mui/material/Pagination';
+import PaginationItem from '@mui/material/PaginationItem';
 
-function PaginationC() {
+function PaginationC({category}) {
+  // category={category}
+  // productsPerPage={productsPerPage} 
+  // products={products.length} 
+  // pagination={pagination} 
+  // currentPage={currentPage} 
+  // setCurrentPage={setCurrentPage}
 
-  let active = 1
-  let items = [];
-  for (let number = 1; number <= 5; number++) {
-    items.push(
-      <Pagination.Item key={number} active={number === active}>
-        {number}
-      </Pagination.Item>,
-    );
-  }
+  const location = useLocation();
+  const query = new URLSearchParams(location.search);
+  const page = parseInt(query.get('page') || '1', 10);
+
+  // const pageNumbers = [];
+  // const [input, setInput] = useState(currentPage)
+  // const max = allPokemons / pokemonsPerPage
   
+  // for (let i = 1; i <= Math.ceil(max); i++) {
+  //     pageNumbers.push(i)
+  // }
+
+  // function nextPage() {
+  //   setCurrentPage(currentPage + 1);
+  //   setInput(input - 1 );
+  // }
+
+  // function prevPage() {
+  //     setCurrentPage(currentPage - 1);
+  //     setInput(input - 1 );
+  // }
+
   return (
-    <div>
-    {/* <Pagination className={styles.pagination}>
-        <Pagination.First />
-        <Pagination.Prev />
-        <Pagination.Item>{1}</Pagination.Item>
-        <Pagination.Ellipsis />
+    <div  className={styles.pagination}>
+    <Pagination
+      page={page}
+      count={5}
+      renderItem={(item) => (
+        <PaginationItem
+          component={Link}
+          to={`/${category}${item.page === 1 ? '' : `?page=${item.page}`}`}
+          {...item}
+        />
+      )}
+    />
 
-        <Pagination.Item>{10}</Pagination.Item>
-        <Pagination.Item>{11}</Pagination.Item>
-        <Pagination.Item active>{active}</Pagination.Item>
-        <Pagination.Item>{13}</Pagination.Item>
-        <Pagination.Item disabled>{14}</Pagination.Item>
-
-        <Pagination.Ellipsis />
-        <Pagination.Item>{20}</Pagination.Item>
-        <Pagination.Next />
-        <Pagination.Last />
-    </Pagination> */}
-
-    <div style={{  padding: 30 }}>
+    {/* <div style={{  padding: 30 }}>
       <Pagination style={{ width: '100%', justifyContent: 'center' }}>
         <Pagination.Prev />
         <Pagination.Ellipsis />
@@ -44,7 +59,7 @@ function PaginationC() {
         <Pagination.Ellipsis />
         <Pagination.Next />
       </Pagination>
-    </div>
+    </div> */}
     
     </div>
   )

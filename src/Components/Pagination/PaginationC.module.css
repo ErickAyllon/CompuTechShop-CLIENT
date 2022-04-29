@@ -1,4 +1,6 @@
 .pagination {
     justify-content: center;
-    margin: 10px;
+    margin: 10px auto;
+    justify-content: center;
+    width: 100%;
 }
