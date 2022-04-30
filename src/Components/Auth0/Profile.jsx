@@ -6,7 +6,7 @@ import LogOutButton from "./LogOutButton";
 
 export default function Profile() {
   const { user, isAuthenticated } = useAuth0();
-  console.log(user.picture);
+
   return (
     isAuthenticated && (
       <div className={styles.profile}>
