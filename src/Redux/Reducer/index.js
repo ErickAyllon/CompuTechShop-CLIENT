@@ -1,24 +1,26 @@
+import { darkMode, ORDER_BY_PRICE } from "../Actions";
+
 const initialState = {
   allProducts: [],
-  productsFiltered: [],
   products: [],
   users: [],
-  userOne: [],
+  userOne:[],
   productDetail: [],
   filteredByCategory: [],
   brand: [],
-  filter: [],
-  allBrands: [],
+  allBrands:[],
+  darkMode: true,
 };
 
 function rootReducer(state = initialState, action) {
+  console.log("State: " + state.darkMode)
   switch (action.type) {
     case "GET_PRODUCTS":
       return {
         ...state,
         allProducts: action.payload,
         products: action.payload,
-        productDetail: [],
+        productDetail: []
       };
     case "POST_PRODUCT":
       return {
@@ -30,38 +32,56 @@ function rootReducer(state = initialState, action) {
         ...state,
         users: action.payload,
       };
-    case "GET_DETAILS":
+    case 'GET_DETAILS':
       return {
-        ...state,
-        productDetail: action.payload,
-        products: [],
-      };
+          ...state,
+          productDetail: action.payload,
+          products: [],
+      }
     case "FILTER_BY_CATEGORY":
       return {
         ...state,
         products: action.payload,
-        productDetail: [],
-        productsFiltered: action.payload,
-        filteredByCategory: action.payload,
-      };
+        productDetail: []
+      }
     case "GET_PRODUCTS_BY_NAME":
       return {
         ...state,
         products: action.payload,
         allProducts: action.payload,
-        productDetail: [],
-      };
-    case "POST_USER":
+        productDetail: []
+      }
+      case "POST_USER":
       return {
         ...state,
         userOne: action.payload,
       };
-    case "FILTER_BY_BRAND":
-      return {
-        ...state,
+      case "FILTER_BY_BRAND":
+        return {
+          ...state,
+          products: action.payload,
+          
+        }
+        // case ORDER_BY_PRICE:
+        //   let priceProduct = [...state.products]
+        //   console.log(state.products)
+        //   priceProduct = priceProduct.sort((a, b) => {
+        //           if(a.price < b.price) {
+        //               return action.payload === 'Inc Price' ? -1 : 1
+        //           }
+        //           if(a.price > b.price) {
+        //               return action.payload === 'Dec Price' ?  -1 : 1
+        //           } 
+        //           return 0
+        //       })
 
-        filter: action.payload,
-      };
+
+
+      case "DARKMODE":
+        return {
+          ...state,
+          darkMode: action.payload
+        }
     default:
       return state;
   }
