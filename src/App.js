@@ -13,37 +13,52 @@ import ProductDetail from "./Components/Detail/ProductDetail";
 import NotFound404 from "./Components/NotFound404/NotFound404";
 import AllProducts from "./Components/Categories/AllProducts/AllProducts";
 import ProfileForm from "./Components/Profile/ProfileForm";
-
 import ProductSearched from "./Components/ProductSearched/ProductSearched";
-//esto es una pruevita
+import { CssBaseline } from "@mui/material";
+import { createTheme, ThemeProvider } from "@mui/material/styles";
+import { useSelector } from "react-redux";
+
+const light = {
+  palette: {
+    mode: "light",
+  },
+};
+
+const dark = {
+  palette: {
+    mode: "dark",
+  },
+};
+
 function App() {
+  const isDarkTheme = useSelector((state) => state.darkMode)
+  
   return (
-    <BrowserRouter>
-      <NavBar />
-      <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/admin" element={<Admin />} />
-        {/* <Route path='/home/:id' element={<Detail/>}/>
-        <Route path='/payment' element={<Pago/>}/>
-        <Route path='/envio' element={<Envio/>}/>
-        <Route path='/product' element={<CreateProduct/>}/>
-      */}
-        {/* <Route path="/allProductos" element={<AllProductos />} /> */}
-        <Route path="/profile" element={<Profile />} />
-        <Route path="/allproducts" element={<AllProducts />} />
-        <Route path="/laptops" element={<Laptops />} />
-        <Route path="/monitors" element={<Monitors />} />
-        <Route path="/mouses" element={<Mouses />} />
-        <Route path="/headsets" element={<Headsets />} />
-        <Route path="/keyboards" element={<Keyboards />} />
-        <Route path="/:name" element={<ProductDetail />} />
-        <Route path="/s/:search" element={<ProductSearched />} />
-        <Route path="*" element={<NotFound404 />} />
-        <Route path="/user" element={<ProfileForm/>} />
-      </Routes>
-      <Footer />
-    </BrowserRouter>
+    <ThemeProvider theme={isDarkTheme ? createTheme(dark) : createTheme(light)}>
+    <CssBaseline />
+      <BrowserRouter>
+        <NavBar />
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/admin" element={<Admin />} />
+          <Route path="/profile" element={<Profile />} />
+          <Route path="/allproducts" element={<AllProducts />} />
+          <Route path="/laptops" element={<Laptops />} />
+          <Route path="/monitors" element={<Monitors />} />
+          <Route path="/mouses" element={<Mouses />} />
+          <Route path="/headsets" element={<Headsets />} />
+          <Route path="/keyboards" element={<Keyboards />} />
+          <Route path="/:name" element={<ProductDetail />} />
+          <Route path="/s/:search" element={<ProductSearched />} />
+          <Route path="*" element={<NotFound404 />} />
+          <Route path="/user" element={<ProfileForm/>} />
+        </Routes>
+        <Footer />
+      </BrowserRouter>
+    </ThemeProvider>
   );
 }
 
 export default App;
+
+

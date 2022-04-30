@@ -1,3 +1,5 @@
+import { darkMode } from "../Actions";
+
 const initialState = {
   allProducts: [],
   products: [],
@@ -7,9 +9,11 @@ const initialState = {
   filteredByCategory: [],
   brand: [],
   allBrands:[],
+  darkMode: true,
 };
 
 function rootReducer(state = initialState, action) {
+  console.log("State: " + state.darkMode)
   switch (action.type) {
     case "GET_PRODUCTS":
       return {
@@ -53,11 +57,15 @@ function rootReducer(state = initialState, action) {
         userOne: action.payload,
       };
       case "FILTER_BY_BRAND":
-      
         return {
           ...state,
           products: action.payload,
           
+        }
+      case "DARKMODE":
+        return {
+          ...state,
+          darkMode: action.payload
         }
     default:
       return state;

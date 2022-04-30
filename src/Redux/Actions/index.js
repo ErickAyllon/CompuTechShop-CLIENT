@@ -98,3 +98,11 @@ export const filterByBrand = (brand) => {
         })
     } 
 }
+
+export function darkMode(payload) {
+    console.log("Payload: " + payload)
+    return {
+        type: "DARKMODE",
+        payload: payload
+    }
+}
