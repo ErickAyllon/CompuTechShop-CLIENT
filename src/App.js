@@ -17,24 +17,49 @@ import ProductSearched from "./Components/ProductSearched/ProductSearched";
 import { CssBaseline } from "@mui/material";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 import { useSelector } from "react-redux";
+import { amber, deepOrange, grey } from '@mui/material/colors';
 
-const light = {
+const getDesignTokens = (mode) => ({
   palette: {
-    mode: "light",
+    mode,
+    primary: {
+      ...amber,
+      ...(mode === 'dark' && {
+        main: "#463dd5",
+      }),
+    },
+    ...(mode === 'dark' && {
+      background: {
+        default: '#000000',
+        paper: deepOrange[900],
+      },
+    }),
+    ...(mode === 'light' && {
+      background: {
+        default: "#4b4b4b",
+        paper: deepOrange[900],
+      },
+    }),
+    text: {
+      ...(mode === 'light'
+        ? {
+            primary: grey[900],
+            secondary: grey[800],
+          }
+        : {
+            primary: '#000000',
+            secondary: "grey[500]",
+          }),
+    },
   },
-};
+});
 
-const dark = {
-  palette: {
-    mode: "dark",
-  },
-};
 
 function App() {
   const isDarkTheme = useSelector((state) => state.darkMode)
-  
+  const darkModeTheme = createTheme(isDarkTheme ? getDesignTokens('dark') : getDesignTokens('light'));
   return (
-    <ThemeProvider theme={isDarkTheme ? createTheme(dark) : createTheme(light)}>
+    <ThemeProvider theme={isDarkTheme ? darkModeTheme : darkModeTheme}>
     <CssBaseline />
       <BrowserRouter>
         <NavBar />

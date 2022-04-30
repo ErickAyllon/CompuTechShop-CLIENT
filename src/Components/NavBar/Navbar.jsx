@@ -1,14 +1,15 @@
 import React, { useState } from "react";
 import Profile from "../Auth0/Profile.jsx";
 import LoginButton from "../Auth0/LoginButton.jsx";
-import LogOutButton from "../Auth0/LogOutButton.jsx";
 import { useAuth0 } from "@auth0/auth0-react";
 import styles from "./NavBar.module.css";
 import SearchBar from "../SearchBar/SearchBar";
 import { Link } from "react-router-dom";
-import { Switch } from "@mui/material";
 import { darkMode } from "../../Redux/Actions/index.js";
 import { useDispatch } from "react-redux";
+import IconButton from '@mui/material/IconButton';
+import Brightness4Icon from '@mui/icons-material/Brightness4';
+import Brightness7Icon from '@mui/icons-material/Brightness7';
 
 function NavBar() {
   const { isAuthenticated } = useAuth0();
@@ -28,10 +29,12 @@ function NavBar() {
         <div className={styles.searchBarCall}>
           <SearchBar />
         </div>
+        <IconButton sx={{ ml: 1 }} onClick={changeTheme} color="primary">
+          { isDarkTheme ? <Brightness4Icon /> : <Brightness7Icon />}
+        </IconButton>
         <div className={styles.auth0}>
           {isAuthenticated ? <Profile /> : <LoginButton />}
         </div>
-        <Switch checked={isDarkTheme} onChange={changeTheme} />
       </nav>
     </div>
   );
