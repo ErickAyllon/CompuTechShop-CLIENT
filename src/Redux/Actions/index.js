@@ -25,6 +25,7 @@ export function getDetail(name) {
     return async function (dispatch) {
         try {
             var json = await axios.get("http://localhost:3001/products?name=" + name);
+            console.log(json)
             return dispatch({
                 type: "GET_DETAILS",
                 payload: json.data
@@ -56,62 +57,44 @@ export function postProducts(payload) {
     }
  }
 
-export const FILTER_BY_CATEGORY_MONITOR = 'FILTER_BY_CATEGORY_MONITOR'
-export const filterByCategoryMonitor = () => {
+export const filterByCategory = (category) => {
     return async (dispatch) => {
-        var json = await axios.get('http://localhost:3001/productCategory?category=Monitors');
-          return dispatch({
-              type: 'FILTER_BY_CATEGORY_MONITOR',
-              payload: json.data
-          })
-     } 
- }
-
- export const FILTER_BY_CATEGORY_MOUSES = 'FILTER_BY_CATEGORY_MOUSES'
- export const filterByCategoryMouses = () => {
-    return async (dispatch) => {
-        var json = await axios.get('http://localhost:3001/productCategory?category=Mouses');
-          return dispatch({
-              type: 'FILTER_BY_CATEGORY_MOUSES',
-              payload: json.data
-          })
-     } 
- }
-
-// export const FILTER_BY_CATEGORY = 'FILTER_BY_CATEGORY'
-// export function filterByCategory(payload) {
-//     return async function(dispatch) {
-//         var json = await axios.get("http://localhost:3001/productCategory?category=" + payload);
-       
-//         return dispatch({
-//             type: 'FILTER_BY_CATEGORY',
-//             payload: json.data
-//         })
-//     }
-// }
-
-// export const FILTER_BY_BRAND = 'FILTER_BY_BRAND'
-// export function filterByBrand ()
-
-export const FILTER_BY_CATEGORY_KEYBOARDS = 'FILTER_BY_CATEGORY_KEYBOARDS'
-export const filterByCategoryKeyboards = () => {
-    return async (dispatch) => {
-        var json = await axios.get('http://localhost:3001/productCategory?category=Keyboards');
-            return dispatch({
-                type: 'FILTER_BY_CATEGORY_KEYBOARDS',
-                payload: json.data
-            })
-        } 
-    }
-
-export const FILTER_BY_CATEGORY_HEADSETS = 'FILTER_BY_CATEGORY_HEADSETS'
-export const filterByCategoryHeadsets = () => {
-    return async (dispatch) => {
-    var json = await axios.get('http://localhost:3001/productCategory?category=Headsets');
+    var json = await axios.get('http://localhost:3001/productCategory?category=' + category);
         return dispatch({
-            type: 'FILTER_BY_CATEGORY_HEADSETS',
+            type: 'FILTER_BY_CATEGORY',
             payload: json.data
         })
     } 
 }
+export const POST_USER = 'POST_USER'
+export function postUser(payload) {
+    return async function() {
+        const response = await axios.post("http://localhost:3001/postUser", payload);
+        return response;
+    }
+ }
 
+export function getProductsByName(name) {
+    return async function(dispatch) {
+        try {
+            var json = await axios.get("http://localhost:3001/products?name=" + name);
+            return dispatch({
+                type: 'GET_PRODUCTS_BY_NAME',
+                payload: json.data
+            })
+        } catch(error) {
+            console.log(error);
+        }
+    }
+}
+
+export const filterByBrand = (brand) => {
+    return async (dispatch) => {
+    var json = await axios.get('http://localhost:3001/productBrand?brand=' + brand);
+    
+        return dispatch({
+            type: 'FILTER_BY_BRAND',
+            payload: json.data
+        })
+    } 
+}

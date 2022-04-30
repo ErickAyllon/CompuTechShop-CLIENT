@@ -1,30 +1,55 @@
 import React, { useState, useEffect} from 'react'
-import styles from './Laptops.module.css'
-import Categories from '../Categories';
-import PaginationC from '../../Pagination/PaginationC';
-import { getProducts } from '../../../Redux/Actions';
+import { useParams } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
+import { filterByCategory } from '../../../Redux/Actions';
+import PaginationC from '../../Pagination/PaginationC';
+import Categories from '../Categories';
 import ProductCard from '../../ProductCard/ProductCard';
 import Filter from '../../Filter/Filter';
+import styles from './Laptops.module.css'
+import Loader from '../../Loader/Loader';
+import { useLocation } from 'react-router-dom';
 
 function Laptops() {
-  const allProducts = useSelector ((state) => state.allProducts);
-
+  const products = useSelector ((state) => state.products)
   const dispatch = useDispatch();
+  const category = 'Laptops';
+  // const {category} = useParams();
+
+  // Pagination Info //
+  const location = useLocation();
+  const query = new URLSearchParams(location.search);
+  const page = parseInt(query.get('page') || '1', 10);
+  const [currentPage, setCurrentPage] = useState(1);
+  const productsPerPage = 2;
+  const indexLastProduct = currentPage * productsPerPage;
+  const indexFirstProduct = indexLastProduct - productsPerPage;
+  const currentProducts = products.slice(indexFirstProduct, indexLastProduct);
+  const totalPages = Math.ceil(products.length / productsPerPage);
 
   useEffect(() => {
-    dispatch(getProducts());
+    dispatch(filterByCategory(category));
+    setCurrentPage(page)
   }, [dispatch]);
+
+  const pagination = (pageNumber) => {
+    setCurrentPage(pageNumber);
+}
+ // End Pagination //
 
   return (
     <div className={styles.laptops}>
       <Categories />
+      {
+        products.length > 0 ?
+        <>
       <div className={styles.productsContainer}>
         <Filter />
         <div className={styles.productsCardsContainer}>
-          {allProducts.map((el) => {
+          {currentProducts.map((el) => {
             return (
                 <ProductCard 
+                  key={el.id}
                   name={el.name} 
                   price={el.price} 
                   image={el.image} 
@@ -37,7 +62,17 @@ function Laptops() {
           })}
         </div>
       </div>
-        <PaginationC />
+      <div className={styles.paginationContainer}>
+        <PaginationC 
+          category={category}
+          pagination={pagination} 
+          totalPages={totalPages}
+        />
+        </div>
+      </>
+          :
+          <Loader />
+      }
     </div>
   )
 }

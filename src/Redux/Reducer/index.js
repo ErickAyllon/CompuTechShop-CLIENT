@@ -1,16 +1,12 @@
-import {
-  GET_USER,
-  FILTER_BY_CATEGORY_KEYBOARDS,
-  FILTER_BY_CATEGORY_MONITOR,
-  FILTER_BY_CATEGORY_MOUSES,
-  FILTER_BY_CATEGORY_HEADSETS,
-} from "../Actions";
-
 const initialState = {
-  products: [],
   allProducts: [],
+  products: [],
   users: [],
+  userOne:[],
   productDetail: [],
+  filteredByCategory: [],
+  brand: [],
+  allBrands:[],
 };
 
 function rootReducer(state = initialState, action) {
@@ -20,6 +16,7 @@ function rootReducer(state = initialState, action) {
         ...state,
         allProducts: action.payload,
         products: action.payload,
+        productDetail: []
       };
     case "POST_PRODUCT":
       return {
@@ -34,33 +31,34 @@ function rootReducer(state = initialState, action) {
     case 'GET_DETAILS':
       return {
           ...state,
-          productDetail: action.payload
+          productDetail: action.payload,
+          products: [],
       }
-    case FILTER_BY_CATEGORY_MOUSES:
+    case "FILTER_BY_CATEGORY":
       return {
         ...state,
-        allProducts: action.payload,
         products: action.payload,
-      };
-    case FILTER_BY_CATEGORY_MONITOR:
+        productDetail: []
+      }
+    case "GET_PRODUCTS_BY_NAME":
       return {
         ...state,
-        allProducts: action.payload,
         products: action.payload,
-      };
-    case FILTER_BY_CATEGORY_KEYBOARDS:
+        allProducts: action.payload,
+        productDetail: []
+      }
+      case "POST_USER":
       return {
         ...state,
-        allProducts: action.payload,
-        products: action.payload,
+        userOne: action.payload,
       };
-    case FILTER_BY_CATEGORY_HEADSETS:
-      return {
-        ...state,
-        allProducts: action.payload,
-        products: action.payload,
-      };
-
+      case "FILTER_BY_BRAND":
+      
+        return {
+          ...state,
+          products: action.payload,
+          
+        }
     default:
       return state;
   }

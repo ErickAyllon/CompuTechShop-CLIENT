@@ -1,4 +1,4 @@
-.monitors {
+.searched {
     color: white;
     text-align: center;
     justify-content: center;
@@ -10,7 +10,7 @@
 .productsCardsContainer {
     max-width: 900px;
     margin: 20px auto;
-    min-height: 70vh;
+    box-shadow: 0 0 5px 1px rgba(128, 128, 128, 0.664);;
 }
 
 .productsContainer {
@@ -18,6 +18,10 @@
     margin: 0 auto;
     max-width: 1400px;
 }
+
+/* .productNotFoundContainer {
+    background-color: red;
+} */
 
 @media only screen and (max-width: 768px) {
     .productsContainer {

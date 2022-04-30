@@ -6,6 +6,12 @@ function Categories() {
   return (
     <div className={styles.categories}>
         <div className={styles.category}>
+            <Link to='/allproducts'>
+                <img src="https://img.icons8.com/ios-filled/100/ffffff/package-delivery-logistics.png" alt="categoryLogo"/>
+            </Link>   
+            <span>All Products</span>
+        </div>
+        <div className={styles.category}>
             <Link to='/laptops'>
                 <img src="https://img.icons8.com/ios-filled/100/ffffff/laptop.png" alt="categoryLogo"/>
             </Link>
@@ -34,9 +40,7 @@ function Categories() {
                 <img src="https://img.icons8.com/ios/100/ffffff/keyboard.png" alt="categoryLogo"/>
             </Link>   
             <span>Keyboards</span>
-        </div>
-
-    
+        </div>   
     </div>
   )
 }

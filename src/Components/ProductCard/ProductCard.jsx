@@ -19,7 +19,7 @@ function ProductCard({ name, price, image, id, brand, calification, quantity, de
                     {/* <h3>Quantity: {quantity}</h3>  */}
                     {/* <h3>{description}</h3> */}
                     {/* <h3>{brand}</h3>  */}
-                    <Link to={'/' + name}>
+                    <Link to={'/' + name.split("/").join("-")}>
                         <h3 className={styles.productCardName}>{name}</h3>
                     </Link>
                     <h3 className={styles.productCardPrice}>${price}</h3> 

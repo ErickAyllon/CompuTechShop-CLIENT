@@ -18,6 +18,8 @@
 .productCardImgContainer{
     width: 270px;
     height: auto;
+    max-height: 200px;
+    margin-left: 10px;
 }
 
 .productImg {
@@ -36,7 +38,7 @@
 }
 
 .productCardInfo {
-    width: 100%;
+    width: 950px;
     height: 100%;
     margin-left: 15px;
     margin-right: 45px;
@@ -82,9 +84,15 @@
     .productCardContainer {
         margin: 0 auto;
     }
+    .productCardImgContainer{
+        width: 270px;
+        height: auto;
+        margin-left: 10px;
+    }
     .productCard img{
         width: 150px;
         height: auto;
+        max-height: 150px;
         margin: 5px;
     }
 
