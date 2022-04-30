@@ -3,7 +3,7 @@ import styles from './AllProducts.module.css'
 import Categories from '../Categories'
 import {useDispatch, useSelector} from 'react-redux'
 import { useEffect } from 'react'
-import { getProducts, filterByBrand} from '../../../Redux/Actions'
+import { getProducts, filterByBrand, orderByPrice} from '../../../Redux/Actions'
 import ProductCard from '../../ProductCard/ProductCard'
 import Filter from '../../Filter/Filter'
 import PaginationC from '../../Pagination/PaginationC';
@@ -11,8 +11,10 @@ import Loader from '../../Loader/Loader'
 import { useLocation } from 'react-router-dom'
 import { useState } from 'react'
 
+
 function AllProducts() {
   const allProducts = useSelector ((state) => state.allProducts)
+  const products = useSelector((state) => state.products)
   const dispatch = useDispatch();
   const category = 'allproducts';
   // const {category} = useParams();
@@ -25,8 +27,8 @@ function AllProducts() {
   const productsPerPage = 2;
   const indexLastProduct = currentPage * productsPerPage;
   const indexFirstProduct = indexLastProduct - productsPerPage;
-  const currentProducts = allProducts.slice(indexFirstProduct, indexLastProduct);
-  const totalPages = Math.ceil(allProducts.length / productsPerPage);
+  const currentProducts = products.slice(indexFirstProduct, indexLastProduct);
+  const totalPages = Math.ceil(products.length / productsPerPage);
   
   useEffect(() => {
     dispatch(getProducts());
@@ -41,6 +43,14 @@ function AllProducts() {
     e.preventDefault()
     dispatch(filterByBrand(e.target.value))
   }
+
+  
+//   const handlePrice = (e) => {
+//     e.preventDefault()
+//     dispatch(orderByPrice(e.target.value));
+//     // setCurrentPage(1)
+//     // setOrder( `Order ${e.target.value }`)
+//  } 
 
 const setBrand = new Set(); 
 
@@ -67,9 +77,12 @@ const brandMap = unicBrand.map((el)=>el.brand)
                   brandMap?.map((t) => 
                   (<option value={t} key={t}> {t} </option> 
                   ))}
-          {/* <option value = "Hp">Brand</option>
-          <option value = "Price">Price</option> */}
+        
         </select>
+        {/* <select onChange={(e)=> handlePrice(e)}>
+                  <option value='Inc Price'>Inc Price</option> 
+                  <option value='Dec Price'>Dec Price</option>
+         </select> */}
         <Filter />
         <div className={styles.productsCardsContainer}>
           {currentProducts.map((el) => {

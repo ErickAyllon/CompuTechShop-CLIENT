@@ -1,9 +1,8 @@
-import React from 'react'
+import React, {useEffect} from 'react'
 import styles from './Home.module.css'
 import 'bootstrap/dist/css/bootstrap.css';
 import Carousel from 'react-bootstrap/Carousel';
 import Categories from '../Categories/Categories';
-import { useEffect} from 'react';
 import { getProducts } from '../../Redux/Actions';
 import { useDispatch } from 'react-redux';
 
