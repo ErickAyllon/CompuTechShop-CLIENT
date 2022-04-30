@@ -9,39 +9,26 @@ import { Link } from 'react-router-dom';
 import Filter from '../../Filter/Filter'
 import PaginationC from '../../Pagination/PaginationC';
 import Loader from '../../Loader/Loader'
-import { useLocation } from 'react-router-dom'
-import { useState } from 'react'
+
 
 function AllProducts() {
   const allProducts = useSelector ((state) => state.allProducts)
+  const products = useSelector (state=>state.products)
   const dispatch = useDispatch();
-  const category = 'allproducts';
-  // const {category} = useParams();
-  
-  // Pagination Info //
-  const location = useLocation();
-  const query = new URLSearchParams(location.search);
-  const page = parseInt(query.get('page') || '1', 10);
-  const [currentPage, setCurrentPage] = useState(1);
-  const productsPerPage = 2;
-  const indexLastProduct = currentPage * productsPerPage;
-  const indexFirstProduct = indexLastProduct - productsPerPage;
-  const currentProducts = allProducts.slice(indexFirstProduct, indexLastProduct);
-  const totalPages = Math.ceil(allProducts.length / productsPerPage);
-  
+
   useEffect(() => {
     dispatch(getProducts());
-    setCurrentPage(page)
   }, [dispatch]);
 
-    const pagination = (pageNumber) => {
-      setCurrentPage(pageNumber);
-    }
+
   
   function handleFilterByBrand(e){
     e.preventDefault()
     dispatch(filterByBrand(e.target.value))
   }
+
+
+
 
 const setBrand = new Set(); 
 
@@ -73,7 +60,7 @@ const brandMap = unicBrand.map((el)=>el.brand)
         </select>
         <Filter />
         <div className={styles.productsCardsContainer}>
-          {currentProducts.map((el) => {
+          {products.map((el) => {
             return (
                 <ProductCard 
                   name={el.name} 
@@ -89,11 +76,7 @@ const brandMap = unicBrand.map((el)=>el.brand)
           })}
         </div>
       </div>
-      <PaginationC 
-          category={category}
-          pagination={pagination} 
-          totalPages={totalPages}
-        />
+        <PaginationC />
       </>
           :
           <Loader />

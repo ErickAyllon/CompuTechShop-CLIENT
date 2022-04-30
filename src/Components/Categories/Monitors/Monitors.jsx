@@ -8,7 +8,6 @@ import ProductCard from '../../ProductCard/ProductCard';
 import Filter from '../../Filter/Filter';
 import styles from './Monitors.module.css'
 import Loader from '../../Loader/Loader';
-import { useLocation } from 'react-router-dom';
 
 function Monitors() {
   const products = useSelector ((state) => state.products)
@@ -16,26 +15,9 @@ function Monitors() {
   const category = 'Monitors';
   // const {category} = useParams
 
-  // Pagination Info //
-  const location = useLocation();
-  const query = new URLSearchParams(location.search);
-  const page = parseInt(query.get('page') || '1', 10);
-  const [currentPage, setCurrentPage] = useState(1);
-  const productsPerPage = 2;
-  const indexLastProduct = currentPage * productsPerPage;
-  const indexFirstProduct = indexLastProduct - productsPerPage;
-  const currentProducts = products.slice(indexFirstProduct, indexLastProduct);
-  const totalPages = Math.ceil(products.length / productsPerPage);
-
   useEffect(() => {
     dispatch(filterByCategory(category));
-    setCurrentPage(page)
   }, [dispatch]);
-
-  const pagination = (pageNumber) => {
-    setCurrentPage(pageNumber);
-}
- // End Pagination //
    
   return (
     <div className={styles.monitors}>
@@ -46,7 +28,7 @@ function Monitors() {
       <div className={styles.productsContainer}>
         <Filter />
         <div className={styles.productsCardsContainer}>
-          {currentProducts.map((el) => {
+          {products.map((el) => {
             return (
                 <ProductCard 
                   name={el.name} 
@@ -61,11 +43,7 @@ function Monitors() {
           })}
         </div>
       </div>
-      <PaginationC 
-          category={category}
-          pagination={pagination} 
-          totalPages={totalPages}
-        />
+        <PaginationC />
       </>
           :
           <Loader />
