@@ -8,6 +8,7 @@ import ProductCard from '../../ProductCard/ProductCard';
 import Filter from '../../Filter/Filter';
 import styles from './Laptops.module.css'
 import Loader from '../../Loader/Loader';
+import { useLocation } from 'react-router-dom';
 
 function Laptops() {
   const products = useSelector ((state) => state.products)
@@ -15,28 +16,26 @@ function Laptops() {
   const category = 'Laptops';
   // const {category} = useParams();
 
-  useEffect(() => {
-    dispatch(filterByCategory(category));
-  }, [dispatch]);
-
+  // Pagination Info //
+  const location = useLocation();
+  const query = new URLSearchParams(location.search);
+  const page = parseInt(query.get('page') || '1', 10);
   const [currentPage, setCurrentPage] = useState(1);
-  const productsPerPage = 3;
+  const productsPerPage = 2;
   const indexLastProduct = currentPage * productsPerPage;
   const indexFirstProduct = indexLastProduct - productsPerPage;
   const currentProducts = products.slice(indexFirstProduct, indexLastProduct);
-  const [order, setOrder] = useState('');
+  const totalPages = Math.ceil(products.length / productsPerPage);
+
+  useEffect(() => {
+    dispatch(filterByCategory(category));
+    setCurrentPage(page)
+  }, [dispatch]);
 
   const pagination = (pageNumber) => {
     setCurrentPage(pageNumber);
 }
-
-    // <Pagination 
-    //   productsPerPage={productsPerPage} 
-    //   products={products.length} 
-    //   pagination={pagination} 
-    //   currentPage={currentPage} 
-    //   setCurrentPage={setCurrentPage}
-    // />
+ // End Pagination //
 
   return (
     <div className={styles.laptops}>
@@ -50,6 +49,7 @@ function Laptops() {
           {currentProducts.map((el) => {
             return (
                 <ProductCard 
+                  key={el.id}
                   name={el.name} 
                   price={el.price} 
                   image={el.image} 
@@ -65,11 +65,8 @@ function Laptops() {
       <div className={styles.paginationContainer}>
         <PaginationC 
           category={category}
-          productsPerPage={productsPerPage} 
-          products={products.length} 
           pagination={pagination} 
-          currentPage={currentPage} 
-          setCurrentPage={setCurrentPage}
+          totalPages={totalPages}
         />
         </div>
       </>

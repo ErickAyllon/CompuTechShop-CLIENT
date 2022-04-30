@@ -9,6 +9,9 @@ import { Link } from 'react-router-dom';
 import Filter from '../../Filter/Filter'
 import PaginationC from '../../Pagination/PaginationC';
 import Loader from '../../Loader/Loader'
+import { useLocation } from 'react-router-dom';
+import { useState } from 'react'
+
 
 function Headsets() {
   const products = useSelector ((state) => state.products)
@@ -16,9 +19,26 @@ function Headsets() {
   const category = 'Headsets';
   // const {category} = useParams
 
+  // Pagination Info //
+  const location = useLocation();
+  const query = new URLSearchParams(location.search);
+  const page = parseInt(query.get('page') || '1', 10);
+  const [currentPage, setCurrentPage] = useState(1);
+  const productsPerPage = 1;
+  const indexLastProduct = currentPage * productsPerPage;
+  const indexFirstProduct = indexLastProduct - productsPerPage;
+  const currentProducts = products.slice(indexFirstProduct, indexLastProduct);
+  const totalPages = Math.ceil(products.length / productsPerPage);
+
   useEffect(() => {
     dispatch(filterByCategory(category));
+    setCurrentPage(page)
   }, [dispatch]);
+
+  const pagination = (pageNumber) => {
+    setCurrentPage(pageNumber);
+}
+ // End Pagination //
   
   return (
     <div className={styles.headsets}>
@@ -29,7 +49,7 @@ function Headsets() {
       <div className={styles.productsContainer}>
         <Filter />
         <div className={styles.productsCardsContainer}>
-          {products.map((el) => {
+          {currentProducts.map((el) => {
             return (
                 <ProductCard 
                   name={el.name} 
@@ -44,7 +64,11 @@ function Headsets() {
           })}
         </div>
       </div>
-        <PaginationC />
+      <PaginationC 
+          category={category}
+          pagination={pagination} 
+          totalPages={totalPages}
+        />
       </>
           :
           <Loader />
