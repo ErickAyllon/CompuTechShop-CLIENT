@@ -5,7 +5,6 @@ import {useDispatch, useSelector} from 'react-redux'
 import { useEffect } from 'react'
 import { getProducts, filterByBrand} from '../../../Redux/Actions'
 import ProductCard from '../../ProductCard/ProductCard'
-import { Link } from 'react-router-dom';
 import Filter from '../../Filter/Filter'
 import PaginationC from '../../Pagination/PaginationC';
 import Loader from '../../Loader/Loader'

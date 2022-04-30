@@ -10,18 +10,25 @@ const initialState = {
   brand: [],
   allBrands:[],
   darkMode: true,
+  categories: []
 };
 
 function rootReducer(state = initialState, action) {
-  console.log("State: " + state.darkMode)
+  console.log("State: " + state.products)
   switch (action.type) {
     case "GET_PRODUCTS":
       return {
         ...state,
         allProducts: action.payload,
         products: action.payload,
-        productDetail: []
+        productDetail: [],
       };
+    case "GET_CATEGORIES": {
+      return {
+        ...state,
+        categories: action.payload
+      }
+    }
     case "POST_PRODUCT":
       return {
         ...state,
