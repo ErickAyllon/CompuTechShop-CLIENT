@@ -1,4 +1,4 @@
-import { darkMode, ORDER_BY_PRICE } from "../Actions";
+import { darkMode, ORDER_BY_PRICE, FILTER_BY_BRAND2 } from "../Actions";
 
 const initialState = {
   allProducts: [],
@@ -62,6 +62,15 @@ function rootReducer(state = initialState, action) {
           products: action.payload,
           
         }
+
+          case FILTER_BY_BRAND2:
+                            const filtered = action.payload === "all"
+                            ? state.products
+                            : state.products.filter((el) => el.brand?.includes(action.payload))
+                        return{
+                            ...state,
+                            allProducts: filtered
+                        }
         // case ORDER_BY_PRICE:
         //   let priceProduct = [...state.products]
         //   console.log(state.products)
