@@ -66,7 +66,6 @@ console.log("este es el productDetail", products)
         products.length > 0 ?
         <>
       <div className={styles.productsContainer}>
-        {/* <Filter /> */}
         <select onChange={e=>handleFilterByBrandCategories(e)}>
           <option value= "all">all</option>
           {
@@ -75,6 +74,7 @@ console.log("este es el productDetail", products)
                   ))}
         
         </select>
+        <Filter />
         <div className={styles.productsCardsContainer}>
 
           {currentProducts.map((el) => {

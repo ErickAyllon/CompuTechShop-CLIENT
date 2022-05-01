@@ -1,0 +1,19 @@
+.form {
+    display: flex;
+    justify-content: center;
+    margin: 0 auto;
+    align-items: center;
+    align-content: center;
+    justify-items: center;
+    justify-self: center;
+    height: 90vh;
+    /* background-color: gray; */
+}
+
+.form .createButton {
+    text-align: center;
+}
+
+@media only screen and (max-width: 768px) {
+
+}

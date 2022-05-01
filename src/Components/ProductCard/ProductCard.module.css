@@ -16,15 +16,20 @@
 }
 
 .productCardImgContainer{
-    width: 270px;
-    height: auto;
-    max-height: 200px;
+    min-width: 208px;
+    height: 160px;
     margin-left: 10px;
+    justify-content: center;
+    align-items: center;
+    display: flex;
 }
 
 .productImg {
-    height: 90px;
+    height: auto;
+    max-height: 160px;
     width: auto;
+    max-width: 208px;
+    display: flex;
     margin: auto;
 }
 
@@ -59,15 +64,14 @@
 }
 
 .productCardPrice {
-    /* display: inline-block; */
     line-height: 1em;
     overflow: visible;
     vertical-align: text-bottom;
     float: left;
     margin-top: 15px;
+    width: 200px;
 }
 .productCardCalification {
-    /* display: inline-block; */
     line-height: 1em;
     overflow: visible;
     vertical-align: text-bottom;
@@ -87,13 +91,12 @@
     .productCardImgContainer{
         width: 270px;
         height: auto;
-        margin-left: 10px;
+        margin: 5px;
     }
     .productCard img{
-        width: 150px;
+        width: 100%;
         height: auto;
-        max-height: 150px;
-        margin: 5px;
+        max-height: 160px;
     }
 
     .productCardInfo {
@@ -101,13 +104,13 @@
     }
     .productCardName {
         font-size: 1.2rem;
+        margin-top: 0;
     }
     .productCardPrice {
-        /* display: inline-block; */
-        margin-top: 20px;
+        margin-top: 0;
     }
     .productCardCalification {
-        margin-top: 20px;
-        margin-left: 50px;
+        margin-top: 0;
+        margin-left: 0;
     }
 }

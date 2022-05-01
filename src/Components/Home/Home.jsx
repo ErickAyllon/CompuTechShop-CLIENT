@@ -3,14 +3,15 @@ import styles from './Home.module.css'
 import 'bootstrap/dist/css/bootstrap.css';
 import Carousel from 'react-bootstrap/Carousel';
 import Categories from '../Categories/Categories';
-import {getProducts} from "../../Redux/Actions"
-import {useDispatch} from 'react-redux'
+import { getProducts } from '../../Redux/Actions';
+import { useDispatch } from 'react-redux';
 
 function Home() {
-  const dispatch = useDispatch()
+  const dispatch = useDispatch();
   useEffect(() => {
     dispatch(getProducts());
   }, [dispatch]);
+
   return (
     <div className={styles.home}>
       <div className={styles.homeContent}>
