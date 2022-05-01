@@ -2,7 +2,7 @@ import React, { useState, useEffect} from 'react'
 import styles from './Keyboards.module.css'
 import Categories from '../Categories'
 import {useDispatch, useSelector} from 'react-redux'
-import {filterByCategory} from '../../../Redux/Actions'
+import {filterByCategory, filterByBrandCategories} from '../../../Redux/Actions'
 import ProductCard from '../../ProductCard/ProductCard'
 import { Link } from 'react-router-dom';
 import Filter from '../../Filter/Filter'
@@ -11,7 +11,9 @@ import Loader from '../../Loader/Loader'
 import { useLocation } from 'react-router-dom';
 
 function Keyboards() {
+  const allProducts = useSelector((state) => state.allProducts)
   const products = useSelector ((state) => state.products)
+  const productsDetail = useSelector((state) => state.productsDetail)
   const dispatch = useDispatch();
   const category = 'Keyboards';
   // const {category} = useParams
@@ -24,7 +26,7 @@ function Keyboards() {
   const productsPerPage = 1;
   const indexLastProduct = currentPage * productsPerPage;
   const indexFirstProduct = indexLastProduct - productsPerPage;
-  const currentProducts = products.slice(indexFirstProduct, indexLastProduct);
+  const currentProducts = allProducts.slice(indexFirstProduct, indexLastProduct);
   const totalPages = Math.ceil(products.length / productsPerPage);
 
   useEffect(() => {
@@ -32,6 +34,26 @@ function Keyboards() {
     setCurrentPage(page)
   }, [dispatch]);
 
+
+//filtrado
+function handleFilterByBrandCategories(e){
+  e.preventDefault()
+  dispatch(filterByBrandCategories(e.target.value))
+}
+
+const setBrand = new Set(); 
+
+const unicBrand = products.reduce((acc, marca) => {
+  if (!setBrand.has(marca.brand)){
+    setBrand.add(marca.brand, marca)
+    acc.push(marca)
+  }
+  return acc;
+},[]);
+
+const brandMap = unicBrand.map((el)=>el.brand)
+
+console.log("este es el productDetail", products)
   const pagination = (pageNumber) => {
     setCurrentPage(pageNumber);
 }
@@ -44,8 +66,17 @@ function Keyboards() {
         products.length > 0 ?
         <>
       <div className={styles.productsContainer}>
+        <select onChange={e=>handleFilterByBrandCategories(e)}>
+          <option value= "all">all</option>
+          {
+                  brandMap?.map((t) => 
+                  (<option value={t} key={t}> {t} </option> 
+                  ))}
+        
+        </select>
         <Filter />
         <div className={styles.productsCardsContainer}>
+
           {currentProducts.map((el) => {
             return (
                 <ProductCard 

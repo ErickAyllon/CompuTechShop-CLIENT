@@ -1,3 +1,5 @@
+import { darkMode, ORDER_BY_PRICE, FILTER_BY_BRAND2 } from "../Actions";
+
 const initialState = {
   allProducts: [],
   products: [],
@@ -7,17 +9,26 @@ const initialState = {
   filteredByCategory: [],
   brand: [],
   allBrands:[],
+  darkMode: true,
+  categories: []
 };
 
 function rootReducer(state = initialState, action) {
+  console.log("State: " + state.products)
   switch (action.type) {
     case "GET_PRODUCTS":
       return {
         ...state,
         allProducts: action.payload,
         products: action.payload,
-        productDetail: []
+        productDetail: [],
       };
+    case "GET_CATEGORIES": {
+      return {
+        ...state,
+        categories: action.payload
+      }
+    }
     case "POST_PRODUCT":
       return {
         ...state,
@@ -53,11 +64,39 @@ function rootReducer(state = initialState, action) {
         userOne: action.payload,
       };
       case "FILTER_BY_BRAND":
-      
         return {
           ...state,
           products: action.payload,
           
+        }
+
+          case FILTER_BY_BRAND2:
+                            const filtered = action.payload === "all"
+                            ? state.products
+                            : state.products.filter((el) => el.brand?.includes(action.payload))
+                        return{
+                            ...state,
+                            allProducts: filtered
+                        }
+        // case ORDER_BY_PRICE:
+        //   let priceProduct = [...state.products]
+        //   console.log(state.products)
+        //   priceProduct = priceProduct.sort((a, b) => {
+        //           if(a.price < b.price) {
+        //               return action.payload === 'Inc Price' ? -1 : 1
+        //           }
+        //           if(a.price > b.price) {
+        //               return action.payload === 'Dec Price' ?  -1 : 1
+        //           } 
+        //           return 0
+        //       })
+
+
+
+      case "DARKMODE":
+        return {
+          ...state,
+          darkMode: action.payload
         }
     default:
       return state;
