@@ -4,17 +4,16 @@ const initialState = {
   allProducts: [],
   products: [],
   users: [],
-  userOne:[],
+  userOne: [],
   productDetail: [],
   filteredByCategory: [],
   brand: [],
-  allBrands:[],
+  allBrands: [],
   darkMode: true,
-  categories: []
+  categories: [],
 };
 
 function rootReducer(state = initialState, action) {
-  console.log("State: " + state.products)
   switch (action.type) {
     case "GET_PRODUCTS":
       return {
@@ -26,8 +25,8 @@ function rootReducer(state = initialState, action) {
     case "GET_CATEGORIES": {
       return {
         ...state,
-        categories: action.payload
-      }
+        categories: action.payload,
+      };
     }
     case "POST_PRODUCT":
       return {
@@ -39,65 +38,63 @@ function rootReducer(state = initialState, action) {
         ...state,
         users: action.payload,
       };
-    case 'GET_DETAILS':
+    case "GET_DETAILS":
       return {
-          ...state,
-          productDetail: action.payload,
-          products: [],
-      }
+        ...state,
+        productDetail: action.payload,
+        products: [],
+      };
     case "FILTER_BY_CATEGORY":
       return {
         ...state,
         products: action.payload,
-        productDetail: []
-      }
+        productDetail: [],
+      };
     case "GET_PRODUCTS_BY_NAME":
       return {
         ...state,
         products: action.payload,
         allProducts: action.payload,
-        productDetail: []
-      }
-      case "POST_USER":
+        productDetail: [],
+      };
+    case "POST_USER":
       return {
         ...state,
         userOne: action.payload,
       };
-      case "FILTER_BY_BRAND":
-        return {
-          ...state,
-          products: action.payload,
-          
-        }
+    case "FILTER_BY_BRAND":
+      return {
+        ...state,
+        products: action.payload,
+      };
 
-          case FILTER_BY_BRAND2:
-                            const filtered = action.payload === "all"
-                            ? state.products
-                            : state.products.filter((el) => el.brand?.includes(action.payload))
-                        return{
-                            ...state,
-                            allProducts: filtered
-                        }
-        // case ORDER_BY_PRICE:
-        //   let priceProduct = [...state.products]
-        //   console.log(state.products)
-        //   priceProduct = priceProduct.sort((a, b) => {
-        //           if(a.price < b.price) {
-        //               return action.payload === 'Inc Price' ? -1 : 1
-        //           }
-        //           if(a.price > b.price) {
-        //               return action.payload === 'Dec Price' ?  -1 : 1
-        //           } 
-        //           return 0
-        //       })
+    case FILTER_BY_BRAND2:
+      const filtered =
+        action.payload === "all"
+          ? state.products
+          : state.products.filter((el) => el.brand?.includes(action.payload));
+      return {
+        ...state,
+        allProducts: filtered,
+      };
+    // case ORDER_BY_PRICE:
+    //   let priceProduct = [...state.products]
+    //   console.log(state.products)
+    //   priceProduct = priceProduct.sort((a, b) => {
+    //           if(a.price < b.price) {
+    //               return action.payload === 'Inc Price' ? -1 : 1
+    //           }
+    //           if(a.price > b.price) {
+    //               return action.payload === 'Dec Price' ?  -1 : 1
+    //           }
+    //           return 0
+    //       })
 
-
-
-      case "DARKMODE":
-        return {
-          ...state,
-          darkMode: action.payload
-        }
+    case "DARKMODE":
+      return {
+        ...state,
+        darkMode: action.payload,
+      };
     default:
       return state;
   }
