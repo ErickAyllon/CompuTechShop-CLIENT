@@ -3,8 +3,7 @@ import axios from "axios";
 export const GET_USER = "GET_USER";
 export const getUser = () => {
   return async (dispatch) => {
-    var json = await axios.get("/users");
-
+    var json = await axios.get("http://localhost:3001/users");
     return dispatch({
       type: "GET_USER",
       payload: json.data,
@@ -14,27 +13,19 @@ export const getUser = () => {
 
 export function getProducts() {
   return async function (dispatch) {
-    var json = await axios.get("/products");
-    console.log(json.data);
+    var json = await axios.get("http://localhost:3001/products");
     return dispatch({
       type: "GET_PRODUCTS",
       payload: json.data,
     });
   };
 }
-export const CLEAN_FILTER = "CLEAN_FILTER";
-export function cleanFilter() {
-  return {
-    type: "CLEAN_FILTER",
-    payload: {},
-  };
-}
 
 export function getDetail(name) {
   return async function (dispatch) {
     try {
-      var json = await axios.get("/products?name=" + name);
-
+      var json = await axios.get("http://localhost:3001/products?name=" + name);
+      console.log(json);
       return dispatch({
         type: "GET_DETAILS",
         payload: json.data,
@@ -48,7 +39,7 @@ export function getDetail(name) {
 export function getCategories() {
   return async function (dispatch) {
     try {
-      var json = await axios.get("/categories");
+      var json = await axios.get("http://localhost:3001/categories");
       return dispatch({
         type: "GET_CATEGORIES",
         payload: json.data,
@@ -61,14 +52,19 @@ export function getCategories() {
 
 export function postProducts(payload) {
   return async function () {
-    const response = await axios.post("/postProduct", payload);
+    const response = await axios.post(
+      "http://localhost:3001/postProduct",
+      payload
+    );
     return response;
   };
 }
 
 export const filterByCategory = (category) => {
   return async (dispatch) => {
-    var json = await axios.get("/productCategory?category=" + category);
+    var json = await axios.get(
+      "http://localhost:3001/productCategory?category=" + category
+    );
     return dispatch({
       type: "FILTER_BY_CATEGORY",
       payload: json.data,
@@ -78,7 +74,10 @@ export const filterByCategory = (category) => {
 export const POST_USER = "POST_USER";
 export function postUser(payload) {
   return async function () {
-    const response = await axios.post("/postUser", payload);
+    const response = await axios.post(
+      "http://localhost:3001/postUser",
+      payload
+    );
     return response;
   };
 }
@@ -86,7 +85,7 @@ export function postUser(payload) {
 export function getProductsByName(name) {
   return async function (dispatch) {
     try {
-      var json = await axios.get("/products?name=" + name);
+      var json = await axios.get("http://localhost:3001/products?name=" + name);
       return dispatch({
         type: "GET_PRODUCTS_BY_NAME",
         payload: json.data,
@@ -99,7 +98,9 @@ export function getProductsByName(name) {
 
 export const filterByBrand = (brand) => {
   return async (dispatch) => {
-    var json = await axios.get("/productBrand?brand=" + brand);
+    var json = await axios.get(
+      "http://localhost:3001/productBrand?brand=" + brand
+    );
 
     return dispatch({
       type: "FILTER_BY_BRAND",
@@ -109,24 +110,10 @@ export const filterByBrand = (brand) => {
 };
 
 export const FILTER_BY_BRAND2 = "FILTER_BY_BRAND2";
-export function filterByBrand2(payload) {
+export function filterByBrandCategories(payload) {
   return {
     type: FILTER_BY_BRAND2,
     payload,
-  };
-}
-export const FILTER_BY_BRANDFILTER = "FILTER_BY_BRANDFILTER";
-export function filterByBrandCategoriesFilter(payload) {
-  return {
-    type: FILTER_BY_BRANDFILTER,
-    payload,
-  };
-}
-
-export function cleanDog() {
-  return {
-    type: "CLEAN_DOGS",
-    payload: {},
   };
 }
 

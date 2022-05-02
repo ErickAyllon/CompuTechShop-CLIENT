@@ -13,9 +13,7 @@ import { useLocation } from 'react-router-dom'
 import { useState } from 'react'
 
 function ProductSearched() {
-  let products = useSelector((state) => state.products);
-  const productsFilter = useSelector((state) => state.productsFilter);
-  products = productsFilter.length > 0 ? productsFilter : products;
+  const products = useSelector ((state) => state.products)
   const dispatch = useDispatch();
   const {search} = useParams();
 
@@ -33,7 +31,7 @@ function ProductSearched() {
   useEffect(() => {
     dispatch(getProductsByName(search))
     setCurrentPage(page)
-  }, [dispatch, page, search]);
+  }, [dispatch]);
 
   const pagination = (pageNumber) => {
     setCurrentPage(pageNumber);

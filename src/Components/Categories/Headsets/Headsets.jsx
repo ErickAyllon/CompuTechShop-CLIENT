@@ -11,14 +11,12 @@ import PaginationC from "../../Pagination/PaginationC";
 import Loader from "../../Loader/Loader";
 import { useLocation } from "react-router-dom";
 import { useState } from "react";
-import { useParams } from "react-router-dom";
 
 function Headsets() {
-  let products = useSelector((state) => state.products);
-  const productsFilter = useSelector((state) => state.productsFilter);
-  products = productsFilter.length > 0 ? productsFilter : products;
+  const products = useSelector((state) => state.products);
   const dispatch = useDispatch();
   const category = "Headsets";
+  // const {category} = useParams
 
   // Pagination Info //
   const location = useLocation();
@@ -28,9 +26,11 @@ function Headsets() {
   const productsPerPage = 6;
   const indexLastProduct = currentPage * productsPerPage;
   const indexFirstProduct = indexLastProduct - productsPerPage;
-  const currentProducts = products.length > 0 ? products.slice(indexFirstProduct, indexLastProduct) : null;
+  const currentProducts =
+    products.length > 0
+      ? products.slice(indexFirstProduct, indexLastProduct)
+      : null;
   const totalPages = Math.ceil(products.length / productsPerPage);
-
 
   useEffect(() => {
     dispatch(filterByCategory(category));
@@ -45,7 +45,7 @@ function Headsets() {
   return (
     <div className={styles.headsets}>
       <Categories />
-      {productsFilter.length > 0 ? (
+      {products.length > 0 ? (
         <>
           <div className={styles.productsContainer}>
             <Filter />
@@ -53,11 +53,11 @@ function Headsets() {
               {currentProducts.map((el) => {
                 return (
                   <ProductCard
+                    key={el.id}
                     name={el.name}
                     price={el.price}
                     image={el.image}
                     id={el.id}
-                    key={el.id}
                     brand={el.brand}
                     description={el.description}
                     calification={el.calification}
