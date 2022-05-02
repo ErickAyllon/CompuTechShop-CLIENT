@@ -15,7 +15,6 @@ function SearchBar() {
     }
 
     function handleSubmit(e) {
-      console.log(name);
         e.preventDefault();
         dispatch(getProductsByName(name));
         setName('');

@@ -1,6 +1,6 @@
 .home {
     /* background-color: rgb(255, 255, 255); */
-    /* background-color: black; */
+    background-color: black;
     color: white;
     min-height: 100vh;
 }
@@ -14,8 +14,9 @@
     margin: auto;
     margin-bottom: 25px;
     /* margin-top: 1.5px; */
-    box-shadow: 0 0 5px .2px rgba(255, 255, 255, 0.309);
+    /* box-shadow: 0 0 5px .2px rgba(255, 255, 255, 0.309); */
     clip-path: inset(2.5px 0px 0px 0px);
+    max-width: 1500px;
 }
 
 .carouselContainer img {
