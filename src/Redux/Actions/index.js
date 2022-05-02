@@ -107,7 +107,7 @@ export const filterByBrand = (brand) => {
 };
 
 export const FILTER_BY_BRAND2 = "FILTER_BY_BRAND2";
-export function filterByBrandCategories(payload) {
+export function filterByBrand2(payload) {
   return {
     type: FILTER_BY_BRAND2,
     payload,

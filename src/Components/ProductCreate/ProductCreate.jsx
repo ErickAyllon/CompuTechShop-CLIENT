@@ -69,8 +69,6 @@ function ProductCreate() {
         errors.name = 'Max 130 characters'; 
     } if (!input.name) {
         errors.name = 'Name required';
-    } if (!/^[A-Z]/.test(input.brand)) {
-      errors.brand = 'First letter must be uppercase';
     } if (input.brand.length > 20) {
         errors.brand = 'Max 20 characters'; 
     } if (!input.brand) {
@@ -87,10 +85,10 @@ function ProductCreate() {
         errors.price = 'Price must be > 0';
     } if (!input.price) {
         errors.price = 'Price required';
-    } if (!input.calification || input.quantity > 10) {
+    } if (!input.calification || input.calification > 10) {
         errors.calification = '10 max';
-    } if (!input.calification || input.quantity < 0) {
-        errors.calification = 'Quantity must be > 0';
+    } if (!input.calification || input.calification < 0) {
+        errors.calification = 'Calification must be > 0';
     } if (!input.calification) {
         errors.calification = 'Calification required';
     }  if (!input.quantity || input.quantity < 0) {

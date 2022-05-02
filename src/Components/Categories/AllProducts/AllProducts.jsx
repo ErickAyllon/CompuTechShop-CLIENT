@@ -1,56 +1,47 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import styles from "./AllProducts.module.css";
 import Categories from "../Categories";
 import { useDispatch, useSelector } from "react-redux";
-import { useEffect } from "react";
-import {
-  getProducts,
-  filterByBrandCategories,
-  filterByBrand,
-  orderByPrice,
-} from "../../../Redux/Actions";
+import { getProducts } from "../../../Redux/Actions";
 import ProductCard from "../../ProductCard/ProductCard";
 import Filter from "../../Filter/Filter";
 import PaginationC from "../../Pagination/PaginationC";
 import Loader from "../../Loader/Loader";
 import { useLocation } from "react-router-dom";
-import { useState } from "react";
 // import Filters from '../Filters/Filters'// frichieri-dev TEST
 
 function AllProducts() {
-  const allProducts = useSelector((state) => state.allProducts);
-  const products = useSelector((state) => state.products);
+  let products = useSelector((state) => state.allProducts);
+  const productsFilter = useSelector((state) => state.productsFilter);
+  products = productsFilter.length > 0 ? productsFilter : products;
   const dispatch = useDispatch();
   const category = "allproducts";
-  // const {category} = useParams();
 
   // Pagination Info //
   const location = useLocation();
   const query = new URLSearchParams(location.search);
   const page = parseInt(query.get("page") || "1", 10);
   const [currentPage, setCurrentPage] = useState(1);
-  const productsPerPage = 3;
+  const productsPerPage = 6;
   const indexLastProduct = currentPage * productsPerPage;
   const indexFirstProduct = indexLastProduct - productsPerPage;
-  const currentProducts = allProducts.slice(
-    indexFirstProduct,
-    indexLastProduct
-  );
-  const totalPages = Math.ceil(allProducts.length / productsPerPage);
+  const currentProducts = products.length > 0 ? products.slice(indexFirstProduct, indexLastProduct) : null;
+  const totalPages = Math.ceil(products.length / productsPerPage);
 
   useEffect(() => {
     dispatch(getProducts());
     setCurrentPage(page);
-  }, [dispatch]);
+  }, [dispatch, page]);
 
   const pagination = (pageNumber) => {
     setCurrentPage(pageNumber);
   };
+  // End Pagination Info //
 
-  function handleFilterByBrand(e) {
-    e.preventDefault();
-    dispatch(filterByBrandCategories(e.target.value));
-  }
+  // function handleFilterByBrand(e) {
+  //   e.preventDefault();
+  //   dispatch(filterByBrandCategories(e.target.value));
+  // }
 
   //   const handlePrice = (e) => {
   //     e.preventDefault()
@@ -59,25 +50,13 @@ function AllProducts() {
   //     // setOrder( `Order ${e.target.value }`)
   //  }
 
-  const setBrand = new Set();
-
-  const unicBrand = products.reduce((acc, marca) => {
-    if (!setBrand.has(marca.brand)) {
-      setBrand.add(marca.brand, marca);
-      acc.push(marca);
-    }
-    return acc;
-  }, []);
-
-  const brandMap = unicBrand.map((el) => el.brand);
-
   return (
     <div className={styles.allProducts}>
       <Categories />
-      {allProducts.length > 0 ? (
+      {products.length > 0 ? (
         <>
           <div className={styles.productsContainer}>
-            <select onChange={(e) => handleFilterByBrand(e)}>
+            {/* <select onChange={(e) => handleFilterByBrand(e)}>
               <option value="all">all</option>
               {brandMap?.map((t) => (
                 <option value={t} key={t}>
@@ -85,13 +64,12 @@ function AllProducts() {
                   {t}{" "}
                 </option>
               ))}
-            </select>
+            </select> */}
             {/* <select onChange={(e)=> handlePrice(e)}>
                   <option value='Inc Price'>Inc Price</option> 
                   <option value='Dec Price'>Dec Price</option>
          </select> */}
-            {/* <Filter /> */}
-            {/* <Filters products={allProducts} /> // Testing frichieri-dev*/}
+            <Filter />
             <div className={styles.productsCardsContainer}>
               {currentProducts.map((el) => {
                 return (

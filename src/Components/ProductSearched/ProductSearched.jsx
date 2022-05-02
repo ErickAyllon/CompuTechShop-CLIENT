@@ -13,7 +13,9 @@ import { useLocation } from 'react-router-dom'
 import { useState } from 'react'
 
 function ProductSearched() {
-  const products = useSelector ((state) => state.products)
+  let products = useSelector((state) => state.products);
+  const productsFilter = useSelector((state) => state.productsFilter);
+  products = productsFilter.length > 0 ? productsFilter : products;
   const dispatch = useDispatch();
   const {search} = useParams();
 
@@ -22,7 +24,7 @@ function ProductSearched() {
   const query = new URLSearchParams(location.search);
   const page = parseInt(query.get('page') || '1', 10);
   const [currentPage, setCurrentPage] = useState(1);
-  const productsPerPage = 1;
+  const productsPerPage = 6;
   const indexLastProduct = currentPage * productsPerPage;
   const indexFirstProduct = indexLastProduct - productsPerPage;
   const currentProducts = products.slice(indexFirstProduct, indexLastProduct);
@@ -31,7 +33,7 @@ function ProductSearched() {
   useEffect(() => {
     dispatch(getProductsByName(search))
     setCurrentPage(page)
-  }, [dispatch]);
+  }, [dispatch, page, search]);
 
   const pagination = (pageNumber) => {
     setCurrentPage(pageNumber);

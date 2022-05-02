@@ -1,15 +1,9 @@
 import React from "react";
 import styles from "./Categories.module.css";
 import { Link } from "react-router-dom";
-import { cleanDog } from "../../Redux/Actions";
-import { useDispatch } from "react-redux";
 
 function Categories() {
-  const dispatch = useDispatch();
-  function handleOnClick(e) {
-    e.preventDefault();
-    dispatch(cleanDog());
-  }
+
   return (
     <div className={styles.categories}>
       <div className={styles.category}>

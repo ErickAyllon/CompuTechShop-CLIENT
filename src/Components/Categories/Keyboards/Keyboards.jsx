@@ -10,24 +10,24 @@ import Loader from "../../Loader/Loader";
 import { useLocation } from "react-router-dom";
 
 function Keyboards() {
-  const category = "Keyboards";
+  let products = useSelector((state) => state.products);
   const productsFilter = useSelector((state) => state.productsFilter);
-  const allProductsFilter = useSelector((state) => state.allProductsFilter);
+  products = productsFilter.length > 0 ? productsFilter : products;
   const dispatch = useDispatch();
+  const category = "Keyboards";
+  
 
   // Pagination Info //
   const location = useLocation();
   const query = new URLSearchParams(location.search);
   const page = parseInt(query.get("page") || "1", 10);
   const [currentPage, setCurrentPage] = useState(1);
-  const productsPerPage = 3;
+  const productsPerPage = 6;
   const indexLastProduct = currentPage * productsPerPage;
   const indexFirstProduct = indexLastProduct - productsPerPage;
-  const currentProducts = allProductsFilter.slice(
-    indexFirstProduct,
-    indexLastProduct
-  );
-  const totalPages = Math.ceil(allProductsFilter.length / productsPerPage);
+  const currentProducts = products.length > 0 ? products.slice(indexFirstProduct, indexLastProduct) : null;
+  const totalPages = Math.ceil(products.length / productsPerPage);
+
   useEffect(() => {
     dispatch(filterByCategory(category));
     setCurrentPage(page);

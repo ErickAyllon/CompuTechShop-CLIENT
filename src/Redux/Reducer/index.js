@@ -1,25 +1,22 @@
 import {
-  darkMode,
-  ORDER_BY_PRICE,
   FILTER_BY_BRAND2,
   FILTER_BY_BRANDFILTER,
   CLEAN_FILTER,
-  CLEAN_DOGS,
 } from "../Actions";
 
 const initialState = {
   allProducts: [],
   products: [],
-  allProductsFilter: [],
-  productsFilter: [],
   users: [],
   userOne: [],
   productDetail: [],
-  filteredByCategory: [],
   brand: [],
   allBrands: [],
   darkMode: true,
   categories: [],
+  filteredByCategory: [],
+  allProductsFilter: [],
+  productsFilter: [],
 };
 
 function rootReducer(state = initialState, action) {
@@ -30,6 +27,7 @@ function rootReducer(state = initialState, action) {
         allProducts: action.payload,
         products: action.payload,
         productDetail: [],
+        productsFilter: []
       };
     case "GET_CATEGORIES": {
       return {
@@ -59,7 +57,6 @@ function rootReducer(state = initialState, action) {
         products: action.payload,
         productsFilter: action.payload,
         allProductsFilter: action.payload,
-
         productDetail: [],
       };
     case "GET_PRODUCTS_BY_NAME":
@@ -74,21 +71,24 @@ function rootReducer(state = initialState, action) {
         ...state,
         userOne: action.payload,
       };
-    case "FILTER_BY_BRAND":
+    case "FILTER_BY_BRAND": 
       return {
         ...state,
         products: action.payload,
       };
 
-    case FILTER_BY_BRAND2:
+    case FILTER_BY_BRAND2: // Este
       const filtered =
         action.payload === "all"
           ? state.products
           : state.products.filter((el) => el.brand?.includes(action.payload));
       return {
         ...state,
-        allProducts: filtered,
+        productsFilter: filtered,
       };
+
+
+      
     case FILTER_BY_BRANDFILTER:
       const filtrazo =
         action.payload === "all"

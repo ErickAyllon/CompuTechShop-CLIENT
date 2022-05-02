@@ -4,14 +4,15 @@ import Categories from "../Categories";
 import { useDispatch, useSelector } from "react-redux";
 import { filterByCategory } from "../../../Redux/Actions";
 import ProductCard from "../../ProductCard/ProductCard";
-import { Link } from "react-router-dom";
 import Filter from "../../Filter/Filter";
 import PaginationC from "../../Pagination/PaginationC";
 import Loader from "../../Loader/Loader";
 import { useLocation } from "react-router-dom";
 
 function Mouses() {
+  let products = useSelector((state) => state.products);
   const productsFilter = useSelector((state) => state.productsFilter);
+  products = productsFilter.length > 0 ? productsFilter : products;
   const allProductsFilter = useSelector((state) => state.allProductsFilter);
   const dispatch = useDispatch();
   const category = "Mouses";
@@ -22,14 +23,12 @@ function Mouses() {
   const query = new URLSearchParams(location.search);
   const page = parseInt(query.get("page") || "1", 10);
   const [currentPage, setCurrentPage] = useState(1);
-  const productsPerPage = 3;
+  const productsPerPage = 6;
   const indexLastProduct = currentPage * productsPerPage;
   const indexFirstProduct = indexLastProduct - productsPerPage;
-  const currentProducts = allProductsFilter.slice(
-    indexFirstProduct,
-    indexLastProduct
-  );
-  const totalPages = Math.ceil(allProductsFilter.length / productsPerPage);
+  const currentProducts = products.length > 0 ? products.slice(indexFirstProduct, indexLastProduct) : null;
+  const totalPages = Math.ceil(products.length / productsPerPage);
+
 
   useEffect(() => {
     dispatch(filterByCategory(category));
