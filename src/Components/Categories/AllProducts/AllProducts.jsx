@@ -5,7 +5,6 @@ import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
 import {
   getProducts,
-  filterByBrandCategories,
   filterByBrand,
   orderByPrice,
 } from "../../../Redux/Actions";
@@ -15,6 +14,7 @@ import PaginationC from "../../Pagination/PaginationC";
 import Loader from "../../Loader/Loader";
 import { useLocation } from "react-router-dom";
 import { useState } from "react";
+// import Filters from '../Filters/Filters'// frichieri-dev TEST
 
 function AllProducts() {
   const allProducts = useSelector((state) => state.allProducts);
@@ -31,11 +31,8 @@ function AllProducts() {
   const productsPerPage = 3;
   const indexLastProduct = currentPage * productsPerPage;
   const indexFirstProduct = indexLastProduct - productsPerPage;
-  const currentProducts = allProducts.slice(
-    indexFirstProduct,
-    indexLastProduct
-  );
-  const totalPages = Math.ceil(allProducts.length / productsPerPage);
+  const currentProducts = products.slice(indexFirstProduct, indexLastProduct);
+  const totalPages = Math.ceil(products.length / productsPerPage);
 
   useEffect(() => {
     dispatch(getProducts());
@@ -48,7 +45,7 @@ function AllProducts() {
 
   function handleFilterByBrand(e) {
     e.preventDefault();
-    dispatch(filterByBrandCategories(e.target.value));
+    dispatch(filterByBrand(e.target.value));
   }
 
   //   const handlePrice = (e) => {
@@ -60,7 +57,7 @@ function AllProducts() {
 
   const setBrand = new Set();
 
-  const unicBrand = products.reduce((acc, marca) => {
+  const unicBrand = allProducts.reduce((acc, marca) => {
     if (!setBrand.has(marca.brand)) {
       setBrand.add(marca.brand, marca);
       acc.push(marca);
@@ -80,7 +77,8 @@ function AllProducts() {
               <option value="all">all</option>
               {brandMap?.map((t) => (
                 <option value={t} key={t}>
-                  {t}
+                  {" "}
+                  {t}{" "}
                 </option>
               ))}
             </select>
@@ -88,7 +86,8 @@ function AllProducts() {
                   <option value='Inc Price'>Inc Price</option> 
                   <option value='Dec Price'>Dec Price</option>
          </select> */}
-            {/* <Filter /> */}
+            <Filter />
+            {/* <Filters products={allProducts} /> // Testing frichieri-dev*/}
             <div className={styles.productsCardsContainer}>
               {currentProducts.map((el) => {
                 return (

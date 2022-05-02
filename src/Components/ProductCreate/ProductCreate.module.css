@@ -1,12 +1,12 @@
 .form {
     display: flex;
     justify-content: center;
-    margin: 0 auto;
+    margin: 50px auto;
     align-items: center;
     align-content: center;
     justify-items: center;
     justify-self: center;
-    height: 90vh;
+    height: auto;
     /* background-color: gray; */
 }
 
@@ -17,3 +17,10 @@
 @media only screen and (max-width: 768px) {
 
 }
+
+
+
+@keyframes appear {
+    from {opacity: 0;}
+    to {opacity: 1;}
+  }

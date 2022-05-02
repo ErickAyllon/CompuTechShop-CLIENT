@@ -18,14 +18,14 @@ function Home() {
         <div className={styles.carouselContainer} style={{ display: 'block', width: "auto", padding: 0 }}>
           <Carousel>
             <Carousel.Item interval={3000}>
-              <img className="d-block w-100" src="https://dlcdnrog.asus.com/rog/media/1640742394134.jpg" alt="One" />
+              <img className="d-block w-100" src="https://cdn.mos.cms.futurecdn.net/xyiGWw8VkpBkeEXifog8Jh.jpg" alt="Two" />
               <Carousel.Caption>
                 <h3>Label for first slide</h3>
                 <p>Sample Text for Image One</p>
               </Carousel.Caption>
             </Carousel.Item>
             <Carousel.Item interval={3000}>
-              <img className="d-block w-100" src="https://www.redsharknews.com/hubfs/ASUS_14X_Space_Edition.jpg" alt="Two" />
+              <img className="d-block w-100" src="https://dlcdnrog.asus.com/rog/media/1640742394134.jpg" alt="One" />
               <Carousel.Caption>
                 <h3>Label for second slide</h3>
                 <p>Sample Text for Image Two</p>
