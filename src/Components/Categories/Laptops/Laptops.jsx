@@ -1,7 +1,11 @@
 import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
-import { filterByCategory, cleanFilter } from "../../../Redux/Actions";
+import {
+  filterByCategory,
+  cleanFilter,
+  cleanDog,
+} from "../../../Redux/Actions";
 import PaginationC from "../../Pagination/PaginationC";
 import Categories from "../Categories";
 import ProductCard from "../../ProductCard/ProductCard";
@@ -16,8 +20,7 @@ function Laptops() {
   const dispatch = useDispatch();
   const category = "Laptops";
   // const {category} = useParams();
-  console.log("filter", productsFilter);
-  console.log("all", allProductsFilter);
+
   // Pagination Info //
   const location = useLocation();
   const query = new URLSearchParams(location.search);
@@ -34,7 +37,7 @@ function Laptops() {
   useEffect(() => {
     dispatch(filterByCategory(category));
     setCurrentPage(page);
-  }, []);
+  }, [dispatch]);
 
   const pagination = (pageNumber) => {
     setCurrentPage(pageNumber);
@@ -44,7 +47,7 @@ function Laptops() {
   return (
     <div className={styles.laptops}>
       <Categories />
-      {allProductsFilter.length > 0 ? (
+      {productsFilter.length > 0 ? (
         <>
           <div className={styles.productsContainer}>
             <Filter />

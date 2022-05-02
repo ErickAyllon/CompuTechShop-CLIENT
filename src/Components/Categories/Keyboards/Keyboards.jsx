@@ -14,8 +14,7 @@ function Keyboards() {
   const productsFilter = useSelector((state) => state.productsFilter);
   const allProductsFilter = useSelector((state) => state.allProductsFilter);
   const dispatch = useDispatch();
-  console.log("filter", productsFilter);
-  console.log("all", allProductsFilter);
+
   // Pagination Info //
   const location = useLocation();
   const query = new URLSearchParams(location.search);
@@ -32,7 +31,7 @@ function Keyboards() {
   useEffect(() => {
     dispatch(filterByCategory(category));
     setCurrentPage(page);
-  }, []);
+  }, [dispatch]);
 
   const pagination = (pageNumber) => {
     setCurrentPage(pageNumber);

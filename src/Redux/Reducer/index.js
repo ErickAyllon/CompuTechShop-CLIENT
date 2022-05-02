@@ -4,6 +4,7 @@ import {
   FILTER_BY_BRAND2,
   FILTER_BY_BRANDFILTER,
   CLEAN_FILTER,
+  CLEAN_DOGS,
 } from "../Actions";
 
 const initialState = {
@@ -57,6 +58,7 @@ function rootReducer(state = initialState, action) {
         ...state,
         products: action.payload,
         productsFilter: action.payload,
+        allProductsFilter: action.payload,
 
         productDetail: [],
       };
@@ -94,7 +96,6 @@ function rootReducer(state = initialState, action) {
           : state.productsFilter.filter((el) =>
               el.brand?.includes(action.payload)
             );
-      console.log("filtrazo", filtrazo);
       return {
         ...state,
         allProductsFilter: filtrazo,
@@ -104,6 +105,11 @@ function rootReducer(state = initialState, action) {
       return {
         ...state,
         darkMode: action.payload,
+      };
+
+    case "CLEAN_DOGS":
+      return {
+        ...state,
       };
 
     case CLEAN_FILTER:

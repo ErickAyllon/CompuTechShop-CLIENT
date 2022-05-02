@@ -131,6 +131,13 @@ export function filterByBrandCategoriesFilter(payload) {
   };
 }
 
+export function cleanDog() {
+  return {
+    type: "CLEAN_DOGS",
+    payload: {},
+  };
+}
+
 // export const ORDER_BY_PRICE = "ORDER_BY_PRICE"
 // export function orderByPrice (payload) {
 //   return {

@@ -44,7 +44,7 @@ function Monitors() {
   return (
     <div className={styles.monitors}>
       <Categories />
-      {allProductsFilter.length > 0 ? (
+      {productsFilter.length > 0 ? (
         <>
           <div className={styles.productsContainer}>
             <Filter />
