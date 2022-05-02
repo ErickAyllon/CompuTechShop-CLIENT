@@ -9,16 +9,34 @@ import ProductCard from '../ProductCard/ProductCard'
 import PaginationC from '../Pagination/PaginationC.jsx'
 import { useParams } from 'react-router-dom'
 import ProductNotFound from '../ProductNotFound/ProductNotFound'
+import { useLocation } from 'react-router-dom'
+import { useState } from 'react'
 
 function ProductSearched() {
   const products = useSelector ((state) => state.products)
-  // const dispatch = useDispatch();
+  const dispatch = useDispatch();
+  const {search} = useParams();
 
-  // const {name} = useParams
+  // Pagination Info //
+  const location = useLocation();
+  const query = new URLSearchParams(location.search);
+  const page = parseInt(query.get('page') || '1', 10);
+  const [currentPage, setCurrentPage] = useState(1);
+  const productsPerPage = 3;
+  const indexLastProduct = currentPage * productsPerPage;
+  const indexFirstProduct = indexLastProduct - productsPerPage;
+  const currentProducts = products.slice(indexFirstProduct, indexLastProduct);
+  const totalPages = Math.ceil(products.length / productsPerPage);
 
-//   useEffect(() => {
-//     dispatch(getProductsByName(name));
-//   }, [dispatch]);
+  useEffect(() => {
+    dispatch(getProductsByName(search))
+    setCurrentPage(page)
+  }, [dispatch]);
+
+  const pagination = (pageNumber) => {
+    setCurrentPage(pageNumber);
+}
+ // End Pagination //
   
   return (
     <div className={styles.searched}>
@@ -29,9 +47,10 @@ function ProductSearched() {
       <div className={styles.productsContainer}>
         <Filter />
         <div className={styles.productsCardsContainer}>
-          {products.map((el) => {
+          {currentProducts.map((el) => {
             return (
                 <ProductCard 
+                  key={el.id}
                   name={el.name} 
                   price={el.price} 
                   image={el.image} 
@@ -44,7 +63,11 @@ function ProductSearched() {
           })}
         </div>
       </div>
-        <PaginationC />
+      <PaginationC 
+          category={search}
+          pagination={pagination} 
+          totalPages={totalPages}
+      />
         </>
           : 
           <div className={styles.productNotFoundContainer}>
