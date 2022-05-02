@@ -4,6 +4,7 @@ export const GET_USER = "GET_USER";
 export const getUser = () => {
   return async (dispatch) => {
     var json = await axios.get("/users");
+
     return dispatch({
       type: "GET_USER",
       payload: json.data,
@@ -14,6 +15,7 @@ export const getUser = () => {
 export function getProducts() {
   return async function (dispatch) {
     var json = await axios.get("/products");
+    console.log(json.data);
     return dispatch({
       type: "GET_PRODUCTS",
       payload: json.data,
