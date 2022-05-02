@@ -43,37 +43,6 @@ function Keyboards() {
       <Categories />
       {productsFilter.length > 0 ? (
         <>
-<<<<<<< HEAD
-      <div className={styles.productsContainer}>
-        {/* <Filter /> */}
-      
-        <div className={styles.productsCardsContainer}>
-
-          {currentProducts.map((el) => {
-            return (
-                <ProductCard 
-                  name={el.name} 
-                  price={el.price} 
-                  image={el.image} 
-                  id={el.id} 
-                  brand={el.brand} 
-                  description={el.description} 
-                  calification={el.calification} 
-                  quantity={el.quantity}/>
-            )
-          })}
-        </div>
-      </div>
-      <PaginationC 
-          category={category}
-          pagination={pagination} 
-          totalPages={totalPages}
-        />
-      </>
-          :
-          <Loader />
-      }
-=======
           <div className={styles.productsContainer}>
             <Filter />
             <div className={styles.productsCardsContainer}>
@@ -103,7 +72,6 @@ function Keyboards() {
       ) : (
         <Loader />
       )}
->>>>>>> c400b0efebcf3a39154aedac06bb6d5286a105d9
     </div>
   );
 }
