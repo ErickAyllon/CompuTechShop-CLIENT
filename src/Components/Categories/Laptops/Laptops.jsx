@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from "react";
-import { useParams } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { filterByCategory } from "../../../Redux/Actions";
 import PaginationC from "../../Pagination/PaginationC";
@@ -8,6 +7,7 @@ import ProductCard from "../../ProductCard/ProductCard";
 import Filter from "../../Filter/Filter";
 import styles from "./Laptops.module.css";
 import Loader from "../../Loader/Loader";
+import { useLocation } from "react-router-dom";
 
 function Laptops() {
   const products = useSelector((state) => state.products);

@@ -13,36 +13,15 @@ import PaginationItem from "@mui/material/PaginationItem";
 import { useEffect } from "react";
 import { useParams } from "react-router-dom";
 
-function PaginationC({ category }) {
-  // category={category}
-  // productsPerPage={productsPerPage}
-  // products={products.length}
-  // pagination={pagination}
-  // currentPage={currentPage}
-  // setCurrentPage={setCurrentPage}
-
+function PaginationC({ category, pagination, totalPages }) {
   const location = useLocation();
   const query = new URLSearchParams(location.search);
   const page = parseInt(query.get("page") || "1", 10);
   const { search } = useParams();
 
-  // const pageNumbers = [];
-  // const [input, setInput] = useState(currentPage)
-  // const max = allPokemons / pokemonsPerPage
-
-  // for (let i = 1; i <= Math.ceil(max); i++) {
-  //     pageNumbers.push(i)
-  // }
-
-  // function nextPage() {
-  //   setCurrentPage(currentPage + 1);
-  //   setInput(input - 1 );
-  // }
-
-  // function prevPage() {
-  //     setCurrentPage(currentPage - 1);
-  //     setInput(input - 1 );
-  // }
+  useEffect(() => {
+    pagination(page);
+  });
 
   return (
     <div className={styles.pagination}>

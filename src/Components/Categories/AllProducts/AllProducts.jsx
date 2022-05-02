@@ -45,8 +45,7 @@ function AllProducts() {
   const pagination = (pageNumber) => {
     setCurrentPage(pageNumber);
   };
-  console.log("este es el all products", allProducts);
-  console.log("este es el products", products);
+
   function handleFilterByBrand(e) {
     e.preventDefault();
     dispatch(filterByBrandCategories(e.target.value));

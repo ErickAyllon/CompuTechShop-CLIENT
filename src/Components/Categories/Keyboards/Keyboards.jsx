@@ -41,22 +41,22 @@ function Keyboards() {
   }, [dispatch]);
 
   //filtrado
-  function handleFilterByBrandCategories(e) {
-    e.preventDefault();
-    dispatch(filterByBrandCategories(e.target.value));
-  }
+  // function handleFilterByBrandCategories(e) {
+  //   e.preventDefault();
+  //   dispatch(filterByBrandCategories(e.target.value));
+  // }
 
-  const setBrand = new Set();
+  // const setBrand = new Set();
 
-  const unicBrand = products.reduce((acc, marca) => {
-    if (!setBrand.has(marca.brand)) {
-      setBrand.add(marca.brand, marca);
-      acc.push(marca);
-    }
-    return acc;
-  }, []);
+  // const unicBrand = products.reduce((acc, marca) => {
+  //   if (!setBrand.has(marca.brand)) {
+  //     setBrand.add(marca.brand, marca);
+  //     acc.push(marca);
+  //   }
+  //   return acc;
+  // }, []);
 
-  const brandMap = unicBrand.map((el) => el.brand);
+  // const brandMap = unicBrand.map((el) => el.brand);
 
   const pagination = (pageNumber) => {
     setCurrentPage(pageNumber);
@@ -69,7 +69,7 @@ function Keyboards() {
       {products.length > 0 ? (
         <>
           <div className={styles.productsContainer}>
-            <select onChange={(e) => handleFilterByBrandCategories(e)}>
+            {/* <select onChange={(e) => handleFilterByBrandCategories(e)}>
               <option value="all">all</option>
               {brandMap?.map((t) => (
                 <option value={t} key={t}>
@@ -77,7 +77,7 @@ function Keyboards() {
                   {t}{" "}
                 </option>
               ))}
-            </select>
+            </select> */}
             <Filter />
             <div className={styles.productsCardsContainer}>
               {currentProducts.map((el) => {

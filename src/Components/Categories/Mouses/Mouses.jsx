@@ -1,14 +1,14 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import styles from "./Mouses.module.css";
 import Categories from "../Categories";
 import { useDispatch, useSelector } from "react-redux";
-import { useEffect } from "react";
 import { filterByCategory } from "../../../Redux/Actions";
 import ProductCard from "../../ProductCard/ProductCard";
 import { Link } from "react-router-dom";
 import Filter from "../../Filter/Filter";
 import PaginationC from "../../Pagination/PaginationC";
 import Loader from "../../Loader/Loader";
+import { useLocation } from "react-router-dom";
 
 function Mouses() {
   const products = useSelector((state) => state.products);

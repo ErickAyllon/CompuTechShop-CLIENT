@@ -9,6 +9,8 @@ import { Link } from "react-router-dom";
 import Filter from "../../Filter/Filter";
 import PaginationC from "../../Pagination/PaginationC";
 import Loader from "../../Loader/Loader";
+import { useLocation } from "react-router-dom";
+import { useState } from "react";
 
 function Headsets() {
   const products = useSelector((state) => state.products);
