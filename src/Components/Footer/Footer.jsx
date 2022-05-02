@@ -6,8 +6,8 @@ function Footer() {
     <div className={styles.footerContainer}>
         <div className={styles.footer}>
           <div className={styles.copyrightFooter}>
-            <p> Copyright © 2022 Compu Tech Store S.R.L.</p>
-            <p>Av. Siempre Viva 123, Piso 5, CP 1234, Argentina</p>
+            <p> Copyright © 2022 The pibe's store S.R.L.</p>
+            <p>Av. Siempre Viva 123, Piso 5, CP 1234, Alto Ecommerce, Argentina</p>
           </div>
           <div className={styles.extrasFooter}>
             <p>Help</p>

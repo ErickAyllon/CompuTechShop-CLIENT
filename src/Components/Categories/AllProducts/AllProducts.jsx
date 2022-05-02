@@ -1,21 +1,27 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import styles from "./AllProducts.module.css";
 import Categories from "../Categories";
 import { useDispatch, useSelector } from "react-redux";
-import { getProducts } from "../../../Redux/Actions";
+import { useEffect } from "react";
+import {
+  getProducts,
+  filterByBrand,
+  orderByPrice,
+} from "../../../Redux/Actions";
 import ProductCard from "../../ProductCard/ProductCard";
 import Filter from "../../Filter/Filter";
 import PaginationC from "../../Pagination/PaginationC";
 import Loader from "../../Loader/Loader";
 import { useLocation } from "react-router-dom";
+import { useState } from "react";
 // import Filters from '../Filters/Filters'// frichieri-dev TEST
 
 function AllProducts() {
-  let products = useSelector((state) => state.allProducts);
-  const productsFilter = useSelector((state) => state.productsFilter);
-  products = productsFilter.length > 0 ? productsFilter : products;
+  const allProducts = useSelector((state) => state.allProducts);
+  const products = useSelector((state) => state.products);
   const dispatch = useDispatch();
   const category = "allproducts";
+  // const {category} = useParams();
 
   // Pagination Info //
   const location = useLocation();
@@ -25,23 +31,25 @@ function AllProducts() {
   const productsPerPage = 6;
   const indexLastProduct = currentPage * productsPerPage;
   const indexFirstProduct = indexLastProduct - productsPerPage;
-  const currentProducts = products.length > 0 ? products.slice(indexFirstProduct, indexLastProduct) : null;
+  const currentProducts =
+    products.length > 0
+      ? products.slice(indexFirstProduct, indexLastProduct)
+      : null;
   const totalPages = Math.ceil(products.length / productsPerPage);
 
   useEffect(() => {
     dispatch(getProducts());
     setCurrentPage(page);
-  }, [dispatch, page]);
+  }, [dispatch]);
 
   const pagination = (pageNumber) => {
     setCurrentPage(pageNumber);
   };
-  // End Pagination Info //
 
-  // function handleFilterByBrand(e) {
-  //   e.preventDefault();
-  //   dispatch(filterByBrandCategories(e.target.value));
-  // }
+  function handleFilterByBrand(e) {
+    e.preventDefault();
+    dispatch(filterByBrand(e.target.value));
+  }
 
   //   const handlePrice = (e) => {
   //     e.preventDefault()
@@ -50,13 +58,25 @@ function AllProducts() {
   //     // setOrder( `Order ${e.target.value }`)
   //  }
 
+  const setBrand = new Set();
+
+  const unicBrand = allProducts.reduce((acc, marca) => {
+    if (!setBrand.has(marca.brand)) {
+      setBrand.add(marca.brand, marca);
+      acc.push(marca);
+    }
+    return acc;
+  }, []);
+
+  const brandMap = unicBrand.map((el) => el.brand);
+
   return (
     <div className={styles.allProducts}>
       <Categories />
-      {products.length > 0 ? (
+      {allProducts.length > 0 ? (
         <>
           <div className={styles.productsContainer}>
-            {/* <select onChange={(e) => handleFilterByBrand(e)}>
+            <select onChange={(e) => handleFilterByBrand(e)}>
               <option value="all">all</option>
               {brandMap?.map((t) => (
                 <option value={t} key={t}>
@@ -64,12 +84,13 @@ function AllProducts() {
                   {t}{" "}
                 </option>
               ))}
-            </select> */}
+            </select>
             {/* <select onChange={(e)=> handlePrice(e)}>
                   <option value='Inc Price'>Inc Price</option> 
                   <option value='Dec Price'>Dec Price</option>
          </select> */}
             <Filter />
+            {/* <Filters products={allProducts} /> // Testing frichieri-dev*/}
             <div className={styles.productsCardsContainer}>
               {currentProducts.map((el) => {
                 return (
