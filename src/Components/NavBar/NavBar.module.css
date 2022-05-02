@@ -16,7 +16,7 @@
     /* box-shadow: 0 0 5px .2px #463dd5; */
     margin-bottom: 0px;
   }
-
+  
   .auth0 {
     /* position: absolute; */
     margin-right: 20px;
@@ -26,7 +26,7 @@
 
   .logo {
     cursor: pointer;
-    background-image: url(../../Images/logo.png);
+    background-image: url('https://img.icons8.com/nolan/96/laptop.png');
     background-size: contain;
     background-repeat: no-repeat;
     background-position: center;

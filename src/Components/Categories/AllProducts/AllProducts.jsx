@@ -10,6 +10,7 @@ import PaginationC from '../../Pagination/PaginationC';
 import Loader from '../../Loader/Loader'
 import { useLocation } from 'react-router-dom'
 import { useState } from 'react'
+// import Filters from '../Filters/Filters'// frichieri-dev TEST
 
 
 function AllProducts() {
@@ -84,6 +85,7 @@ const brandMap = unicBrand.map((el)=>el.brand)
                   <option value='Dec Price'>Dec Price</option>
          </select> */}
         <Filter />
+        {/* <Filters products={allProducts} /> // Testing frichieri-dev*/} 
         <div className={styles.productsCardsContainer}>
           {currentProducts.map((el) => {
             return (
