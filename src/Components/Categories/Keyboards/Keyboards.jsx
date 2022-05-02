@@ -11,7 +11,7 @@ import Loader from '../../Loader/Loader'
 import { useLocation } from 'react-router-dom';
 
 function Keyboards() {
-  const allProducts = useSelector((state) => state.allProducts)
+  // const allProducts = useSelector((state) => state.allProducts)
   const products = useSelector ((state) => state.products)
   const productsDetail = useSelector((state) => state.productsDetail)
   const dispatch = useDispatch();
@@ -23,10 +23,10 @@ function Keyboards() {
   const query = new URLSearchParams(location.search);
   const page = parseInt(query.get('page') || '1', 10);
   const [currentPage, setCurrentPage] = useState(1);
-  const productsPerPage = 3;
+  const productsPerPage = 6;
   const indexLastProduct = currentPage * productsPerPage;
   const indexFirstProduct = indexLastProduct - productsPerPage;
-  const currentProducts = allProducts.slice(indexFirstProduct, indexLastProduct);
+  const currentProducts = products.length > 0 ? products.slice(indexFirstProduct, indexLastProduct) : null;
   const totalPages = Math.ceil(products.length / productsPerPage);
 
   useEffect(() => {
@@ -80,6 +80,7 @@ console.log("este es el productDetail", products)
           {currentProducts.map((el) => {
             return (
                 <ProductCard 
+                  key= {el.id}
                   name={el.name} 
                   price={el.price} 
                   image={el.image} 

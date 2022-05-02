@@ -14,7 +14,6 @@ const initialState = {
 };
 
 function rootReducer(state = initialState, action) {
-  // console.log(state.products)
   switch (action.type) {
     case "GET_PRODUCTS":
       return {
