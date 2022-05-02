@@ -5,6 +5,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
 import {
   getProducts,
+  filterByBrandCategories,
   filterByBrand,
   orderByPrice,
 } from "../../../Redux/Actions";
@@ -31,8 +32,11 @@ function AllProducts() {
   const productsPerPage = 3;
   const indexLastProduct = currentPage * productsPerPage;
   const indexFirstProduct = indexLastProduct - productsPerPage;
-  const currentProducts = products.slice(indexFirstProduct, indexLastProduct);
-  const totalPages = Math.ceil(products.length / productsPerPage);
+  const currentProducts = allProducts.slice(
+    indexFirstProduct,
+    indexLastProduct
+  );
+  const totalPages = Math.ceil(allProducts.length / productsPerPage);
 
   useEffect(() => {
     dispatch(getProducts());
@@ -45,7 +49,7 @@ function AllProducts() {
 
   function handleFilterByBrand(e) {
     e.preventDefault();
-    dispatch(filterByBrand(e.target.value));
+    dispatch(filterByBrandCategories(e.target.value));
   }
 
   //   const handlePrice = (e) => {
@@ -57,7 +61,7 @@ function AllProducts() {
 
   const setBrand = new Set();
 
-  const unicBrand = allProducts.reduce((acc, marca) => {
+  const unicBrand = products.reduce((acc, marca) => {
     if (!setBrand.has(marca.brand)) {
       setBrand.add(marca.brand, marca);
       acc.push(marca);
@@ -86,7 +90,7 @@ function AllProducts() {
                   <option value='Inc Price'>Inc Price</option> 
                   <option value='Dec Price'>Dec Price</option>
          </select> */}
-            <Filter />
+            {/* <Filter /> */}
             {/* <Filters products={allProducts} /> // Testing frichieri-dev*/}
             <div className={styles.productsCardsContainer}>
               {currentProducts.map((el) => {

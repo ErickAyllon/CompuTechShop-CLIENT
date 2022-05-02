@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
+import { useParams } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
-import { filterByCategory } from "../../../Redux/Actions";
+import { filterByCategory, cleanFilter } from "../../../Redux/Actions";
 import PaginationC from "../../Pagination/PaginationC";
 import Categories from "../Categories";
 import ProductCard from "../../ProductCard/ProductCard";
@@ -10,11 +11,13 @@ import Loader from "../../Loader/Loader";
 import { useLocation } from "react-router-dom";
 
 function Laptops() {
-  const products = useSelector((state) => state.products);
+  const productsFilter = useSelector((state) => state.productsFilter);
+  const allProductsFilter = useSelector((state) => state.allProductsFilter);
   const dispatch = useDispatch();
   const category = "Laptops";
   // const {category} = useParams();
-
+  console.log("filter", productsFilter);
+  console.log("all", allProductsFilter);
   // Pagination Info //
   const location = useLocation();
   const query = new URLSearchParams(location.search);
@@ -23,31 +26,25 @@ function Laptops() {
   const productsPerPage = 3;
   const indexLastProduct = currentPage * productsPerPage;
   const indexFirstProduct = indexLastProduct - productsPerPage;
-  const currentProducts = products.slice(indexFirstProduct, indexLastProduct);
-  const totalPages = Math.ceil(products.length / productsPerPage);
-
+  const currentProducts = allProductsFilter.slice(
+    indexFirstProduct,
+    indexLastProduct
+  );
+  const totalPages = Math.ceil(allProductsFilter.length / productsPerPage);
   useEffect(() => {
     dispatch(filterByCategory(category));
-  }, [dispatch]);
-
-  const [order, setOrder] = useState("");
+    setCurrentPage(page);
+  }, []);
 
   const pagination = (pageNumber) => {
     setCurrentPage(pageNumber);
   };
-
-  // <Pagination
-  //   productsPerPage={productsPerPage}
-  //   products={products.length}
-  //   pagination={pagination}
-  //   currentPage={currentPage}
-  //   setCurrentPage={setCurrentPage}
-  // />
+  // End Pagination //
 
   return (
     <div className={styles.laptops}>
       <Categories />
-      {products.length > 0 ? (
+      {allProductsFilter.length > 0 ? (
         <>
           <div className={styles.productsContainer}>
             <Filter />
@@ -55,11 +52,11 @@ function Laptops() {
               {currentProducts.map((el) => {
                 return (
                   <ProductCard
+                    key={el.id}
                     name={el.name}
                     price={el.price}
                     image={el.image}
                     id={el.id}
-                    key={el.id}
                     brand={el.brand}
                     description={el.description}
                     calification={el.calification}
@@ -72,11 +69,8 @@ function Laptops() {
           <div className={styles.paginationContainer}>
             <PaginationC
               category={category}
-              productsPerPage={productsPerPage}
-              products={products.length}
               pagination={pagination}
-              currentPage={currentPage}
-              setCurrentPage={setCurrentPage}
+              totalPages={totalPages}
             />
           </div>
         </>

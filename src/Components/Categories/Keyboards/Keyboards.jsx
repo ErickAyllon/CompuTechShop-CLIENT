@@ -2,25 +2,20 @@ import React, { useState, useEffect } from "react";
 import styles from "./Keyboards.module.css";
 import Categories from "../Categories";
 import { useDispatch, useSelector } from "react-redux";
-import {
-  filterByCategory,
-  filterByBrandCategories,
-} from "../../../Redux/Actions";
+import { filterByCategory } from "../../../Redux/Actions";
 import ProductCard from "../../ProductCard/ProductCard";
-import { Link } from "react-router-dom";
 import Filter from "../../Filter/Filter";
 import PaginationC from "../../Pagination/PaginationC";
 import Loader from "../../Loader/Loader";
 import { useLocation } from "react-router-dom";
 
 function Keyboards() {
-  const allProducts = useSelector((state) => state.allProducts);
-  const products = useSelector((state) => state.products);
-  const productsDetail = useSelector((state) => state.productsDetail);
-  const dispatch = useDispatch();
   const category = "Keyboards";
-  // const {category} = useParams
-
+  const productsFilter = useSelector((state) => state.productsFilter);
+  const allProductsFilter = useSelector((state) => state.allProductsFilter);
+  const dispatch = useDispatch();
+  console.log("filter", productsFilter);
+  console.log("all", allProductsFilter);
   // Pagination Info //
   const location = useLocation();
   const query = new URLSearchParams(location.search);
@@ -29,34 +24,15 @@ function Keyboards() {
   const productsPerPage = 3;
   const indexLastProduct = currentPage * productsPerPage;
   const indexFirstProduct = indexLastProduct - productsPerPage;
-  const currentProducts = allProducts.slice(
+  const currentProducts = allProductsFilter.slice(
     indexFirstProduct,
     indexLastProduct
   );
-  const totalPages = Math.ceil(products.length / productsPerPage);
-
+  const totalPages = Math.ceil(allProductsFilter.length / productsPerPage);
   useEffect(() => {
     dispatch(filterByCategory(category));
     setCurrentPage(page);
-  }, [dispatch]);
-
-  //filtrado
-  // function handleFilterByBrandCategories(e) {
-  //   e.preventDefault();
-  //   dispatch(filterByBrandCategories(e.target.value));
-  // }
-
-  // const setBrand = new Set();
-
-  // const unicBrand = products.reduce((acc, marca) => {
-  //   if (!setBrand.has(marca.brand)) {
-  //     setBrand.add(marca.brand, marca);
-  //     acc.push(marca);
-  //   }
-  //   return acc;
-  // }, []);
-
-  // const brandMap = unicBrand.map((el) => el.brand);
+  }, []);
 
   const pagination = (pageNumber) => {
     setCurrentPage(pageNumber);
@@ -66,18 +42,9 @@ function Keyboards() {
   return (
     <div className={styles.keyboards}>
       <Categories />
-      {products.length > 0 ? (
+      {productsFilter.length > 0 ? (
         <>
           <div className={styles.productsContainer}>
-            {/* <select onChange={(e) => handleFilterByBrandCategories(e)}>
-              <option value="all">all</option>
-              {brandMap?.map((t) => (
-                <option value={t} key={t}>
-                  {" "}
-                  {t}{" "}
-                </option>
-              ))}
-            </select> */}
             <Filter />
             <div className={styles.productsCardsContainer}>
               {currentProducts.map((el) => {
@@ -87,6 +54,7 @@ function Keyboards() {
                     price={el.price}
                     image={el.image}
                     id={el.id}
+                    key={el.id}
                     brand={el.brand}
                     description={el.description}
                     calification={el.calification}

@@ -11,7 +11,8 @@ import Loader from "../../Loader/Loader";
 import { useLocation } from "react-router-dom";
 
 function Mouses() {
-  const products = useSelector((state) => state.products);
+  const productsFilter = useSelector((state) => state.productsFilter);
+  const allProductsFilter = useSelector((state) => state.allProductsFilter);
   const dispatch = useDispatch();
   const category = "Mouses";
   // const {category} = useParams
@@ -24,22 +25,31 @@ function Mouses() {
   const productsPerPage = 3;
   const indexLastProduct = currentPage * productsPerPage;
   const indexFirstProduct = indexLastProduct - productsPerPage;
-  const currentProducts = products.slice(indexFirstProduct, indexLastProduct);
-  const totalPages = Math.ceil(products.length / productsPerPage);
+  const currentProducts = allProductsFilter.slice(
+    indexFirstProduct,
+    indexLastProduct
+  );
+  const totalPages = Math.ceil(allProductsFilter.length / productsPerPage);
 
   useEffect(() => {
     dispatch(filterByCategory(category));
+    setCurrentPage(page);
   }, [dispatch]);
+
+  const pagination = (pageNumber) => {
+    setCurrentPage(pageNumber);
+  };
+  // End Pagination //
 
   return (
     <div className={styles.mouses}>
       <Categories />
-      {products.length > 0 ? (
+      {allProductsFilter.length > 0 ? (
         <>
           <div className={styles.productsContainer}>
             <Filter />
             <div className={styles.productsCardsContainer}>
-              {products.map((el) => {
+              {currentProducts.map((el) => {
                 return (
                   <ProductCard
                     name={el.name}
@@ -56,7 +66,11 @@ function Mouses() {
               })}
             </div>
           </div>
-          <PaginationC />
+          <PaginationC
+            category={category}
+            pagination={pagination}
+            totalPages={totalPages}
+          />
         </>
       ) : (
         <Loader />
