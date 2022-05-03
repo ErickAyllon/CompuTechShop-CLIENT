@@ -98,13 +98,13 @@ export function getProductsByName(name) {
 
 export function filterByBrand(payload) {
   return {
-    type: 'FILTER_BY_BRAND',
+    type: "FILTER_BY_BRAND",
     payload,
   };
 }
 export function filterByPrice(payload) {
   return {
-    type: 'FILTER_BY_PRICE',
+    type: "FILTER_BY_PRICE",
     payload,
   };
 }

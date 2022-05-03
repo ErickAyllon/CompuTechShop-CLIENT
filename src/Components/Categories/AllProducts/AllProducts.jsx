@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useReducer, useState } from "react";
 import { useLocation } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { getProducts } from "../../../Redux/Actions";
@@ -8,6 +8,9 @@ import Filter from "../../Filter/Filter";
 import PaginationC from "../../Pagination/PaginationC";
 import Loader from "../../Loader/Loader";
 import styles from "./AllProducts.module.css";
+import { TYPES } from "../../../Redux/Actions/shoppingCartActions";
+import { shoppingInitialState } from "../../../Redux/Reducer/shoppingChartReducer";
+import { shoppingReducer } from "../../../Redux/Reducer/shoppingChartReducer";
 
 function AllProducts() {
   let products = useSelector((state) => state.allProducts);
@@ -24,7 +27,10 @@ function AllProducts() {
   const productsPerPage = 6;
   const indexLastProduct = currentPage * productsPerPage;
   const indexFirstProduct = indexLastProduct - productsPerPage;
-  const currentProducts = products.length > 0 ? products.slice(indexFirstProduct, indexLastProduct) : null;
+  const currentProducts =
+    products.length > 0
+      ? products.slice(indexFirstProduct, indexLastProduct)
+      : null;
   const totalPages = Math.ceil(products.length / productsPerPage);
 
   useEffect(() => {
@@ -36,6 +42,9 @@ function AllProducts() {
     setCurrentPage(pageNumber);
   };
   // End Pagination Info //
+  const addToCart = (id) => {
+    dispatch({ type: TYPES.ADD_TO_CART, payload: id });
+  };
 
   return (
     <div className={styles.allProducts}>
@@ -57,6 +66,7 @@ function AllProducts() {
                     description={el.description}
                     calification={el.calification}
                     quantity={el.quantity}
+                    addToCart={addToCart}
                   />
                 );
               })}

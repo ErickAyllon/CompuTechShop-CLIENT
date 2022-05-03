@@ -1,3 +1,5 @@
+import { TYPES } from "../Actions/shoppingCartActions";
+
 const initialState = {
   allProducts: [],
   products: [],
@@ -7,6 +9,7 @@ const initialState = {
   categories: [],
   productsFilter: [],
   darkMode: true,
+  cart: [],
 };
 
 function rootReducer(state = initialState, action) {
@@ -17,7 +20,7 @@ function rootReducer(state = initialState, action) {
         allProducts: action.payload,
         products: action.payload,
         productDetail: [],
-        productsFilter: []
+        productsFilter: [],
       };
     case "GET_CATEGORIES": {
       return {
@@ -60,28 +63,39 @@ function rootReducer(state = initialState, action) {
         ...state,
         userOne: action.payload,
       };
-    case 'FILTER_BY_BRAND': 
-      const filtered = state.productsFilter.length > 0 ?
-        action.payload === "all"
-        ? state.products
-        : state.productsFilter.filter((el) => el.brand?.includes(action.payload))
-      :
-        action.payload === "all"
+    case "FILTER_BY_BRAND":
+      const filtered =
+        state.productsFilter.length > 0
+          ? action.payload === "all"
+            ? state.products
+            : state.productsFilter.filter((el) =>
+                el.brand?.includes(action.payload)
+              )
+          : action.payload === "all"
           ? state.products
-          : state.products.filter((el) => el.brand?.includes(action.payload))
+          : state.products.filter((el) => el.brand?.includes(action.payload));
       return {
         ...state,
         productsFilter: filtered,
       };
-    case 'FILTER_BY_PRICE':
+    case "FILTER_BY_PRICE":
       function toNumber(something) {
-        let result = parseInt(something.replace('.', ''))
-        return Number(result)
+        let result = parseInt(something.replace(".", ""));
+        return Number(result);
       }
-      const filteredP = state.productsFilter.length > 0 ?
-        state.productsFilter.filter((el) => toNumber(el.price) >= action.payload.min && toNumber(el.price) <= action.payload.max)
-        : state.products.filter((el) => toNumber(el.price) >= action.payload.min && toNumber(el.price) <= action.payload.max);
-        console.log(filteredP)
+      const filteredP =
+        state.productsFilter.length > 0
+          ? state.productsFilter.filter(
+              (el) =>
+                toNumber(el.price) >= action.payload.min &&
+                toNumber(el.price) <= action.payload.max
+            )
+          : state.products.filter(
+              (el) =>
+                toNumber(el.price) >= action.payload.min &&
+                toNumber(el.price) <= action.payload.max
+            );
+      console.log(filteredP);
       return {
         ...state,
         productsFilter: filteredP,
@@ -91,6 +105,52 @@ function rootReducer(state = initialState, action) {
         ...state,
         darkMode: action.payload,
       };
+
+    case TYPES.ADD_TO_CART: {
+      let newItem = state.products.find(
+        (product) => product.id === action.payload
+      );
+      let itemInCart = state.cart.find((item) => item.id === newItem.id);
+      return itemInCart
+        ? {
+            ...state,
+            cart: state.cart.map((item) =>
+              item.id === newItem.id
+                ? { ...item, quantity: item.quantity + 1 }
+                : item
+            ),
+          }
+        : {
+            ...state,
+            cart: [...state.cart, { ...newItem, quantity: 1 }],
+          };
+    }
+    case TYPES.REMOVE_ONE_FROM_CART: {
+      let itemToDelete = state.cart.find((item) => item.id === action.payload);
+      return itemToDelete.quantity > 1
+        ? {
+            ...state,
+            cart: state.cart.map((item) =>
+              item.id === action.payload
+                ? { ...item, quantity: item.quantity - 1 }
+                : item
+            ),
+          }
+        : {
+            ...state,
+            cart: state.cart.filter((item) => item.id !== action.payload),
+          };
+    }
+    case TYPES.REMOVE_ALL_FROM_CART: {
+      return {
+        ...state,
+        cart: state.cart.filter((item) => item.id !== action.payload),
+      };
+    }
+    case TYPES.CLEAR_CART:
+      let clean = initialState.cart;
+      return { ...state, cart: clean };
+
     default:
       return state;
   }
