@@ -1,17 +1,9 @@
-import * as React from "react";
-// import Pagination from 'react-bootstrap/Pagination'
+import React, { useEffect } from "react";
 import styles from "./PaginationC.module.css";
-import {
-  Link,
-  MemoryRouter,
-  Route,
-  Routes,
-  useLocation,
-} from "react-router-dom";
+import { useParams } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import Pagination from "@mui/material/Pagination";
 import PaginationItem from "@mui/material/PaginationItem";
-import { useEffect } from "react";
-import { useParams } from "react-router-dom";
 
 function PaginationC({ category, pagination, totalPages }) {
   const location = useLocation();

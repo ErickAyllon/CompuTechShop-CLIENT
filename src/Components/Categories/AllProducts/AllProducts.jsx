@@ -1,14 +1,13 @@
 import React, { useEffect, useState } from "react";
-import styles from "./AllProducts.module.css";
-import Categories from "../Categories";
+import { useLocation } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { getProducts } from "../../../Redux/Actions";
+import Categories from "../Categories";
 import ProductCard from "../../ProductCard/ProductCard";
 import Filter from "../../Filter/Filter";
 import PaginationC from "../../Pagination/PaginationC";
 import Loader from "../../Loader/Loader";
-import { useLocation } from "react-router-dom";
-// import Filters from '../Filters/Filters'// frichieri-dev TEST
+import styles from "./AllProducts.module.css";
 
 function AllProducts() {
   let products = useSelector((state) => state.allProducts);
@@ -38,37 +37,12 @@ function AllProducts() {
   };
   // End Pagination Info //
 
-  // function handleFilterByBrand(e) {
-  //   e.preventDefault();
-  //   dispatch(filterByBrandCategories(e.target.value));
-  // }
-
-  //   const handlePrice = (e) => {
-  //     e.preventDefault()
-  //     dispatch(orderByPrice(e.target.value));
-  //     // setCurrentPage(1)
-  //     // setOrder( `Order ${e.target.value }`)
-  //  }
-
   return (
     <div className={styles.allProducts}>
       <Categories />
       {products.length > 0 ? (
         <>
           <div className={styles.productsContainer}>
-            {/* <select onChange={(e) => handleFilterByBrand(e)}>
-              <option value="all">all</option>
-              {brandMap?.map((t) => (
-                <option value={t} key={t}>
-                  {" "}
-                  {t}{" "}
-                </option>
-              ))}
-            </select> */}
-            {/* <select onChange={(e)=> handlePrice(e)}>
-                  <option value='Inc Price'>Inc Price</option> 
-                  <option value='Dec Price'>Dec Price</option>
-         </select> */}
             <Filter />
             <div className={styles.productsCardsContainer}>
               {currentProducts.map((el) => {

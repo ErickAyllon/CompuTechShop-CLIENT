@@ -1,19 +1,18 @@
-import React, { useState, useEffect } from "react";
-import styles from "./Mouses.module.css";
-import Categories from "../Categories";
+import React, { useEffect, useState } from "react";
+import { useLocation } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { filterByCategory } from "../../../Redux/Actions";
+import Categories from "../Categories";
 import ProductCard from "../../ProductCard/ProductCard";
 import Filter from "../../Filter/Filter";
 import PaginationC from "../../Pagination/PaginationC";
 import Loader from "../../Loader/Loader";
-import { useLocation } from "react-router-dom";
+import styles from "./Mouses.module.css";
 
 function Mouses() {
   let products = useSelector((state) => state.products);
   const productsFilter = useSelector((state) => state.productsFilter);
   products = productsFilter.length > 0 ? productsFilter : products;
-  const allProductsFilter = useSelector((state) => state.allProductsFilter);
   const dispatch = useDispatch();
   const category = "Mouses";
   // const {category} = useParams
@@ -33,7 +32,7 @@ function Mouses() {
   useEffect(() => {
     dispatch(filterByCategory(category));
     setCurrentPage(page);
-  }, [dispatch]);
+  }, [dispatch, page]);
 
   const pagination = (pageNumber) => {
     setCurrentPage(pageNumber);
@@ -43,7 +42,7 @@ function Mouses() {
   return (
     <div className={styles.mouses}>
       <Categories />
-      {allProductsFilter.length > 0 ? (
+      {products.length > 0 ? (
         <>
           <div className={styles.productsContainer}>
             <Filter />

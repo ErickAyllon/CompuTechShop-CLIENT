@@ -1,22 +1,12 @@
-import {
-  FILTER_BY_BRAND2,
-  FILTER_BY_BRANDFILTER,
-  CLEAN_FILTER,
-} from "../Actions";
-
 const initialState = {
   allProducts: [],
   products: [],
   users: [],
   userOne: [],
   productDetail: [],
-  brand: [],
-  allBrands: [],
-  darkMode: true,
   categories: [],
-  filteredByCategory: [],
-  allProductsFilter: [],
   productsFilter: [],
+  darkMode: true,
 };
 
 function rootReducer(state = initialState, action) {
@@ -56,7 +46,6 @@ function rootReducer(state = initialState, action) {
         ...state,
         products: action.payload,
         productsFilter: action.payload,
-        allProductsFilter: action.payload,
         productDetail: [],
       };
     case "GET_PRODUCTS_BY_NAME":
@@ -71,51 +60,36 @@ function rootReducer(state = initialState, action) {
         ...state,
         userOne: action.payload,
       };
-    case "FILTER_BY_BRAND": 
-      return {
-        ...state,
-        products: action.payload,
-      };
-
-    case FILTER_BY_BRAND2: // Este
-      const filtered =
+    case 'FILTER_BY_BRAND': 
+      const filtered = state.productsFilter.length > 0 ?
+        action.payload === "all"
+        ? state.products
+        : state.productsFilter.filter((el) => el.brand?.includes(action.payload))
+      :
         action.payload === "all"
           ? state.products
-          : state.products.filter((el) => el.brand?.includes(action.payload));
+          : state.products.filter((el) => el.brand?.includes(action.payload))
       return {
         ...state,
         productsFilter: filtered,
       };
-
-
-      
-    case FILTER_BY_BRANDFILTER:
-      const filtrazo =
-        action.payload === "all"
-          ? state.productsFilter
-          : state.productsFilter.filter((el) =>
-              el.brand?.includes(action.payload)
-            );
+    case 'FILTER_BY_PRICE':
+      function toNumber(something) {
+        let result = parseInt(something.replace('.', ''))
+        return Number(result)
+      }
+      const filteredP = state.productsFilter.length > 0 ?
+        state.productsFilter.filter((el) => toNumber(el.price) >= action.payload.min && toNumber(el.price) <= action.payload.max)
+        : state.products.filter((el) => toNumber(el.price) >= action.payload.min && toNumber(el.price) <= action.payload.max);
+        console.log(filteredP)
       return {
         ...state,
-        allProductsFilter: filtrazo,
+        productsFilter: filteredP,
       };
-
     case "DARKMODE":
       return {
         ...state,
         darkMode: action.payload,
-      };
-
-    case "CLEAN_DOGS":
-      return {
-        ...state,
-      };
-
-    case CLEAN_FILTER:
-      return {
-        ...state,
-        detail: {},
       };
     default:
       return state;

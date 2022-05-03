@@ -1,13 +1,13 @@
-import React, { useState, useEffect } from "react";
-import styles from "./Keyboards.module.css";
-import Categories from "../Categories";
+import React, { useEffect, useState } from "react";
+import { useLocation } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { filterByCategory } from "../../../Redux/Actions";
+import Categories from "../Categories";
 import ProductCard from "../../ProductCard/ProductCard";
 import Filter from "../../Filter/Filter";
 import PaginationC from "../../Pagination/PaginationC";
 import Loader from "../../Loader/Loader";
-import { useLocation } from "react-router-dom";
+import styles from "./Keyboards.module.css";
 
 function Keyboards() {
   let products = useSelector((state) => state.products);
@@ -31,7 +31,7 @@ function Keyboards() {
   useEffect(() => {
     dispatch(filterByCategory(category));
     setCurrentPage(page);
-  }, [dispatch]);
+  }, [dispatch, page]);
 
   const pagination = (pageNumber) => {
     setCurrentPage(pageNumber);

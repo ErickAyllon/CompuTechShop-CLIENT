@@ -1,17 +1,13 @@
-import React from "react";
-import styles from "./Headsets.module.css";
-import Categories from "../Categories";
+import React, { useEffect, useState } from "react";
+import { useLocation } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { useEffect } from "react";
 import { filterByCategory } from "../../../Redux/Actions";
+import Categories from "../Categories";
 import ProductCard from "../../ProductCard/ProductCard";
-import { Link } from "react-router-dom";
 import Filter from "../../Filter/Filter";
 import PaginationC from "../../Pagination/PaginationC";
 import Loader from "../../Loader/Loader";
-import { useLocation } from "react-router-dom";
-import { useState } from "react";
-import { useParams } from "react-router-dom";
+import styles from "./Headsets.module.css";
 
 function Headsets() {
   let products = useSelector((state) => state.products);
@@ -35,7 +31,7 @@ function Headsets() {
   useEffect(() => {
     dispatch(filterByCategory(category));
     setCurrentPage(page);
-  }, [dispatch]);
+  }, [dispatch, page]);
 
   const pagination = (pageNumber) => {
     setCurrentPage(pageNumber);

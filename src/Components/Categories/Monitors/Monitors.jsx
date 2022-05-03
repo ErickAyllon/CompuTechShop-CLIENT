@@ -1,14 +1,13 @@
-import React, { useState, useEffect } from "react";
-import { useParams } from "react-router-dom";
-import { useSelector, useDispatch } from "react-redux";
+import React, { useEffect, useState } from "react";
+import { useLocation } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
 import { filterByCategory } from "../../../Redux/Actions";
-import PaginationC from "../../Pagination/PaginationC";
 import Categories from "../Categories";
 import ProductCard from "../../ProductCard/ProductCard";
 import Filter from "../../Filter/Filter";
-import styles from "./Monitors.module.css";
+import PaginationC from "../../Pagination/PaginationC";
 import Loader from "../../Loader/Loader";
-import { useLocation } from "react-router-dom";
+import styles from "./Monitors.module.css";
 
 function Monitors() {
   let products = useSelector((state) => state.products);
@@ -33,7 +32,7 @@ function Monitors() {
   useEffect(() => {
     dispatch(filterByCategory(category));
     setCurrentPage(page);
-  }, [dispatch]);
+  }, [dispatch, page]);
 
   const pagination = (pageNumber) => {
     setCurrentPage(pageNumber);

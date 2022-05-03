@@ -20,13 +20,6 @@ export function getProducts() {
     });
   };
 }
-export const CLEAN_FILTER = "CLEAN_FILTER";
-export function cleanFilter() {
-  return {
-    type: "CLEAN_FILTER",
-    payload: {},
-  };
-}
 
 export function getDetail(name) {
   return async function (dispatch) {
@@ -103,38 +96,16 @@ export function getProductsByName(name) {
   };
 }
 
-export const filterByBrand = (brand) => {
-  return async (dispatch) => {
-    var json = await axios.get(
-      "http://localhost:3001/productBrand?brand=" + brand
-    );
-
-    return dispatch({
-      type: "FILTER_BY_BRAND",
-      payload: json.data,
-    });
-  };
-};
-
-export const FILTER_BY_BRAND2 = "FILTER_BY_BRAND2";
-export function filterByBrand2(payload) {
+export function filterByBrand(payload) {
   return {
-    type: FILTER_BY_BRAND2,
+    type: 'FILTER_BY_BRAND',
     payload,
   };
 }
-export const FILTER_BY_BRANDFILTER = "FILTER_BY_BRANDFILTER";
-export function filterByBrandCategoriesFilter(payload) {
+export function filterByPrice(payload) {
   return {
-    type: FILTER_BY_BRANDFILTER,
+    type: 'FILTER_BY_PRICE',
     payload,
-  };
-}
-
-export function cleanDog() {
-  return {
-    type: "CLEAN_DOGS",
-    payload: {},
   };
 }
 

@@ -1,16 +1,13 @@
-import React from 'react'
-import styles from './ProductSearched.module.css'
+import React, { useEffect, useState }  from 'react'
 import {useDispatch, useSelector} from 'react-redux'
-import { useEffect } from 'react'
+import { useLocation, useParams } from 'react-router-dom'
 import { getProductsByName } from '../../Redux/Actions'
 import Categories from '../Categories/Categories'
 import Filter from '../Filter/Filter'
 import ProductCard from '../ProductCard/ProductCard'
 import PaginationC from '../Pagination/PaginationC.jsx'
-import { useParams } from 'react-router-dom'
 import ProductNotFound from '../ProductNotFound/ProductNotFound'
-import { useLocation } from 'react-router-dom'
-import { useState } from 'react'
+import styles from './ProductSearched.module.css'
 
 function ProductSearched() {
   let products = useSelector((state) => state.products);

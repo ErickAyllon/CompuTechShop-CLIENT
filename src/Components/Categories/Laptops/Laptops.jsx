@@ -1,13 +1,13 @@
-import React, { useState, useEffect } from "react";
-import { useSelector, useDispatch } from "react-redux";
+import React, { useEffect, useState } from "react";
+import { useLocation } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
 import { filterByCategory } from "../../../Redux/Actions";
-import PaginationC from "../../Pagination/PaginationC";
 import Categories from "../Categories";
 import ProductCard from "../../ProductCard/ProductCard";
 import Filter from "../../Filter/Filter";
-import styles from "./Laptops.module.css";
+import PaginationC from "../../Pagination/PaginationC";
 import Loader from "../../Loader/Loader";
-import { useLocation } from "react-router-dom";
+import styles from "./Laptops.module.css";
 
 function Laptops() {
   let products = useSelector((state) => state.products);
@@ -31,7 +31,7 @@ function Laptops() {
   useEffect(() => {
     dispatch(filterByCategory(category));
     setCurrentPage(page);
-  }, [dispatch]);
+  }, [dispatch, page]);
 
   const pagination = (pageNumber) => {
     setCurrentPage(pageNumber);
