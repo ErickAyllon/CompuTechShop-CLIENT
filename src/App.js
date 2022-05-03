@@ -14,10 +14,18 @@ import NotFound404 from "./Components/NotFound404/NotFound404";
 import AllProducts from "./Components/Categories/AllProducts/AllProducts";
 import ProfileForm from "./Components/Profile/ProfileForm";
 import ProductSearched from "./Components/ProductSearched/ProductSearched";
+import Help from "./Components/Footer/Help/Help"
+import FAQ from "./Components/Footer/FAQ";
+import FAQ2 from './Components/Footer/FAQ2'
+import WorkWithUs from "./Components/Footer/WorkWithUs";
+import About from "./Components/Footer/About";
+
+
 import { CssBaseline } from "@mui/material";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 import { useSelector } from "react-redux";
 import { amber, deepOrange, grey } from '@mui/material/colors';
+
 
 const getDesignTokens = (mode) => ({
   palette: {
@@ -77,6 +85,12 @@ function App() {
           <Route path="/s/:search" element={<ProductSearched />} />
           <Route path="*" element={<NotFound404 />} />
           <Route path="/user" element={<ProfileForm/>} />
+          <Route path='/Help' element={<Help/>}/>
+          <Route path='/FAQ' element={<FAQ/>}/>
+          <Route path='/FAQ2' element={<FAQ2/>}/>
+          <Route path='/WorkWithUs' element={<WorkWithUs/>}/>
+          <Route path='/About' element={<About/>}/>
+
         </Routes>
         <Footer />
       </BrowserRouter>

@@ -20,12 +20,19 @@ export function getProducts() {
     });
   };
 }
+export const CLEAN_FILTER = "CLEAN_FILTER";
+export function cleanFilter() {
+  return {
+    type: "CLEAN_FILTER",
+    payload: {},
+  };
+}
 
 export function getDetail(name) {
   return async function (dispatch) {
     try {
       var json = await axios.get("http://localhost:3001/products?name=" + name);
-      console.log(json);
+
       return dispatch({
         type: "GET_DETAILS",
         payload: json.data,
@@ -116,6 +123,20 @@ export function filterByBrandCategories(payload) {
     payload,
   };
 }
+export const FILTER_BY_BRANDFILTER = "FILTER_BY_BRANDFILTER";
+export function filterByBrandCategoriesFilter(payload) {
+  return {
+    type: FILTER_BY_BRANDFILTER,
+    payload,
+  };
+}
+
+export function cleanDog() {
+  return {
+    type: "CLEAN_DOGS",
+    payload: {},
+  };
+}
 
 // export const ORDER_BY_PRICE = "ORDER_BY_PRICE"
 // export function orderByPrice (payload) {
@@ -131,3 +152,4 @@ export function darkMode(payload) {
     payload: payload,
   };
 }
+
