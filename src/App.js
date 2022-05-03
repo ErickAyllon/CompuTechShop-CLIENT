@@ -1,4 +1,5 @@
 import Home from "./Components/Home/Home";
+import { useSelector } from "react-redux";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import NavBar from "./Components/NavBar/Navbar";
 import Footer from "./Components/Footer/Footer";
@@ -16,7 +17,6 @@ import ProfileForm from "./Components/Profile/ProfileForm";
 import ProductSearched from "./Components/ProductSearched/ProductSearched";
 import { CssBaseline } from "@mui/material";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
-import { useSelector } from "react-redux";
 import { amber, deepOrange, grey } from '@mui/material/colors';
 
 const getDesignTokens = (mode) => ({
@@ -47,7 +47,7 @@ const getDesignTokens = (mode) => ({
             secondary: grey[800],
           }
         : {
-            primary: '#000000',
+            primary: '#ffffff',
             secondary: grey[500]
           }),
     },

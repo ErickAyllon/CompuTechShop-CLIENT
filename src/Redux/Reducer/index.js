@@ -1,20 +1,15 @@
-import { darkMode, ORDER_BY_PRICE, FILTER_BY_BRAND2 } from "../Actions";
-
 const initialState = {
   allProducts: [],
   products: [],
   users: [],
-  userOne:[],
+  userOne: [],
   productDetail: [],
-  filteredByCategory: [],
-  brand: [],
-  allBrands:[],
+  categories: [],
+  productsFilter: [],
   darkMode: true,
-  categories: []
 };
 
 function rootReducer(state = initialState, action) {
-  console.log("State: " + state.products)
   switch (action.type) {
     case "GET_PRODUCTS":
       return {
@@ -22,12 +17,13 @@ function rootReducer(state = initialState, action) {
         allProducts: action.payload,
         products: action.payload,
         productDetail: [],
+        productsFilter: []
       };
     case "GET_CATEGORIES": {
       return {
         ...state,
-        categories: action.payload
-      }
+        categories: action.payload,
+      };
     }
     case "POST_PRODUCT":
       return {
@@ -39,65 +35,62 @@ function rootReducer(state = initialState, action) {
         ...state,
         users: action.payload,
       };
-    case 'GET_DETAILS':
+    case "GET_DETAILS":
       return {
-          ...state,
-          productDetail: action.payload,
-          products: [],
-      }
+        ...state,
+        productDetail: action.payload,
+        products: [],
+      };
     case "FILTER_BY_CATEGORY":
       return {
         ...state,
         products: action.payload,
-        productDetail: []
-      }
+        productsFilter: action.payload,
+        productDetail: [],
+      };
     case "GET_PRODUCTS_BY_NAME":
       return {
         ...state,
         products: action.payload,
         allProducts: action.payload,
-        productDetail: []
-      }
-      case "POST_USER":
+        productDetail: [],
+      };
+    case "POST_USER":
       return {
         ...state,
         userOne: action.payload,
       };
-      case "FILTER_BY_BRAND":
-        return {
-          ...state,
-          products: action.payload,
-          
-        }
-
-          case FILTER_BY_BRAND2:
-                            const filtered = action.payload === "all"
-                            ? state.products
-                            : state.products.filter((el) => el.brand?.includes(action.payload))
-                        return{
-                            ...state,
-                            allProducts: filtered
-                        }
-        // case ORDER_BY_PRICE:
-        //   let priceProduct = [...state.products]
-        //   console.log(state.products)
-        //   priceProduct = priceProduct.sort((a, b) => {
-        //           if(a.price < b.price) {
-        //               return action.payload === 'Inc Price' ? -1 : 1
-        //           }
-        //           if(a.price > b.price) {
-        //               return action.payload === 'Dec Price' ?  -1 : 1
-        //           } 
-        //           return 0
-        //       })
-
-
-
-      case "DARKMODE":
-        return {
-          ...state,
-          darkMode: action.payload
-        }
+    case 'FILTER_BY_BRAND': 
+      const filtered = state.productsFilter.length > 0 ?
+        action.payload === "all"
+        ? state.products
+        : state.productsFilter.filter((el) => el.brand?.includes(action.payload))
+      :
+        action.payload === "all"
+          ? state.products
+          : state.products.filter((el) => el.brand?.includes(action.payload))
+      return {
+        ...state,
+        productsFilter: filtered,
+      };
+    case 'FILTER_BY_PRICE':
+      function toNumber(something) {
+        let result = parseInt(something.replace('.', ''))
+        return Number(result)
+      }
+      const filteredP = state.productsFilter.length > 0 ?
+        state.productsFilter.filter((el) => toNumber(el.price) >= action.payload.min && toNumber(el.price) <= action.payload.max)
+        : state.products.filter((el) => toNumber(el.price) >= action.payload.min && toNumber(el.price) <= action.payload.max);
+        console.log(filteredP)
+      return {
+        ...state,
+        productsFilter: filteredP,
+      };
+    case "DARKMODE":
+      return {
+        ...state,
+        darkMode: action.payload,
+      };
     default:
       return state;
   }
