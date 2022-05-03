@@ -58,6 +58,7 @@ function Filter() {
     })
     dispatch(filterByPrice(input))
     dispatch(filterByBrand('all'))
+    setbrandSelect('')
   }
 
   useEffect(() => {
