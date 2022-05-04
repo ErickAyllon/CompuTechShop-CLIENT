@@ -14,6 +14,7 @@ function Home() {
 
   return (
     <div className={styles.home}>
+    
       <div className={styles.homeContent}>
         <div className={styles.carouselContainer} style={{ display: 'block', width: "auto", padding: 0 }}>
           <Carousel>

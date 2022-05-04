@@ -8,7 +8,7 @@ import Headsets from "./Components/Categories/Headsets/Headsets";
 import Keyboards from "./Components/Categories/Keyboards/Keyboards";
 import Mouses from "./Components/Categories/Mouses/Mouses";
 import Admin from "./Components/Admin/Admin";
-import Profile from "./Components/Profile/Profile";
+import Profile from "./Components/Auth0/Profile"
 import ProductDetail from "./Components/Detail/ProductDetail";
 import NotFound404 from "./Components/NotFound404/NotFound404";
 import AllProducts from "./Components/Categories/AllProducts/AllProducts";
@@ -19,6 +19,7 @@ import FAQ from "./Components/Footer/FAQ";
 import FAQ2 from './Components/Footer/FAQ2'
 import WorkWithUs from "./Components/Footer/WorkWithUs";
 import About from "./Components/Footer/About";
+
 
 
 import { CssBaseline } from "@mui/material";
@@ -90,7 +91,7 @@ function App() {
           <Route path='/FAQ2' element={<FAQ2/>}/>
           <Route path='/WorkWithUs' element={<WorkWithUs/>}/>
           <Route path='/About' element={<About/>}/>
-
+      
         </Routes>
         <Footer />
       </BrowserRouter>
