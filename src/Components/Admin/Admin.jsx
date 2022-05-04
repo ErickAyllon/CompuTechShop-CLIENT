@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import ProductCreate from '../ProductCreate/ProductCreate';
+import ProductCreate from './ProductCreate/ProductCreate';
 import { useDispatch, useSelector } from "react-redux";
 import { getShops, getUser } from "../../Redux/Actions";
 import styles from './Admin.module.css';
