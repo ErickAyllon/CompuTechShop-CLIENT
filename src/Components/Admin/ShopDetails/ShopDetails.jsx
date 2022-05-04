@@ -13,27 +13,26 @@ function ShopDetail() {
     
     dispatch(getUser());
     dispatch(getShopById(id));
-    
-   // console.log(user)
+    console.log(user[0].email)
   }, [dispatch]);
   const shop = useSelector ((state) => state.shopDetail);
   let users = useSelector((state) => state.users);
-  const user = users.filter(u => u.id === shop.userId)
+  const user = users.filter(u => u.id === shop[0].userId)
 
   return (
     <div>
-      <span>{shop.date}</span>
-      <span>{shop.state}</span>
-      <span>{user.email}</span>
-      <span>{shop.payment}</span>
-      <span>{shop.amount}</span>
-      {/* {shop.products.map(el => {
+      <span>Date: {shop[0].date}</span><br/>
+      <span>State: {shop[0].state}</span><br/>
+      <span>Email: {user[0].email}</span><br/>
+      <span>Payment: {shop[0].payment}</span><br/>
+      <span>Amount: {shop[0].amount}</span><br/>
+      <span>Products: </span>{shop[0].products.map(el => {
         return(
           <div key={el}>
           <Link to={'/' + el}>{el}</Link>
           </div>
         )
-      })} */}
+      })}
     </div>
   )
 
