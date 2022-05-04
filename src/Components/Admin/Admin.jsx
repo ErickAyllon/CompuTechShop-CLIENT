@@ -21,7 +21,20 @@ function Admin() {
 
   return (
     <div className={styles.adminContainer}>
-      {shops ? shops.map(el => {
+      <div>
+        <h4>PRODUCTS</h4>
+        <button>View products</button>
+        <Link to='/admin/createProduct'><button>Create product</button></Link>
+      </div>
+      <div>
+        <h4>CATEGORIES</h4>
+        <Link to='/admin/categories'><button>View categories</button></Link>
+      </div>
+      <div>
+        <h4>ORDERS</h4>
+        <button>View all orders</button>
+      </div>
+      {/* {shops ? shops.map(el => {
         return(
           <ShopCard
           amount={el.amount}
@@ -34,9 +47,8 @@ function Admin() {
           key={el.id}
           />
         )
-      }) : null}
-      <Link to='/admin/createProduct'><button>Create product</button></Link>
-      <CategoryCreate />
+      }) : null} */}
+     {/* <CategoryCreate /> */}
     </div>
   )
 }

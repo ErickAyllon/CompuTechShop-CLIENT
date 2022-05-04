@@ -13,10 +13,11 @@ import ProductSearched from "./Components/ProductSearched/ProductSearched";
 import { CssBaseline } from "@mui/material";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 import { amber, deepOrange, grey } from '@mui/material/colors';
-import ProductCreate from "./Components/ProductCreate/ProductCreate";
+import ProductCreate from "./Components/Admin/ProductCreate/ProductCreate";
 import ShopDetails from './Components/Admin/ShopDetails/ShopDetails'
 import FormUser from "./Components/Auth0/FormUser";
-import Category from '../src/Components/Categories/Category/Category'
+import Category from '../src/Components/Categories/Category/Category';
+import ViewCategories from './Components/Admin/ViewCategories/ViewCategories'
 
 const getDesignTokens = (mode) => ({
   palette: {
@@ -76,6 +77,7 @@ function App() {
           <Route path="/admin/createProduct" element={<ProductCreate/>} />
           <Route path="/admin/shop/:id" element={<ShopDetails/>}/>
           <Route path="/form" element={<FormUser />} />
+          <Route path="/admin/categories" element={<ViewCategories />} />
         </Routes>
         <Footer />
       </BrowserRouter>
