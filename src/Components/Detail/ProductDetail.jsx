@@ -1,4 +1,4 @@
-import React, { useState, useEffect} from 'react'
+import React, { useEffect} from 'react'
 import styles from './ProductDetail.module.css'
 import { getDetail } from '../../Redux/Actions/index.js'
 import { useSelector, useDispatch } from 'react-redux';
@@ -14,8 +14,6 @@ function ProductDetail (){
   useEffect(() => {
     dispatch(getDetail(name));
   }, [dispatch]);
-
-
 
   const product = useSelector ((state) => state.productDetail);
 

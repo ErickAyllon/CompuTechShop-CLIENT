@@ -4,17 +4,20 @@ import { useParams } from "react-router-dom";
 import { Link, useLocation } from "react-router-dom";
 import Pagination from "@mui/material/Pagination";
 import PaginationItem from "@mui/material/PaginationItem";
+import { useDispatch, useSelector } from "react-redux";
+import { setCurrentPage } from "../../Redux/Actions";
 
-
-function PaginationC({category, pagination, totalPages  }) {
+function PaginationC({category, totalPages  }) {
   const location = useLocation();
   const query = new URLSearchParams(location.search);
   const page = parseInt(query.get('page') || '1', 10);
   const {search} = useParams();
+  const currentPage = useSelector((state) => state.currentPage)
+  const dispatch = useDispatch();
 
   useEffect(() => {
-    pagination(page)
-  })
+    dispatch(setCurrentPage(page))
+  }, [dispatch, page])
 
   return (
     <div className={styles.pagination}>
@@ -24,8 +27,7 @@ function PaginationC({category, pagination, totalPages  }) {
         variant="outlined"
         shape="circular"
         // shape="rounded"
-        // siblingCount="2"
-        page={page}
+        page={currentPage}
         count={totalPages}
         sx={{
           color: 'white',
