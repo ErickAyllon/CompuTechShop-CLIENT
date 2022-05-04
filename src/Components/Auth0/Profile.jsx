@@ -1,9 +1,9 @@
-import React, {useState, useEffect} from "react";
-import {useSelector, useDispatch} from "react-redux";
-import {Link, useParams, useNavigate} from 'react-router-dom';
+import React, { useState, useEffect } from "react";
+import { useSelector, useDispatch } from "react-redux";
+import { Link, useParams, useNavigate } from "react-router-dom";
 import { useAuth0 } from "@auth0/auth0-react";
 
-import {getUser} from "../../Redux/Actions/index.js"
+import { getUser } from "../../Redux/Actions/index.js";
 import styles from "./Profile.module.css";
 import DropdownMenu from "react-bootstrap/esm/DropdownMenu";
 import { Dropdown } from "react-bootstrap";
@@ -12,35 +12,39 @@ import LogOutButton from "./LogOutButton";
 export default function Profile() {
   const { user, isAuthenticated } = useAuth0();
   const dispatch = useDispatch();
-  let myUsers = useSelector((state) => state.users)
-  
-  useEffect(()=> {
-    dispatch(getUser())
-  }, [dispatch])
+  let myUsers = useSelector((state) => state.users);
+  console.log(user);
 
-  
-
+  useEffect(() => {
+    dispatch(getUser());
+  }, [dispatch]);
 
   return (
-      
-
     isAuthenticated && (
       <div className={styles.profile}>
-        <Dropdown className={styles.dropDown}  active="false" > 
-          <Dropdown.Toggle variant="Secondary" id="dropdown-basic" >
-            <img className={styles.profileImg} src={user.picture || user.image} alt="profileImg" />
+        <Dropdown className={styles.dropDown} active="false">
+          <Dropdown.Toggle variant="Secondary" id="dropdown-basic">
+            <img
+              className={styles.profileImg}
+              src={user.picture || user.image}
+              alt="profileImg"
+            />
           </Dropdown.Toggle>
 
-          <Dropdown.Menu className={styles.dropMenu} focusFirstItemOnShow="false" variant="dark">
+          <Dropdown.Menu
+            className={styles.dropMenu}
+            focusFirstItemOnShow="false"
+            variant="dark"
+          >
             <Dropdown.Item href="/profile">My Profile</Dropdown.Item>
             <Dropdown.Item href="/admin">My Product</Dropdown.Item>
             <Dropdown.Divider />
-            <Dropdown.Item href="" className={styles.logOutMenu}><LogOutButton /></Dropdown.Item>
-            
+            <Dropdown.Item href="" className={styles.logOutMenu}>
+              <LogOutButton />
+            </Dropdown.Item>
           </Dropdown.Menu>
         </Dropdown>
       </div>
     )
- 
   );
 }
