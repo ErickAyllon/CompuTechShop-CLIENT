@@ -103,23 +103,15 @@ export function getProductsByName(name) {
   };
 }
 
-export const filterByBrand = (brand) => {
-  return async (dispatch) => {
-    var json = await axios.get(
-      "http://localhost:3001/productBrand?brand=" + brand
-    );
-
-    return dispatch({
-      type: "FILTER_BY_BRAND",
-      payload: json.data,
-    });
-  };
-};
-
-export const FILTER_BY_BRAND2 = "FILTER_BY_BRAND2";
-export function filterByBrandCategories(payload) {
+export function filterByBrand(payload) {
   return {
-    type: FILTER_BY_BRAND2,
+    type: 'FILTER_BY_BRAND',
+    payload,
+  };
+}
+export function filterByPrice(payload) {
+  return {
+    type: 'FILTER_BY_PRICE',
     payload,
   };
 }
@@ -152,4 +144,3 @@ export function darkMode(payload) {
     payload: payload,
   };
 }
-

@@ -1,4 +1,5 @@
 import Home from "./Components/Home/Home";
+import { useSelector } from "react-redux";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import NavBar from "./Components/NavBar/Navbar";
 import Footer from "./Components/Footer/Footer";
@@ -24,8 +25,8 @@ import About from "./Components/Footer/About";
 
 import { CssBaseline } from "@mui/material";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
-import { useSelector } from "react-redux";
-import { amber, deepOrange, grey } from '@mui/material/colors';
+import { amber, deepOrange, grey } from "@mui/material/colors";
+import FormUser from "./Components/Auth0/FormUser";
 
 
 const getDesignTokens = (mode) => ({
@@ -33,43 +34,44 @@ const getDesignTokens = (mode) => ({
     mode,
     primary: {
       ...amber,
-      ...(mode === 'dark' && {
+      ...(mode === "dark" && {
         main: "#463dd5",
       }),
     },
-    ...(mode === 'dark' && {
+    ...(mode === "dark" && {
       background: {
-        default: '#000000',
-        paper: '#463dd5',
+        default: "#000000",
+        paper: "#463dd5",
       },
     }),
-    ...(mode === 'light' && {
+    ...(mode === "light" && {
       background: {
         default: "#4b4b4b",
         paper: deepOrange[900],
       },
     }),
     text: {
-      ...(mode === 'light'
+      ...(mode === "light"
         ? {
             primary: grey[900],
             secondary: grey[800],
           }
         : {
-            primary: '#000000',
-            secondary: grey[500]
+            primary: "#ffffff",
+            secondary: grey[500],
           }),
     },
   },
 });
 
-
 function App() {
-  const isDarkTheme = useSelector((state) => state.darkMode)
-  const darkModeTheme = createTheme(isDarkTheme ? getDesignTokens('dark') : getDesignTokens('light'));
+  const isDarkTheme = useSelector((state) => state.darkMode);
+  const darkModeTheme = createTheme(
+    isDarkTheme ? getDesignTokens("dark") : getDesignTokens("light")
+  );
   return (
     <ThemeProvider theme={isDarkTheme ? darkModeTheme : darkModeTheme}>
-    <CssBaseline />
+      <CssBaseline />
       <BrowserRouter>
         <NavBar />
         <Routes>
@@ -92,6 +94,8 @@ function App() {
           <Route path='/WorkWithUs' element={<WorkWithUs/>}/>
           <Route path='/About' element={<About/>}/>
       
+          <Route path="/user" element={<ProfileForm />} />
+          <Route path="/form" element={<FormUser />} />
         </Routes>
         <Footer />
       </BrowserRouter>
@@ -100,5 +104,3 @@ function App() {
 }
 
 export default App;
-
-

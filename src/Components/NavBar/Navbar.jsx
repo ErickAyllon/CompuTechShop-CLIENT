@@ -1,15 +1,15 @@
 import React, { useState } from "react";
+import { useDispatch } from "react-redux";
+import { Link } from "react-router-dom";
 import Profile from "../Auth0/Profile.jsx";
 import LoginButton from "../Auth0/LoginButton.jsx";
 import { useAuth0 } from "@auth0/auth0-react";
-import styles from "./NavBar.module.css";
 import SearchBar from "../SearchBar/SearchBar";
-import { Link } from "react-router-dom";
 import { darkMode } from "../../Redux/Actions/index.js";
-import { useDispatch } from "react-redux";
 import IconButton from '@mui/material/IconButton';
 import Brightness4Icon from '@mui/icons-material/Brightness4';
 import Brightness7Icon from '@mui/icons-material/Brightness7';
+import styles from "./NavBar.module.css";
 
 function NavBar() {
   const { isAuthenticated } = useAuth0();

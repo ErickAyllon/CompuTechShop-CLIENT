@@ -1,11 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import { postProducts, getCategories, getProducts } from '../../Redux/Actions/index'
 import { useDispatch, useSelector } from 'react-redux';
-import styles from './ProductCreate.module.css'
 import Box from '@mui/material/Box';
 import TextField from '@mui/material/TextField';
 import MenuItem from '@mui/material/MenuItem';
 import Button from '@mui/material/Button';
+import styles from './ProductCreate.module.css'
 
 function ProductCreate() {
   const dispatch = useDispatch();
@@ -110,13 +110,13 @@ function ProductCreate() {
   return (
     <div>
         <Box
-        className={styles.form}
-        component="form"
-        sx={{
-          '& .MuiTextField-root': { m: 1, width: '45ch', color: "white", display: "flex" },
-        }}
-        noValidate
-        autoComplete="off"
+          className={styles.form}
+          component="form"
+          sx={{
+            '& .MuiTextField-root': { m: 1, width: '45ch', color: "white", display: "flex" },
+          }}
+          noValidate
+          autoComplete="off"
         >
         <div>
           <TextField
@@ -231,34 +231,6 @@ function ProductCreate() {
                 Create Product
               </Button>
             </div>
-
-          {/* <TextField
-            disabled
-            id="outlined-disabled"
-            label="Disabled"
-            defaultValue="Hello World"
-          /> */}
-          {/* <TextField
-            id="outlined-password-input"
-            label="Password"
-            type="password"
-            autoComplete="current-password"
-          /> */}
-          {/* <TextField
-            id="outlined-read-only-input"
-            label="Read Only"
-            defaultValue="Hello World"
-            InputProps={{
-              readOnly: true,
-            }}
-          /> */}
-          {/* <TextField id="outlined-search" label="Search field" type="search" /> */}
-          {/* <TextField
-            id="outlined-helperText"
-            label="Helper text"
-            defaultValue="Default Value"
-            helperText="Some important text"
-          /> */}
         </div>
       </Box>
     </div>

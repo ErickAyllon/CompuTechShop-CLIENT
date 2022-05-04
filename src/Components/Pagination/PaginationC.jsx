@@ -1,13 +1,12 @@
-import * as React from 'react';
-import styles from './PaginationC.module.css'
-import { Link, useLocation } from 'react-router-dom';
-import Pagination from '@mui/material/Pagination';
-import PaginationItem from '@mui/material/PaginationItem';
-import { useEffect } from 'react';
-import { useParams } from 'react-router-dom';
+import React, { useEffect } from "react";
+import styles from "./PaginationC.module.css";
+import { useParams } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
+import Pagination from "@mui/material/Pagination";
+import PaginationItem from "@mui/material/PaginationItem";
+
 
 function PaginationC({category, pagination, totalPages  }) {
-
   const location = useLocation();
   const query = new URLSearchParams(location.search);
   const page = parseInt(query.get('page') || '1', 10);
