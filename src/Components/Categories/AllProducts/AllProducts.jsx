@@ -1,5 +1,4 @@
-import React, { useEffect, useState } from "react";
-import { useLocation } from "react-router-dom";
+import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getProducts } from "../../../Redux/Actions";
 import Categories from "../Categories";
@@ -16,13 +15,9 @@ function AllProducts() {
   products = productsFilter.length > 0 ? productsFilter : products;
   const dispatch = useDispatch();
   const category = "allproducts";
-  // const productNotFound = !productsFilter.length ? true : false;
 
   // Pagination Info //
-  const location = useLocation();
-  const query = new URLSearchParams(location.search);
-  const page = parseInt(query.get("page") || "1", 10);
-  const [currentPage, setCurrentPage] = useState(1);
+  const currentPage = useSelector((state) => state.currentPage)
   const productsPerPage = 6;
   const indexLastProduct = currentPage * productsPerPage;
   const indexFirstProduct = indexLastProduct - productsPerPage;
@@ -31,13 +26,7 @@ function AllProducts() {
 
   useEffect(() => {
     dispatch(getProducts());
-    setCurrentPage(page);
-  }, [dispatch, page]);
-
-  const pagination = (pageNumber) => {
-    setCurrentPage(pageNumber);
-  };
-  // End Pagination Info //
+  }, [dispatch])
 
   return (
     <div className={styles.allProducts}>
@@ -48,7 +37,7 @@ function AllProducts() {
             <Filter />
             <div className={styles.productsCardsContainer}>
               {
-              // !productsFilter === undefined ?
+              productsFilter.length > 0 ?
               currentProducts?.map((el) => {
                 return (
                   <ProductCard
@@ -64,15 +53,18 @@ function AllProducts() {
                   />
                 );
               })
-            // : <ProductNotFound />
+            : <ProductNotFound />
             }
             </div>
           </div>
-          <PaginationC
-            category={category}
-            pagination={pagination}
-            totalPages={totalPages}
-          />
+          {
+            productsFilter.length > 0 ?
+              <PaginationC
+                category={category}
+                totalPages={totalPages}
+              />
+          : null
+          }
         </>
       ) : (
         <Loader />

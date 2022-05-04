@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { filterByBrand, filterByPrice, orderProducts} from "../../Redux/Actions";
+import { filterByBrand, filterByPrice, orderProducts, setCurrentPage} from "../../Redux/Actions";
 import PlayArrowIcon from '@mui/icons-material/PlayArrow';
 import {Box, TextField, MenuItem, Button } from '@mui/material/';
 import styles from "./Filter.module.css";
@@ -39,6 +39,7 @@ function Filter() {
     dispatch(orderProducts('more-relevants'))
     dispatch(orderProducts(order))
     setbrandSelect(e.target.value)
+    dispatch(setCurrentPage(1))
     // setOrder('more-relevants')
   }
   
@@ -52,6 +53,7 @@ function Filter() {
   function handleFilterPriceSubmit(e) {
     e.preventDefault();
     dispatch(filterByPrice(input))
+    dispatch(setCurrentPage(1))
   }
 
   function handleOrder(e) {
@@ -82,71 +84,71 @@ function Filter() {
   return (
     <div className={styles.filter}>
       <div className={styles.filterContainer}>
-      <div style={{
-      margin: 'auto',
-      display: 'block',
-      width: 'fit-content',
-      minWidth: '200px',
-    }}>
-        <TextField
-              sx={{
-                '& > :not(style)': { m: 1, display: 'flex', width: '15ch', color:'white' },
-              }}
-              className={styles.filterByBrand}
-              variant="outlined"
-              id="outlined-select-currency"
-              name="brandMap"
-              select
-              label="Brand"
-              value={brandSelect}
-              onChange={(e) => handleFilterByBrand(e)}
-          > 
-                <MenuItem value='all'>All</MenuItem>
-              {brandMap.map((option) => (
-                <MenuItem key={option} value={option}>
-                  {option}
-                </MenuItem>
-              ))}
-      </TextField>
-      <Box
-        className={styles.filterByPrice}
-        component="form"
-        sx={{ '& > :not(style)': { m: 1, width: '14ch', display: 'inline-block', color:'white' }}}
-        noValidate
-        autoComplete="off"
-      >
-        <TextField sx={{ '& > :not(style)': { m: 1, height: '6ch'}}}
-          value={input.min}
-          id="outlined-basic" className="inputTag" label="Min Price" variant="outlined" onChange={handleFilterPrice} name='min'/>
-          -
-        <TextField sx={{ '& > :not(style)': { m: 1, height: '6ch'}}}
-          value={input.max}
-          id="outlined-basic" className="inputTag" label="Max Price" variant="outlined" onChange={handleFilterPrice} name='max'/>
-        <button className={styles.filterButton}>
-          <PlayArrowIcon onClick={handleFilterPriceSubmit}/>
-        </button>
-      </Box>
+          <div style={{
+          margin: 'auto',
+          display: 'block',
+          width: 'fit-content',
+          minWidth: '200px',
+        }}>
+            <TextField
+                  sx={{
+                    '& > :not(style)': { m: 1, display: 'flex', width: '15ch', color:'white' },
+                  }}
+                  className={styles.filterByBrand}
+                  variant="outlined"
+                  id="outlined-select-currency"
+                  name="brandMap"
+                  select
+                  label="Brand"
+                  value={brandSelect}
+                  onChange={(e) => handleFilterByBrand(e)}
+              > 
+                    <MenuItem value='all'>All</MenuItem>
+                  {brandMap.map((option) => (
+                    <MenuItem key={option} value={option}>
+                      {option}
+                    </MenuItem>
+                  ))}
+          </TextField>
+          <Box
+            className={styles.filterByPrice}
+            component="form"
+            sx={{ '& > :not(style)': { m: 1, width: '14ch', display: 'inline-block', color:'white' }}}
+            noValidate
+            autoComplete="off"
+          >
+            <TextField sx={{ '& > :not(style)': { m: 1, height: '6ch'}}}
+              value={input.min}
+              id="outlined-basic" className="inputTag" label="Min Price" variant="outlined" onChange={handleFilterPrice} name='min'/>
+              -
+            <TextField sx={{ '& > :not(style)': { m: 1, height: '6ch'}}}
+              value={input.max}
+              id="outlined-basic" className="inputTag" label="Max Price" variant="outlined" onChange={handleFilterPrice} name='max'/>
+            <button className={styles.filterButton}>
+              <PlayArrowIcon onClick={handleFilterPriceSubmit}/>
+            </button>
+          </Box>
 
-      <div style={{margin:'30px auto'}}>
-      <Button onClick={handleRestart} variant="outlined">Restart filters</Button>
-      </div>
+          <TextField
+                  sx={{
+                    '& > :not(style)': { m: 1, display: 'flex', width: '18ch', color:'white' },
+                  }}
+                  variant="outlined"
+                  id="outlined-select-currency"
+                  select
+                  label="Order by"
+                  value={order}
+                  onChange={(e) => handleOrder(e)}
+              > 
+                    <MenuItem value='more-relevants'>More relevants</MenuItem>
+                    <MenuItem value='higher-price'>Higher price</MenuItem>
+                    <MenuItem value='lower-price'>Lower price</MenuItem>
+          </TextField>
 
-      <TextField
-              sx={{
-                '& > :not(style)': { m: 1, display: 'flex', width: '18ch', color:'white' },
-              }}
-              variant="outlined"
-              id="outlined-select-currency"
-              select
-              label="Order by"
-              value={order}
-              onChange={(e) => handleOrder(e)}
-          > 
-                <MenuItem value='more-relevants'>More relevants</MenuItem>
-                <MenuItem value='higher-price'>Higher price</MenuItem>
-                <MenuItem value='lower-price'>Lower price</MenuItem>
-      </TextField>
-    </div>
+          <div style={{margin:'30px auto'}}>
+            <Button onClick={handleRestart} variant="outlined">Restart filters</Button>
+          </div>
+        </div>
       </div>
     </div>
   );

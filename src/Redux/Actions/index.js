@@ -122,3 +122,9 @@ export function darkMode(payload) {
     payload: payload,
   };
 }
+export function setCurrentPage(payload) {
+  return {
+    type: "SET_CURRENT_PAGE",
+    payload: payload,
+  };
+}

@@ -1,13 +1,13 @@
-import React, { useEffect, useState } from "react";
-import { useLocation } from "react-router-dom";
+import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { filterByCategory, getProducts } from "../../../Redux/Actions";
+import { filterByCategory } from "../../../Redux/Actions";
 import Categories from "../Categories";
 import ProductCard from "../../ProductCard/ProductCard";
 import Filter from "../../Filter/Filter";
 import PaginationC from "../../Pagination/PaginationC";
 import Loader from "../../Loader/Loader";
 import styles from "./Monitors.module.css";
+import ProductNotFound from "../../ProductNotFound/ProductNotFound";
 
 function Monitors() {
   let products = useSelector((state) => state.products);
@@ -18,10 +18,7 @@ function Monitors() {
   // const {category} = useParams
 
   // Pagination Info //
-  const location = useLocation();
-  const query = new URLSearchParams(location.search);
-  const page = parseInt(query.get("page") || "1", 10);
-  const [currentPage, setCurrentPage] = useState(1);
+  const currentPage = useSelector((state) => state.currentPage)
   const productsPerPage = 6;
   const indexLastProduct = currentPage * productsPerPage;
   const indexFirstProduct = indexLastProduct - productsPerPage;
@@ -31,12 +28,7 @@ function Monitors() {
 
   useEffect(() => {
     dispatch(filterByCategory(category));
-    setCurrentPage(page);
-  }, [dispatch, page]);
-
-  const pagination = (pageNumber) => {
-    setCurrentPage(pageNumber);
-  };
+  }, [dispatch]);
   // End Pagination //
 
   return (
@@ -48,7 +40,9 @@ function Monitors() {
           <div className={styles.productsContainer}>
             <Filter />
             <div className={styles.productsCardsContainer}>
-              {currentProducts.map((el) => {
+              {
+              productsFilter.length > 0 ?
+              currentProducts.map((el) => {
                 return (
                   <ProductCard
                     name={el.name}
@@ -62,14 +56,19 @@ function Monitors() {
                     quantity={el.quantity}
                   />
                 );
-              })}
+              })
+              : <ProductNotFound />
+              }
             </div>
           </div>
-          <PaginationC
-            category={category}
-            pagination={pagination}
-            totalPages={totalPages}
-          />
+          {
+            productsFilter.length > 0 ?
+              <PaginationC
+                category={category}
+                totalPages={totalPages}
+              />
+          : null
+          }
         </>
       ) : (
         <Loader />

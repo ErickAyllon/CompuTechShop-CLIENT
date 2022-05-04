@@ -3,12 +3,12 @@ const initialState = {
   products: [],
   productsFilter: [],
   productsNotPriceChangeable: [],
-  productNotFound: false,
   users: [],
   userOne: [],
   productDetail: [],
   categories: [],
   darkMode: true,
+  currentPage: 1
 };
 
 function rootReducer(state = initialState, action) {
@@ -21,7 +21,7 @@ function rootReducer(state = initialState, action) {
         products: ordered,
         productsNotPriceChangeable: ordered,
         productDetail: [],
-        productsFilter: []
+        productsFilter: ordered
       };
     case "GET_CATEGORIES": {
       return {
@@ -63,7 +63,6 @@ function rootReducer(state = initialState, action) {
         productsNotPriceChangeable: orderedD,
         // allProducts: orderedD,
         productDetail: [],
-        productNotFound: orderedD.length === 0 ? true : false
       };
     case "POST_USER":
       return {
@@ -132,6 +131,11 @@ function rootReducer(state = initialState, action) {
       return {
         ...state,
         darkMode: action.payload,
+      };
+    case "SET_CURRENT_PAGE":
+      return {
+        ...state,
+        currentPage: action.payload,
       };
     default:
       return state;
