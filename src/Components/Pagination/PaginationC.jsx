@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import styles from "./PaginationC.module.css";
-import { useNavigate, useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import { Link, useLocation } from "react-router-dom";
 import Pagination from "@mui/material/Pagination";
 import PaginationItem from "@mui/material/PaginationItem";
@@ -14,11 +14,10 @@ function PaginationC({category, totalPages  }) {
   const {search} = useParams();
   const currentPage = useSelector((state) => state.currentPage)
   const dispatch = useDispatch();
-  const navigate = useNavigate();
 
   useEffect(() => {
     dispatch(setCurrentPage(page))
-  }, [dispatch, page, navigate])
+  }, [dispatch, page])
 
   return (
     <div className={styles.pagination}>

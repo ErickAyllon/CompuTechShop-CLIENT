@@ -8,13 +8,15 @@ import PaginationC from "../../Pagination/PaginationC";
 import Loader from "../../Loader/Loader";
 import styles from "./AllProducts.module.css";
 import ProductNotFound from '../../ProductNotFound/ProductNotFound'
+// import { useParams } from "react-router-dom";
 
 function AllProducts() {
   let products = useSelector((state) => state.allProducts); 
   const productsFilter = useSelector((state) => state.productsFilter);
   products = productsFilter.length > 0 ? productsFilter : products;
   const dispatch = useDispatch();
-  const category = "allproducts";
+  // const {category} = useParams();
+  const category = "Allproducts";
 
   // Pagination Info //
   const currentPage = useSelector((state) => state.currentPage)
@@ -25,6 +27,7 @@ function AllProducts() {
   const totalPages = Math.ceil(products.length / productsPerPage);
 
   useEffect(() => {
+    console.log(category);
     dispatch(getProducts());
   }, [dispatch])
 

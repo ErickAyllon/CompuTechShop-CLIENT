@@ -4,10 +4,15 @@ import { filterByBrand, filterByPrice, orderProducts, setCurrentPage} from "../.
 import PlayArrowIcon from '@mui/icons-material/PlayArrow';
 import {Box, TextField, MenuItem, Button } from '@mui/material/';
 import styles from "./Filter.module.css";
+import { useNavigate } from "react-router-dom";
+import { useLocation } from "react-router-dom";
 
 function Filter() {
   const products = useSelector((state) => state.products);
   const dispatch = useDispatch();
+
+  const location = useLocation();
+  const query = new URLSearchParams(location.pathname);
 
   const setBrand = new Set();
   const unicBrand = products.reduce((acc, marca) => {
@@ -27,20 +32,17 @@ function Filter() {
   
   const [brandSelect, setbrandSelect] = useState('')
   const [order, setOrder] = useState('more-relevants')
+  const navigate = useNavigate();
 
   function handleFilterByBrand(e) {
     e.preventDefault();
-    // setInput({
-      //   min: '',
-      //   max: '',
-      // })
     dispatch(filterByBrand(e.target.value));
     dispatch(filterByPrice(input))
     dispatch(orderProducts('more-relevants'))
     dispatch(orderProducts(order))
     setbrandSelect(e.target.value)
     dispatch(setCurrentPage(1))
-    // setOrder('more-relevants')
+    navigate(query)
   }
   
   function handleFilterPrice(e) {
@@ -54,6 +56,7 @@ function Filter() {
     e.preventDefault();
     dispatch(filterByPrice(input))
     dispatch(setCurrentPage(1))
+    navigate(query)
   }
 
   function handleOrder(e) {
