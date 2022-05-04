@@ -12,6 +12,7 @@ function PaginationC({category, totalPages  }) {
   const query = new URLSearchParams(location.search);
   const page = parseInt(query.get('page') || '1', 10);
   const {search} = useParams();
+  // const {category} = useParams();
   const currentPage = useSelector((state) => state.currentPage)
   const dispatch = useDispatch();
 
@@ -40,9 +41,12 @@ function PaginationC({category, totalPages  }) {
             component={Link}
             to={
               search ? 
-              `/s/${category}${item.page === 1 ? '' : `?page=${item.page}`}`
+              `/search/${category}${item.page === 1 ? '' : `?page=${item.page}`}`
               :
-              `/${category}${item.page === 1 ? '' : `?page=${item.page}`}`
+              category ? 
+              `/category/${category}${item.page === 1 ? '' : `?page=${item.page}`}`
+              :
+              `/${category}${item.page === 1 ? '' : `?page=${item.page}`}` 
             }
             {...item}
           />

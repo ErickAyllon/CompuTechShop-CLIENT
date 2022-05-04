@@ -19,6 +19,7 @@ import { CssBaseline } from "@mui/material";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 import { amber, deepOrange, grey } from "@mui/material/colors";
 import FormUser from "./Components/Auth0/FormUser";
+import Category from '../src/Components/Categories/Category/Category'
 
 const getDesignTokens = (mode) => ({
   palette: {
@@ -70,13 +71,14 @@ function App() {
           <Route path="/admin" element={<Admin />} />
           <Route path="/profile" element={<Profile />} />
           <Route path="/allproducts" element={<AllProducts />} />
+          <Route path="/category/:category" element={<Category />} />
           <Route path="/laptops" element={<Laptops />} />
           <Route path="/monitors" element={<Monitors />} />
           <Route path="/mouses" element={<Mouses />} />
           <Route path="/headsets" element={<Headsets />} />
           <Route path="/keyboards" element={<Keyboards />} />
           <Route path="/:name" element={<ProductDetail />} />
-          <Route path="/s/:search" element={<ProductSearched />} />
+          <Route path="/search/:search" element={<ProductSearched />} />
           <Route path="*" element={<NotFound404 />} />
           <Route path="/user" element={<ProfileForm />} />
           <Route path="/form" element={<FormUser />} />

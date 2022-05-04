@@ -1,20 +1,22 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { getProducts } from "../../../Redux/Actions";
+import { filterByCategory } from "../../../Redux/Actions";
 import Categories from "../Categories";
 import ProductCard from "../../ProductCard/ProductCard";
 import Filter from "../../Filter/Filter";
 import PaginationC from "../../Pagination/PaginationC";
 import Loader from "../../Loader/Loader";
-import styles from "./AllProducts.module.css";
-import ProductNotFound from '../../ProductNotFound/ProductNotFound'
+import styles from "./Category.module.css";
+import ProductNotFound from "../../ProductNotFound/ProductNotFound";
+import { useParams } from "react-router-dom";
 
-function AllProducts() {
-  let products = useSelector((state) => state.allProducts); 
+function Category() {
+  const {category} = useParams();
+  const dispatch = useDispatch();
+  let products = useSelector((state) => state.products);
   const productsFilter = useSelector((state) => state.productsFilter);
   products = productsFilter.length > 0 ? productsFilter : products;
-  const dispatch = useDispatch();
-  const category = "allproducts";
+//   const category = "Headsets";
 
   // Pagination Info //
   const currentPage = useSelector((state) => state.currentPage)
@@ -24,28 +26,30 @@ function AllProducts() {
   const currentProducts = products.length > 0 ? products.slice(indexFirstProduct, indexLastProduct) : null;
   const totalPages = Math.ceil(products.length / productsPerPage);
 
+
   useEffect(() => {
-    dispatch(getProducts());
-  }, [dispatch])
+    dispatch(filterByCategory(category));
+  }, [dispatch]);
+  // End Pagination //
 
   return (
-    <div className={styles.allProducts}>
+    <div className={styles.headsets}>
       <Categories />
       {products.length > 0 ? (
         <>
           <div className={styles.productsContainer}>
             <Filter />
             <div className={styles.productsCardsContainer}>
-              {
+            {
               productsFilter.length > 0 ?
-              currentProducts?.map((el) => {
+              currentProducts.map((el) => {
                 return (
                   <ProductCard
                     name={el.name}
                     price={el.price}
                     image={el.image}
-                    key={el.id}
                     id={el.id}
+                    key={el.id}
                     brand={el.brand}
                     description={el.description}
                     calification={el.calification}
@@ -53,8 +57,8 @@ function AllProducts() {
                   />
                 );
               })
-            : <ProductNotFound />
-            }
+              : <ProductNotFound />
+              }
             </div>
           </div>
           {
@@ -73,4 +77,4 @@ function AllProducts() {
   );
 }
 
-export default AllProducts;
+export default Category;
