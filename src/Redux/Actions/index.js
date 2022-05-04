@@ -123,3 +123,42 @@ export function darkMode(payload) {
     payload: payload,
   };
 }
+
+
+export function getShops() {
+  return async function (dispatch) {
+    try {
+      var json = await axios.get("http://localhost:3001/getShops");
+      return dispatch({
+        type: "GET_SHOPS",
+        payload: json.data,
+      });
+    } catch (error) {
+      console.log(error);
+    }
+  };
+}
+
+// export function getUserById(userId) {
+//   return async (dispatch) => {
+//     var json = await axios.get("http://localhost:3001/users/" + userId);
+//     return dispatch({
+//       type: "GET_USER_BY_ID",
+//       payload: json.data,
+//     });
+//   };
+// };
+
+export function getShopById(id) {
+  return async function (dispatch) {
+    try {
+      var json = await axios.get("http://localhost:3001/getShops/" + id);
+      return dispatch({
+        type: "GET_SHOP_BY_ID",
+        payload: json.data,
+      });
+    } catch (error) {
+      console.log(error);
+    }
+  };
+}

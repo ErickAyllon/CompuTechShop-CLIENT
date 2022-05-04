@@ -7,6 +7,8 @@ const initialState = {
   categories: [],
   productsFilter: [],
   darkMode: true,
+  shops: [],
+  shopDetail: []
 };
 
 function rootReducer(state = initialState, action) {
@@ -91,6 +93,16 @@ function rootReducer(state = initialState, action) {
         ...state,
         darkMode: action.payload,
       };
+    case "GET_SHOPS": 
+      return {
+         ...state,
+        shops: action.payload,
+        };
+    case "GET_SHOP_BY_ID": 
+      return {
+         ...state,
+         shopDetail: action.payload,
+    };
     default:
       return state;
   }

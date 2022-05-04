@@ -18,6 +18,8 @@ import ProductSearched from "./Components/ProductSearched/ProductSearched";
 import { CssBaseline } from "@mui/material";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 import { amber, deepOrange, grey } from '@mui/material/colors';
+import ProductCreate from "./Components/ProductCreate/ProductCreate";
+import ShopDetails from './Components/Admin/ShopDetails/ShopDetails'
 
 const getDesignTokens = (mode) => ({
   palette: {
@@ -77,6 +79,8 @@ function App() {
           <Route path="/s/:search" element={<ProductSearched />} />
           <Route path="*" element={<NotFound404 />} />
           <Route path="/user" element={<ProfileForm/>} />
+          <Route path="/admin/createProduct" element={<ProductCreate/>} />
+          <Route path="/admin/shop/:id" element={<ShopDetails/>}/>
         </Routes>
         <Footer />
       </BrowserRouter>
