@@ -82,9 +82,11 @@ function CategoryCreate() {
                     error={error.name ? true : false}
                     helperText={error.name}
                 />
-              <Button type="submit" onClick={handleSubmit} variant="outlined" disabled={ error.name || input.name === '' ? true : false}>
-                Create Category
-              </Button>
+                <div className={styles.createCatgoryBtn}>
+                    <Button type="submit" onClick={handleSubmit} variant="outlined" disabled={ error.name || input.name === '' ? true : false}>
+                        Create Category
+                    </Button>
+                </div>
             </Box>
         </div>
     </div>

@@ -13,7 +13,7 @@ import ProductSearched from "./Components/ProductSearched/ProductSearched";
 import { CssBaseline } from "@mui/material";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 import { amber, deepOrange, grey } from '@mui/material/colors';
-import ProductCreate from "./Components/ProductCreate/ProductCreate";
+import ProductCreate from "./Components/Admin/ProductCreate/ProductCreate";
 import ShopDetails from './Components/Admin/ShopDetails/ShopDetails'
 import FormUser from "./Components/Auth0/FormUser";
 import Category from '../src/Components/Categories/Category/Category'

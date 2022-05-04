@@ -33,8 +33,8 @@ function Categories() {
 
       function handleCategorySelect(e) {
         e.preventDefault();
-        navigate(e.target.value === 'all' ? `/Allproducts` : `/category/${e.target.value}`)
         setCategorySelect(e.target.value)
+        navigate(e.target.value === 'all' ? `/Allproducts` : `/category/${e.target.value}`)
       }
 
   return (
@@ -42,14 +42,14 @@ function Categories() {
 
             <TextField
                   sx={{
-                    '& > :not(style)': { m: 1, display: 'flex', width: '15ch', color:'white' },
+                    '& > :not(style)': { m: 1, display: 'flex', width: '17ch', color:'white' },
                   }}
                   className={styles.filterByBrand}
                   variant="outlined"
                   id="outlined-select-currency"
                   name="categories"
                   select
-                  label="Categories"
+                  label="All Categories"
                   value={categorySelect}
                   onChange={(e) => handleCategorySelect(e)}
               > 

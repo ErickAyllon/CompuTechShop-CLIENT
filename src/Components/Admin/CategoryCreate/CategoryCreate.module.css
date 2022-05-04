@@ -3,3 +3,8 @@
     display: flex;
     margin: 30px auto;
 }
+
+.createCatgoryBtn {
+    justify-content: center;
+    display: flex;
+}
