@@ -13,6 +13,7 @@ function ShopDetail() {
     
     dispatch(getUser());
     dispatch(getShopById(id));
+    
    // console.log(user)
   }, [dispatch]);
   const shop = useSelector ((state) => state.shopDetail);
