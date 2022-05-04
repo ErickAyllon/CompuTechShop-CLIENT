@@ -3,11 +3,6 @@ import { useSelector } from "react-redux";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import NavBar from "./Components/NavBar/Navbar";
 import Footer from "./Components/Footer/Footer";
-import Laptops from "./Components/Categories/Laptops/Laptops.jsx";
-import Monitors from "./Components/Categories/Monitors/Monitors";
-import Headsets from "./Components/Categories/Headsets/Headsets";
-import Keyboards from "./Components/Categories/Keyboards/Keyboards";
-import Mouses from "./Components/Categories/Mouses/Mouses";
 import Admin from "./Components/Admin/Admin";
 import Profile from "./Components/Profile/Profile";
 import ProductDetail from "./Components/Detail/ProductDetail";
@@ -72,11 +67,6 @@ function App() {
           <Route path="/profile" element={<Profile />} />
           <Route path="/allproducts" element={<AllProducts />} />
           <Route path="/category/:category" element={<Category />} />
-          <Route path="/laptops" element={<Laptops />} />
-          <Route path="/monitors" element={<Monitors />} />
-          <Route path="/mouses" element={<Mouses />} />
-          <Route path="/headsets" element={<Headsets />} />
-          <Route path="/keyboards" element={<Keyboards />} />
           <Route path="/:name" element={<ProductDetail />} />
           <Route path="/search/:search" element={<ProductSearched />} />
           <Route path="*" element={<NotFound404 />} />

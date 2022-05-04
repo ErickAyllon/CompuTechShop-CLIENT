@@ -1,11 +1,13 @@
 import React from 'react';
-import ProductCreate from '../ProductCreate/ProductCreate';
 import styles from './Admin.module.css'
+import CategoryCreate from './CategoryCreate/CategoryCreate';
+import ProductCreate from './ProductCreate/ProductCreate';
 
 function Admin() {
   return (
     <div className={styles.adminContainer}>
       <ProductCreate />
+      <CategoryCreate />
     </div>
   )
 }

@@ -16,9 +16,7 @@ function Category() {
   let products = useSelector((state) => state.products);
   const productsFilter = useSelector((state) => state.productsFilter);
   products = productsFilter.length > 0 ? productsFilter : products;
-//   const category = "Headsets";
 
-  // Pagination Info //
   const currentPage = useSelector((state) => state.currentPage)
   const productsPerPage = 6;
   const indexLastProduct = currentPage * productsPerPage;
@@ -26,14 +24,12 @@ function Category() {
   const currentProducts = products.length > 0 ? products.slice(indexFirstProduct, indexLastProduct) : null;
   const totalPages = Math.ceil(products.length / productsPerPage);
 
-
   useEffect(() => {
     dispatch(filterByCategory(category));
-  }, [dispatch]);
-  // End Pagination //
+  }, [dispatch, category]);
 
   return (
-    <div className={styles.headsets}>
+    <div className={styles.category}>
       <Categories />
       {products.length > 0 ? (
         <>
