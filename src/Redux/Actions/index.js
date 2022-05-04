@@ -167,3 +167,10 @@ export function setCurrentPage(payload) {
     payload: payload,
   };
 }
+
+export function postCategory(payload) {
+  return async function () {
+    const response = await axios.post("http://localhost:3001/postCategory", payload);
+    return response;
+  };
+}

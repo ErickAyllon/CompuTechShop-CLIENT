@@ -3,11 +3,6 @@ import { useSelector } from "react-redux";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import NavBar from "./Components/NavBar/Navbar";
 import Footer from "./Components/Footer/Footer";
-import Laptops from "./Components/Categories/Laptops/Laptops.jsx";
-import Monitors from "./Components/Categories/Monitors/Monitors";
-import Headsets from "./Components/Categories/Headsets/Headsets";
-import Keyboards from "./Components/Categories/Keyboards/Keyboards";
-import Mouses from "./Components/Categories/Mouses/Mouses";
 import Admin from "./Components/Admin/Admin";
 import Profile from "./Components/Profile/Profile";
 import ProductDetail from "./Components/Detail/ProductDetail";
@@ -21,6 +16,7 @@ import { amber, deepOrange, grey } from '@mui/material/colors';
 import ProductCreate from "./Components/ProductCreate/ProductCreate";
 import ShopDetails from './Components/Admin/ShopDetails/ShopDetails'
 import FormUser from "./Components/Auth0/FormUser";
+import Category from '../src/Components/Categories/Category/Category'
 
 const getDesignTokens = (mode) => ({
   palette: {
@@ -72,13 +68,9 @@ function App() {
           <Route path="/admin" element={<Admin />} />
           <Route path="/profile" element={<Profile />} />
           <Route path="/allproducts" element={<AllProducts />} />
-          <Route path="/laptops" element={<Laptops />} />
-          <Route path="/monitors" element={<Monitors />} />
-          <Route path="/mouses" element={<Mouses />} />
-          <Route path="/headsets" element={<Headsets />} />
-          <Route path="/keyboards" element={<Keyboards />} />
+          <Route path="/category/:category" element={<Category />} />
           <Route path="/:name" element={<ProductDetail />} />
-          <Route path="/s/:search" element={<ProductSearched />} />
+          <Route path="/search/:search" element={<ProductSearched />} />
           <Route path="*" element={<NotFound404 />} />
           <Route path="/user" element={<ProfileForm/>} />
           <Route path="/admin/createProduct" element={<ProductCreate/>} />

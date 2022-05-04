@@ -5,6 +5,7 @@ import { getShops, getUser } from "../../Redux/Actions";
 import styles from './Admin.module.css';
 import ShopCard from './ShopCard/ShopCard';
 import { Link } from 'react-router-dom';
+import CategoryCreate from './CategoryCreate/CategoryCreate';
 
 function Admin() {
   const dispatch = useDispatch();
@@ -35,6 +36,7 @@ function Admin() {
         )
       }) : null}
       <Link to='/admin/createProduct'><button>Create product</button></Link>
+      <CategoryCreate />
     </div>
   )
 }

@@ -6,18 +6,17 @@ import ProductCard from "../../ProductCard/ProductCard";
 import Filter from "../../Filter/Filter";
 import PaginationC from "../../Pagination/PaginationC";
 import Loader from "../../Loader/Loader";
-import styles from "./Mouses.module.css";
+import styles from "./Category.module.css";
 import ProductNotFound from "../../ProductNotFound/ProductNotFound";
+import { useParams } from "react-router-dom";
 
-function Mouses() {
+function Category() {
+  const {category} = useParams();
+  const dispatch = useDispatch();
   let products = useSelector((state) => state.products);
   const productsFilter = useSelector((state) => state.productsFilter);
   products = productsFilter.length > 0 ? productsFilter : products;
-  const dispatch = useDispatch();
-  const category = "Mouses";
-  // const {category} = useParams
 
-  // Pagination Info //
   const currentPage = useSelector((state) => state.currentPage)
   const productsPerPage = 6;
   const indexLastProduct = currentPage * productsPerPage;
@@ -25,14 +24,12 @@ function Mouses() {
   const currentProducts = products.length > 0 ? products.slice(indexFirstProduct, indexLastProduct) : null;
   const totalPages = Math.ceil(products.length / productsPerPage);
 
-
   useEffect(() => {
     dispatch(filterByCategory(category));
-  }, [dispatch]);
-  // End Pagination //
+  }, [dispatch, category]);
 
   return (
-    <div className={styles.mouses}>
+    <div className={styles.category}>
       <Categories />
       {products.length > 0 ? (
         <>
@@ -76,4 +73,4 @@ function Mouses() {
   );
 }
 
-export default Mouses;
+export default Category;
