@@ -20,7 +20,7 @@ const ShoppingCart = () => {
 
   return (
     <div>
-      <Dropdown active="false" autoClose="outside">
+      <Dropdown active="true" autoClose="outside">
         <Dropdown.Toggle variant="Secondary" id="dropdown-basic">
           <img
             src="https://img.icons8.com/nolan/64/shopping-cart-promotion.png"
