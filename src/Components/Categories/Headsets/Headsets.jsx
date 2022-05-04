@@ -41,7 +41,7 @@ function Headsets() {
   return (
     <div className={styles.headsets}>
       <Categories />
-      {productsFilter.length > 0 ? (
+      {products.length > 0 ? (
         <>
           <div className={styles.productsContainer}>
             <Filter />

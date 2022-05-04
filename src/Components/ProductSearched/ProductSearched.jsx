@@ -10,9 +10,13 @@ import ProductNotFound from '../ProductNotFound/ProductNotFound'
 import styles from './ProductSearched.module.css'
 
 function ProductSearched() {
-  const products = useSelector ((state) => state.products)
+  let products = useSelector((state) => state.allProducts); 
+  const productsFilter = useSelector((state) => state.productsFilter);
+  products = productsFilter.length > 0 ? productsFilter : products;
   const dispatch = useDispatch();
   const {search} = useParams();
+  const notFound = useSelector((state) => state.ProductNotFound)
+  console.log(notFound)
 
   // Pagination Info //
   const location = useLocation();
@@ -44,7 +48,10 @@ function ProductSearched() {
       <div className={styles.productsContainer}>
         <Filter />
         <div className={styles.productsCardsContainer}>
-          {currentProducts.map((el) => {
+          <h1>Your search: {search}</h1>
+          {
+          notFound === undefined ?
+          currentProducts.map((el) => {
             return (
                 <ProductCard 
                   key={el.id}
@@ -57,7 +64,9 @@ function ProductSearched() {
                   calification={el.calification} 
                   quantity={el.quantity}/>
             )
-          })}
+          })
+          : <ProductNotFound />
+        }
         </div>
       </div>
       <PaginationC 

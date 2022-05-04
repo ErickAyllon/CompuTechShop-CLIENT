@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useLocation } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { filterByCategory } from "../../../Redux/Actions";
+import { filterByCategory, getProducts } from "../../../Redux/Actions";
 import Categories from "../Categories";
 import ProductCard from "../../ProductCard/ProductCard";
 import Filter from "../../Filter/Filter";
@@ -42,7 +42,7 @@ function Monitors() {
   return (
     <div className={styles.monitors}>
       <Categories />
-      {productsFilter.length > 0 ? (
+      {products.length > 0 ? (
         <>
 
           <div className={styles.productsContainer}>

@@ -8,13 +8,15 @@ import Filter from "../../Filter/Filter";
 import PaginationC from "../../Pagination/PaginationC";
 import Loader from "../../Loader/Loader";
 import styles from "./AllProducts.module.css";
+import ProductNotFound from '../../ProductNotFound/ProductNotFound'
 
 function AllProducts() {
-  let products = useSelector((state) => state.allProducts);
+  let products = useSelector((state) => state.allProducts); 
   const productsFilter = useSelector((state) => state.productsFilter);
   products = productsFilter.length > 0 ? productsFilter : products;
   const dispatch = useDispatch();
   const category = "allproducts";
+  // const productNotFound = !productsFilter.length ? true : false;
 
   // Pagination Info //
   const location = useLocation();
@@ -45,7 +47,9 @@ function AllProducts() {
           <div className={styles.productsContainer}>
             <Filter />
             <div className={styles.productsCardsContainer}>
-              {currentProducts.map((el) => {
+              {
+              // !productsFilter === undefined ?
+              currentProducts?.map((el) => {
                 return (
                   <ProductCard
                     name={el.name}
@@ -59,7 +63,9 @@ function AllProducts() {
                     quantity={el.quantity}
                   />
                 );
-              })}
+              })
+            // : <ProductNotFound />
+            }
             </div>
           </div>
           <PaginationC

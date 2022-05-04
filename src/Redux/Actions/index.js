@@ -109,13 +109,12 @@ export function filterByPrice(payload) {
   };
 }
 
-// export const ORDER_BY_PRICE = "ORDER_BY_PRICE"
-// export function orderByPrice (payload) {
-//   return {
-//     type: ORDER_BY_PRICE,
-//     payload
-//   }
-// }
+export function orderProducts(payload) {
+  return {
+    type: 'ORDER_PRODUCTS',
+    payload,
+  }
+}
 
 export function darkMode(payload) {
   return {

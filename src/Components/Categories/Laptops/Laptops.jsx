@@ -28,6 +28,7 @@ function Laptops() {
   const currentProducts = products.length > 0 ? products.slice(indexFirstProduct, indexLastProduct) : null;
   const totalPages = Math.ceil(products.length / productsPerPage);
   
+
   useEffect(() => {
     dispatch(filterByCategory(category));
     setCurrentPage(page);
@@ -41,7 +42,7 @@ function Laptops() {
   return (
     <div className={styles.laptops}>
       <Categories />
-      {productsFilter.length > 0 ? (
+      {products.length > 0 ? (
         <>
           <div className={styles.productsContainer}>
             <Filter />

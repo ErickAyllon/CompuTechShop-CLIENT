@@ -41,7 +41,7 @@ function Keyboards() {
   return (
     <div className={styles.keyboards}>
       <Categories />
-      {productsFilter.length > 0 ? (
+      {products.length > 0 ? (
         <>
           <div className={styles.productsContainer}>
             <Filter />
