@@ -5,7 +5,9 @@
 .adminContainer {
     margin: 100px auto;
     max-width: 1200px;
-    display: flex;
+    display: grid;
+    grid-template-columns: auto auto auto;
+    /* grid-template-rows: auto auto auto auto; */
 }
 
 .adminContainer button {
@@ -22,7 +24,7 @@
     margin: 50px;
     justify-content: center;
     text-align: center;
-    display: flex;
+    display: grid;
     flex-direction: row;
 }
 

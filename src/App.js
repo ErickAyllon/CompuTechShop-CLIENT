@@ -13,12 +13,14 @@ import ProductSearched from "./Components/ProductSearched/ProductSearched";
 import { CssBaseline } from "@mui/material";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 import { amber, deepOrange, grey } from '@mui/material/colors';
-import ProductCreate from "./Components/Admin/ProductCreate/ProductCreate";
-import ShopDetails from './Components/Admin/ShopDetails/ShopDetails'
 import FormUser from "./Components/Auth0/FormUser";
 import Category from '../src/Components/Categories/Category/Category';
-import ViewCategories from './Components/Admin/ViewCategories/ViewCategories'
-import styles from './index.css'
+import ViewCategories from './Components/Admin/Categories/ViewCategories/ViewCategories'
+import Products from "./Components/Admin/Products/AdminProducts";
+import ProductCreate from "./Components/Admin/Products/ProductCreate/ProductCreate";
+import AdminCategories from "./Components/Admin/Categories/AdminCategories";
+import AdminProducts from "./Components/Admin/Products/AdminProducts";
+import ShopDetails from "./Components/Admin/Orders/ShopDetails/ShopDetails";
 
 const getDesignTokens = (mode) => ({
   palette: {
@@ -75,10 +77,11 @@ function App() {
             <Route path="/search/:search" element={<ProductSearched />} />
             <Route path="*" element={<NotFound404 />} />
             <Route path="/user" element={<ProfileForm/>} />
-            <Route path="/admin/createProduct" element={<ProductCreate/>} />
+            <Route path="/admin/products" element={<AdminProducts/>} />
+            <Route path="/admin/products/createProduct" element={<ProductCreate/>} />
+            <Route path="/admin/categories" element={<AdminCategories />} />
             <Route path="/admin/shop/:id" element={<ShopDetails/>}/>
             <Route path="/form" element={<FormUser />} />
-            <Route path="/admin/categories" element={<ViewCategories />} />
           </Routes>
         <Footer />
       </BrowserRouter>

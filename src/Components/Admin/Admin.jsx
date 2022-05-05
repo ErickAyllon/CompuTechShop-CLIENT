@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from "react-redux";
 import { getShops, getUser } from "../../Redux/Actions";
 import styles from './Admin.module.css';
-import ShopCard from './ShopCard/ShopCard';
+import ShopCard from './Orders/ShopCard/ShopCard';
 import { Link } from 'react-router-dom';
 import Button from '@mui/material/Button';
 import AdminNav from './AdminNav/AdminNav';
@@ -20,29 +20,31 @@ function Admin() {
 
   return (
     <div className={styles.admin}>
-      <AdminNav/>
+      {/* <AdminNav/> */}
       <div className={styles.adminContainer}>
         <div className={styles.adminCard}>
           <div className={styles.adminCardContainer}>
-            <h4>PRODUCTS</h4>
-            <Button variant="outlined">View Products</Button>
-            <Link to='/admin/createProduct'>
+            {/* <h4>PRODUCTS</h4> */}
+            <Link to='/admin/products'>
+              <Button variant="outlined">Products</Button>
+            </Link>
+            {/* <Link to='/admin/createProduct'>
               <Button variant="outlined">Create Products</Button>
-            </Link>
+            </Link> */}
           </div>
         </div>
         <div className={styles.adminCard}>
           <div className={styles.adminCardContainer}>
-            <h4>CATEGORIES</h4>
+            {/* <h4>CATEGORIES</h4> */}
             <Link to='/admin/categories'>
-              <Button variant="outlined">View categories</Button>
+              <Button variant="outlined">categories</Button>
             </Link>
           </div>
         </div>
         <div className={styles.adminCard}>
           <div className={styles.adminCardContainer}>
-            <h4>ORDERS</h4>
-              <Button variant="outlined">View all orders</Button>
+            {/* <h4>ORDERS</h4> */}
+              <Button variant="outlined">Orders</Button>
           </div>
         </div>
         {/* {shops ? shops.map(el => {
