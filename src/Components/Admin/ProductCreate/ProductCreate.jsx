@@ -6,6 +6,8 @@ import TextField from '@mui/material/TextField';
 import MenuItem from '@mui/material/MenuItem';
 import Button from '@mui/material/Button';
 import styles from './ProductCreate.module.css'
+import { Link } from 'react-router-dom';
+import AdminNav from '../AdminNav/AdminNav';
 
 function ProductCreate() {
   const dispatch = useDispatch();
@@ -109,6 +111,7 @@ function ProductCreate() {
 
   return (
     <div>
+      <AdminNav/>
         <Box
           className={styles.form}
           component="form"

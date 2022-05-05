@@ -221,6 +221,10 @@ function rootReducer(state = initialState, action) {
         ...state,
         currentPage: action.payload,
       };
+    case "DELETE_CATEGORY":
+      return {
+        ...state,
+      };
     default:
       return state;
   }

@@ -11,3 +11,11 @@
 .categories {
   margin: 50px auto;
 }
+
+
+.button {
+  background: none;
+}
+.button:hover {
+  background: none;
+}

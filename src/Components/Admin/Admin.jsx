@@ -4,7 +4,8 @@ import { getShops, getUser } from "../../Redux/Actions";
 import styles from './Admin.module.css';
 import ShopCard from './ShopCard/ShopCard';
 import { Link } from 'react-router-dom';
-import CategoryCreate from './CategoryCreate/CategoryCreate';
+import Button from '@mui/material/Button';
+import AdminNav from './AdminNav/AdminNav';
 
 function Admin() {
   const dispatch = useDispatch();
@@ -13,41 +14,53 @@ function Admin() {
   useEffect(() => {
     
     dispatch(getUser())
-    console.log(shops)
     dispatch(getShops());
   }, [dispatch]);
 
 
   return (
-    <div className={styles.adminContainer}>
-      <div>
-        <h4>PRODUCTS</h4>
-        <button>View products</button>
-        <Link to='/admin/createProduct'><button>Create product</button></Link>
-      </div>
-      <div>
-        <h4>CATEGORIES</h4>
-        <Link to='/admin/categories'><button>View categories</button></Link>
-      </div>
-      <div>
-        <h4>ORDERS</h4>
-        <button>View all orders</button>
-      </div>
-      {/* {shops ? shops.map(el => {
-        return(
-          <ShopCard
-          amount={el.amount}
-          date={el.date}
-          payment={el.payment}
-          state={el.state}
-          userId={el.userId}
-          products={el.products}
-          id={el.id}
-          key={el.id}
-          />
-        )
-      }) : null} */}
-     {/* <CategoryCreate /> */}
+    <div className={styles.admin}>
+      <AdminNav/>
+      <div className={styles.adminContainer}>
+        <div className={styles.adminCard}>
+          <div className={styles.adminCardContainer}>
+            <h4>PRODUCTS</h4>
+            <Button variant="outlined">View Products</Button>
+            <Link to='/admin/createProduct'>
+              <Button variant="outlined">Create Products</Button>
+            </Link>
+          </div>
+        </div>
+        <div className={styles.adminCard}>
+          <div className={styles.adminCardContainer}>
+            <h4>CATEGORIES</h4>
+            <Link to='/admin/categories'>
+              <Button variant="outlined">View categories</Button>
+            </Link>
+          </div>
+        </div>
+        <div className={styles.adminCard}>
+          <div className={styles.adminCardContainer}>
+            <h4>ORDERS</h4>
+              <Button variant="outlined">View all orders</Button>
+          </div>
+        </div>
+        {/* {shops ? shops.map(el => {
+          return(
+            <ShopCard
+            amount={el.amount}
+            date={el.date}
+            payment={el.payment}
+            state={el.state}
+            userId={el.userId}
+            products={el.products}
+            id={el.id}
+            key={el.id}
+            />
+          )
+        }) : null} */}
+      {/* <CategoryCreate /> */}
+     </div>
     </div>
   )
 }
