@@ -7,15 +7,18 @@ import { useDispatch, useSelector } from "react-redux";
 const ShoppingCart = () => {
   const dispatch = useDispatch();
   const carti = useSelector((state) => state.cart);
-  console.log(carti);
+
   const delFromCart = (id, all = false) => {
-    console.log(id, all);
     all
       ? dispatch({ type: TYPES.REMOVE_ALL_FROM_CART, payload: id })
       : dispatch({ type: TYPES.REMOVE_ONE_FROM_CART, payload: id });
   };
   const clearCart = () => {
     dispatch({ type: TYPES.CLEAR_CART });
+  };
+  const addToCart = (id) => {
+    console.log(id);
+    dispatch({ type: TYPES.ADD_TO_CART, payload: id });
   };
 
   return (
@@ -41,7 +44,12 @@ const ShoppingCart = () => {
               <article className="box">
                 <Dropdown.Divider />
                 {carti?.map((el, index) => (
-                  <CartItem key={index} data={el} delFromCart={delFromCart} />
+                  <CartItem
+                    key={index}
+                    data={el}
+                    delFromCart={delFromCart}
+                    addToCart={addToCart}
+                  />
                 ))}
               </article>
             </div>
