@@ -4,8 +4,8 @@ import { getShopById, getUser } from '../../../../Redux/Actions'
 import { useSelector, useDispatch } from 'react-redux';
 import { useParams } from 'react-router-dom';
 import { Link } from 'react-router-dom';
-import NotFound404 from '../../NotFound404/NotFound404';
-import AdminNav from '../AdminNav/AdminNav'
+import NotFound404 from '../../../NotFound404/NotFound404';
+import AdminNav from '../../AdminNav/AdminNav'
 
 function ShopDetail() {
   const dispatch = useDispatch();

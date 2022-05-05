@@ -45,7 +45,9 @@ function Admin() {
           <div className={styles.adminCardContainer}>
 
             {/* <h4>ORDERS</h4> */}
+            <Link to="/admin/allorders">
               <Button variant="outlined">Orders</Button>
+            </Link>
           </div>
         </div>
         {/* {shops ? shops.map(el => {
