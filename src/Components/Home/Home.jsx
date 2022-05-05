@@ -14,6 +14,7 @@ function Home() {
 
   return (
     <div className={styles.home}>
+      <Categories />
       <div className={styles.homeContent}>
         <div className={styles.carouselContainer} style={{ display: 'block', width: "auto", padding: 0 }}>
           <Carousel>
@@ -61,7 +62,6 @@ function Home() {
             </Carousel.Item>
           </Carousel>
         </div>
-        <Categories />
       </div>
     </div>
   )
