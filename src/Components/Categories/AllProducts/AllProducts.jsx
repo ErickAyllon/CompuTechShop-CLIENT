@@ -35,7 +35,7 @@ function AllProducts() {
   const addToCart = (id) => {
     dispatch({ type: TYPES.ADD_TO_CART, payload: id });
   };
-  console.log(products);
+
   return (
     <div className={styles.allProducts}>
       <Categories />
