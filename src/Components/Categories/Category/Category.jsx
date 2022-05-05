@@ -1,5 +1,4 @@
-import React, { useEffect, useState } from "react";
-import { useLocation } from "react-router-dom";
+import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { filterByCategory } from "../../../Redux/Actions";
 import Categories from "../Categories";
@@ -7,46 +6,39 @@ import ProductCard from "../../ProductCard/ProductCard";
 import Filter from "../../Filter/Filter";
 import PaginationC from "../../Pagination/PaginationC";
 import Loader from "../../Loader/Loader";
-import styles from "./Headsets.module.css";
+import styles from "./Category.module.css";
+import ProductNotFound from "../../ProductNotFound/ProductNotFound";
+import { useParams } from "react-router-dom";
 
-function Headsets() {
+function Category() {
+  const {category} = useParams();
+  const dispatch = useDispatch();
   let products = useSelector((state) => state.products);
   const productsFilter = useSelector((state) => state.productsFilter);
   products = productsFilter.length > 0 ? productsFilter : products;
-  const dispatch = useDispatch();
-  const category = "Headsets";
 
-  // Pagination Info //
-  const location = useLocation();
-  const query = new URLSearchParams(location.search);
-  const page = parseInt(query.get("page") || "1", 10);
-  const [currentPage, setCurrentPage] = useState(1);
+  const currentPage = useSelector((state) => state.currentPage)
   const productsPerPage = 6;
   const indexLastProduct = currentPage * productsPerPage;
   const indexFirstProduct = indexLastProduct - productsPerPage;
   const currentProducts = products.length > 0 ? products.slice(indexFirstProduct, indexLastProduct) : null;
   const totalPages = Math.ceil(products.length / productsPerPage);
 
-
   useEffect(() => {
     dispatch(filterByCategory(category));
-    setCurrentPage(page);
-  }, [dispatch, page]);
-
-  const pagination = (pageNumber) => {
-    setCurrentPage(pageNumber);
-  };
-  // End Pagination //
+  }, [dispatch, category]);
 
   return (
-    <div className={styles.headsets}>
+    <div className={styles.category}>
       <Categories />
-      {productsFilter.length > 0 ? (
+      {products.length > 0 ? (
         <>
           <div className={styles.productsContainer}>
             <Filter />
             <div className={styles.productsCardsContainer}>
-              {currentProducts.map((el) => {
+            {
+              productsFilter.length > 0 ?
+              currentProducts.map((el) => {
                 return (
                   <ProductCard
                     name={el.name}
@@ -60,14 +52,19 @@ function Headsets() {
                     quantity={el.quantity}
                   />
                 );
-              })}
+              })
+              : <ProductNotFound />
+              }
             </div>
           </div>
-          <PaginationC
-            category={category}
-            pagination={pagination}
-            totalPages={totalPages}
-          />
+          {
+            productsFilter.length > 0 ?
+              <PaginationC
+                category={category}
+                totalPages={totalPages}
+              />
+          : null
+          }
         </>
       ) : (
         <Loader />
@@ -76,4 +73,4 @@ function Headsets() {
   );
 }
 
-export default Headsets;
+export default Category;

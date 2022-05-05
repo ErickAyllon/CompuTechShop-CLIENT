@@ -1,6 +1,6 @@
-import React, { useEffect, useState }  from 'react'
+import React, { useEffect }  from 'react'
 import {useDispatch, useSelector} from 'react-redux'
-import { useLocation, useParams } from 'react-router-dom'
+import { useParams } from 'react-router-dom'
 import { getProductsByName } from '../../Redux/Actions'
 import Categories from '../Categories/Categories'
 import Filter from '../Filter/Filter'
@@ -10,15 +10,14 @@ import ProductNotFound from '../ProductNotFound/ProductNotFound'
 import styles from './ProductSearched.module.css'
 
 function ProductSearched() {
-  const products = useSelector ((state) => state.products)
+  let products = useSelector((state) => state.allProducts); 
+  const productsFilter = useSelector((state) => state.productsFilter);
+  products = productsFilter.length > 0 ? productsFilter : products;
   const dispatch = useDispatch();
   const {search} = useParams();
 
   // Pagination Info //
-  const location = useLocation();
-  const query = new URLSearchParams(location.search);
-  const page = parseInt(query.get('page') || '1', 10);
-  const [currentPage, setCurrentPage] = useState(1);
+  const currentPage = useSelector((state) => state.currentPage)
   const productsPerPage = 6;
   const indexLastProduct = currentPage * productsPerPage;
   const indexFirstProduct = indexLastProduct - productsPerPage;
@@ -27,44 +26,47 @@ function ProductSearched() {
 
   useEffect(() => {
     dispatch(getProductsByName(search))
-    setCurrentPage(page)
-  }, [dispatch]);
-
-  const pagination = (pageNumber) => {
-    setCurrentPage(pageNumber);
-}
+  }, [dispatch, search]);
  // End Pagination //
   
   return (
     <div className={styles.searched}>
       <Categories />
       {
-        products.length > 0 ?
+        productsFilter.length > 0 ?
         <>
       <div className={styles.productsContainer}>
         <Filter />
         <div className={styles.productsCardsContainer}>
-          {currentProducts.map((el) => {
+          <h1>Your search: {search}</h1>
+          {
+            productsFilter.length > 0 ?
+            currentProducts.map((el) => {
             return (
                 <ProductCard 
-                  key={el.id}
-                  name={el.name} 
-                  price={el.price} 
-                  image={el.image} 
-                  id={el.id} 
-                  brand={el.brand} 
-                  description={el.description} 
-                  calification={el.calification} 
-                  quantity={el.quantity}/>
-            )
-          })}
+                    key={el.id}
+                    name={el.name} 
+                    price={el.price} 
+                    image={el.image} 
+                    id={el.id} 
+                    brand={el.brand} 
+                    description={el.description} 
+                    calification={el.calification} 
+                    quantity={el.quantity}/>
+              )
+            })
+            : <ProductNotFound />
+          }
         </div>
       </div>
-      <PaginationC 
-          category={search}
-          pagination={pagination} 
-          totalPages={totalPages}
-      />
+          {
+            productsFilter.length > 0 ?
+              <PaginationC
+                category={search}
+                totalPages={totalPages}
+              />
+          : null
+          }
         </>
           : 
           <div className={styles.productNotFoundContainer}>

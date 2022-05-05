@@ -1,5 +1,6 @@
 import React, { useEffect, useReducer, useState } from "react";
 import { useLocation } from "react-router-dom";
+import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getProducts } from "../../../Redux/Actions";
 import Categories from "../Categories";
@@ -11,6 +12,7 @@ import styles from "./AllProducts.module.css";
 import { TYPES } from "../../../Redux/Actions/shoppingCartActions";
 import { shoppingInitialState } from "../../../Redux/Reducer/shoppingChartReducer";
 import { shoppingReducer } from "../../../Redux/Reducer/shoppingChartReducer";
+import ProductNotFound from "../../ProductNotFound/ProductNotFound";
 
 function AllProducts() {
   let products = useSelector((state) => state.allProducts);
@@ -20,10 +22,7 @@ function AllProducts() {
   const category = "allproducts";
 
   // Pagination Info //
-  const location = useLocation();
-  const query = new URLSearchParams(location.search);
-  const page = parseInt(query.get("page") || "1", 10);
-  const [currentPage, setCurrentPage] = useState(1);
+  const currentPage = useSelector((state) => state.currentPage);
   const productsPerPage = 6;
   const indexLastProduct = currentPage * productsPerPage;
   const indexFirstProduct = indexLastProduct - productsPerPage;
@@ -36,7 +35,7 @@ function AllProducts() {
   useEffect(() => {
     dispatch(getProducts());
     setCurrentPage(page);
-  }, [dispatch, page]);
+  }, [dispatch]);
 
   const pagination = (pageNumber) => {
     setCurrentPage(pageNumber);
@@ -54,29 +53,31 @@ function AllProducts() {
           <div className={styles.productsContainer}>
             <Filter />
             <div className={styles.productsCardsContainer}>
-              {currentProducts.map((el) => {
-                return (
-                  <ProductCard
-                    name={el.name}
-                    price={el.price}
-                    image={el.image}
-                    key={el.id}
-                    id={el.id}
-                    brand={el.brand}
-                    description={el.description}
-                    calification={el.calification}
-                    quantity={el.quantity}
-                    addToCart={addToCart}
-                  />
-                );
-              })}
+              {productsFilter.length > 0 ? (
+                currentProducts?.map((el) => {
+                  return (
+                    <ProductCard
+                      name={el.name}
+                      price={el.price}
+                      image={el.image}
+                      key={el.id}
+                      id={el.id}
+                      brand={el.brand}
+                      description={el.description}
+                      calification={el.calification}
+                      quantity={el.quantity}
+                      addToCart={addToCart}
+                    />
+                  );
+                })
+              ) : (
+                <ProductNotFound />
+              )}
             </div>
           </div>
-          <PaginationC
-            category={category}
-            pagination={pagination}
-            totalPages={totalPages}
-          />
+          {productsFilter.length > 0 ? (
+            <PaginationC category={category} totalPages={totalPages} />
+          ) : null}
         </>
       ) : (
         <Loader />

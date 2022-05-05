@@ -64,7 +64,7 @@
 }
 
 .productCardPrice {
-    line-height: 1em;
+    line-height: 1rem;
     overflow: visible;
     vertical-align: text-bottom;
     float: left;

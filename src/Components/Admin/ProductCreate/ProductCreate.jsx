@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { postProducts, getCategories, getProducts } from '../../Redux/Actions/index'
+import { postProducts, getCategories, getProducts } from '../../../Redux/Actions/index'
 import { useDispatch, useSelector } from 'react-redux';
 import Box from '@mui/material/Box';
 import TextField from '@mui/material/TextField';
