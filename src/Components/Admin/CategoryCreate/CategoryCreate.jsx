@@ -7,7 +7,7 @@ import { postCategory } from '../../../Redux/Actions';
 import { useDispatch, useSelector } from 'react-redux';
 import { useEffect } from 'react';
 import { getCategories } from '../../../Redux/Actions';
-import AdminNav from '../AdminNav/AdminNav';
+import { useNavigate } from 'react-router-dom';
 
 function CategoryCreate() {
 
@@ -15,7 +15,6 @@ function CategoryCreate() {
     const [error, setError] = useState({});
     const dispatch = useDispatch();
     const allCategoriesCheck = useSelector((state) => state.categories)
-    
 
     useEffect(() => {
         dispatch(getCategories());
@@ -34,9 +33,9 @@ function CategoryCreate() {
         dispatch(postCategory(input))
         setInput({name: ''});
         setError({});
+        window.alert('Category created')
+        dispatch(getCategories())
     }
-
-
 
     function validate(input) {
         let error = {};
