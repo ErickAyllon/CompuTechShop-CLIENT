@@ -19,6 +19,7 @@ import FormUser from "./Components/Auth0/FormUser";
 import Category from '../src/Components/Categories/Category/Category';
 import ViewCategories from './Components/Admin/ViewCategories/ViewCategories'
 import styles from './index.css'
+import ViewAllOrders from "./Components/Admin/ViewAllOrders/ViewAllOreders";
 
 const getDesignTokens = (mode) => ({
   palette: {
@@ -79,6 +80,7 @@ function App() {
             <Route path="/admin/shop/:id" element={<ShopDetails/>}/>
             <Route path="/form" element={<FormUser />} />
             <Route path="/admin/categories" element={<ViewCategories />} />
+            <Route path="/admin/allorders" element={<ViewAllOrders/>}/>
           </Routes>
         <Footer />
       </BrowserRouter>

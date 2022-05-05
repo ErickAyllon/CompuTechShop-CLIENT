@@ -4,35 +4,51 @@ import { getShopById, getUser } from '../../../Redux/Actions'
 import { useSelector, useDispatch } from 'react-redux';
 import { useParams } from 'react-router-dom';
 import { Link } from 'react-router-dom';
+import NotFound404 from '../../NotFound404/NotFound404';
+import AdminNav from '../AdminNav/AdminNav'
 
 function ShopDetail() {
   const dispatch = useDispatch();
   const { id } = useParams();
+  const shop = useSelector ((state) => state.shopDetail);
 
   useEffect(() => {
-    
-    dispatch(getUser());
     dispatch(getShopById(id));
-    console.log(user[0].email)
+    dispatch(getUser());
+    console.log('usuario',shop)
   }, [dispatch]);
-  const shop = useSelector ((state) => state.shopDetail);
+
+ 
   let users = useSelector((state) => state.users);
-  const user = users.filter(u => u.id === shop[0].userId)
+  let user;
+  if(shop.length) {
+    user = users.filter(u => u.id === shop[0].userId)
+  }
 
   return (
     <div>
-      <span>Date: {shop[0].date}</span><br/>
-      <span>State: {shop[0].state}</span><br/>
-      <span>Email: {user[0].email}</span><br/>
-      <span>Payment: {shop[0].payment}</span><br/>
-      <span>Amount: {shop[0].amount}</span><br/>
-      <span>Products: </span>{shop[0].products.map(el => {
+      <AdminNav/>
+      {shop.length ? shop.map(el => {
         return(
-          <div key={el}>
-          <Link to={'/' + el}>{el}</Link>
+          <div key={el.id}>
+            <span>Date: {el.date}</span><br/>
+            <span>State: {el.state}</span><br/>
+            {/* <span>Email: {user[0].email}</span><br/> */}
+            <span>Payment: {el.payment}</span><br/>
+            <span>Amount: {el.amount}</span><br/>
+            <span>Products: </span>{el.products.map(el => {
+              return(
+                <div key={el}>
+                  <Link to={'/' + el}>{el}</Link>
+                </div>
+              )
+      })} 
           </div>
         )
-      })}
+      })
+
+      : <NotFound404/>
+      }
     </div>
   )
 

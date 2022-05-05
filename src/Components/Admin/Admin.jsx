@@ -42,7 +42,9 @@ function Admin() {
         <div className={styles.adminCard}>
           <div className={styles.adminCardContainer}>
             <h4>ORDERS</h4>
-              <Button variant="outlined">View all orders</Button>
+              <Link to='/admin/allorders'>
+                <Button variant="outlined">View all orders</Button>
+              </Link>
           </div>
         </div>
         {/* {shops ? shops.map(el => {
