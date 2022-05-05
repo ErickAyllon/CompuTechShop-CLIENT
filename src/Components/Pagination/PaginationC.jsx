@@ -7,13 +7,13 @@ import PaginationItem from "@mui/material/PaginationItem";
 import { useDispatch, useSelector } from "react-redux";
 import { setCurrentPage } from "../../Redux/Actions";
 
-function PaginationC({ totalPages  }) {
+function PaginationC({ category, totalPages  }) {
   const location = useLocation();
   const query = new URLSearchParams(location.search);
   const page = parseInt(query.get('page') || '1', 10);
   const {search} = useParams();
-  const {category} = useParams();
-  const {allproducts} = useParams();
+  // const {category} = useParams();
+  // const {allproducts} = useParams();
   const currentPage = useSelector((state) => state.currentPage)
   const dispatch = useDispatch();
 
@@ -47,9 +47,9 @@ function PaginationC({ totalPages  }) {
               category ? 
               `/category/${category}${item.page === 1 ? '' : `?page=${item.page}`}`
               :
-              allproducts ?
-              `/${allproducts}${item.page === 1 ? '' : `?page=${item.page}`}` 
-              : null
+              // allproducts ?
+              `/${category}${item.page === 1 ? '' : `?page=${item.page}`}` 
+              // : null
             }
             {...item}
           />

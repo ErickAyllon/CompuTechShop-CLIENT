@@ -16,6 +16,10 @@ const ShoppingCart = () => {
   const clearCart = () => {
     dispatch({ type: TYPES.CLEAR_CART });
   };
+  const addToCart = (id) => {
+    console.log(id);
+    dispatch({ type: TYPES.ADD_TO_CART, payload: id });
+  };
 
   return (
     <div>
@@ -40,7 +44,12 @@ const ShoppingCart = () => {
               <article className="box">
                 <Dropdown.Divider />
                 {carti?.map((el, index) => (
-                  <CartItem key={index} data={el} delFromCart={delFromCart} />
+                  <CartItem
+                    key={index}
+                    data={el}
+                    delFromCart={delFromCart}
+                    addToCart={addToCart}
+                  />
                 ))}
               </article>
             </div>

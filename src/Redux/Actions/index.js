@@ -176,3 +176,18 @@ export function postCategory(payload) {
     return response;
   };
 }
+
+export function deleteCategory(id) {
+  console.log(id)
+  return async function(dispatch) {
+      try {
+          const json = await axios.delete('http://localhost:3001/deleteCategory/' + id)
+          return dispatch({
+              type: "DELETE_CATEGORY",
+              payload: json.data
+          })
+      } catch (error) {
+          console.log('catch: ' + error);
+      }
+  }
+}

@@ -18,7 +18,7 @@ function ProductCard({
     <div className={styles.productCardContainer}>
       <div className={styles.productCard}>
         <div className={styles.productCardImgContainer}>
-          <Link to={"/" + name}>
+          <Link to={"/" + name.split("/").join("-")}>
             <img src={image} alt="" className={styles.productImg} />
           </Link>
         </div>

@@ -9,13 +9,16 @@ import Loader from "../../Loader/Loader";
 import styles from "./AllProducts.module.css";
 import { TYPES } from "../../../Redux/Actions/shoppingCartActions";
 import ProductNotFound from "../../ProductNotFound/ProductNotFound";
+import { useParams } from "react-router-dom";
 
 function AllProducts() {
   let products = useSelector((state) => state.allProducts);
   const productsFilter = useSelector((state) => state.productsFilter);
   products = productsFilter.length > 0 ? productsFilter : products;
   const dispatch = useDispatch();
+  // const category = "allproducts";
   const category = "allproducts";
+  // console.log(category);
 
   // Pagination Info //
   const currentPage = useSelector((state) => state.currentPage);
@@ -35,7 +38,7 @@ function AllProducts() {
   const addToCart = (id) => {
     dispatch({ type: TYPES.ADD_TO_CART, payload: id });
   };
-
+  // console.log(products);
   return (
     <div className={styles.allProducts}>
       <Categories />
