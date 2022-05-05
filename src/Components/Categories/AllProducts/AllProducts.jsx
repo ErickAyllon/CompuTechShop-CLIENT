@@ -1,5 +1,3 @@
-import React, { useEffect, useReducer, useState } from "react";
-import { useLocation } from "react-router-dom";
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getProducts } from "../../../Redux/Actions";
@@ -10,8 +8,6 @@ import PaginationC from "../../Pagination/PaginationC";
 import Loader from "../../Loader/Loader";
 import styles from "./AllProducts.module.css";
 import { TYPES } from "../../../Redux/Actions/shoppingCartActions";
-import { shoppingInitialState } from "../../../Redux/Reducer/shoppingChartReducer";
-import { shoppingReducer } from "../../../Redux/Reducer/shoppingChartReducer";
 import ProductNotFound from "../../ProductNotFound/ProductNotFound";
 
 function AllProducts() {
@@ -34,17 +30,12 @@ function AllProducts() {
 
   useEffect(() => {
     dispatch(getProducts());
-    setCurrentPage(page);
   }, [dispatch]);
-
-  const pagination = (pageNumber) => {
-    setCurrentPage(pageNumber);
-  };
   // End Pagination Info //
   const addToCart = (id) => {
     dispatch({ type: TYPES.ADD_TO_CART, payload: id });
   };
-
+  console.log(products);
   return (
     <div className={styles.allProducts}>
       <Categories />
