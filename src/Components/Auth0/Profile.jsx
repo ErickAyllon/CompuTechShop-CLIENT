@@ -19,6 +19,7 @@ export default function Profile() {
     dispatch(getUser());
   }, [dispatch]);
 
+  console.log(user);
   return (
     isAuthenticated && (
       <div className={styles.profile}>

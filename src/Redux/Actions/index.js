@@ -98,22 +98,22 @@ export function getProductsByName(name) {
 
 export function filterByBrand(payload) {
   return {
-    type: 'FILTER_BY_BRAND',
+    type: "FILTER_BY_BRAND",
     payload,
   };
 }
 export function filterByPrice(payload) {
   return {
-    type: 'FILTER_BY_PRICE',
+    type: "FILTER_BY_PRICE",
     payload,
   };
 }
 
 export function orderProducts(payload) {
   return {
-    type: 'ORDER_PRODUCTS',
+    type: "ORDER_PRODUCTS",
     payload,
-  }
+  };
 }
 
 export function darkMode(payload) {
@@ -122,7 +122,6 @@ export function darkMode(payload) {
     payload: payload,
   };
 }
-
 
 export function getShops() {
   return async function (dispatch) {
@@ -159,7 +158,7 @@ export function getShopById(id) {
     } catch (error) {
       console.log(error);
     }
-  }
+  };
 }
 export function setCurrentPage(payload) {
   return {
@@ -170,7 +169,10 @@ export function setCurrentPage(payload) {
 
 export function postCategory(payload) {
   return async function () {
-    const response = await axios.post("http://localhost:3001/postCategory", payload);
+    const response = await axios.post(
+      "http://localhost:3001/postCategory",
+      payload
+    );
     return response;
   };
 }
