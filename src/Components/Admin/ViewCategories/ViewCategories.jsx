@@ -1,26 +1,24 @@
-import React, { useState } from 'react'
+import React from 'react';
 import styles from './ViewCategories.module.css';
-import { postCategory } from '../../../Redux/Actions';
-import { useDispatch, useSelector } from 'react-redux';
-import { useEffect } from 'react';
-import { getCategories } from '../../../Redux/Actions';
+import { useSelector } from 'react-redux';
 import CategoryCreate from '../CategoryCreate/CategoryCreate';
 
 function ViewCategories() {
-  const dispatch = useDispatch();
   const allCategories = useSelector((state) => state.categories)
-  useEffect(() => {
-    //console.log(allCategories)
-    dispatch(getCategories());
-  }, [dispatch])
-
-
 
   return (
-    <div>
-      {allCategories.length > 0 ? allCategories.map(el => {
-        <h5 className={styles.name} key={el.id}>{el.name}</h5>
-      }): null}
+    <div className={styles.viewCategoriesContainer}>
+      <div className={styles.viewCategories}>
+        <div className={styles.categories}>
+          {
+            allCategories?.map(el => {
+              return(
+              <h5 className={styles.name} key={el.id}>{el.name}</h5>
+              )
+            })
+          }
+        </div>
+      </div>
     <CategoryCreate />
     </div>
   )

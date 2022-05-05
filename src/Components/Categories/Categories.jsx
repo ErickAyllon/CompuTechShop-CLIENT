@@ -7,17 +7,20 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useState } from 'react';
+import { useParams } from 'react-router-dom';
 
 function Categories() {
     const dispatch = useDispatch();
     const categories = useSelector((state) => state.categories)
     const navigate = useNavigate();
+    const {allproducts} = useParams();
+    const {category} = useParams();
     const [categorySelect, setCategorySelect] = useState('')
-
     
     useEffect(() => {
         dispatch(getCategories());
-    }, [dispatch]);
+        setCategorySelect(allproducts ? allproducts : category ? category : '')
+    }, [dispatch, allproducts, category]);
     
     const setBrand = new Set();
     const unicBrand = categories.reduce((acc, category) => {
@@ -34,7 +37,7 @@ function Categories() {
       function handleCategorySelect(e) {
         e.preventDefault();
         setCategorySelect(e.target.value)
-        navigate(e.target.value === 'all' ? `/Allproducts` : `/category/${e.target.value}`)
+        navigate(e.target.value === 'Allproducts' ? `/Allproducts` : `/category/${e.target.value}`)
       }
 
   return (
@@ -53,7 +56,7 @@ function Categories() {
                   value={categorySelect}
                   onChange={(e) => handleCategorySelect(e)}
               > 
-                    <MenuItem value='all'>All</MenuItem>
+                    <MenuItem value='Allproducts'>All Products</MenuItem>
                   {brandMap.map((option) => (
                     <MenuItem key={option} value={option}>
                       {option}

@@ -18,6 +18,7 @@ import ShopDetails from './Components/Admin/ShopDetails/ShopDetails'
 import FormUser from "./Components/Auth0/FormUser";
 import Category from '../src/Components/Categories/Category/Category';
 import ViewCategories from './Components/Admin/ViewCategories/ViewCategories'
+import styles from './index.css'
 
 const getDesignTokens = (mode) => ({
   palette: {
@@ -64,21 +65,21 @@ function App() {
       <CssBaseline />
       <BrowserRouter>
         <NavBar />
-        <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/admin" element={<Admin />} />
-          <Route path="/profile" element={<Profile />} />
-          <Route path="/allproducts" element={<AllProducts />} />
-          <Route path="/category/:category" element={<Category />} />
-          <Route path="/:name" element={<ProductDetail />} />
-          <Route path="/search/:search" element={<ProductSearched />} />
-          <Route path="*" element={<NotFound404 />} />
-          <Route path="/user" element={<ProfileForm/>} />
-          <Route path="/admin/createProduct" element={<ProductCreate/>} />
-          <Route path="/admin/shop/:id" element={<ShopDetails/>}/>
-          <Route path="/form" element={<FormUser />} />
-          <Route path="/admin/categories" element={<ViewCategories />} />
-        </Routes>
+          <Routes>
+            <Route path="/" element={<Home />} />
+            <Route path="/admin" element={<Admin />} />
+            <Route path="/profile" element={<Profile />} />
+            <Route path="/:allproducts" element={<AllProducts />} />
+            <Route path="/category/:category" element={<Category />} />
+            <Route path="/:name" element={<ProductDetail />} />
+            <Route path="/search/:search" element={<ProductSearched />} />
+            <Route path="*" element={<NotFound404 />} />
+            <Route path="/user" element={<ProfileForm/>} />
+            <Route path="/admin/createProduct" element={<ProductCreate/>} />
+            <Route path="/admin/shop/:id" element={<ShopDetails/>}/>
+            <Route path="/form" element={<FormUser />} />
+            <Route path="/admin/categories" element={<ViewCategories />} />
+          </Routes>
         <Footer />
       </BrowserRouter>
     </ThemeProvider>

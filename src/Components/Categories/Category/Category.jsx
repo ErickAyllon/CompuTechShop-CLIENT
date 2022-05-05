@@ -67,7 +67,7 @@ function Category() {
           }
         </>
       ) : (
-        <Loader />
+        <ProductNotFound />
       )}
     </div>
   );
