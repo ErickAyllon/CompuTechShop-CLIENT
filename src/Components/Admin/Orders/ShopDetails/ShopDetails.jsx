@@ -1,6 +1,6 @@
 import React, { useState, useEffect} from 'react'
 //import styles from './ProductDetail.module.css'
-import { getShopById, getUser } from '../../../Redux/Actions'
+import { getShopById, getUser } from '../../../../Redux/Actions'
 import { useSelector, useDispatch } from 'react-redux';
 import { useParams } from 'react-router-dom';
 import { Link } from 'react-router-dom';
