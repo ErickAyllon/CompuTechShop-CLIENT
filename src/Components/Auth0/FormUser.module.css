@@ -1,0 +1,21 @@
+.input  {
+    width: 100%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    box-sizing: border-box;
+    justify-content: center;
+    padding-left: 45%;
+   
+    
+  }
+
+  .input .border {
+    border: 2px solid red;
+    border-radius: 4px;
+    bottom: 2px solid rgb(246, 255, 0);
+    background-color: rgb(255, 77, 0);
+    color: black;
+    font-size: 15px;
+    font-weight: bold;
+    padding: 7px;
+}

@@ -11,6 +11,7 @@ import LogOutButton from "./LogOutButton";
 
 export default function Profile() {
   const { user, isAuthenticated } = useAuth0();
+  
   const dispatch = useDispatch();
   let myUsers = useSelector((state) => state.users);
   console.log(user);
