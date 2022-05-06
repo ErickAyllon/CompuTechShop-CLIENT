@@ -52,6 +52,8 @@ function CategoryAdmin() {
                     description={el.description}
                     calification={el.calification}
                     quantity={el.quantity}
+                    update={true}
+                    delet={true}
                   />
                 );
               })
