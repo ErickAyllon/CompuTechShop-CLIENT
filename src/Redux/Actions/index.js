@@ -123,7 +123,7 @@ export function darkMode(payload) {
 export function getShops() {
   return async function (dispatch) {
     try {
-      var json = await axios.get("http://localhost:3001/getShops");
+      var json = await axios.get("http://localhost:3001/getPayments");
       return dispatch({
         type: "GET_SHOPS",
         payload: json.data,
@@ -137,7 +137,7 @@ export function getShops() {
 export function getShopById(id) {
   return async function (dispatch) {
     try {
-      var json = await axios.get("http://localhost:3001/getShops/" + id);
+      var json = await axios.get("http://localhost:3001/getPayments?id=" + id);
       return dispatch({
         type: "GET_SHOP_BY_ID",
         payload: json.data,
