@@ -8,3 +8,10 @@ export default function LogOutButton() {
     <span onClick={() => logout()}>Log Out</span>
   )
 }
+
+//const { logOutWithRedirect, isAuthenticated } = useAuth0();
+// return (
+//   isAuthenticated && (
+//     <button onClick={() => logOutWithRedirect()}> Sign Out</button>
+//   )
+// )

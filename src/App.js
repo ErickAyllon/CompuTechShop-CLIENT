@@ -4,12 +4,20 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import NavBar from "./Components/NavBar/Navbar";
 import Footer from "./Components/Footer/Footer";
 import Admin from "./Components/Admin/Admin";
-import Profile from "./Components/Profile/Profile";
+import Profile from "./Components/Auth0/Profile"
 import ProductDetail from "./Components/Detail/ProductDetail";
 import NotFound404 from "./Components/NotFound404/NotFound404";
 import AllProducts from "./Components/Categories/AllProducts/AllProducts";
 import ProfileForm from "./Components/Profile/ProfileForm";
 import ProductSearched from "./Components/ProductSearched/ProductSearched";
+import Help from "./Components/Footer/Help/Help"
+import FAQ from "./Components/Footer/FAQ";
+import FAQ2 from './Components/Footer/FAQ2'
+import WorkWithUs from "./Components/Footer/WorkWithUs";
+import About from "./Components/Footer/About";
+
+
+
 import { CssBaseline } from "@mui/material";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 import { amber, deepOrange, grey } from "@mui/material/colors";
@@ -27,6 +35,7 @@ import CategoryAdmin from "./Components/Admin/Products/Categories/Category/Categ
 import AllProductsAdmin from "./Components/Admin/Products/Categories/AllProducts/AllProductsAdmin";
 import Users from "./Components/Admin/Users/Users";
 import UpdateProduct from "./Components/Admin/Products/UpdateProduct/UpdateProduct";
+
 
 const getDesignTokens = (mode) => ({
   palette: {

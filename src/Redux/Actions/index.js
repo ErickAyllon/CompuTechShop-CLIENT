@@ -20,6 +20,13 @@ export function getProducts() {
     });
   };
 }
+export const CLEAN_FILTER = "CLEAN_FILTER";
+export function cleanFilter() {
+  return {
+    type: "CLEAN_FILTER",
+    payload: {},
+  };
+}
 
 export function getDetail(name) {
   return async function (dispatch) {
@@ -103,6 +110,20 @@ export function filterByPrice(payload) {
   return {
     type: "FILTER_BY_PRICE",
     payload,
+  };
+}
+export const FILTER_BY_BRANDFILTER = "FILTER_BY_BRANDFILTER";
+export function filterByBrandCategoriesFilter(payload) {
+  return {
+    type: FILTER_BY_BRANDFILTER,
+    payload,
+  };
+}
+
+export function cleanDog() {
+  return {
+    type: "CLEAN_DOGS",
+    payload: {},
   };
 }
 

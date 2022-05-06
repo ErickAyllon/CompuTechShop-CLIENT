@@ -3,6 +3,8 @@ import { TYPES } from "../Actions/shoppingCartActions";
 const initialState = {
   allProducts: [],
   products: [],
+  allProductsFilter: [],
+  productsFilter: [],
   productsFilter: [],
   productsNotPriceChangeable: [],
   users: [],
