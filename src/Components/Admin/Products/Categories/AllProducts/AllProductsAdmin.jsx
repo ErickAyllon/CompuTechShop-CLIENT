@@ -1,24 +1,23 @@
-import React, { useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { getProducts } from "../../../Redux/Actions";
-import Categories from "../Categories";
-import ProductCard from "../../ProductCard/ProductCard";
-import Filter from "../../Filter/Filter";
-import PaginationC from "../../Pagination/PaginationC";
-import Loader from "../../Loader/Loader";
-import styles from "./AllProducts.module.css";
-import { TYPES } from "../../../Redux/Actions/shoppingCartActions";
-import ProductNotFound from "../../ProductNotFound/ProductNotFound";
-import { useParams } from "react-router-dom";
+import React, { useEffect } from 'react'
+import { useSelector } from 'react-redux'
+import styles from './AllProductsAdmin.module.css'
+import Loader from '../../../../Loader/Loader'
+import ProductNotFound from '../../../../ProductNotFound/ProductNotFound'
+import Filter from '../../../../Filter/Filter'
+import { getProducts } from '../../../../../Redux/Actions'
+import { useDispatch } from 'react-redux'
+import ProductCardAdmin from '../../ProductCardAdmin/ProductCardAdmin'
+import PaginationCAdmin from '../../Pagination/PaginationCAdmin'
+import Categories from '../../../../Categories/Categories'
+import CategoryAdmin from '../Category/CategoryAdmin'
+import CategoriesAdmin from '../CategoriesAdmin'
 
-function AllProducts() {
+function AllProductsAdmin() {
   let products = useSelector((state) => state.allProducts);
   const productsFilter = useSelector((state) => state.productsFilter);
   products = productsFilter.length > 0 ? productsFilter : products;
   const dispatch = useDispatch();
-  // const category = "allproducts";
-  const category  = 'allproducts'
-  // console.log(category);
+  const category  = 'Allproducts'
 
   // Pagination Info //
   const currentPage = useSelector((state) => state.currentPage);
@@ -34,14 +33,10 @@ function AllProducts() {
   useEffect(() => {
     dispatch(getProducts());
   }, [dispatch]);
-  // End Pagination Info //
-  const addToCart = (id) => {
-    dispatch({ type: TYPES.ADD_TO_CART, payload: id });
-  };
-  // console.log(products);
+
   return (
-    <div className={styles.allProducts}>
-      <Categories />
+    <div className={styles.viewProducts}>
+      <CategoriesAdmin/>
       {products.length > 0 ? (
         <>
           <div className={styles.productsContainer}>
@@ -50,7 +45,7 @@ function AllProducts() {
               {productsFilter.length > 0 ? (
                 currentProducts?.map((el) => {
                   return (
-                    <ProductCard
+                    <ProductCardAdmin
                       name={el.name}
                       price={el.price}
                       image={el.image}
@@ -60,7 +55,9 @@ function AllProducts() {
                       description={el.description}
                       calification={el.calification}
                       quantity={el.quantity}
-                      addToCart={addToCart}
+                      update={true}
+                      delet={true}
+                      // trash={true}
                     />
                   );
                 })
@@ -70,7 +67,7 @@ function AllProducts() {
             </div>
           </div>
           {productsFilter.length > 0 ? (
-            <PaginationC category={category} totalPages={totalPages} />
+            <PaginationCAdmin category={category} totalPages={totalPages} />
           ) : null}
         </>
       ) : (
@@ -80,4 +77,4 @@ function AllProducts() {
   );
 }
 
-export default AllProducts;
+export default AllProductsAdmin

@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 //import styles from './ProductCard.module.css';
 import { useDispatch, useSelector } from "react-redux";
-import { getUser } from '../../../Redux/Actions';
+import { getUser } from '../../../../Redux/Actions';
 import { useNavigate } from 'react-router-dom';
 
 

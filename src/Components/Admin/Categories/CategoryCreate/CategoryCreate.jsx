@@ -3,10 +3,9 @@ import Box from '@mui/material/Box';
 import TextField from '@mui/material/TextField';
 import Button from '@mui/material/Button';
 import styles from './CategoryCreate.module.css'
-import { postCategory } from '../../../Redux/Actions';
+import { postCategory, getCategories } from '../../../../Redux/Actions';
 import { useDispatch, useSelector } from 'react-redux';
 import { useEffect } from 'react';
-import { getCategories } from '../../../Redux/Actions';
 
 function CategoryCreate() {
 
@@ -14,7 +13,6 @@ function CategoryCreate() {
     const [error, setError] = useState({});
     const dispatch = useDispatch();
     const allCategoriesCheck = useSelector((state) => state.categories)
-    
 
     useEffect(() => {
         dispatch(getCategories());
@@ -33,9 +31,9 @@ function CategoryCreate() {
         dispatch(postCategory(input))
         setInput({name: ''});
         setError({});
+        window.alert('Category created')
+        dispatch(getCategories())
     }
-
-
 
     function validate(input) {
         let error = {};
@@ -82,9 +80,11 @@ function CategoryCreate() {
                     error={error.name ? true : false}
                     helperText={error.name}
                 />
-              <Button type="submit" onClick={handleSubmit} variant="outlined" disabled={ error.name || input.name === '' ? true : false}>
-                Create Category
-              </Button>
+                <div className={styles.createCatgoryBtn}>
+                    <Button type="submit" onClick={handleSubmit} variant="outlined" disabled={ error.name || input.name === '' ? true : false}>
+                        Create Category
+                    </Button>
+                </div>
             </Box>
         </div>
     </div>

@@ -164,19 +164,51 @@ export function postCategory(payload) {
   };
 }
 
-// export function updatedUser(id, payload) {
-//   return async function (dispatch) {
-//     try {
-//       var json = await axios.put(
-//         "http://localhost:3001/updateUser" + id,
-//         payload
-//       );
-//       return dispatch({
-//         type: "UPDATE",
-//         payload: json.data,
-//       });
-//     } catch (error) {
-//       console.log(error);
-//     }
-//   };
-// }
+export function deleteCategory(id) {
+  return async function (dispatch) {
+    try {
+      const json = await axios.delete(
+        "http://localhost:3001/deleteCategory/" + id
+      );
+      return dispatch({
+        type: "DELETE_CATEGORY",
+        payload: json.data,
+      });
+    } catch (error) {
+      console.log("catch: " + error);
+    }
+  };
+}
+
+export function deleteProduct(id) {
+  return async function (dispatch) {
+    try {
+      const json = await axios.delete(
+        "http://localhost:3001/deleteProduct/" + id
+      );
+      return dispatch({
+        type: "DELETE_PRODUCT",
+        payload: json.data,
+      });
+    } catch (error) {
+      console.log("catch: " + error);
+    }
+  };
+}
+
+export function updateProduct(id, payload) {
+  return async function (dispatch) {
+    try {
+      const json = await axios.delete(
+        "http://localhost:3001/updateProduct/" + id,
+        payload
+      );
+      return dispatch({
+        type: "UPDATE_PRODUCT",
+        payload: json.data,
+      });
+    } catch (error) {
+      console.log("catch: " + error);
+    }
+  };
+}
