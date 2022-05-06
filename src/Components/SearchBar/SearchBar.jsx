@@ -18,7 +18,7 @@ function SearchBar() {
         e.preventDefault();
         dispatch(getProductsByName(name));
         setName('');
-        navigate('/s/' + name)
+        navigate('/search/' + name)
     }
     
   return (
