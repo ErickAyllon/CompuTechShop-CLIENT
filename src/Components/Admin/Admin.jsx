@@ -20,22 +20,16 @@ function Admin() {
 
   return (
     <div className={styles.admin}>
-      {/* <AdminNav/> */}
       <div className={styles.adminContainer}>
         <div className={styles.adminCard}>
           <div className={styles.adminCardContainer}>
-            {/* <h4>PRODUCTS</h4> */}
-            <Link to='/admin/products'>
+            <Link to='/admin/products/Allproducts'>
               <Button variant="outlined">Products</Button>
             </Link>
-            {/* <Link to='/admin/createProduct'>
-              <Button variant="outlined">Create Products</Button>
-            </Link> */}
           </div>
         </div>
         <div className={styles.adminCard}>
           <div className={styles.adminCardContainer}>
-            {/* <h4>CATEGORIES</h4> */}
             <Link to='/admin/categories'>
               <Button variant="outlined">categories</Button>
             </Link>
@@ -43,28 +37,11 @@ function Admin() {
         </div>
         <div className={styles.adminCard}>
           <div className={styles.adminCardContainer}>
-
-            {/* <h4>ORDERS</h4> */}
             <Link to="/admin/allorders">
               <Button variant="outlined">Orders</Button>
             </Link>
           </div>
         </div>
-        {/* {shops ? shops.map(el => {
-          return(
-            <ShopCard
-            amount={el.amount}
-            date={el.date}
-            payment={el.payment}
-            state={el.state}
-            userId={el.userId}
-            products={el.products}
-            id={el.id}
-            key={el.id}
-            />
-          )
-        }) : null} */}
-      {/* <CategoryCreate /> */}
      </div>
     </div>
   )

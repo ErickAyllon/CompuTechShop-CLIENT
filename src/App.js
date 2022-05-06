@@ -22,6 +22,9 @@ import ProductCreate from "./Components/Admin/Products/ProductCreate/ProductCrea
 import AdminCategories from "./Components/Admin/Categories/AdminCategories";
 import AdminProducts from "./Components/Admin/Products/AdminProducts";
 import ShopDetails from "./Components/Admin/Orders/ShopDetails/ShopDetails";
+import ProductDetailAdmin from "./Components/Admin/Products/Detail/ProductDetailAdmin";
+import CategoryAdmin from "./Components/Admin/Products/Categories/Category/CategoryAdmin";
+import AllProductsAdmin from "./Components/Admin/Products/Categories/AllProducts/AllProductsAdmin";
 
 const getDesignTokens = (mode) => ({
   palette: {
@@ -78,12 +81,16 @@ function App() {
             <Route path="/search/:search" element={<ProductSearched />} />
             <Route path="*" element={<NotFound404 />} />
             <Route path="/user" element={<ProfileForm/>} />
-            <Route path="/admin/products" element={<AdminProducts/>} />
+
+            <Route path="/admin/products/Allproducts" element={<AdminProducts/>} />
+            {/* <Route path="/admin/products/allproducts" element={<AllProductsAdmin/>} /> */}
+            <Route path="/admin/products/:category" element={<CategoryAdmin/>} />
             <Route path="/admin/products/createProduct" element={<ProductCreate/>} />
+            <Route path="/admin/product/:name" element={<ProductDetailAdmin />} />
+
             <Route path="/admin/categories" element={<AdminCategories />} />
             <Route path="/admin/shop/:id" element={<ShopDetails/>}/>
             <Route path="/form" element={<FormUser />} />
-            {/* <Route path="/admin/categories" element={<ViewCategories />} /> */}
             <Route path="/admin/allorders" element={<ViewAllOrders/>}/>
           </Routes>
         <Footer />

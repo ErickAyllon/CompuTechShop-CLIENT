@@ -7,7 +7,19 @@ function AdminNav() {
   return (
     <div className={styles.adminNav}>
         <Link to='/admin'>
-          <Button variant="outlined">Admin panel</Button>
+          <Button variant="outlined">Admin Home</Button>
+        </Link>
+        <Link to='/admin/products/Allproducts'>
+          <Button variant="outlined">Products</Button>
+        </Link>
+        <Link to='/admin/products/createProduct'>
+          <Button variant="outlined">Create Product</Button>
+        </Link>
+        <Link to='/admin/categories'>
+          <Button variant="outlined">Categories</Button>
+        </Link>
+        <Link to='/admin/allorders'>
+          <Button variant="outlined">Orders</Button>
         </Link>
     </div>
   )
