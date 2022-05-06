@@ -278,7 +278,7 @@ function UpdateProduct() {
               </div> 
             }
             <div style={{margin:'20px 50px'}}>
-              <h3>Your product updated</h3>
+              <h3>Product updated</h3>
               <ProductCardAdmin name={input.name} price={input.price} image={input.image} calification={product[0].calification} />
             </div>
             </div>

@@ -6,7 +6,6 @@ const initialState = {
   productsFilter: [],
   productsNotPriceChangeable: [],
   users: [],
-  userOne: [],
   productDetail: [],
   categories: [],
   darkMode: true,
@@ -74,11 +73,6 @@ function rootReducer(state = initialState, action) {
         productsNotPriceChangeable: orderedD,
         // allProducts: orderedD,
         productDetail: [],
-      };
-    case "POST_USER":
-      return {
-        ...state,
-        userOne: action.payload,
       };
     case "FILTER_BY_BRAND":
       const filtered =
@@ -221,6 +215,11 @@ function rootReducer(state = initialState, action) {
         ...state,
         currentPage: action.payload,
       };
+    // case "UPDATE": {
+    //   return {
+    //     ...state,
+    //   };
+    // }
     case "DELETE_CATEGORY":
       return {
         ...state,

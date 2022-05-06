@@ -3,7 +3,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { Link, useParams, useNavigate } from "react-router-dom";
 import { useAuth0 } from "@auth0/auth0-react";
 
-import { getUser } from "../../Redux/Actions/index.js";
+import { getUser, getUserDetail } from "../../Redux/Actions/index.js";
 import styles from "./Profile.module.css";
 import DropdownMenu from "react-bootstrap/esm/DropdownMenu";
 import { Dropdown } from "react-bootstrap";
@@ -13,7 +13,6 @@ export default function Profile() {
   const { user, isAuthenticated } = useAuth0();
   const dispatch = useDispatch();
   let myUsers = useSelector((state) => state.users);
-  // console.log(user.picture);
 
   useEffect(() => {
     dispatch(getUser());
@@ -37,7 +36,7 @@ export default function Profile() {
             focusFirstItemOnShow="false"
             variant="dark"
           >
-            <Dropdown.Item href="/profile">My Profile</Dropdown.Item>
+            <Dropdown.Item href={"/profile"}>My Profile</Dropdown.Item>
             <Dropdown.Item href="/admin">My Product</Dropdown.Item>
             <Dropdown.Divider />
             <Dropdown.Item href="" className={styles.logOutMenu}>

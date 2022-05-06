@@ -60,6 +60,13 @@ export function postProducts(payload) {
   };
 }
 
+export function postUser(payload) {
+  return async function () {
+    let postUser = await axios.post("http://localhost:3001/postUser", payload);
+    return postUser;
+  };
+}
+
 export const filterByCategory = (category) => {
   return async (dispatch) => {
     var json = await axios.get(
@@ -71,16 +78,6 @@ export const filterByCategory = (category) => {
     });
   };
 };
-export const POST_USER = "POST_USER";
-export function postUser(payload) {
-  return async function () {
-    const response = await axios.post(
-      "http://localhost:3001/postUser",
-      payload
-    );
-    return response;
-  };
-}
 
 export function getProductsByName(name) {
   return async function (dispatch) {
@@ -137,16 +134,6 @@ export function getShops() {
   };
 }
 
-// export function getUserById(userId) {
-//   return async (dispatch) => {
-//     var json = await axios.get("http://localhost:3001/users/" + userId);
-//     return dispatch({
-//       type: "GET_USER_BY_ID",
-//       payload: json.data,
-//     });
-//   };
-// };
-
 export function getShopById(id) {
   return async function (dispatch) {
     try {
@@ -178,31 +165,35 @@ export function postCategory(payload) {
 }
 
 export function deleteCategory(id) {
-  return async function(dispatch) {
-      try {
-          const json = await axios.delete('http://localhost:3001/deleteCategory/' + id)
-          return dispatch({
-              type: "DELETE_CATEGORY",
-              payload: json.data
-          })
-      } catch (error) {
-          console.log('catch: ' + error);
-      }
-  }
+  return async function (dispatch) {
+    try {
+      const json = await axios.delete(
+        "http://localhost:3001/deleteCategory/" + id
+      );
+      return dispatch({
+        type: "DELETE_CATEGORY",
+        payload: json.data,
+      });
+    } catch (error) {
+      console.log("catch: " + error);
+    }
+  };
 }
 
 export function deleteProduct(id) {
-  return async function(dispatch) {
-      try {
-          const json = await axios.delete('http://localhost:3001/deleteProduct/' + id)
-          return dispatch({
-              type: "DELETE_PRODUCT",
-              payload: json.data
-          })
-      } catch (error) {
-          console.log('catch: ' + error);
-      }
-  }
+  return async function (dispatch) {
+    try {
+      const json = await axios.delete(
+        "http://localhost:3001/deleteProduct/" + id
+      );
+      return dispatch({
+        type: "DELETE_PRODUCT",
+        payload: json.data,
+      });
+    } catch (error) {
+      console.log("catch: " + error);
+    }
+  };
 }
 
 export function updateProduct(id, payload) {
