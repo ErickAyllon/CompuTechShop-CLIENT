@@ -8,8 +8,6 @@ import { getProducts } from '../../../../../Redux/Actions'
 import { useDispatch } from 'react-redux'
 import ProductCardAdmin from '../../ProductCardAdmin/ProductCardAdmin'
 import PaginationCAdmin from '../../Pagination/PaginationCAdmin'
-import Categories from '../../../../Categories/Categories'
-import CategoryAdmin from '../Category/CategoryAdmin'
 import CategoriesAdmin from '../CategoriesAdmin'
 
 function AllProductsAdmin() {
@@ -57,7 +55,6 @@ function AllProductsAdmin() {
                       quantity={el.quantity}
                       update={true}
                       delet={true}
-                      // trash={true}
                     />
                   );
                 })

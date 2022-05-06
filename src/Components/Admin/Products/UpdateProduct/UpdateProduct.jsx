@@ -1,12 +1,11 @@
 import React, { useState, useEffect } from 'react';
-import { updateProduct, getCategories, getProducts, getDetail } from '../../../../Redux/Actions'
+import { updateProduct, getCategories, getDetail } from '../../../../Redux/Actions'
 import { useDispatch, useSelector } from 'react-redux';
 import Box from '@mui/material/Box';
 import TextField from '@mui/material/TextField';
 import MenuItem from '@mui/material/MenuItem';
 import Button from '@mui/material/Button';
 import styles from './UpdateProduct.module.css'
-import { Link } from 'react-router-dom';
 import AdminNav from '../../AdminNav/AdminNav';
 import ProductCardAdmin from '../ProductCardAdmin/ProductCardAdmin';
 import { useParams } from 'react-router-dom';
@@ -16,13 +15,11 @@ function UpdateProduct() {
   const {name} = useParams();
   const product = useSelector ((state) => state.productDetail);
   const categories = useSelector((state) => state.categories)
-  const allProductsCheck = useSelector((state) => state.allProducts)
   const [errors, setErrors] = useState({})
 
   useEffect(() => {
     dispatch(getCategories());
     dispatch(getDetail(name))
-    // dispatch(getProducts());
   }, [dispatch, name]);
 
   const [input, setInput] = useState({

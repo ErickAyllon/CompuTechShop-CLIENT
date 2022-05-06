@@ -84,21 +84,12 @@ function App() {
           <Route path="*" element={<NotFound404 />} />
           <Route path="/user" element={<ProfileForm />} />
 
-          <Route
-            path="/admin/products/Allproducts"
-            element={<AdminProducts />}
-          />
+          <Route path="/admin/products/Allproducts" element={<AdminProducts />} />
           {/* <Route path="/admin/products/allproducts" element={<AllProductsAdmin/>} /> */}
           <Route path="/admin/products/:category" element={<CategoryAdmin />} />
-          <Route
-            path="/admin/products/createProduct"
-            element={<ProductCreate />}
-          />
+          <Route path="/admin/products/createProduct"element={<ProductCreate />} />
           <Route path="/admin/product/:name" element={<ProductDetailAdmin />} />
-          <Route
-            path="/admin/product/update/:name"
-            element={<UpdateProduct />}
-          />
+          <Route path="/admin/product/update/:name" element={<UpdateProduct />} />
 
           <Route path="/admin/categories" element={<AdminCategories />} />
           <Route path="/admin/shop/:id" element={<ShopDetails />} />
