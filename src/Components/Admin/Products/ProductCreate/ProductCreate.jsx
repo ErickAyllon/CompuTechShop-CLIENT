@@ -145,7 +145,7 @@ function ProductCreate() {
             value={input.brand}
             helperText={errors.brand}
           />
-          <TextField
+          {/* <TextField
             variant="filled"
             required
             name="calification" 
@@ -159,7 +159,7 @@ function ProductCreate() {
             InputLabelProps={{
               shrink: true,
             }}
-          />
+          /> */}
             <TextField
             variant="filled"
             name="quantity" 
@@ -193,6 +193,7 @@ function ProductCreate() {
             name="image" 
             onChange={handleChange} 
             label="Image"
+            rows={1}
             multiline
             value={input.image}
             error={errors.image ? true : false}
@@ -231,7 +232,7 @@ function ProductCreate() {
               }}
             />
             <div className={styles.createButton} >
-              <Button type="submit" onClick={handleSubmit} variant="outlined" disabled={errors.name || errors.brand || errors.calification || errors.quantity || errors.description || errors.image || errors.categories || errors.price || input.name === '' ? true : false}>
+              <Button type="submit" onClick={handleSubmit} variant="outlined" disabled={errors.name || errors.brand || errors.quantity || errors.description || errors.image || errors.categories || errors.price || input.name === '' ? true : false}>
                 Create Product
               </Button>
             </div>
