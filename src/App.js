@@ -3,11 +3,6 @@ import { useSelector } from "react-redux";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import NavBar from "./Components/NavBar/Navbar";
 import Footer from "./Components/Footer/Footer";
-import Laptops from "./Components/Categories/Laptops/Laptops.jsx";
-import Monitors from "./Components/Categories/Monitors/Monitors";
-import Headsets from "./Components/Categories/Headsets/Headsets";
-import Keyboards from "./Components/Categories/Keyboards/Keyboards";
-import Mouses from "./Components/Categories/Mouses/Mouses";
 import Admin from "./Components/Admin/Admin";
 import Profile from "./Components/Auth0/Profile"
 import ProductDetail from "./Components/Detail/ProductDetail";
@@ -25,8 +20,21 @@ import About from "./Components/Footer/About";
 
 import { CssBaseline } from "@mui/material";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
-import { amber, deepOrange, grey } from "@mui/material/colors";
+import { amber, deepOrange, grey } from '@mui/material/colors';
 import FormUser from "./Components/Auth0/FormUser";
+import Category from '../src/Components/Categories/Category/Category';
+import ViewAllOrders from "./Components/Admin/Orders/ViewAllOrders/ViewAllOreders";
+import ViewCategories from './Components/Admin/Categories/ViewCategories/ViewCategories'
+import Products from "./Components/Admin/Products/AdminProducts";
+import ProductCreate from "./Components/Admin/Products/ProductCreate/ProductCreate";
+import AdminCategories from "./Components/Admin/Categories/AdminCategories";
+import AdminProducts from "./Components/Admin/Products/AdminProducts";
+import ShopDetails from "./Components/Admin/Orders/ShopDetails/ShopDetails";
+import ProductDetailAdmin from "./Components/Admin/Products/Detail/ProductDetailAdmin";
+import CategoryAdmin from "./Components/Admin/Products/Categories/Category/CategoryAdmin";
+import AllProductsAdmin from "./Components/Admin/Products/Categories/AllProducts/AllProductsAdmin";
+import Users from './Components/Admin/Users/Users';
+import UpdateProduct from "./Components/Admin/Products/UpdateProduct/UpdateProduct";
 
 
 const getDesignTokens = (mode) => ({
@@ -74,29 +82,30 @@ function App() {
       <CssBaseline />
       <BrowserRouter>
         <NavBar />
-        <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/admin" element={<Admin />} />
-          <Route path="/profile" element={<Profile />} />
-          <Route path="/allproducts" element={<AllProducts />} />
-          <Route path="/laptops" element={<Laptops />} />
-          <Route path="/monitors" element={<Monitors />} />
-          <Route path="/mouses" element={<Mouses />} />
-          <Route path="/headsets" element={<Headsets />} />
-          <Route path="/keyboards" element={<Keyboards />} />
-          <Route path="/:name" element={<ProductDetail />} />
-          <Route path="/s/:search" element={<ProductSearched />} />
-          <Route path="*" element={<NotFound404 />} />
-          <Route path="/user" element={<ProfileForm/>} />
-          <Route path='/Help' element={<Help/>}/>
-          <Route path='/FAQ' element={<FAQ/>}/>
-          <Route path='/FAQ2' element={<FAQ2/>}/>
-          <Route path='/WorkWithUs' element={<WorkWithUs/>}/>
-          <Route path='/About' element={<About/>}/>
-      
-          <Route path="/user" element={<ProfileForm />} />
-          <Route path="/form" element={<FormUser />} />
-        </Routes>
+          <Routes>
+            <Route path="/" element={<Home />} />
+            <Route path="/admin" element={<Admin />} />
+            <Route path="/profile" element={<Profile />} />
+            <Route path="/allproducts" element={<AllProducts />} />
+            <Route path="/category/:category" element={<Category />} />
+            <Route path="/:name" element={<ProductDetail />} />
+            <Route path="/search/:search" element={<ProductSearched />} />
+            <Route path="*" element={<NotFound404 />} />
+            <Route path="/user" element={<ProfileForm/>} />
+
+            <Route path="/admin/products/Allproducts" element={<AdminProducts/>} />
+            {/* <Route path="/admin/products/allproducts" element={<AllProductsAdmin/>} /> */}
+            <Route path="/admin/products/:category" element={<CategoryAdmin/>} />
+            <Route path="/admin/products/createProduct" element={<ProductCreate/>} />
+            <Route path="/admin/product/:name" element={<ProductDetailAdmin />} />
+            <Route path="/admin/product/update/:name" element={<UpdateProduct />} />
+
+            <Route path="/admin/categories" element={<AdminCategories />} />
+            <Route path="/admin/shop/:id" element={<ShopDetails/>}/>
+            <Route path="/form" element={<FormUser />} />
+            <Route path="/admin/allorders" element={<ViewAllOrders/>}/>
+            <Route path='/admin/users' element={<Users/>}/>
+          </Routes>
         <Footer />
       </BrowserRouter>
     </ThemeProvider>

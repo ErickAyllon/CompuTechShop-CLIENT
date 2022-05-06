@@ -13,12 +13,13 @@ export default function Profile() {
   const { user, isAuthenticated } = useAuth0();
   const dispatch = useDispatch();
   let myUsers = useSelector((state) => state.users);
-  console.log(user);
+  // console.log(user.picture);
 
   useEffect(() => {
     dispatch(getUser());
   }, [dispatch]);
 
+  // console.log(user);
   return (
     isAuthenticated && (
       <div className={styles.profile}>

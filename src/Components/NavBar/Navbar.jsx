@@ -6,10 +6,11 @@ import LoginButton from "../Auth0/LoginButton.jsx";
 import { useAuth0 } from "@auth0/auth0-react";
 import SearchBar from "../SearchBar/SearchBar";
 import { darkMode } from "../../Redux/Actions/index.js";
-import IconButton from '@mui/material/IconButton';
-import Brightness4Icon from '@mui/icons-material/Brightness4';
-import Brightness7Icon from '@mui/icons-material/Brightness7';
+import IconButton from "@mui/material/IconButton";
+import Brightness4Icon from "@mui/icons-material/Brightness4";
+import Brightness7Icon from "@mui/icons-material/Brightness7";
 import styles from "./NavBar.module.css";
+import ShoppingCart from "../Cart/ShoppingCart.jsx";
 
 function NavBar() {
   const { isAuthenticated } = useAuth0();
@@ -29,8 +30,11 @@ function NavBar() {
         <div className={styles.searchBarCall}>
           <SearchBar />
         </div>
+        <div>
+          <ShoppingCart />
+        </div>
         <IconButton sx={{ ml: 1 }} onClick={changeTheme} color="primary">
-          { isDarkTheme ? <Brightness4Icon /> : <Brightness7Icon />}
+          {isDarkTheme ? <Brightness4Icon /> : <Brightness7Icon />}
         </IconButton>
         <div className={styles.auth0}>
           {isAuthenticated ? <Profile /> : <LoginButton />}
