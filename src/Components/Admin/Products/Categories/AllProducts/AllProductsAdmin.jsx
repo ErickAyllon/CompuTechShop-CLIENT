@@ -55,6 +55,9 @@ function AllProductsAdmin() {
                       description={el.description}
                       calification={el.calification}
                       quantity={el.quantity}
+                      update={true}
+                      delet={true}
+                      // trash={true}
                     />
                   );
                 })

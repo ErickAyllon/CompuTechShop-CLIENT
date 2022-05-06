@@ -9,7 +9,7 @@ import { deleteProduct, filterByCategory, getProducts } from "../../../../Redux/
 import { useParams } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 
-function ProductCard({ name, price, image, calification, id}) {
+function ProductCardAdmin({ name, price, image, calification, id, update, delet }) {
   const dispatch = useDispatch();
   const {category} = useParams;
   const navigate = useNavigate();
@@ -27,7 +27,7 @@ function ProductCard({ name, price, image, calification, id}) {
 
   function handleEdit(e) {
     e.preventDefault();
-    navigate('/admin/product/edit')
+    navigate('/admin/product/update/' + e.target.name)
   }
 
   return (
@@ -51,16 +51,24 @@ function ProductCard({ name, price, image, calification, id}) {
             readOnly
             className={styles.productCardCalification}
           />
-          <button className={styles.button}>
-            <img src={trash} onClick={handleDelete} id={id}/>
-          </button>
-          <button className={styles.button}>
-            <img src={edit} onClick={handleEdit} id={id}/>
-          </button>
+          {
+          delet ?
+            <button className={styles.button}>
+              <img src={trash} onClick={handleDelete} id={id}/>
+            </button>
+          : null
+          }
+          {
+          update ?
+            <button className={styles.button}>
+              <img src={edit} onClick={handleEdit} name={name}/>
+            </button>
+          : null
+          }
         </div>
       </div>
     </div>
   );
 }
 
-export default ProductCard;
+export default ProductCardAdmin;

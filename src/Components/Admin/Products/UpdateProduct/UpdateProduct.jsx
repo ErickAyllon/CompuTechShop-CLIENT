@@ -1,19 +1,29 @@
 import React, { useState, useEffect } from 'react';
-import { postProducts, getCategories, getProducts } from '../../../../Redux/Actions'
+import { updateProduct, getCategories, getProducts, getDetail } from '../../../../Redux/Actions'
 import { useDispatch, useSelector } from 'react-redux';
 import Box from '@mui/material/Box';
 import TextField from '@mui/material/TextField';
 import MenuItem from '@mui/material/MenuItem';
 import Button from '@mui/material/Button';
-import styles from './ProductCreate.module.css'
+import styles from './UpdateProduct.module.css'
 import { Link } from 'react-router-dom';
 import AdminNav from '../../AdminNav/AdminNav';
+import ProductCardAdmin from '../ProductCardAdmin/ProductCardAdmin';
+import { useParams } from 'react-router-dom';
 
-function ProductCreate() {
+function UpdateProduct() {
   const dispatch = useDispatch();
   const categories = useSelector((state) => state.categories)
   const allProductsCheck = useSelector((state) => state.allProducts)
   const [errors, setErrors] = useState({})
+  const {name} = useParams();
+  const product = useSelector ((state) => state.productDetail);
+
+  useEffect(() => {
+    dispatch(getCategories());
+    // dispatch(getProducts());
+    dispatch(getDetail(name))
+  }, [dispatch]);
 
   const [input, setInput] = useState({
     name: '',
@@ -25,11 +35,6 @@ function ProductCreate() {
     description: '',
     categories: ''
   })
-  
-  useEffect(() => {
-    dispatch(getCategories());
-    dispatch(getProducts());
-  }, [dispatch]);
 
   function handleChange(e) {
     setInput({
@@ -43,9 +48,10 @@ function ProductCreate() {
   }
 
   function handleSubmit(e) {
+    console.log(product[0].id, input)
     e.preventDefault();
-    dispatch(postProducts(input));
-    alert('Product created')
+    dispatch(updateProduct(name.id, input));
+    alert('Product updated')
     setInput({
       name: '',
       price: '', 
@@ -110,8 +116,17 @@ function ProductCreate() {
 }
 
   return (
-    <div>
+    <div className={styles.updateProduct}>
       <AdminNav/>
+      {product.length > 0 ? 
+      <div style={{margin:'20px 50px'}}>
+        <h3>Actual product</h3>
+      <ProductCardAdmin name={product[0].name} price={product[0].price} image={product[0].image} calification={product[0].calification} />
+      </div> : null}
+      <div style={{margin:'20px 50px'}}>
+        <h3>Your product updated</h3>
+      <ProductCardAdmin name={input.name} price={input.price} image={input.image} calification={input.calification} />
+      </div>
         <Box
           className={styles.form}
           component="form"
@@ -122,7 +137,7 @@ function ProductCreate() {
           autoComplete="off"
         >
         <div>
-        <h3 style={{textAlign:'center'}}>Create Product:</h3>
+        <h3 style={{textAlign:'center'}}>Update Product:</h3>
           <TextField
             variant="filled"
             required
@@ -232,7 +247,7 @@ function ProductCreate() {
             />
             <div className={styles.createButton} >
               <Button type="submit" onClick={handleSubmit} variant="outlined" disabled={errors.name || errors.brand || errors.calification || errors.quantity || errors.description || errors.image || errors.categories || errors.price || input.name === '' ? true : false}>
-                Create Product
+                Update Product
               </Button>
             </div>
         </div>
@@ -241,4 +256,4 @@ function ProductCreate() {
   )
 }
 
-export default ProductCreate
+export default UpdateProduct

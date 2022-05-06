@@ -25,6 +25,8 @@ import ShopDetails from "./Components/Admin/Orders/ShopDetails/ShopDetails";
 import ProductDetailAdmin from "./Components/Admin/Products/Detail/ProductDetailAdmin";
 import CategoryAdmin from "./Components/Admin/Products/Categories/Category/CategoryAdmin";
 import AllProductsAdmin from "./Components/Admin/Products/Categories/AllProducts/AllProductsAdmin";
+import Users from './Components/Admin/Users/Users';
+import UpdateProduct from "./Components/Admin/Products/UpdateProduct/UpdateProduct";
 
 const getDesignTokens = (mode) => ({
   palette: {
@@ -87,11 +89,13 @@ function App() {
             <Route path="/admin/products/:category" element={<CategoryAdmin/>} />
             <Route path="/admin/products/createProduct" element={<ProductCreate/>} />
             <Route path="/admin/product/:name" element={<ProductDetailAdmin />} />
+            <Route path="/admin/product/update/:name" element={<UpdateProduct />} />
 
             <Route path="/admin/categories" element={<AdminCategories />} />
             <Route path="/admin/shop/:id" element={<ShopDetails/>}/>
             <Route path="/form" element={<FormUser />} />
             <Route path="/admin/allorders" element={<ViewAllOrders/>}/>
+            <Route path='/admin/users' element={<Users/>}/>
           </Routes>
         <Footer />
       </BrowserRouter>

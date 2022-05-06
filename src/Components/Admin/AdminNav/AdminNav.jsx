@@ -6,9 +6,6 @@ import Button from '@mui/material/Button';
 function AdminNav() {
   return (
     <div className={styles.adminNav}>
-        <Link to='/admin'>
-          <Button variant="outlined">Admin Home</Button>
-        </Link>
         <Link to='/admin/products/Allproducts'>
           <Button variant="outlined">Products</Button>
         </Link>
@@ -20,6 +17,9 @@ function AdminNav() {
         </Link>
         <Link to='/admin/allorders'>
           <Button variant="outlined">Orders</Button>
+        </Link>
+        <Link to='/admin/users'>
+          <Button variant="outlined">Users</Button>
         </Link>
     </div>
   )
