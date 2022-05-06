@@ -1,12 +1,15 @@
 import React, { useEffect} from 'react'
 import styles from './ProductDetailAdmin.module.css'
-import { getDetail } from '../../../../Redux/Actions/index.js'
+import { deleteProduct, getDetail, getProducts } from '../../../../Redux/Actions/index.js'
 import { useSelector, useDispatch } from 'react-redux';
-import { useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import { Rating } from '@mui/material';
 import AdminNav from '../../AdminNav/AdminNav';
+import trash from '../../../../Images/trash.png'
+import edit from '../../../../Images/edit.png'
 
 function ProductDetailAdmin (){
+  const navigate = useNavigate();
   const dispatch = useDispatch();
   const { name } = useParams();
 
@@ -15,6 +18,23 @@ function ProductDetailAdmin (){
   }, [dispatch]);
 
   const product = useSelector ((state) => state.productDetail);
+
+  function handleDelete(e) {
+    e.preventDefault();
+    console.log(e.target.id)
+    if (window.confirm('Are you sure?')) {
+      e.preventDefault();
+      dispatch(deleteProduct(e.target.id))
+      window.alert('Product deleted')
+      dispatch(getProducts())
+    }
+  }
+
+  function handleEdit(e) {
+    e.preventDefault();
+    navigate('/admin/product/update/' + e.target.name)
+  }
+
 
   return (
   <div className={styles.productDetail}>
@@ -34,6 +54,12 @@ function ProductDetailAdmin (){
                 {/* <p>{product[0].brand}</p>
                 <p>{product[0].quantity}</p> */}
             </div>
+              <button className={styles.button}>
+                <img src={trash} onClick={handleDelete} id={product[0].id}/>
+              </button>
+              <button className={styles.button}>
+                <img src={edit} onClick={handleEdit} name={name}/>
+              </button>
           </div>
 
             <div className={styles.productDetailDescription}>

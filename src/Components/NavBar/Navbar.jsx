@@ -39,9 +39,9 @@ function NavBar() {
         <div className={styles.auth0}>
           {isAuthenticated ? <Profile /> : <LoginButton />}
         </div>
-        <div className={styles.auth0}>
+        {/* <div className={styles.auth0}>
           {isAuthenticated ? <Link to='/form'><button>Sign In</button></Link> : <p>.</p>}
-        </div>
+        </div> */}
       </nav>
     </div>
   );
