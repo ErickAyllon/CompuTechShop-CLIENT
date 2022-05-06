@@ -50,6 +50,15 @@ function Admin() {
             </Link>
           </div>
         </div>
+        <div className={styles.adminCard}>
+          <div className={styles.adminCardContainer}>
+
+            {/* <h4>ORDERS</h4> */}
+            <Link to="/admin/users">
+              <Button variant="outlined">Users</Button>
+            </Link>
+          </div>
+        </div>
         {/* {shops ? shops.map(el => {
           return(
             <ShopCard

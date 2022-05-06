@@ -22,6 +22,7 @@ import ProductCreate from "./Components/Admin/Products/ProductCreate/ProductCrea
 import AdminCategories from "./Components/Admin/Categories/AdminCategories";
 import AdminProducts from "./Components/Admin/Products/AdminProducts";
 import ShopDetails from "./Components/Admin/Orders/ShopDetails/ShopDetails";
+import Users from './Components/Admin/Users/Users';
 
 const getDesignTokens = (mode) => ({
   palette: {
@@ -85,6 +86,7 @@ function App() {
             <Route path="/form" element={<FormUser />} />
             {/* <Route path="/admin/categories" element={<ViewCategories />} /> */}
             <Route path="/admin/allorders" element={<ViewAllOrders/>}/>
+            <Route path='/admin/users' element={<Users/>}/>
           </Routes>
         <Footer />
       </BrowserRouter>
