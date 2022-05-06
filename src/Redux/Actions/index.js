@@ -60,6 +60,13 @@ export function postProducts(payload) {
   };
 }
 
+export function postUser(payload) {
+  return async function () {
+    let postUser = await axios.post("http://localhost:3001/postUser", payload);
+    return postUser;
+  };
+}
+
 export const filterByCategory = (category) => {
   return async (dispatch) => {
     var json = await axios.get(
@@ -71,16 +78,6 @@ export const filterByCategory = (category) => {
     });
   };
 };
-export const POST_USER = "POST_USER";
-export function postUser(payload) {
-  return async function () {
-    const response = await axios.post(
-      "http://localhost:3001/postUser",
-      payload
-    );
-    return response;
-  };
-}
 
 export function getProductsByName(name) {
   return async function (dispatch) {
@@ -98,22 +95,22 @@ export function getProductsByName(name) {
 
 export function filterByBrand(payload) {
   return {
-    type: 'FILTER_BY_BRAND',
+    type: "FILTER_BY_BRAND",
     payload,
   };
 }
 export function filterByPrice(payload) {
   return {
-    type: 'FILTER_BY_PRICE',
+    type: "FILTER_BY_PRICE",
     payload,
   };
 }
 
 export function orderProducts(payload) {
   return {
-    type: 'ORDER_PRODUCTS',
+    type: "ORDER_PRODUCTS",
     payload,
-  }
+  };
 }
 
 export function darkMode(payload) {
@@ -122,7 +119,6 @@ export function darkMode(payload) {
     payload: payload,
   };
 }
-
 
 export function getShops() {
   return async function (dispatch) {
@@ -138,16 +134,6 @@ export function getShops() {
   };
 }
 
-// export function getUserById(userId) {
-//   return async (dispatch) => {
-//     var json = await axios.get("http://localhost:3001/users/" + userId);
-//     return dispatch({
-//       type: "GET_USER_BY_ID",
-//       payload: json.data,
-//     });
-//   };
-// };
-
 export function getShopById(id) {
   return async function (dispatch) {
     try {
@@ -159,7 +145,7 @@ export function getShopById(id) {
     } catch (error) {
       console.log(error);
     }
-  }
+  };
 }
 export function setCurrentPage(payload) {
   return {
@@ -170,7 +156,27 @@ export function setCurrentPage(payload) {
 
 export function postCategory(payload) {
   return async function () {
-    const response = await axios.post("http://localhost:3001/postCategory", payload);
+    const response = await axios.post(
+      "http://localhost:3001/postCategory",
+      payload
+    );
     return response;
   };
 }
+
+// export function updatedUser(id, payload) {
+//   return async function (dispatch) {
+//     try {
+//       var json = await axios.put(
+//         "http://localhost:3001/updateUser" + id,
+//         payload
+//       );
+//       return dispatch({
+//         type: "UPDATE",
+//         payload: json.data,
+//       });
+//     } catch (error) {
+//       console.log(error);
+//     }
+//   };
+// }
