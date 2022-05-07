@@ -1,10 +1,12 @@
 import React, { useEffect } from "react";
 import styles from "./ProductDetail.module.css";
-import { getDetail } from "../../Redux/Actions/index.js";
+import { getDetail, getProducts } from "../../Redux/Actions/index.js";
 import { useSelector, useDispatch } from "react-redux";
 import { useParams } from "react-router-dom";
 import { Rating } from "@mui/material";
+
 import Categories from "../Categories/Categories";
+import { TYPES } from "../../Redux/Actions/shoppingCartActions";
 
 function ProductDetail() {
   const dispatch = useDispatch();
@@ -12,9 +14,17 @@ function ProductDetail() {
 
   useEffect(() => {
     dispatch(getDetail(name));
+    dispatch(getProducts());
   }, [dispatch]);
 
   const product = useSelector((state) => state.productDetail);
+  const chuch = useSelector((state) => state.allProducts);
+  console.log("este es el allproducts", chuch);
+
+  const addToCart = (id) => {
+    console.log(id);
+    dispatch({ type: TYPES.ADD_TO_CART, payload: id });
+  };
 
   return (
     <div className={styles.productDetail}>
@@ -46,6 +56,7 @@ function ProductDetail() {
               <p>Description:</p>
               <p>{product[0].description}</p>
             </div>
+            <button onClick={() => addToCart(product[0].id)}>Agregar</button>
           </div>
         </div>
       ) : null}
