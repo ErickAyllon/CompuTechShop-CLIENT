@@ -3,14 +3,18 @@ import { useDispatch, useSelector } from "react-redux";
 import { postBuyCart } from "../../Redux/Actions";
 import CartItem from "./CartItem";
 import { TYPES } from "../../Redux/Actions/shoppingCartActions";
+import ProductCard from "../ProductCard/ProductCard";
+import NavBar from "../NavBar/Navbar";
 
 const PurchaseSummary = () => {
   const obj = {};
   const dispatch = useDispatch();
   const productsFilter = useSelector((state) => state.cart);
+  const response = useSelector((state) => state.cartModified)
   const arregloPrice = productsFilter.map((el) => el.price * el.quantity);
   const reducir = (accumulator, curr) => accumulator + curr;
   const arregloTotal = arregloPrice.reduce(reducir);
+  
   const handleBuyCart = (e) => {
     e.preventDefault();
     const nuevoPost = productsFilter.map((el) => {
@@ -27,6 +31,8 @@ const PurchaseSummary = () => {
     obj.quantity = nuevoPost.map((el) => el.quantity);
     JSON.stringify(obj);
     dispatch(postBuyCart(obj));
+    
+
   };
 
   const addToCart = (id) => {
@@ -34,21 +40,37 @@ const PurchaseSummary = () => {
     dispatch({ type: TYPES.ADD_TO_CART, payload: id });
   };
   return (
+    
     <div>
+      <NavBar/>
+      <div>
+        <div>
       {productsFilter.map((el) => (
-        <CartItem
-          // key={index}
-          data={el}
-          // delFromCart={delFromCart}
-          addToCart={addToCart}
-        />
-      ))}
+         <ProductCard
+         name={el.name}
+         price={el.price}
+         image={el.image}
+         key={el.id}
+         id={el.id}
+         brand={el.brand}
+         description={el.description}
+         calification={el.calification}
+         quantity={el.quantity}
+         addToCart={addToCart}
+       />
+        // <CartItem
+        //   // key={index}
+        //   data={el}
+        //   // delFromCart={delFromCart}
+        //   addToCart={addToCart}
+        // />
+      ))}</div>
       <div>
-        <label>Total Price:</label>
+        <label>Total Price: $</label>
         {arregloTotal}
+        <button onClick={handleBuyCart}>Comprar</button>
       </div>
-      <div>
-        <button onClick={handleBuyCart}>comprita</button>
+     
       </div>
     </div>
   );

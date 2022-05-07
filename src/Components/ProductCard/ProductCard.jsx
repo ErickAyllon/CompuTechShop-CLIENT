@@ -23,7 +23,7 @@ function ProductCard({
           </Link>
         </div>
         <div className={styles.productCardInfo}>
-          <h3>{id}</h3>
+          {/* <h3>{id}</h3> */}
           {/* <h3>Quantity: {quantity}</h3>  */}
           {/* <h3>{description}</h3> */}
           {/* <h3>{brand}</h3>  */}
