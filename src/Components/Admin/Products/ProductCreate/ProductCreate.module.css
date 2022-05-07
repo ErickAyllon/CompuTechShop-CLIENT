@@ -1,12 +1,24 @@
-.form {
+.productCreate {
+    min-height: 100vh;
+}
+
+.updateProductContainer {
     display: flex;
+}
+
+.form {
     justify-content: center;
     margin: 10px auto;
-    align-items: center;
-    align-content: center;
-    justify-items: center;
-    justify-self: center;
     height: auto;
+    max-width: 500px;
+}
+
+.cardsContainer {
+    text-align: center;
+    justify-content: center;
+    display: flex;
+    flex-direction: column;
+    max-width: 900px;
 }
 
 .form .createButton {

@@ -15,6 +15,7 @@ const initialState = {
   shops: [],
   shopDetail: [],
   currentPage: 1,
+  cartModified: [],
 };
 
 function rootReducer(state = initialState, action) {
@@ -42,6 +43,12 @@ function rootReducer(state = initialState, action) {
         ...state,
         allProducts: action.payload,
       };
+    case TYPES.BUY_CART: {
+      return {
+        ...state,
+        cartModified: action.payload,
+      };
+    }
     case "GET_USER":
       return {
         ...state,
@@ -158,7 +165,7 @@ function rootReducer(state = initialState, action) {
       };
 
     case TYPES.ADD_TO_CART: {
-      let newItem = state.products.find(
+      let newItem = state.allProducts.find(
         (product) => product.id === action.payload
       );
       let itemInCart = state.cart.find((item) => item.id === newItem.id);
@@ -167,7 +174,12 @@ function rootReducer(state = initialState, action) {
             ...state,
             cart: state.cart.map((item) =>
               item.id === newItem.id
-                ? { ...item, quantity: item.quantity + 1 }
+                ? {
+                    ...item,
+                    quantity: item.quantity + 1,
+                    // price: Number(item.price),
+                    // total: item.price * item.cuantity,
+                  }
                 : item
             ),
           }

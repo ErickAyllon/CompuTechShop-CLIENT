@@ -6,6 +6,7 @@ import ShopCard from './Orders/ShopCard/ShopCard';
 import { Link } from 'react-router-dom';
 import Button from '@mui/material/Button';
 import AdminNav from './AdminNav/AdminNav';
+import NavBar from '../NavBar/Navbar';
 
 function Admin() {
   const dispatch = useDispatch();
@@ -20,6 +21,7 @@ function Admin() {
 
   return (
     <div className={styles.admin}>
+      <NavBar />
       <div className={styles.adminContainer}>
         <div className={styles.adminCard}>
           <div className={styles.adminCardContainer}>

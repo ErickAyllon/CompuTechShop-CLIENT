@@ -7,6 +7,7 @@ import { Rating } from '@mui/material';
 import AdminNav from '../../AdminNav/AdminNav';
 import trash from '../../../../Images/trash.png'
 import edit from '../../../../Images/edit.png'
+import AdminNav2 from '../../AdminNav/AdminNav2';
 
 function ProductDetailAdmin (){
   const navigate = useNavigate();
@@ -39,6 +40,7 @@ function ProductDetailAdmin (){
   return (
   <div className={styles.productDetail}>
     <AdminNav/>
+    <AdminNav2/>
     {
       product.length > 0 ?
         <div className={styles.productDetailContainer}>
