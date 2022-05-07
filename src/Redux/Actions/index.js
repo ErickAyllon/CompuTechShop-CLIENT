@@ -242,3 +242,31 @@ export function updateProduct(id, payload) {
       }
   }
 }
+
+export function sortUsersByLastName(payload) {
+  return {
+    type: "ORDER_USER_BY_LASTNAME",
+    payload,
+  };
+}
+
+// export function filterUsresByValue(payload) {
+//   return {
+//     type: "FILTER_USER_BY_VALUE",
+//     payload,
+//   };
+// }
+
+export function sortOrderByEmail(payload) {
+  return {
+    type: "ORDER_ORDER_BY_EMAIL",
+    payload,
+  };
+}
+
+export function sortOrderByAmount(payload) {
+  return {
+    type: "ORDER_ORDER_BY_AMOUNT",
+    payload,
+  };
+}

@@ -8,11 +8,13 @@ const initialState = {
   productsFilter: [],
   productsNotPriceChangeable: [],
   users: [],
+  usersFiltered: [],
   productDetail: [],
   categories: [],
   darkMode: true,
   cart: [],
   shops: [],
+  shopsFiltered: [],
   shopDetail: [],
   currentPage: 1,
   cartModified: [],
@@ -53,6 +55,7 @@ function rootReducer(state = initialState, action) {
       return {
         ...state,
         users: action.payload,
+        usersFiltered: action.payload
       };
     case "GET_DETAILS":
       return {
@@ -218,6 +221,7 @@ function rootReducer(state = initialState, action) {
       return {
         ...state,
         shops: action.payload,
+        shopsFiltered: action.payload
       };
     case "GET_SHOP_BY_ID":
       return {
@@ -246,9 +250,61 @@ function rootReducer(state = initialState, action) {
       return {
         ...state,
       };
+    case "ORDER_USER_BY_LASTNAME":
+      const sort = 
+      state.usersFiltered.length > 0
+      ? action.payload === 'a-z'
+        ? state.usersFiltered.sort(
+          (a, b) => a.family_name.localCompare(b.family_name)
+        )
+        : action.payload === 'z-a'
+        ? state.usersFiltered.sort(
+          (a, b) => b.family_name.localCompare(a.family_name)
+        )
+        : state.usersFiltered
+        : null
+      return {
+        ...state,
+        usersFiltered: sort
+      }
+    case "ORDER_ORDER_BY_EMAIL":
+      const sortOrder = 
+      state.shopsFiltered.length > 0
+      ? action.payload === 'a-z'
+        ? state.shopsFiltered.sort(
+          (a, b) => a.email.localCompare(b.email)
+        )
+        : action.payload === 'z-a'
+        ? state.shopsFiltered.sort(
+          (a, b) => b.email.localCompare(a.email)
+        )
+        : state.shopsFiltered
+        : null
+      return {
+        ...state,
+        usersFiltered: sortOrder
+      }
+      case "ORDER_ORDER_BY_AMOUNT":
+        const sortAmount = 
+        state.shopsFiltered.length > 0
+        ? action.payload === 'lower-amount'
+          ? state.shopsFiltered.sort(
+            (a, b) => a.amount - b.amount
+          )
+          : action.payload === 'higher-amount'
+          ? state.shopsFiltered.sort(
+            (a, b) => b.amount - a.amount
+          )
+          : state.shopsFiltered
+          : null
+        return {
+          ...state,
+          usersFiltered: sortAmount
+        }
     default:
       return state;
   }
 }
 
 export default rootReducer;
+
