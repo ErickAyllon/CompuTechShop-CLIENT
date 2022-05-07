@@ -190,6 +190,7 @@ export function postBuyCart(payload) {
       "http://localhost:3001/Checkout",
       payload
     );
+    console.log(response.data)
     return response.data;
   };
 }

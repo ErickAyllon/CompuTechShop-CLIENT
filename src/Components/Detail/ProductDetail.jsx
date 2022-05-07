@@ -14,13 +14,12 @@ function ProductDetail() {
   const { name } = useParams();
 
   useEffect(() => {
+    // dispatch(getProducts());
     dispatch(getDetail(name));
-    dispatch(getProducts());
   }, [dispatch]);
 
   const product = useSelector((state) => state.productDetail);
-  const chuch = useSelector((state) => state.allProducts);
-  console.log("este es el allproducts", chuch);
+
 
   const addToCart = (id) => {
     console.log(id);
