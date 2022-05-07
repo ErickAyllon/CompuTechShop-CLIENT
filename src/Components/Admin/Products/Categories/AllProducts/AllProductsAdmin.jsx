@@ -9,6 +9,8 @@ import { useDispatch } from 'react-redux'
 import ProductCardAdmin from '../../ProductCardAdmin/ProductCardAdmin'
 import PaginationCAdmin from '../../Pagination/PaginationCAdmin'
 import CategoriesAdmin from '../CategoriesAdmin'
+import { Link } from 'react-router-dom'
+import { Button } from '@mui/material'
 
 function AllProductsAdmin() {
   let products = useSelector((state) => state.allProducts);
@@ -35,6 +37,9 @@ function AllProductsAdmin() {
   return (
     <div className={styles.viewProducts}>
       <CategoriesAdmin/>
+      <Link to='/admin/products/createProduct'>
+        <Button variant="outlined" style={{marginTop:'20px'}}>Create Product</Button>
+      </Link>
       {products.length > 0 ? (
         <>
           <div className={styles.productsContainer}>

@@ -10,6 +10,7 @@ import { Link } from 'react-router-dom';
 import AdminNav from '../../AdminNav/AdminNav';
 import AdminNav2 from '../../AdminNav/AdminNav2';
 import ProductCardAdmin from '../ProductCardAdmin/ProductCardAdmin';
+import ProductDetailAdminCard from '../Detail/ProductDetailAdminCard';
 
 function ProductCreate() {
   const dispatch = useDispatch();
@@ -244,11 +245,13 @@ function ProductCreate() {
       </Box>
         <div className={styles.cardsContainer}>
             <div style={{margin:'20px 50px'}}>
-              <h3>New product</h3>
+              <h3>New product Card</h3>
               <ProductCardAdmin name={input.name} price={input.price} image={input.image} />
             </div>
         </div>
       </div>
+      <h3 style={{textAlign:'center'}}>New product Detail</h3>
+      <ProductDetailAdminCard nameD={input.name} image={input.image} price={input.price} brand={input.brand} quantity={input.quantity} description={input.description} calification={false} />
     </div>
   )
 }

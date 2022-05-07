@@ -10,6 +10,7 @@
     height: 1000px;
     background-color: white;
     /* display: flex; */
+    border-radius: 50px;
 }
 .productDetailContainerTwo {
     margin: 0 auto;

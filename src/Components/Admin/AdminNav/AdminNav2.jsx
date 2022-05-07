@@ -8,19 +8,16 @@ function AdminNav2() {
     <div className={styles.adminNavBar}>
         <div className={styles.adminButtons}>
           <Link to='/admin/products/Allproducts'>
-            <Button variant="outlined">Products</Button>
-          </Link>
-          <Link to='/admin/products/createProduct'>
-            <Button variant="outlined">Create Product</Button>
+            <Button variant="outlined" style={{margin: '0 10px'}}>Products</Button>
           </Link>
           <Link to='/admin/categories'>
-            <Button variant="outlined">Categories</Button>
+            <Button variant="outlined" style={{margin: '0 10px'}}>Categories</Button>
           </Link>
           <Link to='/admin/allorders'>
-            <Button variant="outlined">Orders</Button>
+            <Button variant="outlined" style={{margin: '0 10px'}}>Orders</Button>
           </Link>
           <Link to='/admin/users'>
-            <Button variant="outlined">Users</Button>
+            <Button variant="outlined" style={{margin: '0 10px'}}>Users</Button>
           </Link>
         </div>
     </div>

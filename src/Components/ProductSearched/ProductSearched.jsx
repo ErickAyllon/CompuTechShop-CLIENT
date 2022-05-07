@@ -40,7 +40,6 @@ function ProductSearched() {
       <div className={styles.productsContainer}>
         <Filter />
         <div className={styles.productsCardsContainer}>
-          <h1>Your search: {search}</h1>
           {
             productsFilter.length > 0 ?
             currentProducts.map((el) => {
