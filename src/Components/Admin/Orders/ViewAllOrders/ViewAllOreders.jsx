@@ -13,7 +13,8 @@ import {Box, TextField, MenuItem, Button } from '@mui/material/';
 
 function ViewAllOrders(){
   const dispatch = useDispatch();
-  const [order, setOrder] = useState('Sort alphabetically')
+  const [orderByEmail, setOrderByEmail] = useState('')
+  const [orderByAmount, setOrderByAmount] = useState('')
 
 
   useEffect(() => {
@@ -27,13 +28,13 @@ function ViewAllOrders(){
   function handleSortByEmail(e) {
     e.preventDefault()
     dispatch(sortOrderByEmail(e.target.value))
-    setOrder(e.target.value)
+    setOrderByEmail(e.target.value)
   }
 
   function handleSortByAmount(e) {
     e.preventDefault()
     dispatch(sortOrderByAmount(e.target.value))
-    setOrder(e.target.value)
+    setOrderByAmount(e.target.value)
   }
 
     return (
@@ -64,10 +65,10 @@ function ViewAllOrders(){
         id="outlined-select-currency"
         select
         label="Sort by email"
-        // value={order}
-        // onChange={(e) => sortOrderByEmail(e)}
+        value={orderByEmail}
+        onChange={(e) => handleSortByEmail(e)}
       > 
-        <MenuItem value='Sort'>Sort</MenuItem>
+        {/* <MenuItem value='Sort'>Sort</MenuItem> */}
         <MenuItem value='a-z'>A-Z</MenuItem>
         <MenuItem value='z-a'>Z-A</MenuItem>
       </TextField>
@@ -80,10 +81,10 @@ function ViewAllOrders(){
         id="outlined-select-currency"
         select
         label="Sort by Amount"
-        // value={order}
-        // onChange={(e) => handleSortByAmount(e)}
+        value={orderByAmount}
+        onChange={(e) => handleSortByAmount(e)}
       > 
-        <MenuItem value='Sort'>Sort</MenuItem>
+        {/* <MenuItem value='Sort'>Sort</MenuItem> */}
         <MenuItem value='higher-amount'>Higher amount</MenuItem>
         <MenuItem value='lower-amount'>Lower amount</MenuItem>
       </TextField>

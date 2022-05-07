@@ -255,11 +255,11 @@ function rootReducer(state = initialState, action) {
       state.usersFiltered.length > 0
       ? action.payload === 'a-z'
         ? state.usersFiltered.sort(
-          (a, b) => a.family_name.localCompare(b.family_name)
+          (a, b) => a.family_name.localeCompare(b.family_name)
         )
         : action.payload === 'z-a'
         ? state.usersFiltered.sort(
-          (a, b) => b.family_name.localCompare(a.family_name)
+          (a, b) => b.family_name.localeCompare(a.family_name)
         )
         : state.usersFiltered
         : null
@@ -272,11 +272,11 @@ function rootReducer(state = initialState, action) {
       state.shopsFiltered.length > 0
       ? action.payload === 'a-z'
         ? state.shopsFiltered.sort(
-          (a, b) => a.email.localCompare(b.email)
+          (a, b) => a.email.localeCompare(b.email)
         )
         : action.payload === 'z-a'
         ? state.shopsFiltered.sort(
-          (a, b) => b.email.localCompare(a.email)
+          (a, b) => b.email.localeCompare(a.email)
         )
         : state.shopsFiltered
         : null

@@ -14,7 +14,7 @@ import {Box, TextField, MenuItem, Button } from '@mui/material/';
 function Users() {
   const allCategories = useSelector((state) => state.categories)
   const dispatch = useDispatch();
-  const [order, setOrder] = useState('Sort alphabetically')
+  const [order, setOrder] = useState('')
 
   useEffect(() => {
     dispatch(getUser())
@@ -57,10 +57,10 @@ function Users() {
         id="outlined-select-currency"
         select
         label="Sort alphabetically"
-        // value={order}
-        // onChange={(e) => handleSortByLastName(e)}
+        value={order}
+        onChange={(e) => handleSortByLastName(e)}
       > 
-        <MenuItem value='Sort'>Sort</MenuItem>
+        {/* <MenuItem value='Sort'>Sort</MenuItem> */}
         <MenuItem value='a-z'>A-Z</MenuItem>
         <MenuItem value='z-a'>Z-A</MenuItem>
       </TextField>
