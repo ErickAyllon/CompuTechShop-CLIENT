@@ -7,6 +7,7 @@ import { Rating } from "@mui/material";
 
 import Categories from "../Categories/Categories";
 import { TYPES } from "../../Redux/Actions/shoppingCartActions";
+import NavBar from "../NavBar/Navbar";
 
 function ProductDetail() {
   const dispatch = useDispatch();
@@ -28,6 +29,7 @@ function ProductDetail() {
 
   return (
     <div className={styles.productDetail}>
+      <NavBar />
       <Categories />
       {product.length > 0 ? (
         <div className={styles.productDetailContainer}>

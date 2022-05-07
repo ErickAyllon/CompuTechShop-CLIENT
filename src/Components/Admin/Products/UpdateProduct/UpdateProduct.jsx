@@ -1,19 +1,27 @@
 import React, { useState, useEffect } from 'react';
-import { postProducts, getCategories, getProducts } from '../../../Redux/Actions/index'
+import { updateProduct, getCategories, getDetail } from '../../../../Redux/Actions'
 import { useDispatch, useSelector } from 'react-redux';
 import Box from '@mui/material/Box';
 import TextField from '@mui/material/TextField';
 import MenuItem from '@mui/material/MenuItem';
 import Button from '@mui/material/Button';
-import styles from './ProductCreate.module.css'
-import { Link } from 'react-router-dom';
-import AdminNav from '../AdminNav/AdminNav';
+import styles from './UpdateProduct.module.css'
+import AdminNav from '../../AdminNav/AdminNav';
+import ProductCardAdmin from '../ProductCardAdmin/ProductCardAdmin';
+import { useParams } from 'react-router-dom';
+import AdminNav2 from '../../AdminNav/AdminNav2';
 
-function ProductCreate() {
+function UpdateProduct() {
   const dispatch = useDispatch();
+  const {name} = useParams();
+  const product = useSelector ((state) => state.productDetail);
   const categories = useSelector((state) => state.categories)
-  const allProductsCheck = useSelector((state) => state.allProducts)
   const [errors, setErrors] = useState({})
+
+  useEffect(() => {
+    dispatch(getCategories());
+    dispatch(getDetail(name))
+  }, [dispatch, name]);
 
   const [input, setInput] = useState({
     name: '',
@@ -25,27 +33,47 @@ function ProductCreate() {
     description: '',
     categories: ''
   })
-  
-  useEffect(() => {
-    dispatch(getCategories());
-    dispatch(getProducts());
-  }, [dispatch]);
+
+
 
   function handleChange(e) {
     setInput({
       ...input,
-      [e.target.name] : e.target.value
+      [e.target.name] : e.target.value,
     })
     setErrors(validate({
       ...input,
-      [e.target.name]: e.target.value
+      [e.target.name]: e.target.value,
   }));
   }
 
+  function handleChangeSelect(e) {
+    setInput({
+      ...input,
+      [e.target.name] : [e.target.value]
+    })
+  }
+
+  function handleCopy(e) {
+    e.preventDefault()
+    setInput({
+      name: product[0].name,
+      price: product[0].price, 
+      quantity: product[0].quantity,
+      brand: product[0].brand,
+      calification: product[0].calification,
+      image: product[0].image,
+      description: product[0].description,
+      categories: product[0].category,
+    })
+  }
+  
   function handleSubmit(e) {
     e.preventDefault();
-    dispatch(postProducts(input));
-    alert('Product created')
+    dispatch(updateProduct(product[0].id, input));
+    setErrors({});
+    window.alert('Product updated')
+    dispatch(getDetail(input.name))
     setInput({
       name: '',
       price: '', 
@@ -54,17 +82,12 @@ function ProductCreate() {
       calification: '',
       image: '',
       description: '',
-      categories: ''
+      categories: '',
     })
   }
 
   function validate(input) {
     let errors = {};
-    let existent = false;
-    allProductsCheck.map(p => p.name === input.name ? existent = true: null);
-    if (existent) {
-        errors.name = 'That product already exists.'
-    }
      if (!/^[A-Z]/.test(input.name)) {
         errors.name = 'First letter must be uppercase';
     } if (input.name.length > 130) {
@@ -110,8 +133,13 @@ function ProductCreate() {
 }
 
   return (
-    <div>
+    <div className={styles.updateProduct}>
       <AdminNav/>
+      <AdminNav2/>
+    {      
+        product[0] ? 
+
+    <div className={styles.updateProductContainer}>
         <Box
           className={styles.form}
           component="form"
@@ -122,13 +150,14 @@ function ProductCreate() {
           autoComplete="off"
         >
         <div>
+        <h3 style={{textAlign:'center'}}>Update Product:</h3>
           <TextField
             variant="filled"
             required
             id="outlined-required"
             label="Name"
             name="name" 
-            onChange={handleChange} 
+            onChange={(e) => handleChange(e)} 
             error={errors.name ? true : false}
             helperText={errors.name}
             value={input.name}
@@ -137,18 +166,18 @@ function ProductCreate() {
             variant="filled"
             required
             name="brand" 
-            onChange={handleChange} 
+            onChange={(e) => handleChange(e)}  
             id="outlined-required"
             label="Brand" 
             error={errors.brand ? true : false}
             value={input.brand}
             helperText={errors.brand}
           />
-          <TextField
+          {/* <TextField
             variant="filled"
             required
             name="calification" 
-            onChange={handleChange} 
+            onChange={(e) => handleChange(e)}  
             error={errors.calification ? true : false}
             helperText={errors.calification}
             value={input.calification}
@@ -158,11 +187,11 @@ function ProductCreate() {
             InputLabelProps={{
               shrink: true,
             }}
-          />
+          /> */}
             <TextField
             variant="filled"
             name="quantity" 
-            onChange={handleChange} 
+            onChange={(e) => handleChange(e)}  
             id="outlined-number"
             label="Quantity" 
             type="number"
@@ -177,10 +206,10 @@ function ProductCreate() {
             variant="filled"
             required
             id="outlined-multiline-static"
-            name="description" onChange={handleChange} 
+            name="description" onChange={(e) => handleChange(e)}  
             label="Description"
-            multiline
             rows={3}
+            multiline
             value={input.description}
             error={errors.description ? true : false}
             helperText={errors.description}
@@ -190,9 +219,9 @@ function ProductCreate() {
             required
             id="outlined-multiline-static"
             name="image" 
-            onChange={handleChange} 
+            onChange={(e) => handleChange(e)}  
             label="Image"
-            multiline
+            rows={1}
             value={input.image}
             error={errors.image ? true : false}
             helperText={errors.image}
@@ -203,11 +232,10 @@ function ProductCreate() {
             name="categories"
             select
             label="Category"
-            defaultValue=""
-            value={input.categories}
+            value={[input.categories]}
             error={errors.categories ? true : false}
             helperText={errors.categories}
-            onChange={handleChange}
+            onChange={(e) => handleChangeSelect(e)} 
           >
             {categories.map((option) => (
               <MenuItem key={option.name} value={option.name}>
@@ -217,7 +245,7 @@ function ProductCreate() {
           </TextField>
             <TextField
               variant="filled"
-              name="price" onChange={handleChange} 
+              name="price" onChange={(e) => handleChange(e)}  
               id="outlined-number"
               label="Price"
               type="number"
@@ -229,15 +257,35 @@ function ProductCreate() {
                 shrink: true,
               }}
             />
+            <div className={styles.coypyButton} >
+              <Button type="submit" onClick={(e) => handleCopy(e)} variant="outlined">
+                Copy actual product
+              </Button>
+            </div>
             <div className={styles.createButton} >
               <Button type="submit" onClick={handleSubmit} variant="outlined" disabled={errors.name || errors.brand || errors.calification || errors.quantity || errors.description || errors.image || errors.categories || errors.price || input.name === '' ? true : false}>
-                Create Product
+                Update Product
               </Button>
             </div>
         </div>
       </Box>
+          <div className={styles.cardsContainer}>
+            {
+              <div style={{margin:'20px 50px'}}>
+                <h3>Actual product</h3>
+                <ProductCardAdmin name={product[0].name} price={product[0].price} image={product[0].image} calification={product[0].calification} />
+              </div> 
+            }
+            <div style={{margin:'20px 50px'}}>
+              <h3>Product updated</h3>
+              <ProductCardAdmin name={input.name} price={input.price} image={input.image} calification={product[0].calification} />
+            </div>
+            </div>
+        </div>
+        : null
+        }
     </div>
   )
 }
 
-export default ProductCreate
+export default UpdateProduct

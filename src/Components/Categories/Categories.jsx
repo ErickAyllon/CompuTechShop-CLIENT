@@ -45,7 +45,7 @@ function Categories() {
         <div className={styles.categories}>
                 <TextField
                     sx={{
-                        '& > :not(style)': { m: 1, display: 'flex', width: '17ch', color:'white', height:'4.5ch' },
+                        '& > :not(style)': { m: 1, display: 'flex', width: '17ch', color:'white', height:'4.5ch'},
                     }}
                     className={styles.filterByBrand}
                     variant="outlined"

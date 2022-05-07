@@ -1,0 +1,29 @@
+.category {
+    color: white;
+    text-align: center;
+    justify-content: center;
+    position: relative;
+    min-height: 100vh;
+}
+
+.category a {
+    text-decoration: none;
+}
+
+.productsCardsContainer {
+    max-width: 900px;
+    margin: 20px auto;
+    min-height: 55vh;
+}
+
+.productsContainer {
+    display: flex;
+    margin: 0 auto;
+    max-width: 1400px;
+}
+
+@media only screen and (max-width: 768px) {
+    .productsContainer {
+        display:block;
+    }
+}

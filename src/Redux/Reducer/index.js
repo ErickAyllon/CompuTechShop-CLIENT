@@ -3,10 +3,11 @@ import { TYPES } from "../Actions/shoppingCartActions";
 const initialState = {
   allProducts: [],
   products: [],
+  allProductsFilter: [],
+  productsFilter: [],
   productsFilter: [],
   productsNotPriceChangeable: [],
   users: [],
-  userOne: [],
   productDetail: [],
   categories: [],
   darkMode: true,
@@ -82,12 +83,6 @@ function rootReducer(state = initialState, action) {
         // allProducts: orderedD,
         productDetail: [],
       };
-    case "POST_USER":
-      return {
-        ...state,
-        userOne: action.payload,
-      };
-
     case "FILTER_BY_BRAND":
       const filtered =
         // state.productsFilter.length > 0 ?
@@ -234,7 +229,20 @@ function rootReducer(state = initialState, action) {
         ...state,
         currentPage: action.payload,
       };
+    // case "UPDATE": {
+    //   return {
+    //     ...state,
+    //   };
+    // }
     case "DELETE_CATEGORY":
+      return {
+        ...state,
+      };
+    case "DELETE_PRODUCT":
+      return {
+        ...state,
+      };
+    case "UPDATE_PRODUCT":
       return {
         ...state,
       };

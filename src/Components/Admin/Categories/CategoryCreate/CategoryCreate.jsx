@@ -3,11 +3,9 @@ import Box from '@mui/material/Box';
 import TextField from '@mui/material/TextField';
 import Button from '@mui/material/Button';
 import styles from './CategoryCreate.module.css'
-import { postCategory } from '../../../Redux/Actions';
+import { postCategory, getCategories } from '../../../../Redux/Actions';
 import { useDispatch, useSelector } from 'react-redux';
 import { useEffect } from 'react';
-import { getCategories } from '../../../Redux/Actions';
-import { useNavigate } from 'react-router-dom';
 
 function CategoryCreate() {
 

@@ -1,19 +1,65 @@
 import React from 'react'
 import styles from './Footer.module.css'
+import {Link} from 'react-router-dom'
+import Help from './Help/Help'
+import FAQ from './FAQ'
+import FAQ2 from './FAQ2'
+import WorkWithUs from './WorkWithUs'
+import About from './About'
 
 function Footer() {
+  const accordionData = [
+    {
+      title: 'Section 1',
+      content: `Lorem ipsum dolor, sit amet consectetur adipisicing elit. Quis sapiente
+      laborum cupiditate possimus labore, hic temporibus velit dicta earum
+      suscipit commodi eum enim atque at? Et perspiciatis dolore iure
+      voluptatem.`
+    },
+    {
+      title: 'Section 2',
+      content: `Lorem ipsum, dolor sit amet consectetur adipisicing elit. Mollitia veniam
+      reprehenderit nam assumenda voluptatem ut. Ipsum eius dicta, officiis
+      quaerat iure quos dolorum accusantium ducimus in illum vero commodi
+      pariatur? Impedit autem esse nostrum quasi, fugiat a aut error cumque
+      quidem maiores doloremque est numquam praesentium eos voluptatem amet!
+      Repudiandae, mollitia id reprehenderit a ab odit!`
+    },
+    {
+      title: 'Section 3',
+      content: `Sapiente expedita hic obcaecati, laboriosam similique omnis architecto ducimus magnam accusantium corrupti
+      quam sint dolore pariatur perspiciatis, necessitatibus rem vel dignissimos
+      dolor ut sequi minus iste? Quas?`
+    }
+  ];
+
+  
+  
+  
   return (
     <div className={styles.footerContainer}>
+      
         <div className={styles.footer}>
           <div className={styles.copyrightFooter}>
             <p> Copyright © 2022 The pibe's store S.R.L.</p>
             <p>Av. Siempre Viva 123, Piso 5, CP 1234, Alto Ecommerce, Argentina</p>
           </div>
+          <div>
+            {/* <li onClick={() => <FAQ2/>}>
+                <button>FAQ2</button>
+            </li> */}
+          </div>
           <div className={styles.extrasFooter}>
-            <p>Help</p>
-            <p>Frequent Questions</p>
+           <p><Help/></p>
+           <Link to='/FAQ'>
+            <p>FAQ's</p>
+            </Link>
+            <Link to='/WorkWithUs'> 
             <p>Work with us</p>
+            </Link>
+            <Link to='/About'>
             <p>About</p>
+            </Link>
           </div>
           <div className={styles.socialMedia}>
             <a href="https://www.instagram.com/" target="_blank" rel="noreferrer">

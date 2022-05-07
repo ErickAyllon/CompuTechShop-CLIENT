@@ -1,0 +1,44 @@
+.updateProduct {
+    min-height: 100vh;
+}
+
+.updateProductContainer {
+    display: flex;
+}
+
+.form {
+    justify-content: center;
+    margin: 10px auto;
+    height: auto;
+    max-width: 500px;
+}
+
+.form .createButton {
+    display: flex;
+    justify-content: center;
+    text-align: center;
+    margin-top: 10px;
+}
+.form .coypyButton {
+    display: flex;
+    justify-content: center;
+    margin-top: 10px;
+}
+button {
+    text-align: center;
+}
+
+.cardsContainer {
+    display: flex;
+    flex-direction: column;
+    max-width: 900px;
+}
+
+@media only screen and (max-width: 768px) {
+
+}
+
+@keyframes appear {
+    from {opacity: 0;}
+    to {opacity: 1;}
+  }

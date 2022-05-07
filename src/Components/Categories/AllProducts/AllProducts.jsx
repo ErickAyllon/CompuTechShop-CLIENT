@@ -10,6 +10,7 @@ import styles from "./AllProducts.module.css";
 import { TYPES } from "../../../Redux/Actions/shoppingCartActions";
 import ProductNotFound from "../../ProductNotFound/ProductNotFound";
 import { useParams } from "react-router-dom";
+import NavBar from "../../NavBar/Navbar";
 
 function AllProducts() {
   let products = useSelector((state) => state.allProducts);
@@ -41,6 +42,7 @@ function AllProducts() {
   // console.log(products);
   return (
     <div className={styles.allProducts}>
+      <NavBar/>
       <Categories />
       {products.length > 0 ? (
         <>

@@ -5,6 +5,7 @@ import styles from './Home.module.css'
 import 'bootstrap/dist/css/bootstrap.css';
 import Carousel from 'react-bootstrap/Carousel';
 import Categories from '../Categories/Categories';
+import NavBar from '../NavBar/Navbar';
 
 function Home() {
   const dispatch = useDispatch();
@@ -14,6 +15,7 @@ function Home() {
 
   return (
     <div className={styles.home}>
+      <NavBar />
       <Categories />
       <div className={styles.homeContent}>
         <div className={styles.carouselContainer} style={{ display: 'block', width: "auto", padding: 0 }}>

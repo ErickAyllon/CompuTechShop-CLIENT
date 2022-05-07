@@ -8,6 +8,7 @@ import ProductCard from '../ProductCard/ProductCard'
 import PaginationC from '../Pagination/PaginationC.jsx'
 import ProductNotFound from '../ProductNotFound/ProductNotFound'
 import styles from './ProductSearched.module.css'
+import NavBar from '../NavBar/Navbar'
 
 function ProductSearched() {
   let products = useSelector((state) => state.allProducts); 
@@ -31,6 +32,7 @@ function ProductSearched() {
   
   return (
     <div className={styles.searched}>
+      <NavBar />
       <Categories />
       {
         productsFilter.length > 0 ?

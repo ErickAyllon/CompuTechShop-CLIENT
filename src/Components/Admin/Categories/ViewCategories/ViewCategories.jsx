@@ -2,14 +2,14 @@ import React, { useEffect } from 'react';
 import styles from './ViewCategories.module.css';
 import { useSelector } from 'react-redux';
 import CategoryCreate from '../CategoryCreate/CategoryCreate';
-import AdminNav from '../AdminNav/AdminNav';
+import AdminNav from '../../AdminNav/AdminNav';
 import Box from '@mui/material/Box';
 import Paper from '@mui/material/Paper';
 import Stack from '@mui/material/Stack';
 import { styled } from '@mui/material/styles';
 import { useDispatch } from 'react-redux';
-import { deleteCategory, getCategories } from '../../../Redux/Actions';
-import trash from '../../../Images/trash.png'
+import { deleteCategory, getCategories } from '../../../../Redux/Actions';
+import trash from '../../../../Images/trash.png'
 
 const Item = styled(Paper)(({ theme }) => ({
   backgroundColor: theme.palette.mode === 'dark' ? '#1A2027' : '#fff',
@@ -36,10 +36,10 @@ function ViewCategories() {
 
   return (
     <div className={styles.viewCategoriesContainer}>
-      <AdminNav/>
       {/* <div className={styles.viewCategories}>
         <div className={styles.categories}> */}
       <Box sx={{ maxWidth: '300px', margin: '20px auto' }}>
+        <h1 style={{textAlign:'center'}}>Actual categories:</h1>
         <Stack spacing={2}>
           {
             allCategories?.map(el => { 
@@ -60,7 +60,6 @@ function ViewCategories() {
       </Box>
         {/* </div>
       </div> */}
-    <CategoryCreate />
     </div>
   )
 }

@@ -20,3 +20,11 @@ function LoginButton() {
 }
 
 export default LoginButton;
+
+
+//const { loginWithRedirect, isAuthenticated } = useAuth0();
+// return (
+//   !isAuthenticated && (
+//     <button onClick={() => loginWithRedirect()}> Sign In</button>
+//   )
+// )

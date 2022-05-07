@@ -1,0 +1,32 @@
+.searched {
+    color: white;
+    text-align: center;
+    justify-content: center;
+    margin-top: 2%;
+    position: relative;
+    min-height: 100vh;
+    background-color: black;
+    margin: 0;
+}
+
+.productsCardsContainer {
+    max-width: 900px;
+    margin: 20px auto;
+    min-height: 55vh;
+}
+
+.productsContainer {
+    display: flex;
+    margin: 0 auto;
+    max-width: 1400px;
+}
+
+/* .productNotFoundContainer {
+    background-color: red;
+} */
+
+@media only screen and (max-width: 768px) {
+    .productsContainer {
+        display:block;
+    }
+}
