@@ -11,6 +11,8 @@ import ProductNotFound from "../../../../ProductNotFound/ProductNotFound";
 import { useParams } from "react-router-dom";
 import AdminNav from "../../../AdminNav/AdminNav";
 import AdminNav2 from "../../../AdminNav/AdminNav2";
+import { Link } from 'react-router-dom'
+import { Button } from '@mui/material'
 
 function CategoryAdmin() {
   const {category} = useParams();
@@ -35,6 +37,9 @@ function CategoryAdmin() {
     <AdminNav />
     <AdminNav2 />
       <CategoriesAdmin />
+      <Link to='/admin/products/createProduct'>
+        <Button variant="outlined" style={{marginTop:'20px'}}>Create Product</Button>
+      </Link>
       {products.length > 0 ? (
         <>
           <div className={styles.productsContainer}>

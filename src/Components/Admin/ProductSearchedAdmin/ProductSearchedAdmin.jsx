@@ -8,6 +8,10 @@ import PaginationCAdmin from '../Products/Pagination/PaginationCAdmin'
 import ProductNotFound from '../../ProductNotFound/ProductNotFound'
 import styles from './ProductSearchedAdmin.module.css'
 import CategoriesAdmin from '../Products/Categories/CategoriesAdmin'
+import AdminNav from '../AdminNav/AdminNav'
+import AdminNav2 from '../AdminNav/AdminNav2'
+import { Link } from 'react-router-dom'
+import { Button } from '@mui/material'
 
 function ProductSearched() {
   let products = useSelector((state) => state.allProducts); 
@@ -31,14 +35,18 @@ function ProductSearched() {
   
   return (
     <div className={styles.searched}>
+      <AdminNav/>
+      <AdminNav2/>
       <CategoriesAdmin />
+      <Link to='/admin/products/createProduct'>
+        <Button variant="outlined" style={{marginTop:'20px'}}>Create Product</Button>
+      </Link>
       {
         productsFilter.length > 0 ?
         <>
       <div className={styles.productsContainer}>
         <Filter />
         <div className={styles.productsCardsContainer}>
-          <h1>Your search: {search}</h1>
           {
             productsFilter.length > 0 ?
             currentProducts.map((el) => {

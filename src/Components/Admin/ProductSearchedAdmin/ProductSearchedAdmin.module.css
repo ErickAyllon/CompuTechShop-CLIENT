@@ -12,7 +12,8 @@
 .productsCardsContainer {
     max-width: 900px;
     margin: 20px auto;
-    min-height: 55vh;
+    background-color: white;
+    border-radius: 50px;
 }
 
 .productsContainer {

@@ -10,6 +10,7 @@ import AdminNav from '../../AdminNav/AdminNav';
 import ProductCardAdmin from '../ProductCardAdmin/ProductCardAdmin';
 import { useParams } from 'react-router-dom';
 import AdminNav2 from '../../AdminNav/AdminNav2';
+import ProductDetailAdminCard from '../Detail/ProductDetailAdminCard'
 
 function UpdateProduct() {
   const dispatch = useDispatch();
@@ -270,20 +271,16 @@ function UpdateProduct() {
         </div>
       </Box>
           <div className={styles.cardsContainer}>
-            {
-              <div style={{margin:'20px 50px'}}>
-                <h3>Actual product</h3>
-                <ProductCardAdmin name={product[0].name} price={product[0].price} image={product[0].image} calification={product[0].calification} />
-              </div> 
-            }
             <div style={{margin:'20px 50px'}}>
-              <h3>Product updated</h3>
-              <ProductCardAdmin name={input.name} price={input.price} image={input.image} calification={product[0].calification} />
+              <h3>Product Card updated</h3>
+              <ProductCardAdmin name={input.name} price={input.price} image={input.image} calification={product[0].calification} style={{borderRadius:'50px'}}/>
             </div>
             </div>
         </div>
         : null
         }
+        <h3 style={{textAlign:'center'}}>Product Detail updated</h3>
+        <ProductDetailAdminCard nameD={input.name} image={input.image} price={input.price} brand={input.brand} quantity={input.quantity} description={input.description} calification={input.calification} />
     </div>
   )
 }
