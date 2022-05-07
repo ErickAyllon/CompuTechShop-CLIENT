@@ -185,15 +185,16 @@ export function postCategory(payload) {
   };
 }
 export function postBuyCart(payload) {
-  return async function () {
+  return async function (dispatch) {
     const response = await axios.post(
       "http://localhost:3001/Checkout",
       payload
     );
     console.log(response.data)
-    return response.data;
-  };
-}
+    return dispatch({type:"BUY_CART", 
+    payload:response.data,});
+  
+}}
 
 export function deleteCategory(id) {
   return async function (dispatch) {

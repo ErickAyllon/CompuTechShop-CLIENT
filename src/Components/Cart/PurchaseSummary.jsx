@@ -1,10 +1,11 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { postBuyCart } from "../../Redux/Actions";
 import CartItem from "./CartItem";
 import { TYPES } from "../../Redux/Actions/shoppingCartActions";
 import ProductCard from "../ProductCard/ProductCard";
 import NavBar from "../NavBar/Navbar";
+import {Link, useHistory} from "react-router-dom"
 
 const PurchaseSummary = () => {
   const obj = {};
@@ -14,6 +15,7 @@ const PurchaseSummary = () => {
   const arregloPrice = productsFilter.map((el) => el.price * el.quantity);
   const reducir = (accumulator, curr) => accumulator + curr;
   const arregloTotal = arregloPrice.reduce(reducir);
+
   
   const handleBuyCart = (e) => {
     e.preventDefault();
@@ -31,8 +33,6 @@ const PurchaseSummary = () => {
     obj.quantity = nuevoPost.map((el) => el.quantity);
     JSON.stringify(obj);
     dispatch(postBuyCart(obj));
-    
-
   };
 
   const addToCart = (id) => {
@@ -68,7 +68,10 @@ const PurchaseSummary = () => {
       <div>
         <label>Total Price: $</label>
         {arregloTotal}
+        <Link to="/purchaseConfirm">
         <button onClick={handleBuyCart}>Comprar</button>
+        </Link>
+        
       </div>
      
       </div>
