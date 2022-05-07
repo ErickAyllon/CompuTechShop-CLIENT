@@ -9,6 +9,7 @@ import styles from './UpdateProduct.module.css'
 import AdminNav from '../../AdminNav/AdminNav';
 import ProductCardAdmin from '../ProductCardAdmin/ProductCardAdmin';
 import { useParams } from 'react-router-dom';
+import AdminNav2 from '../../AdminNav/AdminNav2';
 
 function UpdateProduct() {
   const dispatch = useDispatch();
@@ -134,6 +135,7 @@ function UpdateProduct() {
   return (
     <div className={styles.updateProduct}>
       <AdminNav/>
+      <AdminNav2/>
     {      
         product[0] ? 
 

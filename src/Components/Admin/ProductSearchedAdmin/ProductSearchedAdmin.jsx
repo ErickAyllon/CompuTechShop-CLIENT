@@ -1,14 +1,13 @@
 import React, { useEffect }  from 'react'
 import {useDispatch, useSelector} from 'react-redux'
 import { useParams } from 'react-router-dom'
-import { getProductsByName } from '../../Redux/Actions'
-import Categories from '../Categories/Categories'
-import Filter from '../Filter/Filter'
-import ProductCard from '../ProductCard/ProductCard'
-import PaginationC from '../Pagination/PaginationC.jsx'
-import ProductNotFound from '../ProductNotFound/ProductNotFound'
-import styles from './ProductSearched.module.css'
-import NavBar from '../NavBar/Navbar'
+import { getProductsByName } from '../../../Redux/Actions'
+import Filter from '../../Filter/Filter'
+import ProductCardAdmin from '../Products/ProductCardAdmin/ProductCardAdmin'
+import PaginationCAdmin from '../Products/Pagination/PaginationCAdmin'
+import ProductNotFound from '../../ProductNotFound/ProductNotFound'
+import styles from './ProductSearchedAdmin.module.css'
+import CategoriesAdmin from '../Products/Categories/CategoriesAdmin'
 
 function ProductSearched() {
   let products = useSelector((state) => state.allProducts); 
@@ -32,8 +31,7 @@ function ProductSearched() {
   
   return (
     <div className={styles.searched}>
-      <NavBar />
-      <Categories />
+      <CategoriesAdmin />
       {
         productsFilter.length > 0 ?
         <>
@@ -45,7 +43,7 @@ function ProductSearched() {
             productsFilter.length > 0 ?
             currentProducts.map((el) => {
             return (
-                <ProductCard 
+                <ProductCardAdmin 
                     key={el.id}
                     name={el.name} 
                     price={el.price} 
@@ -54,7 +52,10 @@ function ProductSearched() {
                     brand={el.brand} 
                     description={el.description} 
                     calification={el.calification} 
-                    quantity={el.quantity}/>
+                    quantity={el.quantity}
+                    update={true}
+                    delet={true}
+                    />
               )
             })
             : <ProductNotFound />
@@ -63,7 +64,7 @@ function ProductSearched() {
       </div>
           {
             productsFilter.length > 0 ?
-              <PaginationC
+              <PaginationCAdmin
                 category={search}
                 totalPages={totalPages}
               />

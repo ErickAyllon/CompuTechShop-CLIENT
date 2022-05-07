@@ -8,6 +8,8 @@ import Button from '@mui/material/Button';
 import styles from './ProductCreate.module.css'
 import { Link } from 'react-router-dom';
 import AdminNav from '../../AdminNav/AdminNav';
+import AdminNav2 from '../../AdminNav/AdminNav2';
+import ProductCardAdmin from '../ProductCardAdmin/ProductCardAdmin';
 
 function ProductCreate() {
   const dispatch = useDispatch();
@@ -110,8 +112,10 @@ function ProductCreate() {
 }
 
   return (
-    <div>
+    <div className={styles.productCreate}>
       <AdminNav/>
+      <AdminNav2 />
+      <div className={styles.updateProductContainer}>
         <Box
           className={styles.form}
           component="form"
@@ -238,6 +242,13 @@ function ProductCreate() {
             </div>
         </div>
       </Box>
+        <div className={styles.cardsContainer}>
+            <div style={{margin:'20px 50px'}}>
+              <h3>New product</h3>
+              <ProductCardAdmin name={input.name} price={input.price} image={input.image} />
+            </div>
+        </div>
+      </div>
     </div>
   )
 }

@@ -1,13 +1,14 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from "react-redux";
 import { getShops, getUser } from "../../../../Redux/Actions";
-//import styles from './Admin.module.css';
+import styles from './ViewAllOrders.module.css';
 import ShopCard from '../ShopCard/ShopCard';
 //import { Link } from 'react-router-dom';
 //import Button from '@mui/material/Button';
 //import AdminNav from './AdminNav/AdminNav';
-import NotFound404 from '../../../NotFound404/NotFound404';
+import ProductNotFound from '../../../ProductNotFound/ProductNotFound'
 import AdminNav from '../../AdminNav/AdminNav'
+import AdminNav2 from '../../AdminNav/AdminNav2';
 
 function ViewAllOrders({ amount, date, payment, state, userId, products, id }){
   const dispatch = useDispatch();
@@ -23,8 +24,9 @@ function ViewAllOrders({ amount, date, payment, state, userId, products, id }){
 
 
     return (
-      <div>
+      <div className={styles.viewAllOrders}>
         <AdminNav/>
+        <AdminNav2 />
         {
           shops.length ? shops.map(el => {
             return(
@@ -39,7 +41,7 @@ function ViewAllOrders({ amount, date, payment, state, userId, products, id }){
               key={el.id}
               />
             )
-          }) : <NotFound404/>
+          }) : <ProductNotFound />
         }
       </div>
     )

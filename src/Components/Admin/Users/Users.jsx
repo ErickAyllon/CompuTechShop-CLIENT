@@ -4,7 +4,9 @@ import AdminNav from '../../Admin/AdminNav/AdminNav';
 import { useDispatch } from 'react-redux';
 import { getUser } from '../../../Redux/Actions/index';
 import UserCard from './UserCard'
-import NotFound404 from '../../NotFound404/NotFound404';
+import ProductNotFound from '../../ProductNotFound/ProductNotFound';
+import styles from './Users.module.css'
+import AdminNav2 from '../AdminNav/AdminNav2';
 
 
 
@@ -20,8 +22,9 @@ function Users() {
   const users = useSelector((state) => state.users)
 
   return (
-    <div>
+    <div className={styles.users}>
       <AdminNav/>
+      <AdminNav2/>
       <div style={{minHeight: '100vh'}}>
       {
         users.length ? users.map(el => {
@@ -35,7 +38,7 @@ function Users() {
             />
             </div>
           )
-        }) : <NotFound404/>
+        }) : <ProductNotFound/>
       }
       </div>
     </div>

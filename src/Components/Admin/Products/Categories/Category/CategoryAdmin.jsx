@@ -10,6 +10,7 @@ import styles from "./CategoryAdmin.module.css";
 import ProductNotFound from "../../../../ProductNotFound/ProductNotFound";
 import { useParams } from "react-router-dom";
 import AdminNav from "../../../AdminNav/AdminNav";
+import AdminNav2 from "../../../AdminNav/AdminNav2";
 
 function CategoryAdmin() {
   const {category} = useParams();
@@ -32,6 +33,7 @@ function CategoryAdmin() {
   return (
     <div className={styles.category}>
     <AdminNav />
+    <AdminNav2 />
       <CategoriesAdmin />
       {products.length > 0 ? (
         <>

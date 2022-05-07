@@ -1,13 +1,12 @@
-.category {
+.searched {
     color: white;
     text-align: center;
     justify-content: center;
+    margin-top: 2%;
     position: relative;
     min-height: 100vh;
-}
-
-.category a {
-    text-decoration: none;
+    background-color: black;
+    margin: 0;
 }
 
 .productsCardsContainer {
@@ -21,6 +20,10 @@
     margin: 0 auto;
     max-width: 1400px;
 }
+
+/* .productNotFoundContainer {
+    background-color: red;
+} */
 
 @media only screen and (max-width: 768px) {
     .productsContainer {
