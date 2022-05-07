@@ -23,13 +23,20 @@ function Users() {
     <div>
       <AdminNav/>
       <div style={{minHeight: '100vh'}}>
+      {
+        users.length ? 
+        <div>
         <span>NAME</span>
         <span>LASTNAME</span>
         <span>EMAIL</span>
         <span>PHONE</span>
         <span>TOTAL ORDERS</span>
+        </div>
+        : null
+      }
       {
-        users.length ? users.map(el => {
+        users.length ? 
+        users.map(el => {
           return(
             <div key={el.id}>
             <UserCard

@@ -9,22 +9,32 @@ import ShopCard from '../ShopCard/ShopCard';
 import NotFound404 from '../../../NotFound404/NotFound404';
 import AdminNav from '../../AdminNav/AdminNav'
 
-function ViewAllOrders({ amount, date, payment, state, userId, products, id }){
+function ViewAllOrders(){
   const dispatch = useDispatch();
 
-  
 
   useEffect(() => {
     dispatch(getShops());
+    console.log('shops',shops)
   }, [dispatch]);
 
   const shops = useSelector((state) => state.shops);
 
-
-
     return (
       <div>
         <AdminNav/>
+        {/* <h1>hola</h1> */}
+        {
+          shops.length ? 
+          <div>
+            <span>ID</span>
+            <span>EMAIL</span>
+            <span>AMOUNT</span>
+            <span>DATE</span>
+            <span>DATE</span>
+          </div>
+          :null
+        }
         {
           shops.length ? shops.map(el => {
             return(
@@ -33,7 +43,7 @@ function ViewAllOrders({ amount, date, payment, state, userId, products, id }){
               date={el.date}
               payment={el.payment}
               state={el.state}
-              userId={el.userId}
+              email={el.userEmail}
               products={el.products}
               id={el.id}
               key={el.id}
