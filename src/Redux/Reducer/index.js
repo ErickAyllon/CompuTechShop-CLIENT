@@ -8,6 +8,7 @@ const initialState = {
   productsFilter: [],
   productsNotPriceChangeable: [],
   users: [],
+  users2: [],
   productDetail: [],
   categories: [],
   darkMode: true,
@@ -42,11 +43,17 @@ function rootReducer(state = initialState, action) {
         ...state,
         allProducts: action.payload,
       };
-    case "GET_USER":
+     
+    case "GET_USER_DETAIL":
       return {
         ...state,
         users: action.payload,
       };
+      case "GET_USER":
+        return {
+          ...state,
+          users2: action.payload,
+        };
     case "GET_DETAILS":
       return {
         ...state,

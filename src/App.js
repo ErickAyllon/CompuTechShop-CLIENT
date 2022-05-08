@@ -15,6 +15,8 @@ import FAQ from "./Components/Footer/FAQ";
 import FAQ2 from './Components/Footer/FAQ2'
 import WorkWithUs from "./Components/Footer/WorkWithUs";
 import About from "./Components/Footer/About";
+import Profile2 from "./Components/Profile/Profile2"
+
 
 
 
@@ -86,6 +88,8 @@ function App() {
           <Route path="/" element={<Home />} />
           <Route path="/admin" element={<Admin />} />
           <Route path="/profile" element={<Profile />} />
+          <Route path="/profile2" element={<Profile2 />} />
+
           <Route path="/allproducts" element={<AllProducts />} />
           <Route path="/category/:category" element={<Category />} />
           <Route path="/:name" element={<ProductDetail />} />
@@ -114,6 +118,11 @@ function App() {
           <Route path="/form" element={<FormUser />} />
           <Route path="/admin/allorders" element={<ViewAllOrders />} />
           <Route path="/admin/users" element={<Users />} />
+          <Route path='/FAQ' element={<FAQ/>}/>
+          <Route path='/FAQ2' element={<FAQ2/>}/>
+          <Route path='/WorkWithUs' element={<WorkWithUs/>}/>
+          <Route path='/About' element={<About/>}/>
+
         </Routes>
         <Footer />
       </BrowserRouter>

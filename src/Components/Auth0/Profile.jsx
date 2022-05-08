@@ -8,12 +8,14 @@ import styles from "./Profile.module.css";
 import DropdownMenu from "react-bootstrap/esm/DropdownMenu";
 import { Dropdown } from "react-bootstrap";
 import LogOutButton from "./LogOutButton";
+import Profile2 from "../Profile/Profile2.jsx"; 
 
 export default function Profile() {
   const { user, isAuthenticated } = useAuth0();
   
   const dispatch = useDispatch();
-  let myUsers = useSelector((state) => state.users);
+  let myUsers = useSelector((state) => state.users2);
+  
 
   useEffect(() => {
     dispatch(getUser());
@@ -37,7 +39,9 @@ export default function Profile() {
             focusFirstItemOnShow="false"
             variant="dark"
           >
-            <Dropdown.Item href={"/profile"}>My Profile</Dropdown.Item>
+            
+            <Dropdown.Item href={"/profile2"}>My Profile</Dropdown.Item>
+            
             <Dropdown.Item href="/admin">My Product</Dropdown.Item>
             <Dropdown.Divider />
             <Dropdown.Item href="" className={styles.logOutMenu}>
