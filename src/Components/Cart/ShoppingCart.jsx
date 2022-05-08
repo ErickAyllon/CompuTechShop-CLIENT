@@ -4,21 +4,21 @@ import CartItem from "./CartItem";
 import { Dropdown } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
 import { postBuyCart } from "../../Redux/Actions";
-import { Link, useNavigate} from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import Loader from "../Loader/Loader";
 import styles from "./CartItem.module.css"
 
 const ShoppingCart = () => {
-  const obj = {};
-const navigate = useNavigate()
+  const obj = {}
+  const navigate = useNavigate()
   const dispatch = useDispatch();
   const carti = useSelector((state) => state.cart);
   let url = useSelector((state) => state.shopping);
   let arregloTotal = [];
-  
+
   const arregloPrice = carti.map((el) => el.price * el.quantity);
   const reducir = (accumulator, curr) => accumulator + curr;
-   arregloTotal = arregloPrice.length > 0 ? arregloPrice.reduce(reducir) : arregloPrice;
+  arregloTotal = arregloPrice.length > 0 ? arregloPrice.reduce(reducir) : arregloPrice;
 
 
   const delFromCart = (id, all = false) => {
@@ -30,7 +30,7 @@ const navigate = useNavigate()
     dispatch({ type: TYPES.CLEAR_CART });
   };
   const addToCart = (id) => {
-    
+
     dispatch({ type: TYPES.ADD_TO_CART, payload: id });
   };
 
@@ -50,11 +50,12 @@ const navigate = useNavigate()
     obj.quantity = nuevoPost.map((el) => el.quantity);
     dispatch(postBuyCart(obj));
 
-    setTimeout(function(){
-        navigate("/purchaseConfirm")
-    },2000)}
+    setTimeout(function () {
+      navigate("/purchaseConfirm")
+    }, 2000)
+  }
 
- 
+
   return (
     <div>
       <Dropdown active="true" autoClose="outside">
@@ -78,15 +79,15 @@ const navigate = useNavigate()
               <article className="box">
                 <Dropdown.Divider />
                 {carti?.map((el, index) => (
-                 <Dropdown.Item>
+                  <Dropdown.Item>
 
-                   <CartItem
+                    <CartItem
                       key={index}
                       data={el}
                       delFromCart={delFromCart}
                       addToCart={addToCart}
                     />
-                 </Dropdown.Item>
+                  </Dropdown.Item>
                 ))}
               </article>
               <div>
@@ -94,20 +95,20 @@ const navigate = useNavigate()
                 {arregloTotal ? arregloTotal : <Loader />}
               </div>
               <Dropdown.Item>
-              <div>
-            
-                <button className = {styles.btn} onClick={handleBuyCart}>
-                Comprar  
+                <div>
+
+                  <button className={styles.btn} onClick={handleBuyCart}>
+                    Comprar
                   </button>
-              </div>
+                </div>
               </Dropdown.Item>
-           
+
             </div>
-          <Dropdown.Divider />
+            <Dropdown.Divider />
           </Dropdown.Item>
-            <Link to="/purchaseSummary">
-              <button>Purchase summary</button>
-            </Link>
+          <Link to="/purchaseSummary">
+            <button>Purchase summary</button>
+          </Link>
         </Dropdown.Menu>
       </Dropdown>
     </div>
