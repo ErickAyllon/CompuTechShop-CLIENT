@@ -17,6 +17,7 @@ const initialState = {
   currentPage: 1,
   cartModified: [],
   shopping: [],
+  payment: []
 };
 
 function rootReducer(state = initialState, action) {
@@ -252,6 +253,13 @@ function rootReducer(state = initialState, action) {
       return {
         ...state,
       };
+
+    case "GET_PAYMENT": {
+      return {
+        ...state,
+        payment: action.payload
+      }
+    }
 
 
     default:

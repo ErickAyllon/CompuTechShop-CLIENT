@@ -1,9 +1,10 @@
+import { ClassNames } from "@emotion/react";
 import axios from "axios";
 
 
 
 export const GET_USER_DETAIL = "GET_USER_DETAIL"
-export const getUserDetail =(email) => {
+export const getUserDetail = (email) => {
   return async (dispatch) => {
     var json = await axios.get("http://localhost:3001/users" + email)
     return dispatch({
@@ -203,11 +204,14 @@ export function postBuyCart(payload) {
       "http://localhost:3001/Checkout",
       payload
     );
-    
-    return dispatch({type:"BUY_CART", 
-    payload:response.data,});
-  
-}}
+
+    return dispatch({
+      type: "BUY_CART",
+      payload: response.data,
+    });
+
+  }
+}
 
 export function deleteCategory(id) {
   return async function (dispatch) {
@@ -244,21 +248,30 @@ export function deleteProduct(id) {
 export function updateProduct(id, payload) {
   console.log(id)
   console.log(payload)
-  return async function(dispatch) {
-      try {
-          const json = await axios.put('http://localhost:3001/updateProduct/' + id, payload)
-          return dispatch({
-              type: "UPDATE_PRODUCT",
-              payload: json.data
-          })
-      } catch (error) {
-          console.log('catch: ' + error);
-      }
+  return async function (dispatch) {
+    try {
+      const json = await axios.put('http://localhost:3001/updateProduct/' + id, payload)
+      return dispatch({
+        type: "UPDATE_PRODUCT",
+        payload: json.data
+      })
+    } catch (error) {
+      console.log('catch: ' + error);
+    }
   }
 }
-
-// export const getPayment = (payload) => {
-//   async (dispatch) => await axios.get("http://localhost:3001/success?payment_id=" + payload)
- 
-//no borrar
-// }
+export const getPayment = (payload) => {
+  // console.log(payload.email)
+  const { id, email } = payload;
+  return async function (dispatch) {
+    try {
+      var json = await axios.get("http://localhost:3001/success?id=" + id + "&successEmail=" + email);
+      return dispatch({
+        type: "GET_PAYMENT",
+        payload: json.data,
+      });
+    } catch (error) {
+      console.log(error);
+    }
+  };
+}
