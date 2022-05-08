@@ -228,8 +228,8 @@ export function deleteProduct(id) {
 }
 
 export function updateProduct(id, payload) {
-  console.log(id)
-  console.log(payload)
+  // console.log(id)
+  // console.log(payload)
   return async function(dispatch) {
       try {
           const json = await axios.put('http://localhost:3001/updateProduct/' + id, payload)
@@ -270,3 +270,18 @@ export function sortOrderByAmount(payload) {
     payload,
   };
 }
+
+export function updateShop(id, payload){
+  return async function (dispatch) {
+    try {
+      const json = await axios.put('http://localhost:3001/updatePayment/' + id, payload)
+      return dispatch({
+        type: "UPDATE_SHOP",
+        payload: json.data
+      })
+    }catch(err){
+      console.log(err)
+    }
+  }
+}
+

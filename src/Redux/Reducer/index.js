@@ -318,6 +318,10 @@ function rootReducer(state = initialState, action) {
             ...state,
             shopsFiltered: orders
           }
+      case "UPDATE_SHOP":
+        return{
+          ...state,
+        }
     default:
       return state;
   }
