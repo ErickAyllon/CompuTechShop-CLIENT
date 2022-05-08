@@ -144,7 +144,7 @@ export function darkMode(payload) {
 export function getShops() {
   return async function (dispatch) {
     try {
-      var json = await axios.get("http://localhost:3001/getShops");
+      var json = await axios.get("http://localhost:3001/getPayments");
       return dispatch({
         type: "GET_SHOPS",
         payload: json.data,
@@ -158,7 +158,7 @@ export function getShops() {
 export function getShopById(id) {
   return async function (dispatch) {
     try {
-      var json = await axios.get("http://localhost:3001/getShops/" + id);
+      var json = await axios.get("http://localhost:3001/getPayments?id=" + id);
       return dispatch({
         type: "GET_SHOP_BY_ID",
         payload: json.data,
@@ -241,4 +241,32 @@ export function updateProduct(id, payload) {
           console.log('catch: ' + error);
       }
   }
+}
+
+export function sortUsersByLastName(payload) {
+  return {
+    type: "ORDER_USER_BY_LASTNAME",
+    payload,
+  };
+}
+
+// export function filterUsresByValue(payload) {
+//   return {
+//     type: "FILTER_USER_BY_VALUE",
+//     payload,
+//   };
+// }
+
+export function sortOrderByEmail(payload) {
+  return {
+    type: "ORDER_ORDER_BY_EMAIL",
+    payload,
+  };
+}
+
+export function sortOrderByAmount(payload) {
+  return {
+    type: "ORDER_ORDER_BY_AMOUNT",
+    payload,
+  };
 }
