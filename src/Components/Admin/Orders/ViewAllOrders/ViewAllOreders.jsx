@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from "react-redux";
-import { getShops, getUser, sortOrderByEmail, sortOrderByAmount } from "../../../../Redux/Actions";
+import { getShops, getUser, sortOrderByEmail, sortOrderByAmount, filterOrderByState } from "../../../../Redux/Actions";
 import styles from './ViewAllOrders.module.css';
 import ShopCard from '../ShopCard/ShopCard';
 //import { Link } from 'react-router-dom';
@@ -15,6 +15,7 @@ function ViewAllOrders(){
   const dispatch = useDispatch();
   const [orderByEmail, setOrderByEmail] = useState('')
   const [orderByAmount, setOrderByAmount] = useState('')
+  const [filterByState, setFilterByState] = useState('')
 
 
   useEffect(() => {
@@ -23,7 +24,8 @@ function ViewAllOrders(){
   }, [dispatch]);
 
 
-  const shops = useSelector((state) => state.shops);
+  // const shops = useSelector((state) => state.shops);
+  const shops = useSelector((state) => state.shopsFiltered);
 
   function handleSortByEmail(e) {
     e.preventDefault()
@@ -35,6 +37,12 @@ function ViewAllOrders(){
     e.preventDefault()
     dispatch(sortOrderByAmount(e.target.value))
     setOrderByAmount(e.target.value)
+  }
+
+  function handleFilterByState(e){
+    e.preventDefault()
+    dispatch(filterOrderByState(e.target.value))
+    setFilterByState(e.target.value)
   }
 
     return (
@@ -49,12 +57,16 @@ function ViewAllOrders(){
         variant="outlined"
         id="outlined-select-currency"
         select
-        label="Purchase value"
-        // value={order}
-        // onChange={(e) => handleSortByLastName(e)}
+        label="State"
+        value={filterByState}
+        onChange={(e) => handleFilterByState(e)}
       > 
-        <MenuItem value='higher-value'>Higher value</MenuItem>
-        <MenuItem value='lower-value'>Lower value</MenuItem>
+        <MenuItem value='All orders'>All orders</MenuItem>
+        <MenuItem value='In process'>In process</MenuItem>
+        <MenuItem value='Paid'>Paid</MenuItem>
+        <MenuItem value='On its way'>On its way</MenuItem>
+        <MenuItem value='Canceled'>Canceled</MenuItem>
+        <MenuItem value='Received'>Received</MenuItem>
       </TextField>
 
       <TextField
@@ -96,7 +108,7 @@ function ViewAllOrders(){
             <span>EMAIL</span>
             <span>AMOUNT</span>
             <span>DATE</span>
-            <span>DATE</span>
+            {/* <span>DATE</span> */}
           </div>
           :null
         }
@@ -104,7 +116,7 @@ function ViewAllOrders(){
           shops.length ? shops.map(el => {
             return(
               <ShopCard
-              amount={el.amount}
+              amount={el.total_paid_amount}
               date={el.date}
               payment={el.payment}
               state={el.state}
