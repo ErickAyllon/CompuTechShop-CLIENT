@@ -6,6 +6,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { postBuyCart } from "../../Redux/Actions";
 import { Link } from "react-router-dom";
 import Loader from "../Loader/Loader";
+import styles from './ShoppingCart.module.css'
 
 const ShoppingCart = () => {
   const obj = {};
@@ -50,7 +51,7 @@ const ShoppingCart = () => {
     dispatch(postBuyCart(obj));
   };
   return (
-    <div>
+    <div className={styles.cart}>
       <Dropdown active="true" autoClose="outside">
         <Dropdown.Toggle variant="Secondary" id="dropdown-basic">
           <img

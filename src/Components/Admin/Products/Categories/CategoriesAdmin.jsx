@@ -42,28 +42,6 @@ function CategoriesAdmin() {
   return (
     <nav className={styles.navCategories}>
         <div className={styles.categories}>
-                <TextField
-                    sx={{
-                        '& > :not(style)': { m: 1, display: 'flex', width: '17ch', color:'white'},
-                    }}
-                    className={styles.filterByBrand}
-                    variant="standard"
-                    id="outlined-select-currency"
-                    name="categories"
-                    select
-                    displayEmpty
-                    value={categorySelect}
-                    onChange={(e) => handleCategorySelect(e)}
-                > 
-                        <MenuItem disabled value='Select'>All Categories</MenuItem>
-                        <MenuItem value='Allproducts'>All Products</MenuItem>
-                    {brandMap.map((option) => (
-                        <MenuItem key={option} value={option}>
-                        {option}
-                        </MenuItem>
-                    ))}
-            </TextField>
-
             <div className={styles.category}>
                 <Link to='/admin/products/Allproducts'>
                     <img src="https://img.icons8.com/ios-filled/100/ffffff/package-delivery-logistics.png" alt="categoryLogo"/>
@@ -99,7 +77,31 @@ function CategoriesAdmin() {
                     <img src="https://img.icons8.com/ios/100/ffffff/keyboard.png" alt="categoryLogo"/>
                 </Link>   
                 <span>Keyboards</span>
-            </div>   
+            </div> 
+            <div className={styles.filterByBrand}>
+            <TextField
+                    sx={{
+                        '& > :not(style)': { m: 1, display: 'flex', width: '17ch', color:'white', position: 'absolute'},
+                    }}
+                    // className={styles.filterByBrand}
+                    variant="standard"
+                    id="outlined-select-currency"
+                    name="categories"
+                    select
+                    // label="All Categories"
+                    displayEmpty
+                    value={categorySelect}
+                    onChange={(e) => handleCategorySelect(e)}
+                > 
+                        <MenuItem disabled value='Select'>All Categories</MenuItem>
+                        <MenuItem value='Allproducts'>All Products</MenuItem>
+                    {brandMap.map((option) => (
+                        <MenuItem key={option} value={option}>
+                        {option}
+                        </MenuItem>
+                    ))}
+            </TextField>
+            </div>  
         </div>
     </nav>
   )

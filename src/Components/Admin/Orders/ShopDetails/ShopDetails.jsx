@@ -33,11 +33,11 @@ function ShopDetail() {
       {shop.length ? shop.map(el => {
         return(
           <div key={el.id}>
-            <span>Date: {el.date}</span><br/>
+            <span>Date: {(Date(el.date).toString())}</span><br/>
             <span>State: {el.state}</span><br/>
             {/* <span>Email: {user[0].email}</span><br/> */}
-            <span>Payment: {el.payment}</span><br/>
-            <span>Amount: {el.amount}</span><br/>
+            <span>Payment status: {el.status}</span><br/>
+            <span>Amount: {el.total_paid_amount}</span><br/>
             <span>Products: </span>{el.products.map(el => {
               return(
                 <div key={el}>

@@ -30,4 +30,7 @@
     .productsContainer {
         display:block;
     }
+    .searched .create {
+        margin-top: 30px;
+    }
 }

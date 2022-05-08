@@ -23,6 +23,7 @@
     max-width: 400px;
     height: 300px;
     margin: 50px 0;
+    min-width: 300px;
 }
 
 .productDetailImg {
@@ -90,7 +91,7 @@
         flex-direction: column;
     }
     .productDetailContainer {
-        margin: 0;
+        margin: 30px 0;
         width: 100%;
         display: inline-block;
         height: auto;
@@ -112,11 +113,13 @@
         height: 100%;
         margin: 0;
         vertical-align:middle;
+        max-height: 250px;
     }
     .productDetailImg {
-        margin: auto;
-        width: 350px;
         display: flex;
+        margin: auto;
+        width: auto;
+        max-height: 250px;
     }
     .productDetailName {
         margin: 0;
