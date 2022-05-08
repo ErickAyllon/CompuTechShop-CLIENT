@@ -6,6 +6,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { postBuyCart } from "../../Redux/Actions";
 import { Link, useNavigate} from "react-router-dom";
 import Loader from "../Loader/Loader";
+import styles from "./CartItem.module.css"
 
 const ShoppingCart = () => {
   const obj = {};
@@ -13,12 +14,11 @@ const navigate = useNavigate()
   const dispatch = useDispatch();
   const carti = useSelector((state) => state.cart);
   let url = useSelector((state) => state.shopping);
-console.log(url)
   let arregloTotal = [];
-  
   
   const arregloPrice = carti.map((el) => el.price * el.quantity);
   const reducir = (accumulator, curr) => accumulator + curr;
+   arregloTotal = arregloPrice.length > 0 ? arregloPrice.reduce(reducir) : arregloPrice;
 
 
   const delFromCart = (id, all = false) => {
@@ -49,9 +49,10 @@ console.log(url)
     obj.price = nuevoPost.map((el) => Number(el.price));
     obj.quantity = nuevoPost.map((el) => el.quantity);
     dispatch(postBuyCart(obj));
-      setTimeout(function(){
+
+    setTimeout(function(){
         navigate("/purchaseConfirm")
-  },2000)}
+    },2000)}
 
  
   return (
@@ -70,7 +71,7 @@ console.log(url)
           variant="dark"
         >
           <Dropdown.Item >
-            <button onClick={clearCart}>Limpiar Carrito</button>{" "}
+            <button onClick={clearCart}>Clean Cart</button>
           </Dropdown.Item>
           <Dropdown.Item>
             <div>
@@ -95,7 +96,7 @@ console.log(url)
               <Dropdown.Item>
               <div>
             
-                <button onClick={handleBuyCart}>
+                <button className = {styles.btn} onClick={handleBuyCart}>
                 Comprar  
                   </button>
               </div>

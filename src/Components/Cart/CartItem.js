@@ -1,3 +1,4 @@
+import styles from "./CartItem.module.css"
 const CartItem = ({ data, delFromCart, addToCart }) => {
   let { name, id, price, quantity, image } = data;
 
@@ -8,11 +9,11 @@ const CartItem = ({ data, delFromCart, addToCart }) => {
         ${price} x {quantity} = ${quantity * price}
       </div>
       <img src={image} alt={name} />
-      <button onClick={() => delFromCart(id)}>-</button>
+      <button className = {styles.btn} onClick={() => delFromCart(id)}>-</button>
       <br />
-      <button onClick={() => delFromCart(id, true)}>Eliminar todos</button>
+      <button className = {styles.btn} onClick={() => delFromCart(id, true)}>Eliminar todos</button>
       <br />
-      <button onClick={() => addToCart(id)}>+</button>
+      <button className = {styles.btn} onClick={() => addToCart(id)}>+</button>
     </div>
   );
 };

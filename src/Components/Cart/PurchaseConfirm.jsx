@@ -10,7 +10,6 @@ export const PurchaseConfirm = () => {
       { setTimeout(function(){
        window.location.href = ca.toString()
   },4000)}
-      
     </div>
   </>
   )

@@ -190,7 +190,7 @@ export function postBuyCart(payload) {
       "http://localhost:3001/Checkout",
       payload
     );
-    console.log(response.data)
+    
     return dispatch({type:"BUY_CART", 
     payload:response.data,});
   
@@ -243,3 +243,9 @@ export function updateProduct(id, payload) {
       }
   }
 }
+
+// export const getPayment = (payload) => {
+//   async (dispatch) => await axios.get("http://localhost:3001/success?payment_id=" + payload)
+ 
+//no borrar
+// }

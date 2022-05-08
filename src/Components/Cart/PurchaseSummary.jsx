@@ -5,17 +5,16 @@ import CartItem from "./CartItem";
 import { TYPES } from "../../Redux/Actions/shoppingCartActions";
 import ProductCard from "../ProductCard/ProductCard";
 import NavBar from "../NavBar/Navbar";
-import {Link, useHistory} from "react-router-dom"
-
+import {Link, useNavigate} from "react-router-dom"
+import styles from "./CartItem.module.css"
 const PurchaseSummary = () => {
   const obj = {};
   const dispatch = useDispatch();
   const productsFilter = useSelector((state) => state.cart);
-  const response = useSelector((state) => state.cartModified)
   const arregloPrice = productsFilter.map((el) => el.price * el.quantity);
   const reducir = (accumulator, curr) => accumulator + curr;
   const arregloTotal = arregloPrice.reduce(reducir);
-
+  const navigate = useNavigate()
   
   const handleBuyCart = (e) => {
     e.preventDefault();
@@ -33,8 +32,15 @@ const PurchaseSummary = () => {
     obj.quantity = nuevoPost.map((el) => el.quantity);
     JSON.stringify(obj);
     dispatch(postBuyCart(obj));
+    setTimeout(function(){
+      navigate("/purchaseConfirm")
+  },2000)
   };
-
+  const delFromCart = (id, all = false) => {
+    all
+      ? dispatch({ type: TYPES.REMOVE_ALL_FROM_CART, payload: id })
+      : dispatch({ type: TYPES.REMOVE_ONE_FROM_CART, payload: id });
+  };
   const addToCart = (id) => {
     console.log(id);
     dispatch({ type: TYPES.ADD_TO_CART, payload: id });
@@ -57,6 +63,7 @@ const PurchaseSummary = () => {
          calification={el.calification}
          quantity={el.quantity}
          addToCart={addToCart}
+         delFromCart={delFromCart}
        />
         // <CartItem
         //   // key={index}
@@ -68,9 +75,9 @@ const PurchaseSummary = () => {
       <div>
         <label>Total Price: $</label>
         {arregloTotal}
-        <Link to="/purchaseConfirm">
-        <button onClick={handleBuyCart}>Comprar</button>
-        </Link>
+     
+        <button className = {styles.btn} onClick = {handleBuyCart}>Comprar</button>
+
         
       </div>
      
