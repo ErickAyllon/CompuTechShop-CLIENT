@@ -1,9 +1,22 @@
 import axios from "axios";
 
-export const GET_USER = "GET_USER";
-export const getUser = () => {
+
+
+export const GET_USER_DETAIL = "GET_USER_DETAIL"
+export const getUserDetail =(email) => {
   return async (dispatch) => {
-    var json = await axios.get("http://localhost:3001/users");
+    var json = await axios.get("http://localhost:3001/users" + email)
+    return dispatch({
+      type: "GET_USER_DETAIL",
+      payload: json.data,
+    })
+  }
+}
+
+export const GET_USER = "GET_USER";
+export const getUser = (email) => {
+  return async (dispatch) => {
+    var json = await axios.get("http://localhost:3001/users" + email);
     return dispatch({
       type: "GET_USER",
       payload: json.data,

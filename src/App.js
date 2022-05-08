@@ -15,6 +15,8 @@ import FAQ from "./Components/Footer/FAQ";
 import FAQ2 from './Components/Footer/FAQ2'
 import WorkWithUs from "./Components/Footer/WorkWithUs";
 import About from "./Components/Footer/About";
+import Profile2 from "./Components/Profile/Profile2"
+
 
 import { CssBaseline } from "@mui/material";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
@@ -86,6 +88,8 @@ function App() {
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/profile" element={<Profile />} />
+          <Route path="/profile2" element={<Profile2 />} />
+
           <Route path="/allproducts" element={<AllProducts />} />
           <Route path="/category/:category" element={<Category />} />
           <Route path="/:name" element={<ProductDetail />} />
@@ -104,6 +108,11 @@ function App() {
           <Route path="/admin/shop/:id" element={<ShopDetails />} />
           <Route path="/admin/allorders" element={<ViewAllOrders />} />
           <Route path="/admin/users" element={<Users />} />
+          <Route path='/FAQ' element={<FAQ/>}/>
+          <Route path='/FAQ2' element={<FAQ2/>}/>
+          <Route path='/WorkWithUs' element={<WorkWithUs/>}/>
+          <Route path='/About' element={<About/>}/>
+
           <Route path="/purchaseSummary" element={<PurchaseSummary />} />
           <Route path="/purchaseConfirm" element={<PurchaseConfirm />} />
           <Route path="/purchaseResult" element={<PurchaseResult />} />
