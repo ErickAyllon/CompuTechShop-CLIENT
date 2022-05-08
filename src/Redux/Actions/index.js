@@ -197,6 +197,16 @@ export function postCategory(payload) {
     return response;
   };
 }
+export function postBuyCart(payload) {
+  return async function () {
+    const response = await axios.post(
+      "http://localhost:3001/Checkout",
+      payload
+    );
+    console.log(response.data)
+    return response.data;
+  };
+}
 
 export function deleteCategory(id) {
   return async function (dispatch) {

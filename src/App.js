@@ -18,8 +18,6 @@ import About from "./Components/Footer/About";
 import Profile2 from "./Components/Profile/Profile2"
 
 
-
-
 import { CssBaseline } from "@mui/material";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 import { amber, deepOrange, grey } from "@mui/material/colors";
@@ -37,6 +35,8 @@ import CategoryAdmin from "./Components/Admin/Products/Categories/Category/Categ
 import AllProductsAdmin from "./Components/Admin/Products/Categories/AllProducts/AllProductsAdmin";
 import Users from "./Components/Admin/Users/Users";
 import UpdateProduct from "./Components/Admin/Products/UpdateProduct/UpdateProduct";
+import ProductSearchedAdmin from './Components/Admin/ProductSearchedAdmin/ProductSearchedAdmin'
+import PurchaseSummary from "./Components/Cart/PurchaseSummary";
 
 
 const getDesignTokens = (mode) => ({
@@ -83,10 +83,8 @@ function App() {
     <ThemeProvider theme={isDarkTheme ? darkModeTheme : darkModeTheme}>
       <CssBaseline />
       <BrowserRouter>
-        <NavBar />
         <Routes>
           <Route path="/" element={<Home />} />
-          <Route path="/admin" element={<Admin />} />
           <Route path="/profile" element={<Profile />} />
           <Route path="/profile2" element={<Profile2 />} />
 
@@ -96,26 +94,16 @@ function App() {
           <Route path="/search/:search" element={<ProductSearched />} />
           <Route path="*" element={<NotFound404 />} />
           <Route path="/user" element={<ProfileForm />} />
-
-          <Route
-            path="/admin/products/Allproducts"
-            element={<AdminProducts />}
-          />
-          {/* <Route path="/admin/products/allproducts" element={<AllProductsAdmin/>} /> */}
+          <Route path="/form" element={<FormUser />} />
+          <Route path="/admin" element={<Admin />} />
+          <Route path="/admin/products/Allproducts" element={<AdminProducts />} />
           <Route path="/admin/products/:category" element={<CategoryAdmin />} />
-          <Route
-            path="/admin/products/createProduct"
-            element={<ProductCreate />}
-          />
+          <Route path="/admin/products/createProduct"element={<ProductCreate />} />
           <Route path="/admin/product/:name" element={<ProductDetailAdmin />} />
-          <Route
-            path="/admin/product/update/:name"
-            element={<UpdateProduct />}
-          />
-
+          <Route path="/admin/product/update/:name" element={<UpdateProduct />} />
+          <Route path="/admin/search/:search" element={<ProductSearchedAdmin />} />
           <Route path="/admin/categories" element={<AdminCategories />} />
           <Route path="/admin/shop/:id" element={<ShopDetails />} />
-          <Route path="/form" element={<FormUser />} />
           <Route path="/admin/allorders" element={<ViewAllOrders />} />
           <Route path="/admin/users" element={<Users />} />
           <Route path='/FAQ' element={<FAQ/>}/>
@@ -123,6 +111,7 @@ function App() {
           <Route path='/WorkWithUs' element={<WorkWithUs/>}/>
           <Route path='/About' element={<About/>}/>
 
+          <Route path="/purchaseSummary" element={<PurchaseSummary />} />
         </Routes>
         <Footer />
       </BrowserRouter>
