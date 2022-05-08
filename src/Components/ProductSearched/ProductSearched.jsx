@@ -49,7 +49,7 @@ function ProductSearched() {
                     name={el.name} 
                     price={el.price} 
                     image={el.image} 
-                    id={el.id} 
+                    id={el.id}  
                     brand={el.brand} 
                     description={el.description} 
                     calification={el.calification} 
