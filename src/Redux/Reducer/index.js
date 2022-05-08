@@ -257,7 +257,7 @@ function rootReducer(state = initialState, action) {
       return {
         ...state,
       };
-    case "ORDER_USER_BY_LASTNAME":
+    case "SORT_USER_BY_LASTNAME":
       const sort = 
       state.usersFiltered.length > 0
       ? action.payload === 'a-z'
@@ -274,16 +274,16 @@ function rootReducer(state = initialState, action) {
         ...state,
         usersFiltered: sort
       }
-    case "ORDER_ORDER_BY_EMAIL":
+    case "SORT_ORDER_BY_EMAIL":
       const sortOrder = 
       state.shopsFiltered.length > 0
       ? action.payload === 'a-z'
         ? state.shopsFiltered.sort(
-          (a, b) => a.email.localeCompare(b.email)
+          (a, b) => a.userEmail.localeCompare(b.userEmail)
         )
         : action.payload === 'z-a'
         ? state.shopsFiltered.sort(
-          (a, b) => b.email.localeCompare(a.email)
+          (a, b) => b.userEmail.localeCompare(a.userEmail)
         )
         : state.shopsFiltered
         : null
@@ -291,16 +291,16 @@ function rootReducer(state = initialState, action) {
         ...state,
         usersFiltered: sortOrder
       }
-      case "ORDER_ORDER_BY_AMOUNT":
+      case "SORT_ORDER_BY_AMOUNT":
         const sortAmount = 
         state.shopsFiltered.length > 0
         ? action.payload === 'lower-amount'
           ? state.shopsFiltered.sort(
-            (a, b) => a.amount - b.amount
+            (a, b) => a.total_paid_amount - b.total_paid_amount
           )
           : action.payload === 'higher-amount'
           ? state.shopsFiltered.sort(
-            (a, b) => b.amount - a.amount
+            (a, b) => b.total_paid_amount - a.total_paid_amount
           )
           : state.shopsFiltered
           : null
@@ -308,6 +308,23 @@ function rootReducer(state = initialState, action) {
           ...state,
           usersFiltered: sortAmount
         }
+      case "FILTER_ORDER_BY_STATE":
+        const orders = 
+          action.payload === 'In process'
+           ? state.shops.filter(el => el.state === 'In process')
+           : action.payload === 'Paid'
+           ? state.shops.filter(el => el.state === 'Paid')
+           : action.payload === 'On its way'
+           ? state.shops.filter(el => el.state === 'On its way')
+           : action.payload === 'Canceled'
+           ? state.shops.filter(el => el.state === 'Canceled')
+           : action.payload === 'Received'
+           ? state.shops.filter(el => el.state === 'Received')
+           : state.shops;
+          return{
+            ...state,
+            shopsFiltered: orders
+          }
     default:
       return state;
   }
