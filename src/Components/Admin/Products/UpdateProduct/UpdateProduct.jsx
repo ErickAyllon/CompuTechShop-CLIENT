@@ -264,7 +264,7 @@ function UpdateProduct() {
               </Button>
             </div>
             <div className={styles.createButton} >
-              <Button type="submit" onClick={handleSubmit} variant="outlined" disabled={errors.name || errors.brand || errors.calification || errors.quantity || errors.description || errors.image || errors.categories || errors.price || input.name === '' ? true : false}>
+              <Button type="submit" onClick={handleSubmit} variant="outlined" disabled={errors.name || errors.brand  || errors.quantity || errors.description || errors.image || errors.categories || errors.price || input.name === '' ? true : false}>
                 Update Product
               </Button>
             </div>
