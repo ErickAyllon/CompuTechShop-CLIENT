@@ -15,7 +15,7 @@ import FAQ from "./Components/Footer/FAQ";
 import FAQ2 from './Components/Footer/FAQ2'
 import WorkWithUs from "./Components/Footer/WorkWithUs";
 import About from "./Components/Footer/About";
-import Profile2 from "./Components/Profile/Profile2"
+import ProfileInfo from "./Components/Profile/ProfileInfo"
 
 
 import { CssBaseline } from "@mui/material";
@@ -87,9 +87,9 @@ function App() {
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<Home />} />
-          <Route path="/profile" element={<Profile />} />
+          {/* <Route path="/profile" element={<Profile />} /> */}
           <Route path="/Allproducts" element={<AllProducts />} />
-          <Route path="/profile2" element={<Profile2 />} />
+          <Route path="/profile" element={<ProfileInfo />} />
           <Route path="/category/:category" element={<Category />} />
           <Route path="/:name" element={<ProductDetail />} />
           <Route path="/search/:search" element={<ProductSearched />} />

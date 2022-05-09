@@ -3,6 +3,7 @@ import { useState } from 'react';
 // import styles from './Admin.module.css'
 import { postUser } from '../../Redux/Actions/index'
 import { useDispatch } from 'react-redux';
+// import Navbar from '../NavBar/Navbar'
 
 function ProfileForm() {
   const dispatch = useDispatch();
@@ -33,6 +34,7 @@ function ProfileForm() {
 
   return (
     <div>
+      {/* <Navbar /> */}
       <form >
         {/* <input name="id" onChange={handleChange} value={input.id}></input> */}
         <input name="name" onChange={handleChange} placeholder="name" value={input.name}></input>

@@ -67,6 +67,8 @@
 }
 
 .productCardPrice {
+    font-family: 'Orbitron', sans-serif;
+    font-size: 1rem;
     line-height: 1rem;
     overflow: visible;
     vertical-align: text-bottom;

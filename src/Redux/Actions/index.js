@@ -305,10 +305,11 @@ export function updateShop(id, payload){
 
 export const getPayment = (payload) => {
   // console.log(payload.email)
-  const { id, email } = payload;
+  console.log(payload);
+  const { payment, email } = payload;
   return async function (dispatch) {
     try {
-      var json = await axios.get("http://localhost:3001/success?id=" + id + "&successEmail=" + email);
+      const json = await axios.get("http://localhost:3001/success?id=" + payment + "&successEmail=" + email);
       return dispatch({
         type: "GET_PAYMENT",
         payload: json.data,
@@ -318,3 +319,17 @@ export const getPayment = (payload) => {
     }
   };
 }
+
+export const getTotalUserPayments = (email) => {
+  return async function (dispatch) {
+    try{
+      const json = await axios.get(`http://localhost:3001/getPaymentAcount/${email}`)
+      return dispatch({
+        type: 'GET_TOTAL_USER_PAYMENTS',
+        payload: json.data,
+      })
+    } catch(err) {
+      console.log(err)
+    }
+  }
+} 

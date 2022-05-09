@@ -1,10 +1,7 @@
-.img {
-    height: auto;
-    max-height: 160px;
-    width: auto;
-    max-width: 100px;
+.containerImgBtn {
+    width: 300px;
     display: flex;
-    margin: auto;
+    flex-direction: column;
 }
 
 .container {
@@ -20,10 +17,31 @@
     font-family: 'Orbitron', sans-serif;
     border-radius: 6px;
     flex-direction: column;
+    min-width: 300px;
 }
 
 .containerImgBtn {
     display: flex;
     flex-wrap: wrap;
     flex-direction: row;
+}
+
+.cart {
+    width: 20px;
+    height: 20px;
+    justify-content: center;
+    display: flex;
+    align-items: center;
+    margin-left: 5px;
+}
+
+.cart img {
+    width: auto;
+    height: 30px;
+}
+
+.cartDropDown {
+    border: none;
+    box-shadow: 0;
+    border: 0;
 }

@@ -294,7 +294,7 @@ function ProductCreate() {
           </div>
         </Box>
         <div className={styles.cardsContainer}>
-          <div style={{ margin: "20px 50px" }}>
+          <div className={styles.card}>
             <h3>New product Card</h3>
             <ProductCardAdmin
               name={input.name}

@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from "react-redux";
-import { getShops, sortOrderByEmail, sortOrderByAmount, filterOrderByState } from "../../../../Redux/Actions";
+import { getShops, sortOrderByEmail, sortOrderByAmount, filterOrderByState, getTotalUserPayments } from "../../../../Redux/Actions";
 import styles from './ViewAllOrders.module.css';
 import AdminNav from '../../AdminNav/AdminNav'
 import AdminNav2 from '../../AdminNav/AdminNav2';
@@ -22,7 +22,6 @@ function ViewAllOrders(){
   const [orderByAmount, setOrderByAmount] = useState('')
   const [filterByState, setFilterByState] = useState('')
   const navigate = useNavigate();
-
 
   useEffect(() => {
     dispatch(getShops());

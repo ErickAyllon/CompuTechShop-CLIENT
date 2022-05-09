@@ -271,7 +271,7 @@ function UpdateProduct() {
         </div>
       </Box>
           <div className={styles.cardsContainer}>
-            <div style={{margin:'20px 50px'}}>
+            <div className={styles.card}>
               <h3>Product Card updated</h3>
               <ProductCardAdmin name={input.name} price={input.price} image={input.image} calification={product[0].calification} style={{borderRadius:'50px'}}/>
             </div>

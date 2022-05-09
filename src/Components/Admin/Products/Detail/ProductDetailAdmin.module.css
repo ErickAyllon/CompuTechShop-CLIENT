@@ -23,7 +23,6 @@
     max-width: 400px;
     height: 300px;
     margin: 50px 0;
-    min-width: 300px;
 }
 
 .productDetailImg {
@@ -49,6 +48,8 @@
 .productDetailPrice{
     margin-top: 10px;
     font-size: 1.8rem;
+    font-size: 1.6rem;
+    font-family: 'Orbitron', sans-serif;
 }
 
 .productDetailRating {
