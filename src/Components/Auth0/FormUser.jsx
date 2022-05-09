@@ -1,6 +1,6 @@
 import React from "react";
 import { useAuth0 } from "@auth0/auth0-react";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { postUser } from "../../Redux/Actions";
 import { Formik } from "formik";
 import BasicForm from "./BasicForm";
@@ -76,20 +76,11 @@ const validation = (values) => {
   ) {
     errors.birthday = "You should enter a valid birthdate";
   }
-
   return errors;
 };
 
 const FormUser = () => {
   const { user, isAuthenticated } = useAuth0();
-
-
-  
-  let users = useSelector((state) => state.users2); 
-  
-  
-    let filtrado = users.filter(el => el.email === user.email);
-    console.log(filtrado)
 
   const dispatch = useDispatch();
 
