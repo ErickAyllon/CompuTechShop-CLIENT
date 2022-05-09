@@ -12,6 +12,9 @@ import Button from "@mui/material/Button";
 import styles from "./ProductCreate.module.css";
 import { Link } from "react-router-dom";
 import AdminNav from "../../AdminNav/AdminNav";
+import AdminNav2 from "../../AdminNav/AdminNav2";
+import ProductCardAdmin from "../ProductCardAdmin/ProductCardAdmin";
+import ProductDetailAdminCard from "../Detail/ProductDetailAdminCard";
 
 function ProductCreate() {
   const dispatch = useDispatch();
@@ -137,47 +140,49 @@ function ProductCreate() {
   }
 
   return (
-    <div>
+    <div className={styles.productCreate}>
       <AdminNav />
-      <Box
-        className={styles.form}
-        component="form"
-        sx={{
-          "& .MuiTextField-root": {
-            m: 1,
-            width: "45ch",
-            color: "white",
-            display: "flex",
-          },
-        }}
-        noValidate
-        autoComplete="off"
-      >
-        <div>
-          <h3 style={{ textAlign: "center" }}>Create Product:</h3>
-          <TextField
-            variant="filled"
-            required
-            id="outlined-required"
-            label="Name"
-            name="name"
-            onChange={handleChange}
-            error={errors.name ? true : false}
-            helperText={errors.name}
-            value={input.name}
-          />
-          <TextField
-            variant="filled"
-            required
-            name="brand"
-            onChange={handleChange}
-            id="outlined-required"
-            label="Brand"
-            error={errors.brand ? true : false}
-            value={input.brand}
-            helperText={errors.brand}
-          />
-          {/* <TextField
+      <AdminNav2 />
+      <div className={styles.updateProductContainer}>
+        <Box
+          className={styles.form}
+          component="form"
+          sx={{
+            "& .MuiTextField-root": {
+              m: 1,
+              width: "45ch",
+              color: "white",
+              display: "flex",
+            },
+          }}
+          noValidate
+          autoComplete="off"
+        >
+          <div>
+            <h3 style={{ textAlign: "center" }}>Create Product:</h3>
+            <TextField
+              variant="filled"
+              required
+              id="outlined-required"
+              label="Name"
+              name="name"
+              onChange={handleChange}
+              error={errors.name ? true : false}
+              helperText={errors.name}
+              value={input.name}
+            />
+            <TextField
+              variant="filled"
+              required
+              name="brand"
+              onChange={handleChange}
+              id="outlined-required"
+              label="Brand"
+              error={errors.brand ? true : false}
+              value={input.brand}
+              helperText={errors.brand}
+            />
+            {/* <TextField
             variant="filled"
             required
             name="calification" 
@@ -192,102 +197,123 @@ function ProductCreate() {
               shrink: true,
             }}
           /> */}
-          <TextField
-            variant="filled"
-            name="quantity"
-            onChange={handleChange}
-            id="outlined-number"
-            label="Quantity"
-            type="number"
-            error={errors.quantity ? true : false}
-            helperText={errors.quantity}
-            value={input.quantity}
-            InputLabelProps={{
-              shrink: true,
-            }}
-          />
-          <TextField
-            variant="filled"
-            required
-            id="outlined-multiline-static"
-            name="description"
-            onChange={handleChange}
-            label="Description"
-            multiline
-            rows={3}
-            value={input.description}
-            error={errors.description ? true : false}
-            helperText={errors.description}
-          />
-          <TextField
-            variant="filled"
-            required
-            id="outlined-multiline-static"
-            name="image"
-            onChange={handleChange}
-            label="Image"
-            rows={1}
-            multiline
-            value={input.image}
-            error={errors.image ? true : false}
-            helperText={errors.image}
-          />
-          <TextField
-            variant="filled"
-            id="filled-select-currency"
-            name="categories"
-            select
-            label="Category"
-            defaultValue=""
-            value={input.categories}
-            error={errors.categories ? true : false}
-            helperText={errors.categories}
-            onChange={handleChange}
-          >
-            {categories.map((option) => (
-              <MenuItem key={option.name} value={option.name}>
-                {option.name}
-              </MenuItem>
-            ))}
-          </TextField>
-          <TextField
-            variant="filled"
-            name="price"
-            onChange={handleChange}
-            id="outlined-number"
-            label="Price"
-            type="number"
-            value={input.price}
-            error={errors.price ? true : false}
-            helperText={errors.price}
-            inputProps={{ inputMode: "numeric", pattern: "[0-9]*" }}
-            InputLabelProps={{
-              shrink: true,
-            }}
-          />
-          <div className={styles.createButton}>
-            <Button
-              type="submit"
-              onClick={handleSubmit}
-              variant="outlined"
-              disabled={
-                errors.name ||
-                errors.brand ||
-                errors.quantity ||
-                errors.description ||
-                errors.image ||
-                errors.categories ||
-                errors.price ||
-                input.name === ""
-                  ? true
-                  : false
-              }
+            <TextField
+              variant="filled"
+              name="quantity"
+              onChange={handleChange}
+              id="outlined-number"
+              label="Quantity"
+              type="number"
+              error={errors.quantity ? true : false}
+              helperText={errors.quantity}
+              value={input.quantity}
+              InputLabelProps={{
+                shrink: true,
+              }}
+            />
+            <TextField
+              variant="filled"
+              required
+              id="outlined-multiline-static"
+              name="description"
+              onChange={handleChange}
+              label="Description"
+              multiline
+              rows={3}
+              value={input.description}
+              error={errors.description ? true : false}
+              helperText={errors.description}
+            />
+            <TextField
+              variant="filled"
+              required
+              id="outlined-multiline-static"
+              name="image"
+              onChange={handleChange}
+              label="Image"
+              rows={1}
+              multiline
+              value={input.image}
+              error={errors.image ? true : false}
+              helperText={errors.image}
+            />
+            <TextField
+              variant="filled"
+              id="filled-select-currency"
+              name="categories"
+              select
+              label="Category"
+              defaultValue=""
+              value={input.categories}
+              error={errors.categories ? true : false}
+              helperText={errors.categories}
+              onChange={handleChange}
             >
-              Create Product
-            </Button>
+              {categories.map((option) => (
+                <MenuItem key={option.name} value={option.name}>
+                  {option.name}
+                </MenuItem>
+              ))}
+            </TextField>
+            <TextField
+              variant="filled"
+              name="price"
+              onChange={handleChange}
+              id="outlined-number"
+              label="Price"
+              type="number"
+              value={input.price}
+              error={errors.price ? true : false}
+              helperText={errors.price}
+              inputProps={{ inputMode: "numeric", pattern: "[0-9]*" }}
+              InputLabelProps={{
+                shrink: true,
+              }}
+            />
+            <div className={styles.createButton}>
+              <Button
+                type="submit"
+                onClick={handleSubmit}
+                variant="outlined"
+                disabled={
+                  errors.name ||
+                  errors.brand ||
+                  errors.quantity ||
+                  errors.description ||
+                  errors.image ||
+                  errors.categories ||
+                  errors.price ||
+                  input.name === ""
+                    ? true
+                    : false
+                }
+              >
+                Create Product
+              </Button>
+            </div>
+          </div>
+        </Box>
+        <div className={styles.cardsContainer}>
+          <div style={{ margin: "20px 50px" }}>
+            <h3>New product Card</h3>
+            <ProductCardAdmin
+              name={input.name}
+              price={input.price}
+              image={input.image}
+            />
           </div>
         </div>
-      </Box>
+      </div>
+      <h3 style={{ textAlign: "center" }}>New product Detail</h3>
+      <ProductDetailAdminCard
+        nameD={input.name}
+        image={input.image}
+        price={input.price}
+        brand={input.brand}
+        quantity={input.quantity}
+        description={input.description}
+        calification={false}
+      />
     </div>
   );
 }

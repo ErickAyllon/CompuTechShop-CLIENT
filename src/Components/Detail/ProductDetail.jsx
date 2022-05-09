@@ -1,23 +1,38 @@
 import React, { useEffect } from "react";
 import styles from "./ProductDetail.module.css";
-import { getDetail } from "../../Redux/Actions/index.js";
+import { getDetail, getProducts } from "../../Redux/Actions/index.js";
 import { useSelector, useDispatch } from "react-redux";
 import { useParams } from "react-router-dom";
 import { Rating } from "@mui/material";
+
 import Categories from "../Categories/Categories";
+import { TYPES } from "../../Redux/Actions/shoppingCartActions";
+import NavBar from "../NavBar/Navbar";
 
 function ProductDetail() {
   const dispatch = useDispatch();
   const { name } = useParams();
 
   useEffect(() => {
+    //  dispatch(getProducts());
     dispatch(getDetail(name));
   }, [dispatch]);
 
   const product = useSelector((state) => state.productDetail);
+  const delFromCart = (id, all = false) => {
+    all
+      ? dispatch({ type: TYPES.REMOVE_ALL_FROM_CART, payload: id })
+      : dispatch({ type: TYPES.REMOVE_ONE_FROM_CART, payload: id });
+  };
+
+  const addToCart = (id) => {
+    console.log(id);
+    dispatch({ type: TYPES.ADD_TO_CART, payload: id });
+  };
 
   return (
     <div className={styles.productDetail}>
+      <NavBar />
       <Categories />
       {product.length > 0 ? (
         <div className={styles.productDetailContainer}>
@@ -46,6 +61,8 @@ function ProductDetail() {
               <p>Description:</p>
               <p>{product[0].description}</p>
             </div>
+            <button className= {styles.btn} onClick={() => addToCart(product[0].id)}>+</button>
+            <button className= {styles.btn} onClick={() => delFromCart(product[0].id)}>-</button>
           </div>
         </div>
       ) : null}

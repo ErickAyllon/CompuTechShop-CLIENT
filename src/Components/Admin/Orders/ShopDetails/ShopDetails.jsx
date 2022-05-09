@@ -6,6 +6,7 @@ import { useParams } from 'react-router-dom';
 import { Link } from 'react-router-dom';
 import NotFound404 from '../../../NotFound404/NotFound404';
 import AdminNav from '../../AdminNav/AdminNav'
+import AdminNav2 from '../../AdminNav/AdminNav2';
 
 function ShopDetail() {
   const dispatch = useDispatch();
@@ -28,6 +29,7 @@ function ShopDetail() {
   return (
     <div>
       <AdminNav/>
+      <AdminNav2 />
       {shop.length ? shop.map(el => {
         return(
           <div key={el.id}>

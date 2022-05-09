@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { filterByBrand, filterByPrice, orderProducts, setCurrentPage} from "../../Redux/Actions";
-import PlayArrowIcon from '@mui/icons-material/PlayArrow';
 import {Box, TextField, MenuItem, Button } from '@mui/material/';
+import play from '../../Images/play.png'
 import styles from "./Filter.module.css";
 import { useNavigate } from "react-router-dom";
 import { useLocation } from "react-router-dom";
@@ -87,6 +87,7 @@ function Filter() {
   return (
     <div className={styles.filter}>
       <div className={styles.filterContainer}>
+        <div className={styles.filterFixed}>
           <div style={{
           margin: 'auto',
           display: 'block',
@@ -95,7 +96,7 @@ function Filter() {
         }}>
             <TextField
                   sx={{
-                    '& > :not(style)': { m: 1, display: 'flex', width: '15ch', color:'white' },
+                    '& > :not(style)': { m: .1, display: 'flex', width: '18ch', color:'white' },
                   }}
                   className={styles.filterByBrand}
                   variant="outlined"
@@ -116,25 +117,25 @@ function Filter() {
           <Box
             className={styles.filterByPrice}
             component="form"
-            sx={{ '& > :not(style)': { m: 1, width: '14ch', display: 'inline-block', color:'white' }}}
+            sx={{ '& > :not(style)': { m: .1, width: '14ch', display: 'inline-block', color:'white' }}}
             noValidate
             autoComplete="off"
           >
-            <TextField sx={{ '& > :not(style)': { m: 1, height: '6ch'}}}
+            <TextField sx={{ '& > :not(style)': { m: .1, height: '6ch'}}}
               value={input.min}
               id="outlined-basic" className="inputTag" label="Min Price" variant="outlined" onChange={handleFilterPrice} name='min'/>
               -
-            <TextField sx={{ '& > :not(style)': { m: 1, height: '6ch'}}}
+            <TextField sx={{ '& > :not(style)': { m: .1, height: '6ch'}}}
               value={input.max}
               id="outlined-basic" className="inputTag" label="Max Price" variant="outlined" onChange={handleFilterPrice} name='max'/>
             <button className={styles.filterButton}>
-              <PlayArrowIcon onClick={handleFilterPriceSubmit}/>
+              <button className={styles.play} onClick={handleFilterPriceSubmit}><img src={play}/></button>
             </button>
           </Box>
 
           <TextField
                   sx={{
-                    '& > :not(style)': { m: 1, display: 'flex', width: '18ch', color:'white' },
+                    '& > :not(style)': { m: .1, display: 'flex', width: '18ch', color:'white' },
                   }}
                   variant="outlined"
                   id="outlined-select-currency"
@@ -148,9 +149,10 @@ function Filter() {
                     <MenuItem value='lower-price'>Lower price</MenuItem>
           </TextField>
 
-          <div style={{margin:'30px auto'}}>
+          <div style={{margin:'20px auto'}}>
             <Button onClick={handleRestart} variant="outlined">Restart filters</Button>
           </div>
+        </div>
         </div>
       </div>
     </div>
