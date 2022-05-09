@@ -1,0 +1,29 @@
+.img {
+    height: auto;
+    max-height: 160px;
+    width: auto;
+    max-width: 100px;
+    display: flex;
+    margin: auto;
+}
+
+.container {
+    display: flex;
+    max-width: 602px;
+    height: 150px;
+    display: flex;
+    align-items: center;
+    box-sizing: border-box;
+    color: black;
+    background-color: white;
+    margin: 20px 0;
+    font-family: 'Orbitron', sans-serif;
+    border-radius: 6px;
+    flex-direction: column;
+}
+
+.containerImgBtn {
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+}

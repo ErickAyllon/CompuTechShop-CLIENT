@@ -13,6 +13,8 @@ function ProductCard({
   quantity,
   description,
   addToCart,
+  delFromCart 
+
 }) {
   return (
     <div className={styles.productCardContainer}>
@@ -39,7 +41,10 @@ function ProductCard({
             readOnly
             className={styles.productCardCalification}
           />
-          <button onClick={() => addToCart(id)}>Agregar</button>
+          <button className = {styles.btn} onClick={() => addToCart(id)}>+</button>
+          <button className = {styles.btn} onClick={() => delFromCart(id)}>-</button>
+      <br />
+      {/* <button onClick={() => delFromCart(id, true)}>Eliminar todos</button> */}
         </div>
       </div>
     </div>

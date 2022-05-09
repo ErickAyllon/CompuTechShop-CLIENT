@@ -1,9 +1,10 @@
+import { ClassNames } from "@emotion/react";
 import axios from "axios";
 
 
 
 export const GET_USER_DETAIL = "GET_USER_DETAIL"
-export const getUserDetail =(email) => {
+export const getUserDetail = (email) => {
   return async (dispatch) => {
     var json = await axios.get("http://localhost:3001/users" + email)
     return dispatch({
@@ -198,14 +199,18 @@ export function postCategory(payload) {
   };
 }
 export function postBuyCart(payload) {
-  return async function () {
+  return async function (dispatch) {
     const response = await axios.post(
       "http://localhost:3001/Checkout",
       payload
     );
-    console.log(response.data)
-    return response.data;
-  };
+
+    return dispatch({
+      type: "BUY_CART",
+      payload: response.data,
+    });
+
+  }
 }
 
 export function deleteCategory(id) {
@@ -298,3 +303,18 @@ export function updateShop(id, payload){
   }
 }
 
+export const getPayment = (payload) => {
+  // console.log(payload.email)
+  const { id, email } = payload;
+  return async function (dispatch) {
+    try {
+      var json = await axios.get("http://localhost:3001/success?id=" + id + "&successEmail=" + email);
+      return dispatch({
+        type: "GET_PAYMENT",
+        payload: json.data,
+      });
+    } catch (error) {
+      console.log(error);
+    }
+  };
+}

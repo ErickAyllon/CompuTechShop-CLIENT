@@ -5,7 +5,6 @@ const initialState = {
   products: [],
   allProductsFilter: [],
   productsFilter: [],
-  productsFilter: [],
   productsNotPriceChangeable: [],
   users: [],
   users2: [],
@@ -18,6 +17,9 @@ const initialState = {
   shopDetail: [],
   currentPage: 1,
   cartModified: [],
+  shopping: [],
+  payment: [],
+  userPayment: [],
 };
 
 function rootReducer(state = initialState, action) {
@@ -45,14 +47,17 @@ function rootReducer(state = initialState, action) {
         ...state,
         allProducts: action.payload,
       };
-     
-    // case "GET_USER_DETAIL":
-    case TYPES.BUY_CART: {
+    case "BUY_CART": {
       return {
         ...state,
-        cartModified: action.payload,
+        shopping: action.payload,
       };
     }
+    // case "GET_USER":
+    //   return {
+    //     ...state,
+    //     users: action.payload,
+    //   };
     case "GET_USER":
       return {
         ...state,
@@ -115,14 +120,14 @@ function rootReducer(state = initialState, action) {
       const filteredP =
         productsFiltered.length > 0
           ? productsFiltered.filter((el) =>
-              min && max
-                ? toNumber(el.price) >= min && toNumber(el.price) <= max
-                : min && !max
+            min && max
+              ? toNumber(el.price) >= min && toNumber(el.price) <= max
+              : min && !max
                 ? toNumber(el.price) >= min
                 : !min && max
-                ? toNumber(el.price) <= max
-                : productsFiltered
-            )
+                  ? toNumber(el.price) <= max
+                  : productsFiltered
+          )
           : null;
       return {
         ...state,
@@ -133,32 +138,32 @@ function rootReducer(state = initialState, action) {
         state.productsFilter.length > 0
           ? action.payload === "more-relevants"
             ? state.productsFilter.sort(
-                (a, b) => toNumber(b.calification) - toNumber(a.calification)
-              )
+              (a, b) => toNumber(b.calification) - toNumber(a.calification)
+            )
             : action.payload === "higher-price"
-            ? state.productsFilter.sort(
+              ? state.productsFilter.sort(
                 (a, b) => toNumber(b.price) - toNumber(a.price)
               )
-            : action.payload === "lower-price"
-            ? state.productsFilter.sort(
-                (a, b) => toNumber(a.price) - toNumber(b.price)
-              )
-            : null
+              : action.payload === "lower-price"
+                ? state.productsFilter.sort(
+                  (a, b) => toNumber(a.price) - toNumber(b.price)
+                )
+                : null
           : state.productsFilter.length === 0
-          ? action.payload === "more-relevants"
-            ? state.products.sort(
+            ? action.payload === "more-relevants"
+              ? state.products.sort(
                 (a, b) => toNumber(b.calification) - toNumber(a.calification)
               )
-            : action.payload === "higher-price"
-            ? state.products.sort(
-                (a, b) => toNumber(b.price) - toNumber(a.price)
-              )
-            : action.payload === "lower-price"
-            ? state.products.sort(
-                (a, b) => toNumber(a.price) - toNumber(b.price)
-              )
-            : null
-          : null;
+              : action.payload === "higher-price"
+                ? state.products.sort(
+                  (a, b) => toNumber(b.price) - toNumber(a.price)
+                )
+                : action.payload === "lower-price"
+                  ? state.products.sort(
+                    (a, b) => toNumber(a.price) - toNumber(b.price)
+                  )
+                  : null
+            : null;
       return {
         ...state,
         productsFilter: order,
@@ -177,38 +182,38 @@ function rootReducer(state = initialState, action) {
       let itemInCart = state.cart.find((item) => item.id === newItem.id);
       return itemInCart
         ? {
-            ...state,
-            cart: state.cart.map((item) =>
-              item.id === newItem.id
-                ? {
-                    ...item,
-                    quantity: item.quantity + 1,
-                    // price: Number(item.price),
-                    // total: item.price * item.cuantity,
-                  }
-                : item
-            ),
-          }
+          ...state,
+          cart: state.cart.map((item) =>
+            item.id === newItem.id
+              ? {
+                ...item,
+                quantity: item.quantity + 1,
+                // price: Number(item.price),
+                // total: item.price * item.cuantity,
+              }
+              : item
+          ),
+        }
         : {
-            ...state,
-            cart: [...state.cart, { ...newItem, quantity: 1 }],
-          };
+          ...state,
+          cart: [...state.cart, { ...newItem, quantity: 1 }],
+        };
     }
     case TYPES.REMOVE_ONE_FROM_CART: {
       let itemToDelete = state.cart.find((item) => item.id === action.payload);
       return itemToDelete.quantity > 1
         ? {
-            ...state,
-            cart: state.cart.map((item) =>
-              item.id === action.payload
-                ? { ...item, quantity: item.quantity - 1 }
-                : item
-            ),
-          }
+          ...state,
+          cart: state.cart.map((item) =>
+            item.id === action.payload
+              ? { ...item, quantity: item.quantity - 1 }
+              : item
+          ),
+        }
         : {
-            ...state,
-            cart: state.cart.filter((item) => item.id !== action.payload),
-          };
+          ...state,
+          cart: state.cart.filter((item) => item.id !== action.payload),
+        };
     }
     case TYPES.REMOVE_ALL_FROM_CART: {
       return {
@@ -325,6 +330,19 @@ function rootReducer(state = initialState, action) {
         return{
           ...state,
         }
+
+    case "GET_PAYMENT": {
+      return {
+        ...state,
+        payment: action.payload
+      }
+    }
+    case "GET_PAYMENT_USER": {
+      return {
+        userPayment: action.payload
+      }
+    }
+
     default:
       return state;
   }

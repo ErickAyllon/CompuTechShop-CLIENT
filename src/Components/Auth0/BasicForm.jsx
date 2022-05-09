@@ -1,157 +1,212 @@
 import React from "react";
 import { useAuth0 } from "@auth0/auth0-react";
+import styles from "./BasicForm.module.css";
+import TextField from "@mui/material/TextField";
+import Button from "@mui/material/Button";
+import Box from "@mui/material/Box";
 
-const BasicForm = ({ handleChange, handleSubmit, isSubmitting, values }) => {
+const BasicForm = ({
+  handleChange,
+  handleSubmit,
+  isSubmitting,
+  values,
+  errors,
+}) => {
   const { user, isAuthenticated } = useAuth0();
   return (
     isAuthenticated && (
-      <form onSubmit={handleSubmit}>
-        {user.given_name ? (
-          <label>
-            First Name:
-            <input
-              name="given_name"
-              value={user.given_name}
-              required
+      <div>
+        <Box
+          className={styles.form}
+          component="form"
+          sx={{
+            "& .MuiTextField-root": {
+              m: 1,
+              width: "45ch",
+              color: "white",
+              display: "flex",
+            },
+          }}
+          noValidate
+          autoComplete="off"
+          onSubmit={handleSubmit}
+        >
+          <div>
+            <h3 style={{ textAlign: "center" }}>Create User:</h3>
+            {user.given_name ? (
+              <TextField
+                variant="filled"
+                id="outlined-required"
+                label="First Name"
+                name="given_name"
+                defaultValue={values.given_name}
+                required
+                disabled
+              />
+            ) : (
+              <TextField
+                variant="filled"
+                id="outlined-required"
+                label="First Name"
+                name="given_name"
+                onChange={handleChange}
+                value={values.given_name}
+                error={errors.given_name ? true : false}
+                helperText={errors.given_name}
+                required
+              />
+            )}
+
+            {user.family_name ? (
+              <TextField
+                variant="filled"
+                id="outlined-required"
+                label="Last Name"
+                name="family_name"
+                defaultValue={values.family_name}
+                required
+                disabled
+              />
+            ) : (
+              <TextField
+                variant="filled"
+                id="outlined-required"
+                label="Last Name"
+                name="family_name"
+                onChange={handleChange}
+                value={values.family_name}
+                error={errors.family_name ? true : false}
+                helperText={errors.family_name}
+                required
+              />
+            )}
+
+            {user.email ? (
+              <TextField
+                variant="filled"
+                id="outlined-required"
+                label="E-mail"
+                name="email"
+                defaultValue={values.email}
+                required
+                disabled
+              />
+            ) : (
+              <TextField
+                variant="filled"
+                id="outlined-required"
+                label="E-mail"
+                name="email"
+                onChange={handleChange}
+                value={values.email}
+                error={errors.email ? true : false}
+                helperText={errors.email}
+                required
+              />
+            )}
+
+            {user.nickname ? (
+              <TextField
+                variant="filled"
+                id="outlined-required"
+                label="Nickname"
+                name="nickname"
+                defaultValue={values.nickname}
+                required
+                disabled
+              />
+            ) : (
+              <TextField
+                variant="filled"
+                id="outlined-required"
+                label="Nickname"
+                name="nickname"
+                onChange={handleChange}
+                value={values.nickname}
+                error={errors.nickname ? true : false}
+                helperText={errors.nickname}
+                required
+              />
+            )}
+
+            <TextField
+              name="email_verified"
+              value={values.email_verified}
               disabled
+              required
+              hidden
             />
-          </label>
-        ) : (
-          <label>
-            First Name:
-            <input
+
+            {user.picture ? (
+              <TextField
+                variant="filled"
+                id="outlined-required"
+                label="Picture"
+                name="picture"
+                defaultValue={values.picture}
+                required
+                disabled
+              />
+            ) : (
+              <TextField
+                variant="filled"
+                id="outlined-required"
+                label="Picture"
+                name="picture"
+                onChange={handleChange}
+                value={values.picture}
+                error={errors.picture ? true : false}
+                helperText={errors.picture}
+                required
+              />
+            )}
+
+            <TextField
+              variant="filled"
+              id="outlined-required"
+              label="Address"
+              name="address"
               onChange={handleChange}
-              name="given_name"
-              value={values.given_name}
+              value={values.address}
+              error={errors.address ? true : false}
+              helperText={errors.address}
               required
             />
-          </label>
-        )}
 
-        {user.family_name ? (
-          <label>
-            Last Name:
-            <input
-              name="family_name"
-              value={values.family_name}
-              required
-              disabled
-            />
-          </label>
-        ) : (
-          <label>
-            Last Name:
-            <input
-              name="family_name"
+            <TextField
+              variant="filled"
+              id="outlined-required"
+              label="Phone"
+              name="phone"
               onChange={handleChange}
-              value={values.family_name}
+              value={values.phone}
+              error={errors.phone ? true : false}
+              helperText={errors.phone}
               required
             />
-          </label>
-        )}
 
-        {user.email ? (
-          <label>
-            E-mail:
-            <input name="email" defaultValue={values.email} disabled required />
-          </label>
-        ) : (
-          <label>
-            E-mail:
-            <input
-              name="email"
+            <TextField
+              sx={{ "& > :not(style)": { m: 0.1, height: "8ch" } }}
+              type="date"
+              variant="filled"
+              id="outlined-required"
+              label="Birthdate"
+              name="birthday"
               onChange={handleChange}
-              defaultValue={values.email}
+              value={values.birthday}
+              error={errors.birthday ? true : false}
+              helperText={errors.birthday}
               required
             />
-          </label>
-        )}
 
-        {user.nickname ? (
-          <input
-            name="nickname"
-            defaultValue={values.nickname}
-            required
-            disabled
-            hidden
-          />
-        ) : (
-          <label>
-            Nickname:
-            <input
-              name="nickname"
-              onChange={handleChange}
-              defaultValue={values.nickname}
-              required
-            />
-          </label>
-        )}
-
-        {user.picture ? (
-          <label>
-            Picture:
-            <input
-              name="picture"
-              defaultValue={values.picture}
-              disabled
-              required
-            />
-          </label>
-        ) : (
-          <label>
-            Picture:
-            <input
-              name="picture"
-              onChange={handleChange}
-              defaultValue={values.picture}
-              required
-            />
-          </label>
-        )}
-
-        <input
-          name="email_verified"
-          defaultValue={values.email_verified}
-          disabled
-          required
-          hidden
-        />
-
-        <label>
-          Address:
-          <input
-            name="address"
-            onChange={handleChange}
-            value={values.address}
-            required
-          />
-        </label>
-
-        <label>
-          Phone:
-          <input
-            name="phone"
-            onChange={handleChange}
-            value={values.phone}
-            required
-          />
-        </label>
-
-        <label>
-          Birthdate:
-          <input
-            type="date"
-            name="birthday"
-            onChange={handleChange}
-            value={values.birthday}
-            required
-          />
-        </label>
-
-        <button disabled={isSubmitting} type="submit">
-          Create User
-        </button>
-      </form>
+            <div className={styles.createButton}>
+              <Button disabled={isSubmitting} type="submit" variant="outlined">
+                Create User
+              </Button>
+            </div>
+          </div>
+        </Box>
+      </div>
     )
   );
 };

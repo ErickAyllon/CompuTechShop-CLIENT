@@ -14,12 +14,16 @@ function ProductDetail() {
   const { name } = useParams();
 
   useEffect(() => {
-    // dispatch(getProducts());
+    //  dispatch(getProducts());
     dispatch(getDetail(name));
   }, [dispatch]);
 
   const product = useSelector((state) => state.productDetail);
-
+  const delFromCart = (id, all = false) => {
+    all
+      ? dispatch({ type: TYPES.REMOVE_ALL_FROM_CART, payload: id })
+      : dispatch({ type: TYPES.REMOVE_ONE_FROM_CART, payload: id });
+  };
 
   const addToCart = (id) => {
     console.log(id);
@@ -57,7 +61,8 @@ function ProductDetail() {
               <p>Description:</p>
               <p>{product[0].description}</p>
             </div>
-            <button onClick={() => addToCart(product[0].id)}>Agregar</button>
+            <button className= {styles.btn} onClick={() => addToCart(product[0].id)}>+</button>
+            <button className= {styles.btn} onClick={() => delFromCart(product[0].id)}>-</button>
           </div>
         </div>
       ) : null}

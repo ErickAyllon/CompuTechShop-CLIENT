@@ -37,6 +37,8 @@ import Users from "./Components/Admin/Users/Users";
 import UpdateProduct from "./Components/Admin/Products/UpdateProduct/UpdateProduct";
 import ProductSearchedAdmin from './Components/Admin/ProductSearchedAdmin/ProductSearchedAdmin'
 import PurchaseSummary from "./Components/Cart/PurchaseSummary";
+import { PurchaseConfirm } from "./Components/Cart/PurchaseConfirm";
+import { PurchaseResult } from "./Components/Cart/PurchaseResult";
 
 
 const getDesignTokens = (mode) => ({
@@ -111,6 +113,9 @@ function App() {
           <Route path='/About' element={<About/>}/>
 
           <Route path="/purchaseSummary" element={<PurchaseSummary />} />
+          <Route path="/purchaseConfirm" element={<PurchaseConfirm />} />
+          <Route path="/purchaseResult" element={<PurchaseResult />} />
+
         </Routes>
         <Footer />
       </BrowserRouter>
