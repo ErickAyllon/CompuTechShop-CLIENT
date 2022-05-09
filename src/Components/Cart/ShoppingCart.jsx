@@ -6,7 +6,9 @@ import { useDispatch, useSelector } from "react-redux";
 import { postBuyCart } from "../../Redux/Actions";
 import { Link, useNavigate } from "react-router-dom";
 import Loader from "../Loader/Loader";
+// import styles from './ShoppingCart.module.css'
 import styles from "./CartItem.module.css"
+import shop from '../../Images/shop.png'
 
 const ShoppingCart = () => {
   const obj = {}
@@ -57,11 +59,11 @@ const ShoppingCart = () => {
 
 
   return (
-    <div>
-      <Dropdown active="true" autoClose="outside">
+    <div className={styles.cart}>
+      <Dropdown active="false" autoClose="outside" >
         <Dropdown.Toggle variant="Secondary" id="dropdown-basic">
           <img
-            src="https://img.icons8.com/nolan/64/shopping-cart-promotion.png"
+            src={shop}
             alt="profileImg"
           />
         </Dropdown.Toggle>
@@ -72,7 +74,7 @@ const ShoppingCart = () => {
           variant="dark"
         >
           <Dropdown.Item >
-            <button onClick={clearCart}>Clean Cart</button>
+            <button className={styles.btn} onClick={clearCart}>Clean Cart</button>
           </Dropdown.Item>
           <Dropdown.Item>
             <div>
@@ -107,7 +109,7 @@ const ShoppingCart = () => {
             <Dropdown.Divider />
           </Dropdown.Item>
           <Link to="/purchaseSummary">
-            <button>Purchase summary</button>
+            <button className={styles.btn}>Purchase summary</button>
           </Link>
         </Dropdown.Menu>
       </Dropdown>

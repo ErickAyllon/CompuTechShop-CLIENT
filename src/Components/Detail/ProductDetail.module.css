@@ -22,6 +22,7 @@
 
 .productDetailImgContainer {
     max-width: 400px;
+    min-width: 300px;
     height: 300px;
     margin: 50px 0;
 }
@@ -48,7 +49,8 @@
 
 .productDetailPrice {
     margin-top: 10px;
-    font-size: 1.8rem;
+    font-size: 1.6rem;
+    font-family: 'Orbitron', sans-serif;
 }
 
 .productDetailRating {
@@ -68,6 +70,36 @@
     background-color: rgba(222, 222, 222, 0.29);
 }
 
+.addBtn {
+    border: none;
+    background-color: transparent;
+    width: 40px;
+    height: 40px;
+    right: 150px;
+    margin-left: 90%;
+    background-color: rgba(19, 19, 189, 0.805);
+    border-radius: 100%;
+    box-shadow: 0 0 5px 1px blue;
+    transition: .5s;
+    opacity: .9;
+}
+
+.addBtn:active {
+    box-shadow: 0 0 10px 2px blue;
+}
+
+.addBtn:hover {
+    filter: brightness(1.5);
+    opacity: 1;
+}
+
+.addBtn img {
+    height: 22px;
+    width: auto;
+    margin: auto;
+    display: flex;
+}
+
 
 @media only screen and (max-width: 768px) {
     .productDetail {
@@ -75,7 +107,7 @@
     }
 
     .productDetailContainer {
-        margin: 0;
+        margin: 30px 0;
         width: 100%;
         display: inline-block;
         height: auto;
@@ -100,65 +132,29 @@
         width: 100%;
         height: 100%;
         margin: 0;
-        vertical-align: middle;
+        vertical-align:middle;
+        max-height: 250px;
     }
 
     .productDetailImg {
-        margin: auto;
-        width: 350px;
         display: flex;
+        margin: auto;
+        width: auto;
+        max-height: 250px;
     }
 
     .productDetailName {
         margin: 0;
         text-align: left;
     }
+
+    .addBtn {
+        margin: auto;
+        height: 30px;
+        width: 30px;
+    }
+
+    .addBtn img {
+        height: 18px;
+    }
 }
-
-.btn {
-
-    color: #B500FF;
-    padding: 13px 20px;
-    border: 2px solid #B500FF;
-    font-size: 17px;
-    transition: 0.3s;
-    border-radius: 10px;
-    font-family: Arial;
-    font-weight: 600;
-}
-
-.btn:hover {
-    transition: 0.3s;
-    background-color: #B500FF;
-    margin-top: -20px;
-    color: #fff;
-    animation-name: button_animation;
-    animation-duration: 3s;
-    animation-iteration-count: infinite;
-}
-
-.btn:active {
-    transform: scale(0.97);
-}
-
-/* @keyframes button_animation {
-    0% {
-        background-color: #B500FF;
-    }
-
-    25% {
-        background-color: #000000;
-    }
-
-    50% {
-        background-color: #B500FF;
-    }
-
-    75% {
-        background-color: #000000;
-    }
-
-    100% {
-        background-color: #B500FF;
-    }
-} */

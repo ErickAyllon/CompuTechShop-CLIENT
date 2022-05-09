@@ -1,49 +1,47 @@
-.btn {
-
-    color: #B500FF;
-    padding: 13px 20px;
-    border: 2px solid #B500FF;
-    font-size: 17px;
-    transition: 0.3s;
-    border-radius: 10px;
-    font-family: Arial;
-    font-weight: 600;
+.containerImgBtn {
+    width: 300px;
+    display: flex;
+    flex-direction: column;
 }
 
-.btn:hover {
-    /* transition: 0.3s; */
-    background-color: #B500FF;
-    margin-top: -20px;
-    color: #fff;
-    /* animation-name: button_animation;
-    animation-duration: 3s;
-    animation-iteration-count: infinite; */
+.container {
+    display: flex;
+    max-width: 602px;
+    height: 150px;
+    display: flex;
+    align-items: center;
+    box-sizing: border-box;
+    color: black;
+    background-color: white;
+    margin: 20px 0;
+    font-family: 'Orbitron', sans-serif;
+    border-radius: 6px;
+    flex-direction: column;
+    min-width: 300px;
 }
 
-/* 
-.btn:active {
-    transform: scale(0.97);
-} */
+.containerImgBtn {
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+}
 
-@keyframes button_animation {
-    0% {
-        background-color: #B500FF;
-    }
+.cart {
+    width: 20px;
+    height: 20px;
+    justify-content: center;
+    display: flex;
+    align-items: center;
+    margin-left: 5px;
+}
 
-    25% {
-        background-color: #000000;
-    }
+.cart img {
+    width: auto;
+    height: 30px;
+}
 
-    50% {
-        background-color: #B500FF;
-    }
-
-    75% {
-        background-color: #000000;
-    }
-
-    100% {
-        background-color: #B500FF;
-    }
-
+.cartDropDown {
+    border: none;
+    box-shadow: 0;
+    border: 0;
 }

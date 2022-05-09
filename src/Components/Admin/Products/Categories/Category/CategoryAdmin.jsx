@@ -38,7 +38,7 @@ function CategoryAdmin() {
     <AdminNav2 />
       <CategoriesAdmin />
       <Link to='/admin/products/createProduct'>
-        <Button variant="outlined" style={{marginTop:'20px'}}>Create Product</Button>
+        <Button variant="outlined" className={styles.create}>Create Product</Button>
       </Link>
       {products.length > 0 ? (
         <>

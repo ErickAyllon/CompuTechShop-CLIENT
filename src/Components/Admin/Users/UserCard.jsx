@@ -5,13 +5,13 @@ import { getUser } from '../../../Redux/Actions/index';
 
 
 
-function Users({name, lastName, email, phone}) {
+function Users({given_name, family_name, email, phone}) {
 
 
   return (
     <div>
-      <span>{name}</span>
-      <span>{lastName}</span>
+      <span>{given_name}</span>
+      <span>{family_name}</span>
       <span>{email}</span>
       <span>{phone}</span>
       <span>VALUE</span>

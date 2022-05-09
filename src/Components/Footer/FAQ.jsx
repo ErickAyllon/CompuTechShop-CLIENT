@@ -1,5 +1,7 @@
 import React, {useState} from 'react';
 import FAQ2 from './FAQ2.jsx';
+import styles from './FAQ.module.css'
+import NavBar from '../NavBar/Navbar.jsx';
 
 
 const FAQ = () => {
@@ -33,7 +35,8 @@ const FAQ = () => {
   const { title, content } = accordionData;
 
   return (
-    <div>
+    <div className={styles.faq}>
+      <NavBar/>
       <h1>React Accordion Demo</h1>
       <div className="accordion">
         {accordionData.map(({ title, content }) => (

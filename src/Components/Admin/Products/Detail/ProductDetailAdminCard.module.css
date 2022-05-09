@@ -1,5 +1,5 @@
 .productDetailContainer {
-    margin: 20px auto;
+    margin: 20px auto 50px auto;
     max-width: 1200px;
     height: 1000px;
     background-color: rgb(255, 255, 255);
@@ -42,7 +42,8 @@
 
 .productDetailPrice{
     margin-top: 10px;
-    font-size: 1.8rem;
+    font-size: 1.6rem;
+    font-family: 'Orbitron', sans-serif;
 }
 
 .productDetailRating {
@@ -85,7 +86,7 @@
         flex-direction: column;
     }
     .productDetailContainer {
-        margin: 0;
+        margin: 0 auto 50px auto;
         width: 100%;
         display: inline-block;
         height: auto;

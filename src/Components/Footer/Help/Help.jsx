@@ -4,6 +4,7 @@ import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 import Modal from '@mui/material/Modal';
 import { useState } from 'react';
+import styles from './Help.module.css'
 
 
 
@@ -25,8 +26,8 @@ export default function BasicModal() {
   };
 
   return (
-    <div>
-      <Button onClick={handleOpen}>Help</Button>
+    <div className={styles.help}>
+      <Button onClick={handleOpen} className={styles.btn}>Help</Button>
       <Modal
         open={open}
         onClose={handleClose}
