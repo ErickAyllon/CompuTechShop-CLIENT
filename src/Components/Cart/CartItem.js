@@ -14,7 +14,8 @@ const CartItem = ({ data, delFromCart, addToCart }) => {
         <img className={styles.cartImg} src={image} alt={name} />
         <Button variant="outlined" onClick={() => delFromCart(id)}>-</Button>
 
-        <Button variant="outlined" onClick={() => delFromCart(id, true)}>Eliminar todos</Button>
+        <Button variant="outlined" onClick={() => delFromCart(id, true)}>
+          delete all</Button>
 
         <Button variant="outlined" onClick={() => addToCart(id)}>+</Button>
       </div>
