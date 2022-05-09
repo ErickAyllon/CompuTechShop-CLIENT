@@ -8,6 +8,15 @@ import ProductNotFound from '../../ProductNotFound/ProductNotFound';
 import styles from './Users.module.css'
 import AdminNav2 from '../AdminNav/AdminNav2';
 import {Box, TextField, MenuItem, Button } from '@mui/material/';
+import Paper from '@mui/material/Paper';
+import Table from '@mui/material/Table';
+import TableBody from '@mui/material/TableBody';
+import TableCell from '@mui/material/TableCell';
+import TableContainer from '@mui/material/TableContainer';
+import TableHead from '@mui/material/TableHead';
+import TablePagination from '@mui/material/TablePagination';
+import TableRow from '@mui/material/TableRow';
+import { useNavigate } from 'react-router-dom';
 
 
 
@@ -29,69 +38,145 @@ function Users() {
     setOrder(e.target.value)
   }
 
+  const [page, setPage] = React.useState(0);
+  const [rowsPerPage, setRowsPerPage] = React.useState(10);
+
+  const handleChangePage = (event, newPage) => {
+    setPage(newPage);
+  };
+
+  const handleChangeRowsPerPage = (event) => {
+    setRowsPerPage(+event.target.value);
+    setPage(0);
+  };
+
+  const columns = [
+    { id: 'given_name', label: 'Name', minWidth: 200 },
+    { id: 'family_name', label: 'Lastname', minWidth: 220 },
+    {
+      id: 'email',
+      label: 'Email',
+      minWidth: 220,
+      align: 'right',
+      format: (value) => value.toLocaleString('en-US'),
+    },
+    {
+      id: 'phone',
+      label: 'Phone',
+      minWidth: 220,
+      align: 'right',
+      format: (value) => value.toLocaleString('en-US'),
+    },
+    {
+      id: 'value',
+      label: 'Value',
+      minWidth: 220,
+      align: 'right',
+      format: (value) => value.toFixed(2),
+    },
+  ];
+
+  const rows = users
+
   return (
     <div className={styles.users}>
       <AdminNav/>
       <AdminNav2/>
 
-      <TextField
-        sx={{
-          '& > :not(style)': { m: .1, display: 'flex', width: '18ch', color:'white' },
-        }}
-        variant="outlined"
-        id="outlined-select-currency"
-        select
-        label="Purchase value"
-        // value={order}
-        // onChange={(e) => handleSortByLastName(e)}
-      > 
-        <MenuItem value='higher-value'>Higher value</MenuItem>
-        <MenuItem value='lower-value'>Lower value</MenuItem>
-      </TextField>
+      <div style={{textAlign:'center', margin:'20px auto'}}>
 
-      <TextField
-        sx={{
-          '& > :not(style)': { m: .1, display: 'flex', width: '18ch', color:'white' },
-        }}
-        variant="outlined"
-        id="outlined-select-currency"
-        select
-        label="Sort alphabetically"
-        value={order}
-        onChange={(e) => handleSortByLastName(e)}
-      > 
-        {/* <MenuItem value='Sort'>Sort</MenuItem> */}
-        <MenuItem value='a-z'>A-Z</MenuItem>
-        <MenuItem value='z-a'>Z-A</MenuItem>
-      </TextField>
+        <TextField
+          sx={{
+            '& > :not(style)': { m: .1, display: 'flex', width: '20ch', color:'white' },
+          }}
+          variant="outlined"
+          id="outlined-select-currency"
+          select
+          label="Purchase value"
+          // value={order}
+          // onChange={(e) => handleSortByLastName(e)}
+        > 
+          <MenuItem value='higher-value'>Higher value</MenuItem>
+          <MenuItem value='lower-value'>Lower value</MenuItem>
+        </TextField>
 
-      <div style={{minHeight: '100vh'}}>
-      {
-        users.length ? 
-        <div>
-        <span>NAME</span>
-        <span>LASTNAME</span>
-        <span>EMAIL</span>
-        <span>PHONE</span>
-        <span>TOTAL ORDERS</span>
-        </div>
-        : null
-      }
-      {
-        users.length ? 
-        users.map(el => {
-          return(
-            <div key={el.id}>
-            <UserCard
-            given_name={el.given_name}
-            family_name={el.family_name}
-            email={el.email}
-            phone={el.phone}
-            />
-            </div>
-          )
-        }) : <ProductNotFound/>
-      }
+        <TextField
+          sx={{
+            '& > :not(style)': { m: .1, display: 'flex', width: '20ch', color:'white' },
+          }}
+          variant="outlined"
+          id="outlined-select-currency"
+          select
+          label="Sort alphabetically"
+          value={order}
+          onChange={(e) => handleSortByLastName(e)}
+        > 
+          {/* <MenuItem value='Sort'>Sort</MenuItem> */}
+          <MenuItem value='a-z'>A-Z</MenuItem>
+          <MenuItem value='z-a'>Z-A</MenuItem>
+        </TextField>
+
+      </div>
+
+      <div className={styles.tabla}>
+      <Paper sx={{ width: '100%', background:'gray'}}>
+          <TableContainer sx={{ maxHeight: 440 }}>
+            <Table stickyHeader aria-label="sticky table">
+              <TableHead>
+                <TableRow>
+                  <TableCell align="center" colSpan={6} style={{color:'white', background:'black'}}>
+                    Users
+                  </TableCell>
+                </TableRow>
+                <TableRow>
+                  {columns.map((column) => (
+                    <TableCell
+                      key={column.id}
+                      align={column.align}
+                      style={{ top: 57, minWidth: column.minWidth }}
+                    >
+                      {column.label}
+                    </TableCell>
+                  ))}
+                </TableRow>
+              </TableHead>
+              { 
+              users.length ? 
+              <TableBody >
+                {rows
+                  .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
+                  .map((row) => {
+                    return (
+                      <TableRow hover role="checkbox" tabIndex={-1} key={row.code} >
+                        {columns.map((column) => {
+                          const value = row[column.id];
+                          return (
+                            <TableCell key={column.id} align={column.align} style={{color:'black', background:'gray'}}>
+                              {column.format && typeof value === 'number'
+                                ? column.format(value)
+                                : value}
+                            </TableCell>
+                          );
+                        })}
+                      </TableRow>
+                    );
+                  })}
+              </TableBody>
+                  : null
+              }
+            </Table>
+          </TableContainer>
+          <TablePagination
+            style={{color:'black', background:'gray'}}
+            rowsPerPageOptions={[10, 25, 100]}
+            component="div"
+            count={rows.length}
+            rowsPerPage={rowsPerPage}
+            page={page}
+            onPageChange={handleChangePage}
+            onRowsPerPageChange={handleChangeRowsPerPage}
+          />
+        </Paper>
       </div>
     </div>
   )

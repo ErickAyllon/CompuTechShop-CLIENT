@@ -1,15 +1,10 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from "react-redux";
-import { getShops, getUser, sortOrderByEmail, sortOrderByAmount, filterOrderByState } from "../../../../Redux/Actions";
+import { getShops, sortOrderByEmail, sortOrderByAmount, filterOrderByState } from "../../../../Redux/Actions";
 import styles from './ViewAllOrders.module.css';
-import ShopCard from '../ShopCard/ShopCard';
-//import { Link } from 'react-router-dom';
-//import Button from '@mui/material/Button';
-//import AdminNav from './AdminNav/AdminNav';
-import ProductNotFound from '../../../ProductNotFound/ProductNotFound'
 import AdminNav from '../../AdminNav/AdminNav'
 import AdminNav2 from '../../AdminNav/AdminNav2';
-import {Box, TextField, MenuItem, Button } from '@mui/material/';
+import { TextField, MenuItem } from '@mui/material/';
 import Paper from '@mui/material/Paper';
 import Table from '@mui/material/Table';
 import TableBody from '@mui/material/TableBody';
@@ -92,12 +87,6 @@ const columns = [
     align: 'right',
     format: (value) => value.toFixed(2),
   },
-  {
-    id: 'detail',
-    label: 'Detail',
-    minWidth: 220,
-    align: 'right',
-  },
 ];
 
 const rows = shops
@@ -106,7 +95,7 @@ const rows = shops
 
 function handleDetail(e) {
   e.preventDefault();
-  navigate(`/admin/shop/${e.target.value}`)
+  navigate(`/admin/shop/${e.target.id}`)
 }
 
 
@@ -119,7 +108,7 @@ function handleDetail(e) {
     <div className={styles.filterOrders}>
       <TextField
         sx={{
-          '& > :not(style)': { m: 1, display: 'flex', width: '18ch', color:'white' },
+          '& > :not(style)': { m: 1, display: 'flex', width: '13ch',fontSize:'1rem', color:'white' },
         }}
         variant="outlined"
         id="outlined-select-currency"
@@ -138,12 +127,12 @@ function handleDetail(e) {
 
       <TextField
         sx={{
-          '& > :not(style)': { m: 1, display: 'flex', width: '18ch', color:'white' },
+          '& > :not(style)': { m: 1, display: 'flex', width: '13ch',fontSize:'1rem', color:'white' },
         }}
         variant="outlined"
         id="outlined-select-currency"
         select
-        label="Sort by email"
+        label="Email"
         value={orderByEmail}
         onChange={(e) => handleSortByEmail(e)}
       > 
@@ -153,17 +142,17 @@ function handleDetail(e) {
 
       <TextField
         sx={{
-          '& > :not(style)': { m: 1, display: 'flex', width: '18ch', color:'white' },
+          '& > :not(style)': { m: 1, display: 'flex', width: '13ch',fontSize:'1rem', color:'white' },
         }}
         variant="outlined"
         id="outlined-select-currency"
         select
-        label="Sort by Amount"
+        label="Amount"
         value={orderByAmount}
         onChange={(e) => handleSortByAmount(e)}
       > 
-        <MenuItem value='higher-amount'>Higher amount</MenuItem>
-        <MenuItem value='lower-amount'>Lower amount</MenuItem>
+        <MenuItem value='higher-amount'>Higher</MenuItem>
+        <MenuItem value='lower-amount'>Lower</MenuItem>
       </TextField>
     </div>
 
@@ -200,16 +189,14 @@ function handleDetail(e) {
                         {columns.map((column) => {
                           const value = row[column.id];
                           return (
-                            <TableCell key={column.id} align={column.align}>
+                            <TableCell key={column.id} align={column.align} id={row.id} onClick={handleDetail}>
                               {column.format && typeof value === 'number'
                                 ? column.format(value)
                                 : value}
-                                
-                                
                             </TableCell>
                           );
                         })}
-                        <Button variant="contained" className={styles.tableBtn} value={row.id} onClick={handleDetail}>Details</Button>
+                        {/* <Button variant="contained" className={styles.tableBtn} value={row.id} onClick={handleDetail}>Details</Button> */}
                       </TableRow>
                     );
                   })}

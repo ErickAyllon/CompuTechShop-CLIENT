@@ -8,6 +8,10 @@ import NotFound404 from '../../../NotFound404/NotFound404';
 import AdminNav from '../../AdminNav/AdminNav'
 import AdminNav2 from '../../AdminNav/AdminNav2';
 import {Box, TextField, MenuItem, Button } from '@mui/material/';
+import styles from './ShopDetails.module.css'
+import Stack from '@mui/material/Stack';
+import Paper from '@mui/material/Paper';
+import { styled } from '@mui/material/styles';
 
 function ShopDetail() {
   const dispatch = useDispatch();
@@ -15,6 +19,16 @@ function ShopDetail() {
   const { id } = useParams();
   const shop = useSelector ((state) => state.shopDetail);
   
+  const Item = styled(Paper)(({ theme }) => ({
+    backgroundColor: theme.palette.mode === 'dark' ? '#1A2027' : '#fff',
+    ...theme.typography.body2,
+    padding: theme.spacing(1),
+    textAlign: 'center',
+    display:'flex',
+    justifyContent:'space-between' ,
+    color: theme.palette.text.secondary,
+  }));
+
 
 
   useEffect(() => {
@@ -49,41 +63,94 @@ function ShopDetail() {
   }
 
   return (
-    <div>
+    <div className={styles.shopDetails}>
       <AdminNav/>
       <AdminNav2 />
       {shop.length ? shop.map(el => {
         return(
-          <div key={el.id}>
-            <span>Date: {el.date}</span><br/>
-            {/* <span>State: {el.state}</span><br/> */}
-            <span>Email: {el.userEmail}</span><br/>
-            <TextField
-              sx={{
-                '& > :not(style)': { m: .1, display: 'flex', width: '18ch', color:'white' },
-              }}
-              variant="outlined"
-              id="outlined-select-currency"
-              select
-              label="State"
-              value={update}
-              onChange={(e) => handleUpdateState(e)}
-            > 
-              <MenuItem value='In process'>In process</MenuItem>
-              <MenuItem value='Paid'>Paid</MenuItem>
-              <MenuItem value='On its way'>On its way</MenuItem>
-              <MenuItem value='Canceled'>Canceled</MenuItem>
-              <MenuItem value='Received'>Received</MenuItem>
-            </TextField>
-            <span>Payment status: {el.status}</span><br/>
-            <span>Amount: {el.total_paid_amount}</span><br/>
-            <span>Products: </span>{el.products.map(el => {
-              return(
-                <div key={el}>
-                  <Link to={'/' + el}>{el}</Link>
-                </div>
-              )
-      })} 
+          <div key={el.id} className={styles.shopDetailCardContainer}>
+            <div className={styles.shopDetailCard}>
+              <h1 style={{textAlign:'center', fontSize:'1.8rem'}}>Shop Detail</h1>
+              <TextField
+                style={{width:'40ch', margin:'5px 0'}}
+                disabled
+                id="filled-disabled"
+                label="SHOP ID"
+                defaultValue={el.id}
+                variant="filled"
+                
+              />
+              <TextField
+                style={{width:'40ch', margin:'5px 0'}}
+                disabled
+                id="filled-disabled"
+                label="Date"
+                defaultValue={el.date}
+                variant="filled"
+                
+              />
+              <TextField
+                style={{width:'40ch', margin:'5px 0'}}
+                disabled
+                id="filled-disabled"
+                label="Email"
+                defaultValue={el.userEmail}
+                variant="filled"
+              />
+              <TextField
+                style={{width:'40ch', margin:'5px 0'}}
+                disabled
+                id="filled-disabled"
+                label="Amount"
+                defaultValue={el.total_paid_amount}
+                variant="filled"
+              />
+              {el.products.map(el => {
+                return(
+                  <div key={el}>
+                <Link to={'/admin/product/' + el}>
+                  <TextField
+                    style={{width:'40ch', margin:'5px 0'}}
+                    disabled
+                    id="filled-disabled"
+                    label="Product"
+                    defaultValue={el}
+                    variant="filled"
+                    multiline
+                  />
+                </Link>
+                  </div>
+                )
+        })} 
+              <TextField
+              style={{width:'40ch', margin:'5px 0'}}
+                disabled
+                id="filled-disabled"
+                label="Payment status"
+                defaultValue={el.status}
+                variant="filled"
+              />
+              <div style={{margin: 'auto'}}>
+                <TextField
+                  sx={{
+                    '& > :not(style)': { m: 1, display: 'flex', width: '20ch', color:'white', color:'green' },
+                  }}
+                  variant="filled"
+                  id="filled-select-currency"
+                  select
+                  label="Shop State"
+                  value={update}
+                  onChange={(e) => handleUpdateState(e)}
+                > 
+                  <MenuItem value='In process'>In process</MenuItem>
+                  <MenuItem value='Paid'>Paid</MenuItem>
+                  <MenuItem value='On its way'>On its way</MenuItem>
+                  <MenuItem value='Canceled'>Canceled</MenuItem>
+                  <MenuItem value='Received'>Received</MenuItem>
+                </TextField>
+              </div>
+              <Button variant="outlined" onClick={(e) => handleClick(e)} style={{width:'20ch', margin: '5px auto 20px auto'}} >SAVE</Button>
+            </div>
           </div>
         )
       })
@@ -91,7 +158,6 @@ function ShopDetail() {
 
       : <NotFound404/>
       }
-      <button onClick={(e) => handleClick(e)}>SAVE</button>
     </div>
   )
 

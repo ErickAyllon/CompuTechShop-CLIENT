@@ -46,7 +46,7 @@ function rootReducer(state = initialState, action) {
         allProducts: action.payload,
       };
      
-    case "GET_USER_DETAIL":
+    // case "GET_USER_DETAIL":
     case TYPES.BUY_CART: {
       return {
         ...state,
@@ -57,13 +57,9 @@ function rootReducer(state = initialState, action) {
       return {
         ...state,
         users: action.payload,
-        usersFiltered: action.payload
-      };
-      case "GET_USER":
-        return {
-          ...state,
-          users2: action.payload,
-        };
+        usersFiltered: action.payload,
+        users2: action.payload,
+      }
     case "GET_DETAILS":
       return {
         ...state,
