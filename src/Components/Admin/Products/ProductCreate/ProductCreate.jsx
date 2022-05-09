@@ -1,31 +1,35 @@
-import React, { useState, useEffect } from 'react';
-import { postProducts, getCategories, getProducts } from '../../../../Redux/Actions'
-import { useDispatch, useSelector } from 'react-redux';
-import Box from '@mui/material/Box';
-import TextField from '@mui/material/TextField';
-import MenuItem from '@mui/material/MenuItem';
-import Button from '@mui/material/Button';
-import styles from './ProductCreate.module.css'
-import { Link } from 'react-router-dom';
-import AdminNav from '../../AdminNav/AdminNav';
+import React, { useState, useEffect } from "react";
+import {
+  postProducts,
+  getCategories,
+  getProducts,
+} from "../../../../Redux/Actions";
+import { useDispatch, useSelector } from "react-redux";
+import Box from "@mui/material/Box";
+import TextField from "@mui/material/TextField";
+import MenuItem from "@mui/material/MenuItem";
+import Button from "@mui/material/Button";
+import styles from "./ProductCreate.module.css";
+import { Link } from "react-router-dom";
+import AdminNav from "../../AdminNav/AdminNav";
 
 function ProductCreate() {
   const dispatch = useDispatch();
-  const categories = useSelector((state) => state.categories)
-  const allProductsCheck = useSelector((state) => state.allProducts)
-  const [errors, setErrors] = useState({})
+  const categories = useSelector((state) => state.categories);
+  const allProductsCheck = useSelector((state) => state.allProducts);
+  const [errors, setErrors] = useState({});
 
   const [input, setInput] = useState({
-    name: '',
-    price: '', 
-    quantity: '',
-    brand: '',
-    calification: '',
-    image: '',
-    description: '',
-    categories: ''
-  })
-  
+    name: "",
+    price: "",
+    quantity: "",
+    brand: "",
+    calification: "",
+    image: "",
+    description: "",
+    categories: "",
+  });
+
   useEffect(() => {
     dispatch(getCategories());
     dispatch(getProducts());
@@ -34,102 +38,130 @@ function ProductCreate() {
   function handleChange(e) {
     setInput({
       ...input,
-      [e.target.name] : e.target.value
-    })
-    setErrors(validate({
-      ...input,
-      [e.target.name]: e.target.value
-  }));
+      [e.target.name]: e.target.value,
+    });
+    setErrors(
+      validate({
+        ...input,
+        [e.target.name]: e.target.value,
+      })
+    );
   }
 
   function handleSubmit(e) {
     e.preventDefault();
     dispatch(postProducts(input));
-    alert('Product created')
+    alert("Product created");
     setInput({
-      name: '',
-      price: '', 
-      quantity: '',
-      brand: '',
-      calification: '',
-      image: '',
-      description: '',
-      categories: ''
-    })
+      name: "",
+      price: "",
+      quantity: "",
+      brand: "",
+      calification: "",
+      image: "",
+      description: "",
+      categories: "",
+    });
   }
 
   function validate(input) {
     let errors = {};
     let existent = false;
-    allProductsCheck.map(p => p.name === input.name ? existent = true: null);
+    allProductsCheck.map((p) =>
+      p.name === input.name ? (existent = true) : null
+    );
     if (existent) {
-        errors.name = 'That product already exists.'
+      errors.name = "That product already exists.";
     }
-     if (!/^[A-Z]/.test(input.name)) {
-        errors.name = 'First letter must be uppercase';
-    } if (input.name.length > 130) {
-        errors.name = 'Max 130 characters'; 
-    } if (!input.name) {
-        errors.name = 'Name required';
-    } if (input.brand.length > 20) {
-        errors.brand = 'Max 20 characters'; 
-    } if (!input.brand) {
-        errors.brand = 'Brand required';
-    } if (!/^[A-Z]/.test(input.description)) {
-      errors.description = 'First letter must be uppercase';
-    } if (input.description.length > 5000) {
-        errors.description = 'Max 5000 characters'; 
-    } if (!input.description) {
-        errors.description = 'Description required';
-    } if (!input.price || input.price > 1000000) {
-        errors.price = '1000000 max';
-    } if (!input.price || input.price < 0) {
-        errors.price = 'Price must be > 0';
-    } if (!input.price) {
-        errors.price = 'Price required';
-    } if (!input.calification || input.calification > 10) {
-        errors.calification = '10 max';
-    } if (!input.calification || input.calification < 0) {
-        errors.calification = 'Calification must be > 0';
-    } if (!input.calification) {
-        errors.calification = 'Calification required';
-    }  if (!input.quantity || input.quantity < 0) {
-        errors.quantity = 'Quantity must be > 0';
-    }  if (!input.quantity || input.quantity > 1000) {
-        errors.quantity = '1000 max';
-    } if (!input.quantity) {
-        errors.quantity = 'Quantity required';
-    } if (!input.image.length) {
-        errors.image = 'Link image required';
-    } if (!input.image) {
-        errors.image = 'Image required'
-    } if (!input.categories) {
-        errors.categories = 'Category required'
+    if (!/^[A-Z]/.test(input.name)) {
+      errors.name = "First letter must be uppercase";
+    }
+    if (input.name.length > 130) {
+      errors.name = "Max 130 characters";
+    }
+    if (!input.name) {
+      errors.name = "Name required";
+    }
+    if (input.brand.length > 20) {
+      errors.brand = "Max 20 characters";
+    }
+    if (!input.brand) {
+      errors.brand = "Brand required";
+    }
+    if (!/^[A-Z]/.test(input.description)) {
+      errors.description = "First letter must be uppercase";
+    }
+    if (input.description.length > 5000) {
+      errors.description = "Max 5000 characters";
+    }
+    if (!input.description) {
+      errors.description = "Description required";
+    }
+    if (!input.price || input.price > 1000000) {
+      errors.price = "1000000 max";
+    }
+    if (!input.price || input.price < 0) {
+      errors.price = "Price must be > 0";
+    }
+    if (!input.price) {
+      errors.price = "Price required";
+    }
+    if (!input.calification || input.calification > 10) {
+      errors.calification = "10 max";
+    }
+    if (!input.calification || input.calification < 0) {
+      errors.calification = "Calification must be > 0";
+    }
+    if (!input.calification) {
+      errors.calification = "Calification required";
+    }
+    if (!input.quantity || input.quantity < 0) {
+      errors.quantity = "Quantity must be > 0";
+    }
+    if (!input.quantity || input.quantity > 1000) {
+      errors.quantity = "1000 max";
+    }
+    if (!input.quantity) {
+      errors.quantity = "Quantity required";
+    }
+    if (!input.image.length) {
+      errors.image = "Link image required";
+    }
+    if (!input.image) {
+      errors.image = "Image required";
+    }
+    if (!input.categories) {
+      errors.categories = "Category required";
     }
     return errors;
-}
+  }
 
   return (
     <div>
-      <AdminNav/>
-        <Box
-          className={styles.form}
-          component="form"
-          sx={{
-            '& .MuiTextField-root': { m: 1, width: '45ch', color: "white", display: "flex" },
-          }}
-          noValidate
-          autoComplete="off"
-        >
+      <AdminNav />
+      <Box
+        className={styles.form}
+        component="form"
+        sx={{
+          "& .MuiTextField-root": {
+            m: 1,
+            width: "45ch",
+            color: "white",
+            display: "flex",
+          },
+        }}
+        noValidate
+        autoComplete="off"
+      >
         <div>
-        <h3 style={{textAlign:'center'}}>Create Product:</h3>
+          <h3 style={{ textAlign: "center" }}>Create Product:</h3>
           <TextField
             variant="filled"
             required
             id="outlined-required"
             label="Name"
-            name="name" 
-            onChange={handleChange} 
+            name="name"
+            onChange={handleChange}
             error={errors.name ? true : false}
             helperText={errors.name}
             value={input.name}
@@ -137,10 +169,10 @@ function ProductCreate() {
           <TextField
             variant="filled"
             required
-            name="brand" 
-            onChange={handleChange} 
+            name="brand"
+            onChange={handleChange}
             id="outlined-required"
-            label="Brand" 
+            label="Brand"
             error={errors.brand ? true : false}
             value={input.brand}
             helperText={errors.brand}
@@ -160,12 +192,12 @@ function ProductCreate() {
               shrink: true,
             }}
           /> */}
-            <TextField
+          <TextField
             variant="filled"
-            name="quantity" 
-            onChange={handleChange} 
+            name="quantity"
+            onChange={handleChange}
             id="outlined-number"
-            label="Quantity" 
+            label="Quantity"
             type="number"
             error={errors.quantity ? true : false}
             helperText={errors.quantity}
@@ -178,7 +210,8 @@ function ProductCreate() {
             variant="filled"
             required
             id="outlined-multiline-static"
-            name="description" onChange={handleChange} 
+            name="description"
+            onChange={handleChange}
             label="Description"
             multiline
             rows={3}
@@ -190,8 +223,8 @@ function ProductCreate() {
             variant="filled"
             required
             id="outlined-multiline-static"
-            name="image" 
-            onChange={handleChange} 
+            name="image"
+            onChange={handleChange}
             label="Image"
             rows={1}
             multiline
@@ -217,29 +250,46 @@ function ProductCreate() {
               </MenuItem>
             ))}
           </TextField>
-            <TextField
-              variant="filled"
-              name="price" onChange={handleChange} 
-              id="outlined-number"
-              label="Price"
-              type="number"
-              value={input.price}
-              error={errors.price ? true : false}
-              helperText={errors.price}
-              inputProps={{ inputMode: 'numeric', pattern: '[0-9]*' }}
-              InputLabelProps={{
-                shrink: true,
-              }}
-            />
-            <div className={styles.createButton} >
-              <Button type="submit" onClick={handleSubmit} variant="outlined" disabled={errors.name || errors.brand || errors.quantity || errors.description || errors.image || errors.categories || errors.price || input.name === '' ? true : false}>
-                Create Product
-              </Button>
-            </div>
+          <TextField
+            variant="filled"
+            name="price"
+            onChange={handleChange}
+            id="outlined-number"
+            label="Price"
+            type="number"
+            value={input.price}
+            error={errors.price ? true : false}
+            helperText={errors.price}
+            inputProps={{ inputMode: "numeric", pattern: "[0-9]*" }}
+            InputLabelProps={{
+              shrink: true,
+            }}
+          />
+          <div className={styles.createButton}>
+            <Button
+              type="submit"
+              onClick={handleSubmit}
+              variant="outlined"
+              disabled={
+                errors.name ||
+                errors.brand ||
+                errors.quantity ||
+                errors.description ||
+                errors.image ||
+                errors.categories ||
+                errors.price ||
+                input.name === ""
+                  ? true
+                  : false
+              }
+            >
+              Create Product
+            </Button>
+          </div>
         </div>
       </Box>
     </div>
-  )
+  );
 }
 
-export default ProductCreate
+export default ProductCreate;
