@@ -161,7 +161,7 @@ function handleDetail(e) {
             <Table stickyHeader aria-label="sticky table">
               <TableHead>
                 <TableRow>
-                  <TableCell align="center" colSpan={6} style={{color:'gray', background:'black'}}>
+                  <TableCell align="center" colSpan={6} style={{color:'white', background:'black'}}>
                     Orders
                   </TableCell>
                 </TableRow>
