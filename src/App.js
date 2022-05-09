@@ -65,13 +65,13 @@ const getDesignTokens = (mode) => ({
     text: {
       ...(mode === "light"
         ? {
-            primary: grey[900],
-            secondary: grey[800],
-          }
+          primary: grey[900],
+          secondary: grey[800],
+        }
         : {
-            primary: "#ffffff",
-            secondary: grey[500],
-          }),
+          primary: "#ffffff",
+          secondary: grey[500],
+        }),
     },
   },
 });
@@ -99,7 +99,7 @@ function App() {
           <Route path="/admin" element={<Admin />} />
           <Route path="/admin/products/Allproducts" element={<AdminProducts />} />
           <Route path="/admin/products/:category" element={<CategoryAdmin />} />
-          <Route path="/admin/products/createProduct"element={<ProductCreate />} />
+          <Route path="/admin/products/createProduct" element={<ProductCreate />} />
           <Route path="/admin/product/:name" element={<ProductDetailAdmin />} />
           <Route path="/admin/product/update/:name" element={<UpdateProduct />} />
           <Route path="/admin/search/:search" element={<ProductSearchedAdmin />} />
@@ -107,14 +107,14 @@ function App() {
           <Route path="/admin/shop/:id" element={<ShopDetails />} />
           <Route path="/admin/allorders" element={<ViewAllOrders />} />
           <Route path="/admin/users" element={<Users />} />
-          <Route path='/FAQ' element={<FAQ/>}/>
-          <Route path='/FAQ2' element={<FAQ2/>}/>
-          <Route path='/WorkWithUs' element={<WorkWithUs/>}/>
-          <Route path='/About' element={<About/>}/>
-
+          <Route path='/FAQ' element={<FAQ />} />
+          <Route path='/FAQ2' element={<FAQ2 />} />
+          <Route path='/WorkWithUs' element={<WorkWithUs />} />
+          <Route path='/About' element={<About />} />
           <Route path="/purchaseSummary" element={<PurchaseSummary />} />
           <Route path="/purchaseConfirm" element={<PurchaseConfirm />} />
           <Route path="/purchaseResult" element={<PurchaseResult />} />
+
 
         </Routes>
         <Footer />

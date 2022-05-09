@@ -9,6 +9,8 @@ import Loader from "../Loader/Loader";
 // import styles from './ShoppingCart.module.css'
 import styles from "./CartItem.module.css"
 import shop from '../../Images/shop.png'
+import { Button } from "@mui/material";
+import style from "./ShoppingCart.module.css"
 
 const ShoppingCart = () => {
   const obj = {}
@@ -65,6 +67,7 @@ const ShoppingCart = () => {
           <img
             src={shop}
             alt="profileImg"
+            className={style.img}
           />
         </Dropdown.Toggle>
 
@@ -74,7 +77,7 @@ const ShoppingCart = () => {
           variant="dark"
         >
           <Dropdown.Item >
-            <button className={styles.btn} onClick={clearCart}>Clean Cart</button>
+            <Button className={style.btncito} variant="outlined" onClick={clearCart}>Clean Cart</Button>
           </Dropdown.Item>
           <Dropdown.Item>
             <div>
@@ -98,10 +101,8 @@ const ShoppingCart = () => {
               </div>
               <Dropdown.Item>
                 <div>
+                  <Button className={style.btncito} variant="outlined" onClick={handleBuyCart}>Buy</Button>
 
-                  <button className={styles.btn} onClick={handleBuyCart}>
-                    Comprar
-                  </button>
                 </div>
               </Dropdown.Item>
 
@@ -109,7 +110,8 @@ const ShoppingCart = () => {
             <Dropdown.Divider />
           </Dropdown.Item>
           <Link to="/purchaseSummary">
-            <button className={styles.btn}>Purchase summary</button>
+            <Button className={style.btncito} variant="outlined">Purchase summary</Button>
+
           </Link>
         </Dropdown.Menu>
       </Dropdown>

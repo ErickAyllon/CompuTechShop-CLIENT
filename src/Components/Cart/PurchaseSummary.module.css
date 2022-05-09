@@ -1,0 +1,46 @@
+.summaryContainer{
+    flex-direction: row-reverse;
+    align-items: center;
+    display: flex;
+    justify-content: space-evenly;
+}
+
+.text {
+    font-size: 52px;
+    width: 230px;}
+
+    .containerImgBtn{
+        display: flex;
+        flex-direction: column;
+        position: relative;
+        
+    }
+
+    .productNotFound {
+        margin: auto;
+        width: 50%;
+        text-align: center;
+        background-color: white;
+        border-radius: 15px;
+        height: auto;
+    }
+    
+    .productNotFoundContainer {
+        text-align: center;
+        color: black;
+        margin-top: 100px;
+        height: 135px;
+        justify-content: center;
+    }
+    
+    .productNotFoundText {
+        text-align: left;
+        margin: 0 50px;
+        width: 100%;
+    }
+    
+    @media only screen and (max-width: 768px) {
+        .productNotFound {
+            width: calc(100% - 30px);
+        }
+    }

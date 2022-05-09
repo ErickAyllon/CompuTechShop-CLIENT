@@ -6,16 +6,19 @@ import { TYPES } from "../../Redux/Actions/shoppingCartActions";
 import ProductCard from "../ProductCard/ProductCard";
 import NavBar from "../NavBar/Navbar";
 import { Link, useNavigate } from "react-router-dom"
-import styles from "./CartItem.module.css"
+import styles from "./PurchaseSummary.module.css"
+
 const PurchaseSummary = () => {
   const obj = {};
   const dispatch = useDispatch();
   const productsFilter = useSelector((state) => state.cart);
   const arregloPrice = productsFilter.map((el) => el.price * el.quantity);
   const reducir = (accumulator, curr) => accumulator + curr;
-  const arregloTotal = arregloPrice.reduce(reducir);
+  let arregloTotal
   const navigate = useNavigate()
 
+  if (arregloPrice > 0) { arregloTotal = arregloPrice.reduce(reducir) }
+  console.log(arregloTotal)
   const handleBuyCart = (e) => {
     e.preventDefault();
     const nuevoPost = productsFilter.map((el) => {
@@ -45,39 +48,53 @@ const PurchaseSummary = () => {
     console.log(id);
     dispatch({ type: TYPES.ADD_TO_CART, payload: id });
   };
+
+  console.log(navigate)
   return (
 
-    <div>
+    <div >
       <NavBar />
-      <div>
+      <div className={styles.summaryContainer} >
+
         <div>
-          {productsFilter.map((el) => (
-            <ProductCard
-              name={el.name}
-              price={el.price}
-              image={el.image}
-              key={el.id}
-              id={el.id}
-              brand={el.brand}
-              description={el.description}
-              calification={el.calification}
-              quantity={el.quantity}
-              addToCart={addToCart}
-              delFromCart={delFromCart}
-            />
+          {
+            productsFilter.length > 0 && arregloTotal.length !== 0 ?
+              productsFilter.map((el) => (
+                <ProductCard
+                  name={el.name}
+                  price={el.price}
+                  image={el.image}
+                  key={el.id}
+                  id={el.id}
+                  brand={el.brand}
+                  description={el.description}
+                  calification={el.calification}
+                  quantity={el.quantity}
+                  addToCart={addToCart}
+                  delFromCart={delFromCart}
+                />
 
-          ))}</div>
-        <div>
-          <label>Total Price: $</label>
-          {arregloTotal}
-
-          <button className={styles.btn} onClick={handleBuyCart}>Comprar</button>
-
-
-        </div>
+              )) : (<div className={styles.productNotFound}>
+                <div className={styles.productNotFoundContainer}>
+                  <h1>Cart Empty</h1>
+                  <div className={styles.productNotFoundText}>
+                    <p>Check all products</p>
+                    <p>Browse the categories to find a product</p>
+                  </div>
+                  <button onClick={() => navigate("/")}>Back to Products</button>
+                </div>
+              </div>)
+          }</div>
+        {(arregloPrice.length !== 0 ?
+          <div className={styles.containerImgBtn}>
+            <label className={styles.text}>Total Price:  $ {arregloTotal}</label>
+            <button className={styles.btn} onClick={handleBuyCart}>Comprar</button>
+          </div>
+          : null)}
 
       </div>
-    </div>
+      <br />
+    </div >
   );
 };
 
