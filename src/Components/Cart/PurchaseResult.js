@@ -8,30 +8,17 @@ export const PurchaseResult = () => {
   const usuarios = useSelector(state => state.users2)
   const dispatch = useDispatch();
   let { search } = useLocation()
-  const { user, loading, isAuthenticated } = useAuth0()
+  const { user } = useAuth0()
   let query = new URLSearchParams(search)
   let payment = query.get("payment_id")
-  // let email = usuarios[0].email
   const navigate = useNavigate()
   const obj = {}
-
-
-
 
   obj.payment = payment
 
   if (user) {
     obj.email = user.email
   }
-
-  // useEffect(() => {
-  //   let pedro
-  //   const erick = () => {
-  //     pedro = getPayment(obj)
-  //     return pedro
-  //   }
-  //   dispatch(erick)
-  // }, [dispatch])
 
   function handleClick(e) {
     e.preventDefault()
@@ -46,7 +33,7 @@ export const PurchaseResult = () => {
 
   return (
     <div>Purchasse confirm
-      <button onClick={(e) => handleClick(e)}> Back to Site</button>
+      <button onClick={handleClick}> Back to Site</button>
 
     </div>
   )

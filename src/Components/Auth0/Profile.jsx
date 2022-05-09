@@ -16,7 +16,6 @@ export default function Profile() {
   const dispatch = useDispatch();
   let myUsers = useSelector((state) => state.users2);
 
-
   useEffect(() => {
     dispatch(getUser());
   }, [dispatch]);
