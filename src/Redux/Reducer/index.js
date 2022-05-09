@@ -17,7 +17,8 @@ const initialState = {
   currentPage: 1,
   cartModified: [],
   shopping: [],
-  payment: []
+  payment: [],
+  userPayment: [],
 };
 
 function rootReducer(state = initialState, action) {
@@ -51,11 +52,11 @@ function rootReducer(state = initialState, action) {
         shopping: action.payload,
       };
     }
-    case "GET_USER":
-      return {
-        ...state,
-        users: action.payload,
-      };
+    // case "GET_USER":
+    //   return {
+    //     ...state,
+    //     users: action.payload,
+    //   };
     case "GET_USER":
       return {
         ...state,
@@ -260,7 +261,11 @@ function rootReducer(state = initialState, action) {
         payment: action.payload
       }
     }
-
+    case "GET_PAYMENT_USER": {
+      return {
+        userPayment: action.payload
+      }
+    }
 
     default:
       return state;

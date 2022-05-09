@@ -72,7 +72,7 @@ const ShoppingCart = () => {
           variant="dark"
         >
           <Dropdown.Item >
-            <button onClick={clearCart}>Clean Cart</button>
+            <button className={styles.btn} onClick={clearCart}>Clean Cart</button>
           </Dropdown.Item>
           <Dropdown.Item>
             <div>
@@ -107,7 +107,7 @@ const ShoppingCart = () => {
             <Dropdown.Divider />
           </Dropdown.Item>
           <Link to="/purchaseSummary">
-            <button>Purchase summary</button>
+            <button className={styles.btn}>Purchase summary</button>
           </Link>
         </Dropdown.Menu>
       </Dropdown>
