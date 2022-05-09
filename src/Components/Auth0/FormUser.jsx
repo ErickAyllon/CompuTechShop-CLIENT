@@ -6,6 +6,7 @@ import { Formik } from "formik";
 import BasicForm from "./BasicForm";
 import { useNavigate } from "react-router-dom";
 import styles from "./FormUser.module.css";
+import NavBar from "../NavBar/Navbar";
 
 const validation = (values) => {
   let errors = {};
@@ -97,29 +98,30 @@ const FormUser = () => {
 
   return (
     <div className={styles.formUser}>
-      {isAuthenticated && (
-        <Formik
-          initialValues={{
-            given_name: user.given_name,
-            family_name: user.family_name,
-            email: user.email,
-            nickname: user.nickname,
-            email_verified: user.email_verified,
-            picture: user.picture,
-            address: "",
-            phone: "",
-            birthday: "",
-          }}
-          onSubmit={(values) => {
-            dispatch(postUser(values));
-            alert("USIARIO CREADO");
-            navigate("/");
-          }}
-          validate={validation}
-        >
-          {(props) => <BasicForm {...props} />}
-        </Formik>
-      )}
+      <NavBar />
+        {isAuthenticated && (
+          <Formik
+            initialValues={{
+              given_name: user.given_name,
+              family_name: user.family_name,
+              email: user.email,
+              nickname: user.nickname,
+              email_verified: user.email_verified,
+              picture: user.picture,
+              address: "",
+              phone: "",
+              birthday: "",
+            }}
+            onSubmit={(values) => {
+              dispatch(postUser(values));
+              alert("USIARIO CREADO");
+              navigate("/");
+            }}
+            validate={validation}
+          >
+            {(props) => <BasicForm {...props} />}
+          </Formik>
+        )}
     </div>
   );
 };

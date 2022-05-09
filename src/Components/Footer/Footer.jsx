@@ -41,8 +41,8 @@ function Footer() {
       
         <div className={styles.footer}>
           <div className={styles.copyrightFooter}>
-            <p> Copyright © 2022 The pibe's store S.R.L.</p>
-            <p>Av. Siempre Viva 123, Piso 5, CP 1234, Alto Ecommerce, Argentina</p>
+            <p> Copyright © 2022 CompuTechStore S.R.L.</p>
+            <p>Av. Siempre Viva 123, Piso 5, CP 1234, Argentina</p>
           </div>
           <div>
             {/* <li onClick={() => <FAQ2/>}>
@@ -50,7 +50,7 @@ function Footer() {
             </li> */}
           </div>
           <div className={styles.extrasFooter}>
-           <p><Help/></p>
+           <div><Help className={styles.help} /></div>
            <Link to='/FAQ'>
             <p>FAQ's</p>
             </Link>

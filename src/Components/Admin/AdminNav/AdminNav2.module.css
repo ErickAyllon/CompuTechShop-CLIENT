@@ -18,3 +18,9 @@
       display: flex;
       margin: auto;
   }
+
+  @media only screen and (max-width: 768px) {
+    .adminButtons button {
+        font-size: .6rem;
+    }
+}

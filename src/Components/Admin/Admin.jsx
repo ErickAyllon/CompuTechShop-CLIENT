@@ -26,7 +26,7 @@ function Admin() {
         <div className={styles.adminCard}>
           <div className={styles.adminCardContainer}>
             <Link to='/admin/products/Allproducts'>
-              <Button variant="outlined">Acá iría el Admin Login</Button>
+              <Button variant="outlined">Admin Login</Button>
             </Link>
           </div>
         </div>

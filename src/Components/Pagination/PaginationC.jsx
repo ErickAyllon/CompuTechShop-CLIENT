@@ -44,12 +44,12 @@ function PaginationC({ category, totalPages  }) {
               search ? 
               `/search/${category}${item.page === 1 ? '' : `?page=${item.page}`}`
               :
+              category === 'Allproducts' ?
+              `/Allproducts${item.page === 1 ? '' : `?page=${item.page}`}` 
+              :
               category ? 
               `/category/${category}${item.page === 1 ? '' : `?page=${item.page}`}`
-              :
-              // allproducts ?
-              `/${category}${item.page === 1 ? '' : `?page=${item.page}`}` 
-              // : null
+              : null
             }
             {...item}
           />

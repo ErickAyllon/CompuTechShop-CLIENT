@@ -10,15 +10,13 @@ const CartItem = ({ data, delFromCart, addToCart }) => {
       <div>
         ${price} x {quantity} = ${quantity * price}
       </div>
-      <div className={style.containerImgBtn}>
-        <img className={styles.img} src={image} alt={name} />
+      <div className={styles.containerImgBtn}>
+        <img className={styles.cartImg} src={image} alt={name} />
         <Button variant="outlined" onClick={() => delFromCart(id)}>-</Button>
 
         <Button variant="outlined" onClick={() => delFromCart(id, true)}>Eliminar todos</Button>
 
         <Button variant="outlined" onClick={() => addToCart(id)}>+</Button>
-
-
       </div>
     </div>
   );

@@ -8,6 +8,7 @@ import AdminNav from '../../AdminNav/AdminNav';
 import trash from '../../../../Images/trash.png'
 import edit from '../../../../Images/edit.png'
 import AdminNav2 from '../../AdminNav/AdminNav2';
+import CategoriesAdmin from '../Categories/CategoriesAdmin';
 
 function ProductDetailAdmin (){
   const navigate = useNavigate();
@@ -41,6 +42,7 @@ function ProductDetailAdmin (){
   <div className={styles.productDetail}>
     <AdminNav/>
     <AdminNav2/>
+    <CategoriesAdmin/>
     {
       product.length > 0 ?
         <div className={styles.productDetailContainer}>

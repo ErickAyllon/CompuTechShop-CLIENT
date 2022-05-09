@@ -13,12 +13,14 @@ const initialState = {
   darkMode: true,
   cart: [],
   shops: [],
+  shopsFiltered: [],
   shopDetail: [],
   currentPage: 1,
   cartModified: [],
   shopping: [],
   payment: [],
   userPayment: [],
+  totalUserPayment: []
 };
 
 function rootReducer(state = initialState, action) {
@@ -60,8 +62,10 @@ function rootReducer(state = initialState, action) {
     case "GET_USER":
       return {
         ...state,
+        users: action.payload,
+        usersFiltered: action.payload,
         users2: action.payload,
-      };
+      }
     case "GET_DETAILS":
       return {
         ...state,
@@ -226,6 +230,7 @@ function rootReducer(state = initialState, action) {
       return {
         ...state,
         shops: action.payload,
+        shopsFiltered: action.payload
       };
     case "GET_SHOP_BY_ID":
       return {
@@ -254,6 +259,78 @@ function rootReducer(state = initialState, action) {
       return {
         ...state,
       };
+    case "SORT_USER_BY_LASTNAME":
+      const sort = 
+      state.usersFiltered.length > 0
+      ? action.payload === 'a-z'
+        ? state.usersFiltered.sort(
+          (a, b) => a.family_name.localeCompare(b.family_name)
+        )
+        : action.payload === 'z-a'
+        ? state.usersFiltered.sort(
+          (a, b) => b.family_name.localeCompare(a.family_name)
+        )
+        : state.usersFiltered
+        : null
+      return {
+        ...state,
+        usersFiltered: sort
+      }
+    case "SORT_ORDER_BY_EMAIL":
+      const sortOrder = 
+      state.shopsFiltered.length > 0
+      ? action.payload === 'a-z'
+        ? state.shopsFiltered.sort(
+          (a, b) => a.userEmail.localeCompare(b.userEmail)
+        )
+        : action.payload === 'z-a'
+        ? state.shopsFiltered.sort(
+          (a, b) => b.userEmail.localeCompare(a.userEmail)
+        )
+        : state.shopsFiltered
+        : null
+      return {
+        ...state,
+        usersFiltered: sortOrder
+      }
+      case "SORT_ORDER_BY_AMOUNT":
+        const sortAmount = 
+        state.shopsFiltered.length > 0
+        ? action.payload === 'lower-amount'
+          ? state.shopsFiltered.sort(
+            (a, b) => a.total_paid_amount - b.total_paid_amount
+          )
+          : action.payload === 'higher-amount'
+          ? state.shopsFiltered.sort(
+            (a, b) => b.total_paid_amount - a.total_paid_amount
+          )
+          : state.shopsFiltered
+          : null
+        return {
+          ...state,
+          usersFiltered: sortAmount
+        }
+      case "FILTER_ORDER_BY_STATE":
+        const orders = 
+          action.payload === 'In process'
+           ? state.shops.filter(el => el.state === 'In process')
+           : action.payload === 'Paid'
+           ? state.shops.filter(el => el.state === 'Paid')
+           : action.payload === 'On its way'
+           ? state.shops.filter(el => el.state === 'On its way')
+           : action.payload === 'Canceled'
+           ? state.shops.filter(el => el.state === 'Canceled')
+           : action.payload === 'Received'
+           ? state.shops.filter(el => el.state === 'Received')
+           : state.shops;
+          return{
+            ...state,
+            shopsFiltered: orders
+          }
+      case "UPDATE_SHOP":
+        return{
+          ...state,
+        }
 
     case "GET_PAYMENT": {
       return {
@@ -263,13 +340,20 @@ function rootReducer(state = initialState, action) {
     }
     case "GET_PAYMENT_USER": {
       return {
+        ...state,
         userPayment: action.payload
       }
     }
-
+    case "GET_TOTAL_USER_PAYMENTS": {
+      return {
+        ...state,
+        totalUserPayment: action.payload
+      }
+    }
     default:
       return state;
   }
 }
 
 export default rootReducer;
+

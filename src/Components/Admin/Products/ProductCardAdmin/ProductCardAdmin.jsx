@@ -48,6 +48,7 @@ function ProductCardAdmin({ name, price, image, calification, id, update, delet 
             readOnly
             className={styles.productCardCalification}
           />
+          <div className={styles.buttons}>
           {
           delet ?
             <button className={styles.button}>
@@ -62,6 +63,7 @@ function ProductCardAdmin({ name, price, image, calification, id, update, delet 
             </button>
           : null
           }
+          </div>
         </div>
       </div>
     </div>

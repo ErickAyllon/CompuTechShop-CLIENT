@@ -4,8 +4,11 @@ import React,{useEffect} from "react";
 // import { useParams } from 'react-router-dom'
 // import Users from '../Users/UserCard'
 import {useAuth0} from '@auth0/auth0-react';
+import styles from './ProfileInfo.module.css'
+import NavBar from "../NavBar/Navbar";
+import Loader from "../Loader/Loader";
 
-function Profile2() {
+function ProfileInfo() {
  
   // let users = useSelector((state) => state.users2); 
   // let filtrado = users.filter(el => el.email === user.email);
@@ -18,19 +21,21 @@ function Profile2() {
     const {user, isAuthenticated} = useAuth0();
   
   return (
-    isAuthenticated && (
-<div> 
-  { user.given_name ? 
-  <div>
-<h2>{user.given_name}</h2>
-<h2>{user.family_name}</h2>
-<h2>{user.email}</h2>
-<h2>{user.nickname}</h2> </div> 
-: 
- <h1>"Debes completar el usuario para ver tus datos"</h1> }
-</div>
-    )
+    <div className={styles.profileInfo}>
+      <NavBar/>
+      {
+        isAuthenticated ? 
+          <div>
+            <h2>{user.given_name}</h2>
+            <h2>{user.family_name}</h2>
+            <h2>{user.email}</h2>
+            <h2>{user.nickname}</h2> 
+          </div> 
+        : 
+          <Loader/> 
+      }
+    </div>
   )
  }
 
-export default Profile2;
+export default ProfileInfo;

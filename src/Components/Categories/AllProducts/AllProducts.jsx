@@ -18,7 +18,7 @@ function AllProducts() {
   products = productsFilter.length > 0 ? productsFilter : products;
   const dispatch = useDispatch();
   // const category = "allproducts";
-  const category = "allproducts";
+  const category = "Allproducts";
   // console.log(category);
 
   // Pagination Info //

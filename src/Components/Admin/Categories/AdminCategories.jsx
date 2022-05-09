@@ -10,8 +10,12 @@ function AdminCategories() {
     <div className={styles.adminCategories}>
       <AdminNav/>
       <AdminNav2/>
-      <ViewCategories/>
-      <CategoryCreate/>
+      <div className={styles.viewAndCreateCategoryContainer}>
+        <div className={styles.viewAndCreateCategory}>
+          <ViewCategories/>
+          <CategoryCreate/>
+        </div>
+      </div>
     </div>
   )
 }

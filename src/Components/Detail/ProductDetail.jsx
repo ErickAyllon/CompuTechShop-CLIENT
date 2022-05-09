@@ -8,6 +8,8 @@ import { Rating } from "@mui/material";
 import Categories from "../Categories/Categories";
 import { TYPES } from "../../Redux/Actions/shoppingCartActions";
 import NavBar from "../NavBar/Navbar";
+import add from '../../Images/add.png'
+
 
 function ProductDetail() {
   const dispatch = useDispatch();
@@ -51,9 +53,13 @@ function ProductDetail() {
                 readOnly
               />
               <p className={styles.productDetailPrice}>${product[0].price}</p>
+              <button className={styles.addBtn} onClick={() => addToCart(product[0].id)}><img src={add} alt="" /></button>
+              {/* <button className= {styles.btn} onClick={() => delFromCart(product[0].id)}>-</button> */}
+
               {/* <p>{product[0].brand}</p>
                 <p>{product[0].quantity}</p> */}
             </div>
+
           </div>
 
           <div className={styles.productDetailDescription}>
@@ -61,8 +67,7 @@ function ProductDetail() {
               <p>Description:</p>
               <p>{product[0].description}</p>
             </div>
-            <button className= {styles.btn} onClick={() => addToCart(product[0].id)}>+</button>
-            <button className= {styles.btn} onClick={() => delFromCart(product[0].id)}>-</button>
+
           </div>
         </div>
       ) : null}
