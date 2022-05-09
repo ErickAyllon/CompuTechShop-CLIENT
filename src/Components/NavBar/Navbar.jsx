@@ -11,6 +11,8 @@ import Brightness4Icon from "@mui/icons-material/Brightness4";
 import Brightness7Icon from "@mui/icons-material/Brightness7";
 import styles from "./NavBar.module.css";
 import ShoppingCart from "../Cart/ShoppingCart.jsx";
+// import Profile2 from "../Auth0/Profile2.jsx";
+
 
 function NavBar() {
   const { isAuthenticated } = useAuth0();
@@ -39,6 +41,9 @@ function NavBar() {
         <div className={styles.auth0}>
           {isAuthenticated ? <Profile /> : <LoginButton />}
         </div>
+        {/* <div className={styles.auth0}>
+          {isAuthenticated ? <Link to='/form'><button>Sign In</button></Link> : <p>.</p>}
+        </div> */}
       </nav>
     </div>
   );

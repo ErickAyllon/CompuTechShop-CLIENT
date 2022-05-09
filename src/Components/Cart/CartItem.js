@@ -1,14 +1,24 @@
-const CartItem = ({ data, delFromCart }) => {
-  let { name, id, price, quantity } = data;
+import styles from "./CartItem.module.css"
+import { Button } from "@mui/material";
+import { style } from "@mui/system";
+const CartItem = ({ data, delFromCart, addToCart }) => {
+  let { name, id, price, quantity, image } = data;
+
   return (
-    <div>
+    <div className={styles.container}>
       <div>{name}</div>
       <div>
         ${price} x {quantity} = ${quantity * price}
       </div>
-      <button onClick={() => delFromCart(id)}>Eliminar uno</button>
-      <br />
-      <button onClick={() => delFromCart(id, true)}>Eliminar todos</button>
+      <div className={styles.containerImgBtn}>
+        <img className={styles.cartImg} src={image} alt={name} />
+        <Button variant="outlined" onClick={() => delFromCart(id)}>-</Button>
+
+        <Button variant="outlined" onClick={() => delFromCart(id, true)}>
+          delete all</Button>
+
+        <Button variant="outlined" onClick={() => addToCart(id)}>+</Button>
+      </div>
     </div>
   );
 };

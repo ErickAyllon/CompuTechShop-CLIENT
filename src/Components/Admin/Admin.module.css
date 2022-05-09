@@ -3,27 +3,27 @@
 }
 
 .adminContainer {
-    margin: 100px auto;
-    max-width: 1200px;
     display: flex;
+    justify-content: center;
+    margin: auto;
+    margin-top: 20%;
 }
 
 .adminContainer button {
-    margin: 5px;
-    width: 180px;
+    width: 300px;
+    top: 50%;
+    position: absolute;
+    left: 50%;
+    transform: translate(-50%, -50%);
 }
 
 .adminCard {
     width: 300px;
     align-items: center;
-    height: 150px;
     border-radius: 50px;
-    box-shadow: 0 0 10px .1px rgba(255, 255, 255, 0.344);
-    margin: 50px;
+    margin: auto;
     justify-content: center;
     text-align: center;
-    display: flex;
-    flex-direction: row;
 }
 
 a {
