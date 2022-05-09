@@ -124,7 +124,7 @@ function Users() {
             <Table stickyHeader aria-label="sticky table">
               <TableHead>
                 <TableRow>
-                  <TableCell align="center" colSpan={6} style={{color:'white', background:'black'}}>
+                  <TableCell align="center" colSpan={6} style={{color:'white', background:'black', fontSize:'2rem'}}>
                     Users
                   </TableCell>
                 </TableRow>
@@ -151,7 +151,7 @@ function Users() {
                         {columns.map((column) => {
                           const value = row[column.id];
                           return (
-                            <TableCell key={column.id} align={column.align} style={{color:'white', background:'gray'}}>
+                            <TableCell key={column.id} align={column.align} style={{fontSize:'1rem', fontWeight:'600', color:'white'}} >
                               {column.format && typeof value === 'number'
                                 ? column.format(value)
                                 : value}

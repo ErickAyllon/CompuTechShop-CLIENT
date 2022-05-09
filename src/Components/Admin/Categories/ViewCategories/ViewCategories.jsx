@@ -42,7 +42,7 @@ function ViewCategories() {
           {
             allCategories?.map(el => { 
               return(
-              <Item key={el.id} value={el.id}>
+              <Item key={el.id} value={el.id} style={{background:'#0080006e'}}>
                 {el.name}
                 { el.id > 5 ? ( 
                       <button className={styles.button}>
