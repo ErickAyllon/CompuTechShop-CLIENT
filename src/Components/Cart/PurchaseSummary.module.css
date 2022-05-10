@@ -1,0 +1,61 @@
+.redirect {
+    min-height: 100vh;
+}
+
+.summaryContainer{
+    flex-direction: row-reverse;
+    align-items: center;
+    display: flex;
+    justify-content: space-evenly;
+}
+
+
+.text {
+    font-size: 52px;
+    width: 230px;}
+
+    .containerImgBtn{
+        display: flex;
+        flex-direction: column;
+        position: relative;
+        
+    }
+
+    .productNotFound {
+        display: flex;
+        width: 50%;
+        text-align: center;
+        background-color: white;
+        border-radius: 15px;
+        height: auto;
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        transform: translate(-50%,-50%);
+    }
+    
+    .productNotFoundContainer {
+        color: black;
+        height: 150px;
+        display: flex;
+        flex-direction: column;
+        margin: auto;
+        justify-content: center;
+    }
+
+    .purchaseResult {
+        min-height: 100vh;
+    }
+
+    .backToSite {
+        position: absolute;
+        left: 50%;
+        top: 65%;
+        transform: translate(-50%,-50%);
+    }
+    
+    @media only screen and (max-width: 768px) {
+        .productNotFound {
+            width: calc(100% - 30px);
+        }
+    }

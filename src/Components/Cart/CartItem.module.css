@@ -1,7 +1,8 @@
-.containerImgBtn {
+    .containerImgBtn {
     width: 300px;
     display: flex;
     flex-direction: column;
+    width: 70%;
 }
 
 .container {

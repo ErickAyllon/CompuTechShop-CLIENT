@@ -248,16 +248,16 @@ export function deleteProduct(id) {
 export function updateProduct(id, payload) {
   // console.log(id)
   // console.log(payload)
-  return async function(dispatch) {
-      try {
-          const json = await axios.put('http://localhost:3001/updateProduct/' + id, payload)
-          return dispatch({
-              type: "UPDATE_PRODUCT",
-              payload: json.data
-          })
-      } catch (error) {
-          console.log('catch: ' + error);
-      }
+  return async function (dispatch) {
+    try {
+      const json = await axios.put('http://localhost:3001/updateProduct/' + id, payload)
+      return dispatch({
+        type: "UPDATE_PRODUCT",
+        payload: json.data
+      })
+    } catch (error) {
+      console.log('catch: ' + error);
+    }
   }
 }
 
@@ -289,7 +289,7 @@ export function sortOrderByAmount(payload) {
   };
 }
 
-export function updateShop(id, payload){
+export function updateShop(id, payload) {
   return async function (dispatch) {
     try {
       const json = await axios.put('http://localhost:3001/updatePayment/' + id, payload)
@@ -297,7 +297,7 @@ export function updateShop(id, payload){
         type: "UPDATE_SHOP",
         payload: json.data
       })
-    }catch(err){
+    } catch (err) {
       console.log(err)
     }
   }
@@ -322,14 +322,21 @@ export const getPayment = (payload) => {
 
 export const getTotalUserPayments = (email) => {
   return async function (dispatch) {
-    try{
+    try {
       const json = await axios.get(`http://localhost:3001/getPaymentAcount/${email}`)
       return dispatch({
         type: 'GET_TOTAL_USER_PAYMENTS',
         payload: json.data,
       })
-    } catch(err) {
+    } catch (err) {
       console.log(err)
     }
   }
 } 
+
+export function authenticate(payload) {
+  return {
+    type: "AUTHENTICATE",
+    payload,
+  };
+}

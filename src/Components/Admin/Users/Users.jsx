@@ -87,7 +87,7 @@ function Users() {
 
         <TextField
           sx={{
-            '& > :not(style)': { m: .1, display: 'flex', width: '20ch', color:'white' },
+            '& > :not(style)': { m: 1, display: 'flex', width: '20ch', color:'white' },
           }}
           variant="outlined"
           id="outlined-select-currency"
@@ -102,7 +102,7 @@ function Users() {
 
         <TextField
           sx={{
-            '& > :not(style)': { m: .1, display: 'flex', width: '20ch', color:'white' },
+            '& > :not(style)': { m: 1, display: 'flex', width: '20ch', color:'white' },
           }}
           variant="outlined"
           id="outlined-select-currency"
@@ -124,7 +124,7 @@ function Users() {
             <Table stickyHeader aria-label="sticky table">
               <TableHead>
                 <TableRow>
-                  <TableCell align="center" colSpan={6} style={{color:'white', background:'black'}}>
+                  <TableCell align="center" colSpan={6} style={{color:'white', background:'black', fontSize:'2rem'}}>
                     Users
                   </TableCell>
                 </TableRow>
@@ -151,7 +151,7 @@ function Users() {
                         {columns.map((column) => {
                           const value = row[column.id];
                           return (
-                            <TableCell key={column.id} align={column.align} style={{color:'black', background:'gray'}}>
+                            <TableCell key={column.id} align={column.align} style={{fontSize:'1rem', fontWeight:'600', color:'white'}} >
                               {column.format && typeof value === 'number'
                                 ? column.format(value)
                                 : value}
@@ -167,7 +167,7 @@ function Users() {
             </Table>
           </TableContainer>
           <TablePagination
-            style={{color:'black', background:'gray'}}
+            style={{color:'white', background:'gray'}}
             rowsPerPageOptions={[10, 25, 100]}
             component="div"
             count={rows.length}

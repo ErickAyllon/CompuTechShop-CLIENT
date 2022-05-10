@@ -4,3 +4,14 @@
     color: #fff;
     min-height: 100vh;
 }
+
+.letter .productDetailContainer {
+    margin: auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.letter .productDetailInfo {
+    margin: 0;
+}
