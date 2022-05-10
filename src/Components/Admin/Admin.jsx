@@ -4,36 +4,52 @@ import { authenticate, getShops, getUser } from "../../Redux/Actions";
 import styles from './Admin.module.css';
 import { Link } from 'react-router-dom';
 import Button from '@mui/material/Button';
-import AdminNav from './AdminNav/AdminNav';
 import NavBar from '../NavBar/Navbar';
 import { TextField } from '@mui/material';
 
 function Admin() {
   const dispatch = useDispatch();
 
-  const [password, setPassword] = useState('')
-  const [passwordError, setPasswordError] = useState('')
+  const [input, setInput] = useState({
+    nickname: '',
+    password: ''
+  })
 
-  const adminPro = {
-    given_name: 'Fabricio',
-    is_admin_pro: true
-  }
+  const [inputError, setInputError] = useState({
+    nickname: '',
+    password: ''
+  })
+  const users = useSelector((state) => state.users)
 
-  const real = "lucasselacome"
+  // const admin = {
+  //   given_name: 'Fabricio',
+  //   is_admin_pro: true
+  // }
+
+  // const real = "contraseña"
 
   function handleAdmin(e) {
-    if (password === real) {
-      dispatch(authenticate(adminPro))
+    const user = users.filter(e => (e.nickname === input.nickname && e.password === input.password && e.is_admin))
+    console.log(user)
+    if (users.map(e => (e.nickname === input.nickname && e.password === input.password && e.is_admin) ? true : false)[0]) {
+    // if ((user[0] ? true : false)) {
+      dispatch(authenticate(user[0]))
     } else {
-      e.preventDefault();
-      setPasswordError('Password invalid')
+      e.preventDefault(); 
+      setInputError({
+        nickname: 'Authentication invalid',
+        password: 'Authentication invalid'
+      })
     }
   }
 
-  function handlePassword(e) {
+  function handleInput(e) {
     e.preventDefault()
-    setPassword(e.target.value)
-    setPasswordError('')
+    setInput({
+      ...input,
+      [e.target.name] : e.target.value
+    })
+    setInputError('')
   }
 
   return (
@@ -44,13 +60,27 @@ function Admin() {
             <div className={styles.password}>
                 <TextField
                   id="standard-password-input"
+                  label="Nickname"
+                  autoComplete="current-password"
+                  variant="outlined"
+                  name="nickname"
+                  error={inputError.nickname ? true : false}
+                  onChange={handleInput}
+                  helperText={inputError.nickname}
+                  style={{width:'36ch'}}
+                />
+            </div>
+            <div className={styles.password}>
+                <TextField
+                  id="standard-password-input"
                   label="Password"
                   type="password"
                   autoComplete="current-password"
                   variant="outlined"
-                  error={passwordError ? true : false}
-                  onChange={handlePassword}
-                  helperText={passwordError}
+                  name="password"
+                  error={inputError.password ? true : false}
+                  onChange={handleInput}
+                  helperText={inputError.password}
                   style={{width:'36ch'}}
                 />
             </div>

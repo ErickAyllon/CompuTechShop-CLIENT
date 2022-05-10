@@ -19,6 +19,9 @@ function AdminNav2() {
           <Link to='/admin/users'>
             <Button variant="outlined" style={{margin: '0 10px'}}>Users</Button>
           </Link>
+          <Link to='/admin/manager'>
+            <Button variant="outlined" style={{margin: '0 10px'}}>Admin manager</Button>
+          </Link>
         </div>
     </div>
   )

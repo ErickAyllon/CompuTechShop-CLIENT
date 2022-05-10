@@ -340,3 +340,19 @@ export function authenticate(payload) {
     payload,
   };
 }
+
+export function updateUser(id, payload) {
+  console.log(id)
+  console.log(payload)
+  return async function (dispatch) {
+    try {
+      const json = await axios.put('http://localhost:3001/updateUser/' + id, payload)
+      return dispatch({
+        type: "UPDATE_USER",
+        payload: json.data
+      })
+    } catch (err) {
+      console.log(err)
+    }
+  }
+}

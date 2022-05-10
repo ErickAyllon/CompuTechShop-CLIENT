@@ -34,6 +34,8 @@ import PurchaseSummary from "./Components/Cart/PurchaseSummary";
 import { PurchaseConfirm } from "./Components/Cart/PurchaseConfirm";
 import { PurchaseResult } from "./Components/Cart/PurchaseResult";
 import { Navigate, Outlet } from "react-router-dom";
+import AdminManager from "./Components/Admin/Users/AdminManager/AdminManager";
+import AdminUpdate from "./Components/Admin/Users/AdminManager/AdminUpdate/AdminUpdate";
 
 
 const getDesignTokens = (mode) => ({
@@ -104,7 +106,7 @@ function App() {
           <Route path="/form" element={<FormUser />} />
           <Route path="/admin" element={<Admin />} />
 
-          <Route element={<ProtectedRoute isAllowed={!!isAuthenticated && isAuthenticated.is_admin_pro} />}>
+          <Route element={<ProtectedRoute isAllowed={!!isAuthenticated && isAuthenticated.is_admin} />}>
             <Route path="/admin/products/Allproducts" element={<AdminProducts />} />
             <Route path="/admin/products/:category" element={<CategoryAdmin />} />
             <Route path="/admin/products/createProduct" element={<ProductCreate />} />
@@ -114,10 +116,11 @@ function App() {
             <Route path="/admin/categories" element={<AdminCategories />} />
             <Route path="/admin/shop/:id" element={<ShopDetails />} />
             <Route path="/admin/allorders" element={<ViewAllOrders />} />
+            <Route path="/admin/users" element={<Users />} />
           </Route>
 
             <Route
-              path="/admin/users"
+              path="/admin/manager"
               element={
                 <ProtectedRoute
                   redirectPath="/admin"
@@ -125,7 +128,20 @@ function App() {
                     !!isAuthenticated && isAuthenticated.is_admin_pro
                   }
                 >
-                  <Users />
+                  <AdminManager />
+                </ProtectedRoute>
+              }
+            />
+            <Route
+              path="/admin/manager/:nickname"
+              element={
+                <ProtectedRoute
+                  redirectPath="/admin"
+                  isAllowed={
+                    !!isAuthenticated && isAuthenticated.is_admin_pro
+                  }
+                >
+                  <AdminUpdate />
                 </ProtectedRoute>
               }
             />
