@@ -333,3 +333,10 @@ export const getTotalUserPayments = (email) => {
     }
   }
 } 
+
+export function authenticate(payload) {
+  return {
+    type: "AUTHENTICATE",
+    payload,
+  };
+}
