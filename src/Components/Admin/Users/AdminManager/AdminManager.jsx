@@ -6,6 +6,8 @@ import styles from './AdminManager.module.css'
 import UserAdmins from './UserAdmins/UserAdmins'
 
 function AdminManager() {
+
+
   return (
     <div className={styles.adminManager}>
         <AdminNav />

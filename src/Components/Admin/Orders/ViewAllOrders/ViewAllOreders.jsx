@@ -93,12 +93,9 @@ const rows = shops
 
 
 function handleDetail(e) {
-  e.preventDefault();
+  e.preventDefault()
   navigate(`/admin/shop/${e.target.id}`)
 }
-
-
-
 
   return (
     <div className={styles.viewAllOrders}>

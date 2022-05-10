@@ -21,18 +21,11 @@ function Admin() {
   })
   const users = useSelector((state) => state.users)
 
-  // const admin = {
-  //   given_name: 'Fabricio',
-  //   is_admin_pro: true
-  // }
-
-  // const real = "contraseña"
-
   function handleAdmin(e) {
     const user = users.filter(e => (e.nickname === input.nickname && e.password === input.password && e.is_admin))
     console.log(user)
-    if (users.map(e => (e.nickname === input.nickname && e.password === input.password && e.is_admin) ? true : false)[0]) {
-    // if ((user[0] ? true : false)) {
+    // if (users.map(e => (e.nickname === input.nickname && e.password === input.password && e.is_admin) ? true : false)[0]) {
+    if (user.length > 0) {
       dispatch(authenticate(user[0]))
     } else {
       e.preventDefault(); 
@@ -66,7 +59,7 @@ function Admin() {
                   name="nickname"
                   error={inputError.nickname ? true : false}
                   onChange={handleInput}
-                  helperText={inputError.nickname}
+                  // helperText={inputError.nickname}
                   style={{width:'36ch'}}
                 />
             </div>

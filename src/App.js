@@ -119,32 +119,10 @@ function App() {
             <Route path="/admin/users" element={<Users />} />
           </Route>
 
-            <Route
-              path="/admin/manager"
-              element={
-                <ProtectedRoute
-                  redirectPath="/admin"
-                  isAllowed={
-                    !!isAuthenticated && isAuthenticated.is_admin_pro
-                  }
-                >
-                  <AdminManager />
-                </ProtectedRoute>
-              }
-            />
-            <Route
-              path="/admin/manager/:nickname"
-              element={
-                <ProtectedRoute
-                  redirectPath="/admin"
-                  isAllowed={
-                    !!isAuthenticated && isAuthenticated.is_admin_pro
-                  }
-                >
-                  <AdminUpdate />
-                </ProtectedRoute>
-              }
-            />
+          <Route element={<ProtectedRoute isAllowed={!!isAuthenticated && isAuthenticated.is_admin_pro} />}>
+            <Route path="/admin/manager" element={<AdminManager />} />
+            <Route path="/admin/manager/:nickname" element={<AdminUpdate />} />
+          </Route>
 
           <Route path='/FAQ' element={<FAQ />} />
           <Route path='/FAQ2' element={<FAQ2 />} />

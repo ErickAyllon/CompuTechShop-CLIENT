@@ -25,6 +25,8 @@ function Users() {
   const dispatch = useDispatch();
   const [order, setOrder] = useState('')
   const navigate = useNavigate();
+  const authenticated = useSelector((state) => state.authenticated)
+  const isAdminPro = authenticated.is_admin_pro
 
   useEffect(() => {
     dispatch(getUser())
@@ -88,7 +90,9 @@ function Users() {
 
   function handleAdmin(e) {
     e.preventDefault();
+    if (isAdminPro) {
     navigate(`/admin/manager/${e.target.id}`)
+    }
   }
 
   return (
