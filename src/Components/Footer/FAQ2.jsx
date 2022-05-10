@@ -12,7 +12,10 @@ export default function FAQ2 ({ title, content }) {
         <div>{title}</div>
         <div>{isActive ? '-' : '+'}</div>
       </div>
-      {isActive && <div className="accordion-content">{content}</div>}
+      {isActive && 
+      <div 
+      className="accordion-content">{content}
+      </div>}
     </div>
       
       </div>
