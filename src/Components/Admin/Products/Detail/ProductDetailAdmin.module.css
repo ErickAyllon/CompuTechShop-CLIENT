@@ -1,5 +1,4 @@
 .productDetail {
-    margin-top: 2%;
     min-height: 100vh;
     margin-bottom: 100px;
     color: black;
@@ -11,6 +10,7 @@
     height: 1000px;
     background-color: white;
     /* display: flex; */
+    border-radius: 50px;
 }
 .productDetailContainerTwo {
     margin: 0 auto;
@@ -48,6 +48,8 @@
 .productDetailPrice{
     margin-top: 10px;
     font-size: 1.8rem;
+    font-size: 1.6rem;
+    font-family: 'Orbitron', sans-serif;
 }
 
 .productDetailRating {
@@ -67,13 +69,30 @@
     background-color: rgba(222, 222, 222, 0.29);
 }
 
+.button {
+    background: none;
+    border: none;
+  }
+  .button img {
+    height: 40px;
+    display: flex;
+    transition: .5s;
+  }
+  .button img:hover {
+    filter: brightness(1.5);
+  }
+  
+  .button img:active {
+    transform: scale(1.5)
+  }
+
 
 @media only screen and (max-width: 768px) {
     .productDetail {
         flex-direction: column;
     }
     .productDetailContainer {
-        margin: 0;
+        margin: 30px 0;
         width: 100%;
         display: inline-block;
         height: auto;
@@ -95,11 +114,13 @@
         height: 100%;
         margin: 0;
         vertical-align:middle;
+        max-height: 250px;
     }
     .productDetailImg {
-        margin: auto;
-        width: 350px;
         display: flex;
+        margin: auto;
+        width: auto;
+        max-height: 250px;
     }
     .productDetailName {
         margin: 0;

@@ -8,11 +8,14 @@
     background-color: white;
     margin: 20px 0;
     font-family: 'Orbitron', sans-serif;
+    border-radius: 50px;
 }
 
 .productCardContainer {
     border: 1px solid rgba(128, 128, 128, 0.258);
     background-color: white;
+    border-radius: 50px;
+    
 }
 
 .productCardImgContainer{
@@ -64,6 +67,8 @@
 }
 
 .productCardPrice {
+    font-family: 'Orbitron', sans-serif;
+    font-size: 1rem;
     line-height: 1rem;
     overflow: visible;
     vertical-align: text-bottom;
@@ -129,5 +134,24 @@
     .productCardCalification {
         margin-top: 0;
         margin-left: 0;
+    }
+    .button {
+        margin-bottom: 50px;
+    }
+    .button img {
+        display: flex;
+        transition: .5s;
+        height: 30px;
+        width: 30px;
+        margin: 0;
+        margin-left: 5px;
+        margin-bottom: 60px;
+      }
+    .buttons {
+        display: flex;
+        width: 80px;
+        height: 30px;
+        position: absolute;
+        right: 20px;
     }
 }

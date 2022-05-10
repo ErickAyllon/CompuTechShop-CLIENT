@@ -5,18 +5,15 @@ import { Link } from "react-router-dom";
 import trash from '../../../../Images/trash.png'
 import edit from '../../../../Images/edit.png'
 import { useDispatch } from "react-redux";
-import { deleteProduct, filterByCategory, getProducts } from "../../../../Redux/Actions";
-import { useParams } from "react-router-dom";
+import { deleteProduct, getProducts } from "../../../../Redux/Actions";
 import { useNavigate } from "react-router-dom";
 
 function ProductCardAdmin({ name, price, image, calification, id, update, delet }) {
   const dispatch = useDispatch();
-  const {category} = useParams;
   const navigate = useNavigate();
   
   function handleDelete(e) {
     e.preventDefault();
-    console.log(e.target.id)
     if (window.confirm('Are you sure?')) {
       e.preventDefault();
       dispatch(deleteProduct(e.target.id))
@@ -42,7 +39,7 @@ function ProductCardAdmin({ name, price, image, calification, id, update, delet 
           <Link to={"/admin/product/" + name.split("/").join("-")}>
             <h3 className={styles.productCardName}>{name}</h3>
           </Link>
-          <h3 className={styles.productCardPrice}>${price}</h3>
+          <h3 className={styles.productCardPrice}>{price ? `$` : null}{price}</h3>
           <Rating
             name="half-rating-read"
             size="small"
@@ -51,6 +48,7 @@ function ProductCardAdmin({ name, price, image, calification, id, update, delet 
             readOnly
             className={styles.productCardCalification}
           />
+          <div className={styles.buttons}>
           {
           delet ?
             <button className={styles.button}>
@@ -65,6 +63,7 @@ function ProductCardAdmin({ name, price, image, calification, id, update, delet 
             </button>
           : null
           }
+          </div>
         </div>
       </div>
     </div>

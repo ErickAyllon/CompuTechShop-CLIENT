@@ -7,17 +7,17 @@ import { useNavigate } from 'react-router-dom';
 
 
 
-function ShopCard({ amount, date, payment, state, userId, products, id }){
+function ShopCard({ amount, date, payment, state, email, products, id }){
   const dispatch = useDispatch();
   const navigate = useNavigate()
   
 
   useEffect(() => {
     dispatch(getUser());
-    console.log(userId)
+    // console.log('user',user)
   }, [dispatch]);
   let users = useSelector((state) => state.users);
-  const user = users.filter(u => u.id === userId)
+  const user = users.filter(u => u.email === email)
 
   const handleClick = () => {
     navigate(`/admin/shop/${id}`)
@@ -26,7 +26,7 @@ function ShopCard({ amount, date, payment, state, userId, products, id }){
     return (
       <div>
         <span>{id}</span>
-        <span>{user[0].nickname}</span>
+        <span>{email}</span>
         <span>{amount}</span>
         <span>{date}</span>
         <span>{state}</span>

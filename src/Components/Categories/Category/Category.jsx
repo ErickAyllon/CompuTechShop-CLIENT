@@ -10,6 +10,7 @@ import styles from "./Category.module.css";
 import ProductNotFound from "../../ProductNotFound/ProductNotFound";
 import { useParams } from "react-router-dom";
 import { TYPES } from "../../../Redux/Actions/shoppingCartActions";
+import NavBar from "../../NavBar/Navbar";
 
 function Category() {
   const { category } = useParams();
@@ -37,6 +38,7 @@ function Category() {
   };
   return (
     <div className={styles.category}>
+      <NavBar/>
       <Categories />
       {products.length > 0 ? (
         <>
