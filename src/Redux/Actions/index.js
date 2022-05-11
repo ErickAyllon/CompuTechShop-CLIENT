@@ -74,7 +74,7 @@ export function getCategories() {
 export function postProducts(payload) {
   return async function () {
     const response = await axios.post(
-      "/postProduct",
+      "https://portuano.herokuapp.com/postProduct",
       payload
     );
     return response;
@@ -91,7 +91,7 @@ export function postUser(payload) {
 export const filterByCategory = (category) => {
   return async (dispatch) => {
     var json = await axios.get(
-      "/productCategory?category=" + category
+      "https://portuano.herokuapp.com/productCategory?category=" + category
     );
     return dispatch({
       type: "FILTER_BY_CATEGORY",
@@ -192,7 +192,7 @@ export function setCurrentPage(payload) {
 export function postCategory(payload) {
   return async function () {
     const response = await axios.post(
-      "/postCategory",
+      "https://portuano.herokuapp.com/postCategory",
       payload
     );
     return response;
@@ -201,7 +201,7 @@ export function postCategory(payload) {
 export function postBuyCart(payload) {
   return async function (dispatch) {
     const response = await axios.post(
-      "/Checkout",
+      "https://portuano.herokuapp.com/Checkout",
       payload
     );
 
@@ -217,7 +217,7 @@ export function deleteCategory(id) {
   return async function (dispatch) {
     try {
       const json = await axios.delete(
-        "/deleteCategory/" + id
+        "https://portuano.herokuapp.com/deleteCategory/" + id
       );
       return dispatch({
         type: "DELETE_CATEGORY",
