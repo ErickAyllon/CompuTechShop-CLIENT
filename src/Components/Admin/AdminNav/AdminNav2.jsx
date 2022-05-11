@@ -2,8 +2,12 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 import { Button } from '@mui/material'
 import styles from './AdminNav2.module.css'
+import { useSelector } from 'react-redux'
 
 function AdminNav2() {
+  const authenticated = useSelector((state) => state.authenticated)
+  const isAdminPro = authenticated.is_admin_pro
+
   return (
     <div className={styles.adminNavBar}>
         <div className={styles.adminButtons}>
@@ -19,6 +23,13 @@ function AdminNav2() {
           <Link to='/admin/users'>
             <Button variant="outlined" style={{margin: '0 10px'}}>Users</Button>
           </Link>
+          {
+          isAdminPro ? 
+            <Link to='/admin/manager'>
+              <Button variant="outlined" style={{margin: '0 10px'}}>Admin manager</Button>
+            </Link>
+          : null
+          }
         </div>
     </div>
   )

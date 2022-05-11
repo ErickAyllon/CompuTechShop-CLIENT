@@ -5,6 +5,7 @@ import CartItem from './CartItem';
 import { useAuth0 } from '@auth0/auth0-react';
 import { getPayment, getUser } from '../../Redux/Actions/index';
 import styles from "./PurchaseSummary.module.css"
+import { Button } from '@mui/material';
 export const PurchaseResult = () => {
   const usuarios = useSelector(state => state.users2)
   const dispatch = useDispatch();
@@ -46,7 +47,7 @@ export const PurchaseResult = () => {
 
 
   return (
-
+    <div className={styles.purchaseResult}>
     <div className={styles.productNotFound}>
       <div className={styles.productNotFoundContainer}>
 
@@ -54,9 +55,9 @@ export const PurchaseResult = () => {
         <div className={styles.productNotFoundText}>
         </div>
       </div>
-      <button onClick={handleClick}> Back to Site</button>
     </div>
-
+      <Button variant="contained"  className={styles.backToSite} onClick={handleClick}> Back to Site</Button>
+    </div>
 
 
   )

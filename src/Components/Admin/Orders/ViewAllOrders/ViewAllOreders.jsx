@@ -93,12 +93,9 @@ const rows = shops
 
 
 function handleDetail(e) {
-  e.preventDefault();
+  e.preventDefault()
   navigate(`/admin/shop/${e.target.id}`)
 }
-
-
-
 
   return (
     <div className={styles.viewAllOrders}>
@@ -156,12 +153,12 @@ function handleDetail(e) {
     </div>
 
     <div className={styles.tabla}>
-      <Paper sx={{ width: '100%', background:'gray'}}>
+      <Paper sx={{ width: '100%', background:'white'}}>
           <TableContainer sx={{ maxHeight: 440 }}>
             <Table stickyHeader aria-label="sticky table">
               <TableHead>
                 <TableRow>
-                  <TableCell align="center" colSpan={6} style={{color:'gray', background:'black'}}>
+                  <TableCell align="center" colSpan={6} style={{color:'white', background:'black', fontSize:'2rem'}}>
                     Orders
                   </TableCell>
                 </TableRow>
@@ -184,11 +181,11 @@ function handleDetail(e) {
                   .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
                   .map((row) => {
                     return (
-                      <TableRow hover role="checkbox" tabIndex={-1} key={row.code}>
+                      <TableRow hover role="checkbox" tabIndex={-1} key={row.code} style={{color:'white', background:'gray'}} >
                         {columns.map((column) => {
                           const value = row[column.id];
                           return (
-                            <TableCell key={column.id} align={column.align} id={row.id} onClick={handleDetail}>
+                            <TableCell key={column.id} align={column.align} id={row.id} onClick={handleDetail} style={{fontSize:'1rem', fontWeight:'600', color:'white'}}>
                               {column.format && typeof value === 'number'
                                 ? column.format(value)
                                 : value}
@@ -212,6 +209,7 @@ function handleDetail(e) {
             page={page}
             onPageChange={handleChangePage}
             onRowsPerPageChange={handleChangeRowsPerPage}
+            style={{color:'white', background:'gray', borderBottom: '1px solid gray'}}
           />
         </Paper>
       </div>

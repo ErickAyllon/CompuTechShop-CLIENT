@@ -20,7 +20,8 @@ const initialState = {
   shopping: [],
   payment: [],
   userPayment: [],
-  totalUserPayment: []
+  totalUserPayment: [],
+  authenticated: null,
 };
 
 function rootReducer(state = initialState, action) {
@@ -318,8 +319,8 @@ function rootReducer(state = initialState, action) {
            ? state.shops.filter(el => el.state === 'Paid')
            : action.payload === 'On its way'
            ? state.shops.filter(el => el.state === 'On its way')
-           : action.payload === 'Canceled'
-           ? state.shops.filter(el => el.state === 'Canceled')
+           : action.payload === 'Cancelled'
+           ? state.shops.filter(el => el.state === 'Cancelled')
            : action.payload === 'Received'
            ? state.shops.filter(el => el.state === 'Received')
            : state.shops;
@@ -348,6 +349,17 @@ function rootReducer(state = initialState, action) {
       return {
         ...state,
         totalUserPayment: action.payload
+      }
+    }
+    case "AUTHENTICATE": {
+      return {
+        ...state,
+        authenticated: action.payload
+      }
+    }
+    case "UPDATE_USER": {
+      return {
+        ...state,
       }
     }
     default:

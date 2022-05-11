@@ -72,7 +72,7 @@ function ShopDetail() {
             <div className={styles.shopDetailCard}>
               <h1 style={{textAlign:'center', fontSize:'1.8rem'}}>Shop Detail</h1>
               <TextField
-                style={{width:'40ch', margin:'5px 0'}}
+                style={{width:'40ch', margin:'5px 0', background:'#0080006e'}}
                 disabled
                 id="filled-disabled"
                 label="SHOP ID"
@@ -81,7 +81,7 @@ function ShopDetail() {
                 
               />
               <TextField
-                style={{width:'40ch', margin:'5px 0'}}
+                style={{width:'40ch', margin:'5px 0' , background:'#0080006e'}}
                 disabled
                 id="filled-disabled"
                 label="Date"
@@ -90,7 +90,7 @@ function ShopDetail() {
                 
               />
               <TextField
-                style={{width:'40ch', margin:'5px 0'}}
+                style={{width:'40ch', margin:'5px 0' , background:'#0080006e'}}
                 disabled
                 id="filled-disabled"
                 label="Email"
@@ -98,7 +98,7 @@ function ShopDetail() {
                 variant="filled"
               />
               <TextField
-                style={{width:'40ch', margin:'5px 0'}}
+                style={{width:'40ch', margin:'5px 0' , background:'#0080006e'}}
                 disabled
                 id="filled-disabled"
                 label="Amount"
@@ -110,7 +110,7 @@ function ShopDetail() {
                   <div key={el}>
                 <Link to={'/admin/product/' + el}>
                   <TextField
-                    style={{width:'40ch', margin:'5px 0'}}
+                    style={{width:'40ch', margin:'5px 0' , background:'#0080006e'}}
                     disabled
                     id="filled-disabled"
                     label="Product"
@@ -123,7 +123,7 @@ function ShopDetail() {
                 )
         })} 
               <TextField
-              style={{width:'40ch', margin:'5px 0'}}
+              style={{width:'40ch', margin:'5px 0' , background:'#0080006e'}}
                 disabled
                 id="filled-disabled"
                 label="Payment status"
@@ -145,7 +145,7 @@ function ShopDetail() {
                   <MenuItem value='In process'>In process</MenuItem>
                   <MenuItem value='Paid'>Paid</MenuItem>
                   <MenuItem value='On its way'>On its way</MenuItem>
-                  <MenuItem value='Canceled'>Canceled</MenuItem>
+                  <MenuItem value='Cancelled'>Cancelled</MenuItem>
                   <MenuItem value='Received'>Received</MenuItem>
                 </TextField>
               </div>
