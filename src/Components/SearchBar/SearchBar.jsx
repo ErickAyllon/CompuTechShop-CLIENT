@@ -3,7 +3,6 @@ import { useDispatch, useSelector } from "react-redux";
 import styles from "./SearchBar.module.css";
 import { getProductsByName } from "../../Redux/Actions/index";
 import { useNavigate } from "react-router-dom";
-
 import TextField from '@mui/material/TextField';
 import Stack from '@mui/material/Stack';
 import Autocomplete from '@mui/material/Autocomplete';
@@ -39,7 +38,6 @@ function SearchBar() {
         placeholder="Search Product..."
         onChange={(e) => handleInputChange(e)}
       /> */}
-      {/* <div style={{maxHeight:'30px', width:'600px', display:'flex'}}> */}
       <Stack spacing={0} sx={{ width: 600}}>
       <Autocomplete
         id="free-solo-2-demo"
@@ -52,17 +50,17 @@ function SearchBar() {
             onChange={(e) => handleInputChange(e)}
             onSelect={handleInputChange}
             {...params}
-            placeholder="Search product"
+            placeholder="Search product..."
             InputProps={{
+              disableUnderline: true,
               ...params.InputProps,
               type: 'search',
-              style: { height: 35, alignContent:'center'}
+              style: { height: 35, alignContent:'center', backgroundColor:'transparent'}
             }}
           />
         )}
       />
     </Stack>
-    {/* </div> */}
       <button
         className={styles.searchBarButton}
         type="submit"

@@ -4,8 +4,9 @@
     width: 600px;
     height: 35px;
     background: rgba(0, 0, 0, 0.845);
-    border-radius: 5px;
+    border-radius: 8px;
     border: 1px solid rgba(255, 255, 255, 0.202);
+    box-shadow: 0 0 5px 1px rgba(255, 255, 255, 0.219);
     font-size: 1rem;
   }
   
@@ -13,8 +14,7 @@
     text-align: center;
     color: blue;
     letter-spacing: .1rem;
-    /* background-image: url('../../Images/searching.png'); */
-    background-size: contain;
+    background-size: 30px 30px;
     background-repeat: no-repeat;
     font-family: 'Iceland', cursive;
     display: flex;
@@ -67,14 +67,15 @@
   @media only screen and (max-width: 700px) {
     .searchBarContainer {
       right: 20px;
-      width: 160px;
+      width: 200px;
+      margin: 0 2px;
       font-size: .7rem;
     }
     .searchBarContainer .searchBarButton {
       width: 70px;
     }
     .searchBarContainer input {
-      margin-left: 10px;
+      margin-left: 0;
       padding: 2px;
     }
     .searchBarContainer input {

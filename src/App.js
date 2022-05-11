@@ -50,7 +50,7 @@ const getDesignTokens = (mode) => ({
     ...(mode === "dark" && {
       background: {
         default: "#000000",
-        paper: "#463dd5",
+        paper: "#000000",
       },
     }),
     ...(mode === "light" && {
