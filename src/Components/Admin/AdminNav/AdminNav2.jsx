@@ -26,7 +26,7 @@ function AdminNav2() {
           {
           isAdminPro ? 
             <Link to='/admin/manager'>
-              <Button variant="outlined" style={{margin: '0 10px'}}>Admin manager</Button>
+              <Button variant="outlined" style={{margin: '0 10px', color:'green', borderColor: 'green'}}>Admin manager</Button>
             </Link>
           : null
           }
