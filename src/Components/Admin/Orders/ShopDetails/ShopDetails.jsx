@@ -102,7 +102,7 @@ function ShopDetail() {
                 disabled
                 id="filled-disabled"
                 label="Amount"
-                defaultValue={el.total_paid_amount}
+                defaultValue={`$${el.total_paid_amount.toLocaleString('en-US')}`}
                 variant="filled"
               />
               {el.products.map(el => {
@@ -145,7 +145,7 @@ function ShopDetail() {
                   <MenuItem value='In process'>In process</MenuItem>
                   <MenuItem value='Paid'>Paid</MenuItem>
                   <MenuItem value='On its way'>On its way</MenuItem>
-                  <MenuItem value='Canceled'>Canceled</MenuItem>
+                  <MenuItem value='Cancelled'>Cancelled</MenuItem>
                   <MenuItem value='Received'>Received</MenuItem>
                 </TextField>
               </div>
