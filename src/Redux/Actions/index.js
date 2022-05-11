@@ -6,7 +6,7 @@ import axios from "axios";
 export const GET_USER_DETAIL = "GET_USER_DETAIL"
 export const getUserDetail = (email) => {
   return async (dispatch) => {
-    var json = await axios.get("/users" + email)
+    var json = await axios.get("https://portuano.herokuapp.com/users" + email)
     return dispatch({
       type: "GET_USER_DETAIL",
       payload: json.data,
@@ -17,7 +17,7 @@ export const getUserDetail = (email) => {
 export const GET_USER = "GET_USER";
 export const getUser = () => {
   return async (dispatch) => {
-    var json = await axios.get("/users");
+    var json = await axios.get("https://portuano.herokuapp.com/users");
     return dispatch({
       type: "GET_USER",
       payload: json.data,
@@ -27,7 +27,7 @@ export const getUser = () => {
 
 export function getProducts() {
   return async function (dispatch) {
-    var json = await axios.get("/products");
+    var json = await axios.get("https://portuano.herokuapp.com/products");
     return dispatch({
       type: "GET_PRODUCTS",
       payload: json.data,
@@ -45,7 +45,7 @@ export function cleanFilter() {
 export function getDetail(name) {
   return async function (dispatch) {
     try {
-      var json = await axios.get("/products?name=" + name);
+      var json = await axios.get("https://portuano.herokuapp.com/products?name=" + name);
 
       return dispatch({
         type: "GET_DETAILS",
@@ -60,7 +60,7 @@ export function getDetail(name) {
 export function getCategories() {
   return async function (dispatch) {
     try {
-      var json = await axios.get("/categories");
+      var json = await axios.get("https://portuano.herokuapp.com/categories");
       return dispatch({
         type: "GET_CATEGORIES",
         payload: json.data,
@@ -83,7 +83,7 @@ export function postProducts(payload) {
 
 export function postUser(payload) {
   return async function () {
-    let postUser = await axios.post("/postUser", payload);
+    let postUser = await axios.post("https://portuano.herokuapp.com/postUser", payload);
     return postUser;
   };
 }
@@ -103,7 +103,7 @@ export const filterByCategory = (category) => {
 export function getProductsByName(name) {
   return async function (dispatch) {
     try {
-      var json = await axios.get("/products?name=" + name);
+      var json = await axios.get("https://portuano.herokuapp.com/products?name=" + name);
       return dispatch({
         type: "GET_PRODUCTS_BY_NAME",
         payload: json.data,
@@ -158,7 +158,7 @@ export function darkMode(payload) {
 export function getShops() {
   return async function (dispatch) {
     try {
-      var json = await axios.get("/getPayments");
+      var json = await axios.get("https://portuano.herokuapp.com/getPayments");
       return dispatch({
         type: "GET_SHOPS",
         payload: json.data,
@@ -172,7 +172,7 @@ export function getShops() {
 export function getShopById(id) {
   return async function (dispatch) {
     try {
-      var json = await axios.get("/getPayments?id=" + id);
+      var json = await axios.get("https://portuano.herokuapp.com/getPayments?id=" + id);
       return dispatch({
         type: "GET_SHOP_BY_ID",
         payload: json.data,
@@ -250,7 +250,7 @@ export function updateProduct(id, payload) {
   // console.log(payload)
   return async function (dispatch) {
     try {
-      const json = await axios.put('/updateProduct/' + id, payload)
+      const json = await axios.put('https://portuano.herokuapp.com/updateProduct/' + id, payload)
       return dispatch({
         type: "UPDATE_PRODUCT",
         payload: json.data
@@ -292,7 +292,7 @@ export function sortOrderByAmount(payload) {
 export function updateShop(id, payload) {
   return async function (dispatch) {
     try {
-      const json = await axios.put('/updatePayment/' + id, payload)
+      const json = await axios.put('https://portuano.herokuapp.com/updatePayment/' + id, payload)
       return dispatch({
         type: "UPDATE_SHOP",
         payload: json.data
@@ -309,7 +309,7 @@ export const getPayment = (payload) => {
   const { payment, email } = payload;
   return async function (dispatch) {
     try {
-      const json = await axios.get("/success?id=" + payment + "&successEmail=" + email);
+      const json = await axios.get("https://portuano.herokuapp.com/success?id=" + payment + "&successEmail=" + email);
       return dispatch({
         type: "GET_PAYMENT",
         payload: json.data,
@@ -323,7 +323,7 @@ export const getPayment = (payload) => {
 export const getTotalUserPayments = (email) => {
   return async function (dispatch) {
     try {
-      const json = await axios.get(`/getPaymentAcount/${email}`)
+      const json = await axios.get(`https://portuano.herokuapp.com/getPaymentAcount/${email}`)
       return dispatch({
         type: 'GET_TOTAL_USER_PAYMENTS',
         payload: json.data,
@@ -346,7 +346,7 @@ export function updateUser(id, payload) {
   console.log(payload)
   return async function (dispatch) {
     try {
-      const json = await axios.put('/updateUser/' + id, payload)
+      const json = await axios.put('https://portuano.herokuapp.com/updateUser/' + id, payload)
       return dispatch({
         type: "UPDATE_USER",
         payload: json.data
