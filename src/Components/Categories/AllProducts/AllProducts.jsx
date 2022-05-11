@@ -20,7 +20,7 @@ function AllProducts() {
   // const category = "allproducts";
   const category = "Allproducts";
   // console.log(category);
-
+  console.log(products)
   // Pagination Info //
   const currentPage = useSelector((state) => state.currentPage);
   const productsPerPage = 6;
@@ -42,7 +42,7 @@ function AllProducts() {
   // console.log(products);
   return (
     <div className={styles.allProducts}>
-      <NavBar/>
+      <NavBar />
       <Categories />
       {products.length > 0 ? (
         <>
