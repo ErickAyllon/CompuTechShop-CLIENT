@@ -355,4 +355,4 @@ export function updateUser(id, payload) {
       console.log(err)
     }
   }
-}
+};
