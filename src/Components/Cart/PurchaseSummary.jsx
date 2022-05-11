@@ -17,8 +17,8 @@ const PurchaseSummary = () => {
   let arregloTotal
   const navigate = useNavigate()
 
-  if (arregloPrice > 0) { arregloTotal = arregloPrice.reduce(reducir) }
-  console.log(arregloTotal)
+  if (arregloPrice.length > 0) { arregloTotal = arregloPrice.reduce(reducir) }
+
   const handleBuyCart = (e) => {
     e.preventDefault();
     const nuevoPost = productsFilter.map((el) => {
@@ -49,7 +49,7 @@ const PurchaseSummary = () => {
     dispatch({ type: TYPES.ADD_TO_CART, payload: id });
   };
 
-  console.log(navigate)
+
   return (
 
     <div >
