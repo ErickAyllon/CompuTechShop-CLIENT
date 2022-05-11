@@ -28,6 +28,7 @@ export const getUser = () => {
 export function getProducts() {
   return async function (dispatch) {
     var json = await axios.get("https://portuano.herokuapp.com/products");
+    console.log(json.data)
     return dispatch({
       type: "GET_PRODUCTS",
       payload: json.data,
