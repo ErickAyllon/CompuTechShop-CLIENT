@@ -8,6 +8,8 @@ import { useNavigate } from "react-router-dom";
 import { useLocation } from "react-router-dom";
 
 function Filter() {
+  //jfalksjfklalfsjl
+  //fjkalgjlksjgasl
   const products = useSelector((state) => state.products);
   const dispatch = useDispatch();
 

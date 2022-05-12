@@ -34,6 +34,7 @@ import PurchaseSummary from "./Components/Cart/PurchaseSummary";
 import { PurchaseConfirm } from "./Components/Cart/PurchaseConfirm";
 import { PurchaseResult } from "./Components/Cart/PurchaseResult";
 import { Navigate, Outlet } from "react-router-dom";
+import Autentication from "./Components/Autenticacion/Autentication";
 import AdminManager from "./Components/Admin/Users/AdminManager/AdminManager";
 import AdminUpdate from "./Components/Admin/Users/AdminManager/AdminUpdate/AdminUpdate";
 
@@ -105,6 +106,7 @@ function App() {
           <Route path="/user" element={<ProfileForm />} />
           <Route path="/form" element={<FormUser />} />
           <Route path="/admin" element={<Admin />} />
+          <Route path="/autentication" element={<Autentication />} />
 
           <Route element={<ProtectedRoute isAllowed={!!isAuthenticated && isAuthenticated.is_admin} />}>
             <Route path="/admin/products/Allproducts" element={<AdminProducts />} />
@@ -116,6 +118,7 @@ function App() {
             <Route path="/admin/categories" element={<AdminCategories />} />
             <Route path="/admin/shop/:id" element={<ShopDetails />} />
             <Route path="/admin/allorders" element={<ViewAllOrders />} />
+
             <Route path="/admin/users" element={<Users />} />
           </Route>
 
