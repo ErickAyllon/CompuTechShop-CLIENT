@@ -22,7 +22,7 @@ function Autentication() {
     <div>
         <h1>You have been successfully authenticated  &#128512; </h1>
         <Link to='/'>
-        <button onClick={handleClick}>Back!!! </button>
+        <button onClick={handleClick}>Back!! </button>
         </Link> 
        
         </div>
