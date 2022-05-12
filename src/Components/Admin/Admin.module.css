@@ -8,26 +8,31 @@
     height: 90vh;
 }
 
+.adminCard {
+    width: 300px;
+    height: 225px;
+    border-radius: 50px;
+    margin: auto;
+    display: flex;
+    flex-direction: column;
+}
+
 .adminContainer button {
     width: 300px;
-    display: flex;
 }
 
 .loginAdmin {
     display: block;
 }
 
-.adminCard {
-    width: 300px;
-    height: 125px;
-    border-radius: 50px;
-    margin: auto;
-    display: flex;
-    justify-content: space-between;
-    flex-direction: column;
+.password {
+    margin:10px 0;
 }
 
-
+.loginAdmin {
+    margin-top: 170px;
+    position: absolute;
+}
 
 a {
 	text-decoration: none;

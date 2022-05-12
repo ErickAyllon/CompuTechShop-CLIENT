@@ -357,6 +357,11 @@ function rootReducer(state = initialState, action) {
         authenticated: action.payload
       }
     }
+    case "UPDATE_USER": {
+      return {
+        ...state,
+      }
+    }
     default:
       return state;
   }

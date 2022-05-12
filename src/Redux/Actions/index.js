@@ -6,7 +6,7 @@ import axios from "axios";
 export const GET_USER_DETAIL = "GET_USER_DETAIL"
 export const getUserDetail = (email) => {
   return async (dispatch) => {
-    var json = await axios.get("http://localhost:3001/users" + email)
+    var json = await axios.get("/users" + email)
     return dispatch({
       type: "GET_USER_DETAIL",
       payload: json.data,
@@ -17,7 +17,7 @@ export const getUserDetail = (email) => {
 export const GET_USER = "GET_USER";
 export const getUser = () => {
   return async (dispatch) => {
-    var json = await axios.get("http://localhost:3001/users");
+    var json = await axios.get("/users");
     return dispatch({
       type: "GET_USER",
       payload: json.data,
@@ -27,7 +27,7 @@ export const getUser = () => {
 
 export function getProducts() {
   return async function (dispatch) {
-    var json = await axios.get("http://localhost:3001/products");
+    var json = await axios.get("/products");
     return dispatch({
       type: "GET_PRODUCTS",
       payload: json.data,
@@ -45,7 +45,7 @@ export function cleanFilter() {
 export function getDetail(name) {
   return async function (dispatch) {
     try {
-      var json = await axios.get("http://localhost:3001/products?name=" + name);
+      var json = await axios.get("/products?name=" + name);
 
       return dispatch({
         type: "GET_DETAILS",
@@ -60,7 +60,7 @@ export function getDetail(name) {
 export function getCategories() {
   return async function (dispatch) {
     try {
-      var json = await axios.get("http://localhost:3001/categories");
+      var json = await axios.get("/categories");
       return dispatch({
         type: "GET_CATEGORIES",
         payload: json.data,
@@ -74,7 +74,7 @@ export function getCategories() {
 export function postProducts(payload) {
   return async function () {
     const response = await axios.post(
-      "http://localhost:3001/postProduct",
+      "/postProduct",
       payload
     );
     return response;
@@ -83,7 +83,7 @@ export function postProducts(payload) {
 
 export function postUser(payload) {
   return async function () {
-    let postUser = await axios.post("http://localhost:3001/postUser", payload);
+    let postUser = await axios.post("/postUser", payload);
     return postUser;
   };
 }
@@ -91,7 +91,7 @@ export function postUser(payload) {
 export const filterByCategory = (category) => {
   return async (dispatch) => {
     var json = await axios.get(
-      "http://localhost:3001/productCategory?category=" + category
+      "/productCategory?category=" + category
     );
     return dispatch({
       type: "FILTER_BY_CATEGORY",
@@ -103,7 +103,7 @@ export const filterByCategory = (category) => {
 export function getProductsByName(name) {
   return async function (dispatch) {
     try {
-      var json = await axios.get("http://localhost:3001/products?name=" + name);
+      var json = await axios.get("/products?name=" + name);
       return dispatch({
         type: "GET_PRODUCTS_BY_NAME",
         payload: json.data,
@@ -158,7 +158,7 @@ export function darkMode(payload) {
 export function getShops() {
   return async function (dispatch) {
     try {
-      var json = await axios.get("http://localhost:3001/getPayments");
+      var json = await axios.get("/getPayments");
       return dispatch({
         type: "GET_SHOPS",
         payload: json.data,
@@ -172,7 +172,7 @@ export function getShops() {
 export function getShopById(id) {
   return async function (dispatch) {
     try {
-      var json = await axios.get("http://localhost:3001/getPayments?id=" + id);
+      var json = await axios.get("/getPayments?id=" + id);
       return dispatch({
         type: "GET_SHOP_BY_ID",
         payload: json.data,
@@ -192,7 +192,7 @@ export function setCurrentPage(payload) {
 export function postCategory(payload) {
   return async function () {
     const response = await axios.post(
-      "http://localhost:3001/postCategory",
+      "/postCategory",
       payload
     );
     return response;
@@ -201,7 +201,7 @@ export function postCategory(payload) {
 export function postBuyCart(payload) {
   return async function (dispatch) {
     const response = await axios.post(
-      "http://localhost:3001/Checkout",
+      "/Checkout",
       payload
     );
 
@@ -217,7 +217,7 @@ export function deleteCategory(id) {
   return async function (dispatch) {
     try {
       const json = await axios.delete(
-        "http://localhost:3001/deleteCategory/" + id
+        "/deleteCategory/" + id
       );
       return dispatch({
         type: "DELETE_CATEGORY",
@@ -233,7 +233,7 @@ export function deleteProduct(id) {
   return async function (dispatch) {
     try {
       const json = await axios.delete(
-        "http://localhost:3001/deleteProduct/" + id
+        "/deleteProduct/" + id
       );
       return dispatch({
         type: "DELETE_PRODUCT",
@@ -250,7 +250,7 @@ export function updateProduct(id, payload) {
   // console.log(payload)
   return async function (dispatch) {
     try {
-      const json = await axios.put('http://localhost:3001/updateProduct/' + id, payload)
+      const json = await axios.put('/updateProduct/' + id, payload)
       return dispatch({
         type: "UPDATE_PRODUCT",
         payload: json.data
@@ -292,7 +292,7 @@ export function sortOrderByAmount(payload) {
 export function updateShop(id, payload) {
   return async function (dispatch) {
     try {
-      const json = await axios.put('http://localhost:3001/updatePayment/' + id, payload)
+      const json = await axios.put('/updatePayment/' + id, payload)
       return dispatch({
         type: "UPDATE_SHOP",
         payload: json.data
@@ -309,7 +309,7 @@ export const getPayment = (payload) => {
   const { payment, email } = payload;
   return async function (dispatch) {
     try {
-      const json = await axios.get("http://localhost:3001/success?id=" + payment + "&successEmail=" + email);
+      const json = await axios.get("/success?id=" + payment + "&successEmail=" + email);
       return dispatch({
         type: "GET_PAYMENT",
         payload: json.data,
@@ -323,7 +323,7 @@ export const getPayment = (payload) => {
 export const getTotalUserPayments = (email) => {
   return async function (dispatch) {
     try {
-      const json = await axios.get(`http://localhost:3001/getPaymentAcount/${email}`)
+      const json = await axios.get(`/getPaymentAcount/${email}`)
       return dispatch({
         type: 'GET_TOTAL_USER_PAYMENTS',
         payload: json.data,
@@ -332,11 +332,27 @@ export const getTotalUserPayments = (email) => {
       console.log(err)
     }
   }
-} 
+}
 
 export function authenticate(payload) {
   return {
     type: "AUTHENTICATE",
     payload,
   };
+}
+
+export function updateUser(id, payload) {
+  console.log(id)
+  console.log(payload)
+  return async function (dispatch) {
+    try {
+      const json = await axios.put('/updateUser/' + id, payload)
+      return dispatch({
+        type: "UPDATE_USER",
+        payload: json.data
+      })
+    } catch (err) {
+      console.log(err)
+    }
+  }
 }
