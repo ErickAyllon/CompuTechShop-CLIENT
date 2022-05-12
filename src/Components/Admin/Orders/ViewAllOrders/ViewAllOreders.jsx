@@ -70,7 +70,7 @@ const columns = [
     label: 'Amount',
     minWidth: 220,
     align: 'right',
-    format: (value) => value.toLocaleString('en-US'),
+    format: (value) => `$${value.toLocaleString('en-US')}`,
   },
   {
     id: 'date',
@@ -90,15 +90,10 @@ const columns = [
 
 const rows = shops
 
-
-
 function handleDetail(e) {
-  e.preventDefault();
+  e.preventDefault()
   navigate(`/admin/shop/${e.target.id}`)
 }
-
-
-
 
   return (
     <div className={styles.viewAllOrders}>

@@ -34,7 +34,12 @@ import PurchaseSummary from "./Components/Cart/PurchaseSummary";
 import { PurchaseConfirm } from "./Components/Cart/PurchaseConfirm";
 import { PurchaseResult } from "./Components/Cart/PurchaseResult";
 import { Navigate, Outlet } from "react-router-dom";
+<<<<<<< HEAD
 import Autentication from "./Components/Autenticacion/Autentication";
+=======
+import AdminManager from "./Components/Admin/Users/AdminManager/AdminManager";
+import AdminUpdate from "./Components/Admin/Users/AdminManager/AdminUpdate/AdminUpdate";
+>>>>>>> b42b65a911fd1622649347016c61df2ac49b07ba
 
 
 const getDesignTokens = (mode) => ({
@@ -49,7 +54,7 @@ const getDesignTokens = (mode) => ({
     ...(mode === "dark" && {
       background: {
         default: "#000000",
-        paper: "#463dd5",
+        paper: "#000000",
       },
     }),
     ...(mode === "light" && {
@@ -106,7 +111,7 @@ function App() {
           <Route path="/admin" element={<Admin />} />
           <Route path="/autentication" element={<Autentication />} />
 
-          <Route element={<ProtectedRoute isAllowed={!!isAuthenticated && isAuthenticated.is_admin_pro} />}>
+          <Route element={<ProtectedRoute isAllowed={!!isAuthenticated && isAuthenticated.is_admin} />}>
             <Route path="/admin/products/Allproducts" element={<AdminProducts />} />
             <Route path="/admin/products/:category" element={<CategoryAdmin />} />
             <Route path="/admin/products/createProduct" element={<ProductCreate />} />
@@ -116,22 +121,17 @@ function App() {
             <Route path="/admin/categories" element={<AdminCategories />} />
             <Route path="/admin/shop/:id" element={<ShopDetails />} />
             <Route path="/admin/allorders" element={<ViewAllOrders />} />
+<<<<<<< HEAD
             
+=======
+            <Route path="/admin/users" element={<Users />} />
+>>>>>>> b42b65a911fd1622649347016c61df2ac49b07ba
           </Route>
 
-            <Route
-              path="/admin/users"
-              element={
-                <ProtectedRoute
-                  redirectPath="/admin"
-                  isAllowed={
-                    !!isAuthenticated && isAuthenticated.is_admin_pro
-                  }
-                >
-                  <Users />
-                </ProtectedRoute>
-              }
-            />
+          <Route element={<ProtectedRoute isAllowed={!!isAuthenticated && isAuthenticated.is_admin_pro} />}>
+            <Route path="/admin/manager" element={<AdminManager />} />
+            <Route path="/admin/manager/:nickname" element={<AdminUpdate />} />
+          </Route>
 
           <Route path='/FAQ' element={<FAQ />} />
           <Route path='/FAQ2' element={<FAQ2 />} />
