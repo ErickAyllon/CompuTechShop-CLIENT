@@ -33,7 +33,7 @@ function ProductCard({
           <Link to={"/" + name.split("/").join("-")}>
             <h3 className={styles.productCardName}>{name}</h3>
           </Link>
-          <h3 className={styles.productCardPrice}>${price}</h3>
+          <h3 className={styles.productCardPrice}>${price.toLocaleString('en-US')}</h3>
           <Rating
             name="half-rating-read"
             size="small"

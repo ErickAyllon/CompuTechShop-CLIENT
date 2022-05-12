@@ -35,6 +35,9 @@ import { PurchaseConfirm } from "./Components/Cart/PurchaseConfirm";
 import { PurchaseResult } from "./Components/Cart/PurchaseResult";
 import { Navigate, Outlet } from "react-router-dom";
 import UpdateProfile from "./Components/Profile/UpdateProfile";
+import Autentication from "./Components/Autenticacion/Autentication";
+import AdminManager from "./Components/Admin/Users/AdminManager/AdminManager";
+import AdminUpdate from "./Components/Admin/Users/AdminManager/AdminUpdate/AdminUpdate";
 
 const getDesignTokens = (mode) => ({
   palette: {
@@ -48,7 +51,7 @@ const getDesignTokens = (mode) => ({
     ...(mode === "dark" && {
       background: {
         default: "#000000",
-        paper: "#463dd5",
+        paper: "#000000",
       },
     }),
     ...(mode === "light" && {
@@ -102,12 +105,12 @@ function App() {
           <Route path="/user" element={<ProfileForm />} />
           <Route path="/form" element={<FormUser />} />
           <Route path="/admin" element={<Admin />} />
-          <Route path="/UpdateProfile" element={<UpdateProfile />} />
+          <Route path="/autentication" element={<Autentication />} />
 
           <Route
             element={
               <ProtectedRoute
-                isAllowed={!!isAuthenticated && isAuthenticated.is_admin_pro}
+                isAllowed={!!isAuthenticated && isAuthenticated.is_admin}
               />
             }
           >
@@ -138,19 +141,20 @@ function App() {
             <Route path="/admin/categories" element={<AdminCategories />} />
             <Route path="/admin/shop/:id" element={<ShopDetails />} />
             <Route path="/admin/allorders" element={<ViewAllOrders />} />
+
+            <Route path="/admin/users" element={<Users />} />
           </Route>
 
           <Route
-            path="/admin/users"
             element={
               <ProtectedRoute
-                redirectPath="/admin"
                 isAllowed={!!isAuthenticated && isAuthenticated.is_admin_pro}
-              >
-                <Users />
-              </ProtectedRoute>
+              />
             }
-          />
+          >
+            <Route path="/admin/manager" element={<AdminManager />} />
+            <Route path="/admin/manager/:nickname" element={<AdminUpdate />} />
+          </Route>
 
           <Route path="/FAQ" element={<FAQ />} />
           <Route path="/FAQ2" element={<FAQ2 />} />

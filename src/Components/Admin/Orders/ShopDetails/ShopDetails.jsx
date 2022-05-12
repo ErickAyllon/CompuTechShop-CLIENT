@@ -102,7 +102,7 @@ function ShopDetail() {
                 disabled
                 id="filled-disabled"
                 label="Amount"
-                defaultValue={el.total_paid_amount}
+                defaultValue={`$${el.total_paid_amount.toLocaleString('en-US')}`}
                 variant="filled"
               />
               {el.products.map(el => {
