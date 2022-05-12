@@ -1,8 +1,11 @@
 import React, { useState } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import styles from "./SearchBar.module.css";
 import { getProductsByName } from "../../Redux/Actions/index";
 import { useNavigate } from "react-router-dom";
+import TextField from '@mui/material/TextField';
+import Stack from '@mui/material/Stack';
+import Autocomplete from '@mui/material/Autocomplete';
 
 function SearchBar() {
   const [name, setName] = useState("");
@@ -14,6 +17,8 @@ function SearchBar() {
     setName(e.target.value);
   }
 
+  
+
   function handleSubmit(e) {
     e.preventDefault();
     dispatch(getProductsByName(name));
@@ -21,15 +26,41 @@ function SearchBar() {
     navigate("/search/" + name);
   }
 
+  const products = useSelector((state) => state.allProducts)
+  
+
   return (
     <div className={styles.searchBarContainer}>
-      <input
+      {/* <input
         className={styles.searchBarInput}
         value={name}
         type="text"
         placeholder="Search Product..."
         onChange={(e) => handleInputChange(e)}
+      /> */}
+      <Stack spacing={0} sx={{ width: 600}}>
+      <Autocomplete
+        id="free-solo-2-demo"
+        options={products.map((option) => option.name)}
+        renderInput={(params) => (
+          <TextField
+            focus='false'
+            value={name}
+            variant='filled'
+            onChange={(e) => handleInputChange(e)}
+            onSelect={handleInputChange}
+            {...params}
+            placeholder="Search product..."
+            InputProps={{
+              disableUnderline: true,
+              ...params.InputProps,
+              type: 'search',
+              style: { height: 35, alignContent:'center', backgroundColor:'transparent'}
+            }}
+          />
+        )}
       />
+    </Stack>
       <button
         className={styles.searchBarButton}
         type="submit"

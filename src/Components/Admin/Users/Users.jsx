@@ -53,40 +53,49 @@ function Users() {
   };
 
   const columns = [
-    { id: 'given_name', label: 'Name', minWidth: 200 },
-    { id: 'family_name', label: 'Lastname', minWidth: 220 },
+    { id: 'given_name', label: 'Name', minWidth: 150 },
+    { id: 'family_name', label: 'Lastname', minWidth: 150 },
     {
       id: 'email',
       label: 'Email',
-      minWidth: 220,
+      minWidth: 150,
       align: 'right',
       format: (value) => value.toLocaleString('en-US'),
     },
     {
       id: 'phone',
       label: 'Phone',
-      minWidth: 220,
+      minWidth: 150,
       align: 'right',
       format: (value) => value.toLocaleString('en-US'),
     },
     {
-      id: 'value',
+      id: 'totalAmount',
       label: 'Value',
-      minWidth: 220,
+      minWidth: 150,
       align: 'right',
-      format: (value) => value.toFixed(2),
+      format: (value) => `$${value.toLocaleString('en-US')}`,
+    },
+    {
+      id: 'is_admin',
+      label: 'Admin',
+      minWidth: 75,
+      align: 'right',
+      format: (value) => value.toLocaleString('en-US'),
     },
     {
       id: 'is_banned',
-      label: '',
-      minWidth: 100,
+      label: 'Banned',
+      minWidth: 75,
       align: 'right',
-      format: (value) => value.toFixed(2),
+      format: (value) => value.toLocaleString('en-US'),
     },
   ];
 
   users.map(e => e.is_banned ? e.is_banned = 'Banned' : null)
-  const rows = users.filter(user => !user.is_admin)
+  users.map(e => e.is_admin ? e.is_admin = 'Yes' : null)
+  // const rows = users.filter(user => !user.is_admin)
+  const rows = users
 
   function handleAdmin(e) {
     e.preventDefault();
@@ -141,7 +150,7 @@ function Users() {
             <Table stickyHeader aria-label="sticky table">
               <TableHead>
                 <TableRow>
-                  <TableCell align="center" colSpan={6} style={{color:'white', background:'black', fontSize:'2rem'}}>
+                  <TableCell align="center" colSpan={7} style={{color:'white', background:'black', fontSize:'2rem'}}>
                     Users
                   </TableCell>
                 </TableRow>

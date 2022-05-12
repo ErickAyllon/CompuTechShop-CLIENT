@@ -23,7 +23,7 @@ function AdminUpdate() {
         nickname: adminUpdate[0].nickname,
         email: adminUpdate[0].email,
         password: adminUpdate[0].password,
-        is_admin: adminUpdate[0].is_admin,
+        is_admin: adminUpdate[0].is_admin ? true : false,
         email_verified: true,
         is_banned: adminUpdate[0].is_banned ? true : false
     })
@@ -152,8 +152,9 @@ function AdminUpdate() {
           />
             <TextField
             sx={{
-                '& > :not(style)': { m: 1, display: 'flex', width: '20ch', color:'white', color:'green'},
+                '& > :not(style)': input.is_admin === false ? { m: .5,  } : { m:.5, color :'red'},
             }}
+            style={{ m: .5, display: 'flex', width: '20ch', color:'white', margin:'auto'}}
             variant="filled"
             id="filled-select-currency"
             select
@@ -165,29 +166,26 @@ function AdminUpdate() {
             <MenuItem value={true}>Yes</MenuItem>
             <MenuItem value={false}>No</MenuItem>
             </TextField>
-            <TextField
-            sx={{
-                '& > :not(style)': { m: 1, display: 'flex', width: '20ch', color:'white', color:'green'},
-            }}
-            variant="filled"
-            id="filled-select-currency"
-            select
-            name='is_banned'
-            label="Is Banned"
-            value={input.is_banned}
-            onChange={(e) => handleUpdateBanned(e)}
-            > 
-            <MenuItem value={true}>Yes</MenuItem>
-            <MenuItem value={false}>No</MenuItem>
-            </TextField>
-          {/* <Button type="submit" variant="outlined" 
-            style={{margin:'auto', display:'flex'}}
-            onClick={handleCopy}
-        >
-            Copy Admin
-          </Button> */}
+            <div style={{margin:'auto', display: 'flex', justifyContent:'center'}}>
+              <TextField
+              sx={{
+                  '& > :not(style)': input.is_banned === false ? { m: .5, } : { m:.5, color :'red'},
+              }}
+              style={{ m: .5, display: 'flex', width: '20ch', color:'white', margin:'auto'}}
+              variant="filled"
+              id="filled-select-currency"
+              select
+              name='is_banned'
+              label="Is Banned"
+              value={input.is_banned}
+              onChange={(e) => handleUpdateBanned(e)}
+              > 
+              <MenuItem value={true}>Yes</MenuItem>
+              <MenuItem value={false}>No</MenuItem>
+              </TextField>
+            </div>
           <Button type="submit" variant="outlined" 
-            style={{margin:'auto', display:'flex'}}
+            style={{margin:'20px auto', display:'flex', color:'green', borderColor:'green'}}
             disabled={
             input.name === '' ||
             input.given_name === '' ||

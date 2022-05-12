@@ -31,22 +31,31 @@ function UserAdmins() {
 
   const columns = [
     { id: 'given_name', label: 'Name', minWidth: 200 },
-    { id: 'family_name', label: 'Lastname', minWidth: 100 },
+    { id: 'family_name', label: 'Lastname', minWidth: 200 },
     {
       id: 'email',
       label: 'Email',
-      minWidth: 100,
+      minWidth: 200,
       align: 'right',
       format: (value) => value.toLocaleString('en-US'),
     },
     {
       id: 'nickname',
       label: 'Nickname',
-      minWidth: 100,
+      minWidth: 200,
+      align: 'right',
+      format: (value) => value.toLocaleString('en-US'),
+    },
+    {
+      id: 'is_admin_pro',
+      label: 'Admin Pro',
+      minWidth: 75,
       align: 'right',
       format: (value) => value.toLocaleString('en-US'),
     },
   ];
+
+  admins.map(e => e.is_admin_pro ? e.is_admin_pro = 'Yes' : null)
 
   const rows = admins
 
@@ -58,7 +67,7 @@ function UserAdmins() {
   return (
     <div>
     <div className={styles.tabla}>
-      <Paper sx={{ width: '100%', background:'gray'}}>
+      <Paper sx={{ width: '100%', background:'gray', borderTop: '1px solid gray'}}>
           <TableContainer sx={{ maxHeight: 440 }}>
             <Table stickyHeader aria-label="sticky table">
               <TableHead>

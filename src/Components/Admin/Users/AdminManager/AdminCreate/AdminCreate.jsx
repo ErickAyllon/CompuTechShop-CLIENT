@@ -112,7 +112,7 @@ function AdminCreate() {
             required
           />
           <Button type="submit" variant="outlined" 
-            style={{margin:'auto', display:'flex'}}
+            style={{margin:'auto', display:'flex', color: 'green', borderColor: 'green'}}
             disabled={
             input.name === '' ||
             input.given_name === '' ||
