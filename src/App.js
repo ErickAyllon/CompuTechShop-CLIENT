@@ -34,12 +34,9 @@ import PurchaseSummary from "./Components/Cart/PurchaseSummary";
 import { PurchaseConfirm } from "./Components/Cart/PurchaseConfirm";
 import { PurchaseResult } from "./Components/Cart/PurchaseResult";
 import { Navigate, Outlet } from "react-router-dom";
-<<<<<<< HEAD
 import Autentication from "./Components/Autenticacion/Autentication";
-=======
 import AdminManager from "./Components/Admin/Users/AdminManager/AdminManager";
 import AdminUpdate from "./Components/Admin/Users/AdminManager/AdminUpdate/AdminUpdate";
->>>>>>> b42b65a911fd1622649347016c61df2ac49b07ba
 
 
 const getDesignTokens = (mode) => ({
@@ -81,16 +78,16 @@ function App() {
   const isDarkTheme = useSelector((state) => state.darkMode);
   const darkModeTheme = createTheme(
     isDarkTheme ? getDesignTokens("dark") : getDesignTokens("light")
-    );
+  );
 
-    const ProtectedRoute = ({ isAllowed, redirectPath ='/admin', children }) => {
-      if (!isAllowed) {
-        return <Navigate to={redirectPath} replace />;
-      }
-      return children ? children : <Outlet />;
-    };
+  const ProtectedRoute = ({ isAllowed, redirectPath = '/admin', children }) => {
+    if (!isAllowed) {
+      return <Navigate to={redirectPath} replace />;
+    }
+    return children ? children : <Outlet />;
+  };
 
-    const isAuthenticated = useSelector((state) => state.authenticated)
+  const isAuthenticated = useSelector((state) => state.authenticated)
 
   return (
     <ThemeProvider theme={isDarkTheme ? darkModeTheme : darkModeTheme}>
@@ -121,11 +118,8 @@ function App() {
             <Route path="/admin/categories" element={<AdminCategories />} />
             <Route path="/admin/shop/:id" element={<ShopDetails />} />
             <Route path="/admin/allorders" element={<ViewAllOrders />} />
-<<<<<<< HEAD
-            
-=======
+
             <Route path="/admin/users" element={<Users />} />
->>>>>>> b42b65a911fd1622649347016c61df2ac49b07ba
           </Route>
 
           <Route element={<ProtectedRoute isAllowed={!!isAuthenticated && isAuthenticated.is_admin_pro} />}>
