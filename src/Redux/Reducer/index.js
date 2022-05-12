@@ -21,7 +21,11 @@ const initialState = {
   payment: [],
   userPayment: [],
   totalUserPayment: [],
+  userDetail: [],
+  activeUser: [],
   authenticated: null,
+
+
 };
 
 function rootReducer(state = initialState, action) {
@@ -55,11 +59,16 @@ function rootReducer(state = initialState, action) {
         shopping: action.payload,
       };
     }
-    // case "GET_USER":
-    //   return {
-    //     ...state,
-    //     users: action.payload,
-    //   };
+    case "GET_USER_DETAIL":
+      return {
+        ...state,
+        userDetail: action.payload,
+      };
+      case "GET_ACTIVE_USER":
+        return {
+          ...state,
+          activeUser: action.payload,
+        };
     case "GET_USER":
       return {
         ...state,
