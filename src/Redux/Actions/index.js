@@ -1,18 +1,16 @@
 import { ClassNames } from "@emotion/react";
 import axios from "axios";
 
-
-
-export const GET_USER_DETAIL = "GET_USER_DETAIL"
+export const GET_USER_DETAIL = "GET_USER_DETAIL";
 export const getUserDetail = (email) => {
   return async (dispatch) => {
-    var json = await axios.get("http://localhost:3001/users" + email)
+    var json = await axios.get("http://localhost:3001/users" + email);
     return dispatch({
       type: "GET_USER_DETAIL",
       payload: json.data,
-    })
-  }
-}
+    });
+  };
+};
 
 export const GET_USER = "GET_USER";
 export const getUser = () => {
@@ -209,8 +207,7 @@ export function postBuyCart(payload) {
       type: "BUY_CART",
       payload: response.data,
     });
-
-  }
+  };
 }
 
 export function deleteCategory(id) {
@@ -250,15 +247,18 @@ export function updateProduct(id, payload) {
   // console.log(payload)
   return async function (dispatch) {
     try {
-      const json = await axios.put('http://localhost:3001/updateProduct/' + id, payload)
+      const json = await axios.put(
+        "http://localhost:3001/updateProduct/" + id,
+        payload
+      );
       return dispatch({
         type: "UPDATE_PRODUCT",
-        payload: json.data
-      })
+        payload: json.data,
+      });
     } catch (error) {
-      console.log('catch: ' + error);
+      console.log("catch: " + error);
     }
-  }
+  };
 }
 
 export function sortUsersByLastName(payload) {
@@ -292,15 +292,18 @@ export function sortOrderByAmount(payload) {
 export function updateShop(id, payload) {
   return async function (dispatch) {
     try {
-      const json = await axios.put('http://localhost:3001/updatePayment/' + id, payload)
+      const json = await axios.put(
+        "http://localhost:3001/updatePayment/" + id,
+        payload
+      );
       return dispatch({
         type: "UPDATE_SHOP",
-        payload: json.data
-      })
+        payload: json.data,
+      });
     } catch (err) {
-      console.log(err)
+      console.log(err);
     }
-  }
+  };
 }
 
 export const getPayment = (payload) => {
@@ -309,7 +312,9 @@ export const getPayment = (payload) => {
   const { payment, email } = payload;
   return async function (dispatch) {
     try {
-      const json = await axios.get("http://localhost:3001/success?id=" + payment + "&successEmail=" + email);
+      const json = await axios.get(
+        "http://localhost:3001/success?id=" + payment + "&successEmail=" + email
+      );
       return dispatch({
         type: "GET_PAYMENT",
         payload: json.data,
@@ -318,25 +323,44 @@ export const getPayment = (payload) => {
       console.log(error);
     }
   };
-}
+};
 
 export const getTotalUserPayments = (email) => {
   return async function (dispatch) {
     try {
-      const json = await axios.get(`http://localhost:3001/getPaymentAcount/${email}`)
+      const json = await axios.get(
+        `http://localhost:3001/getPaymentAcount/${email}`
+      );
       return dispatch({
-        type: 'GET_TOTAL_USER_PAYMENTS',
+        type: "GET_TOTAL_USER_PAYMENTS",
         payload: json.data,
-      })
+      });
     } catch (err) {
-      console.log(err)
+      console.log(err);
     }
-  }
-} 
+  };
+};
 
 export function authenticate(payload) {
   return {
     type: "AUTHENTICATE",
     payload,
+  };
+}
+
+export function updateUser(id, payload) {
+  return async function (dispatch) {
+    try {
+      var updateUser = await axios.put(
+        "http://localhost:3001/updateUser" + id,
+        payload
+      );
+      return dispatch({
+        type: "UPDATE_USER",
+        payload: updateUser.data,
+      });
+    } catch (error) {
+      console.log(error);
+    }
   };
 }
