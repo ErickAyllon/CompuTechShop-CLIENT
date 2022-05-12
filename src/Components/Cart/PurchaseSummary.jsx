@@ -1,8 +1,12 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { postBuyCart } from "../../Redux/Actions";
 import CartItem from "./CartItem";
 import { TYPES } from "../../Redux/Actions/shoppingCartActions";
+import ProductCard from "../ProductCard/ProductCard";
+import NavBar from "../NavBar/Navbar";
+import { Link, useNavigate } from "react-router-dom"
+import styles from "./PurchaseSummary.module.css"
 
 const PurchaseSummary = () => {
   const obj = {};
@@ -10,7 +14,11 @@ const PurchaseSummary = () => {
   const productsFilter = useSelector((state) => state.cart);
   const arregloPrice = productsFilter.map((el) => el.price * el.quantity);
   const reducir = (accumulator, curr) => accumulator + curr;
-  const arregloTotal = arregloPrice.reduce(reducir);
+  let arregloTotal
+  const navigate = useNavigate()
+
+  if (arregloPrice > 0) { arregloTotal = arregloPrice.reduce(reducir) }
+  console.log(arregloTotal)
   const handleBuyCart = (e) => {
     e.preventDefault();
     const nuevoPost = productsFilter.map((el) => {
@@ -27,30 +35,66 @@ const PurchaseSummary = () => {
     obj.quantity = nuevoPost.map((el) => el.quantity);
     JSON.stringify(obj);
     dispatch(postBuyCart(obj));
+    setTimeout(function () {
+      navigate("/purchaseConfirm")
+    }, 2000)
   };
-
+  const delFromCart = (id, all = false) => {
+    all
+      ? dispatch({ type: TYPES.REMOVE_ALL_FROM_CART, payload: id })
+      : dispatch({ type: TYPES.REMOVE_ONE_FROM_CART, payload: id });
+  };
   const addToCart = (id) => {
     console.log(id);
     dispatch({ type: TYPES.ADD_TO_CART, payload: id });
   };
+
+  console.log(navigate)
   return (
-    <div>
-      {productsFilter.map((el) => (
-        <CartItem
-          // key={index}
-          data={el}
-          // delFromCart={delFromCart}
-          addToCart={addToCart}
-        />
-      ))}
-      <div>
-        <label>Total Price:</label>
-        {arregloTotal}
+
+    <div >
+      <NavBar />
+      <div className={styles.summaryContainer} >
+
+        <div>
+          {
+            productsFilter.length > 0 && arregloTotal.length !== 0 ?
+              productsFilter.map((el) => (
+                <ProductCard
+                  name={el.name}
+                  price={el.price}
+                  image={el.image}
+                  key={el.id}
+                  id={el.id}
+                  brand={el.brand}
+                  description={el.description}
+                  calification={el.calification}
+                  quantity={el.quantity}
+                  addToCart={addToCart}
+                  delFromCart={delFromCart}
+                />
+
+              )) : (<div className={styles.productNotFound}>
+                <div className={styles.productNotFoundContainer}>
+                  <h1>Cart Empty</h1>
+                  <div className={styles.productNotFoundText}>
+                    <p>Check all products</p>
+                    <p>Browse the categories to find a product</p>
+                  </div>
+                  <button onClick={() => navigate("/")}>Back to Products</button>
+                </div>
+              </div>)
+          }</div>
+        {(arregloPrice.length !== 0 ?
+          <div className={styles.containerImgBtn}>
+            <label className={styles.text}>Total Price:  $ {arregloTotal}</label>
+            <button className={styles.btn} onClick={handleBuyCart}>Comprar</button>
+          </div>
+          : null)}
+
       </div>
-      <div>
-        <button onClick={handleBuyCart}>comprita</button>
-      </div>
-    </div>
+      <br />
+    </div >
   );
 };
 

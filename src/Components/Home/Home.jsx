@@ -1,17 +1,22 @@
 import React, {useEffect} from 'react'
-import { getProducts } from '../../Redux/Actions';
+import { getProducts, getUserDetail } from '../../Redux/Actions';
 import { useDispatch } from 'react-redux';
 import styles from './Home.module.css'
 import 'bootstrap/dist/css/bootstrap.css';
 import Carousel from 'react-bootstrap/Carousel';
 import Categories from '../Categories/Categories';
 import NavBar from '../NavBar/Navbar';
+import {useAuth0} from '@auth0/auth0-react';
+
 
 function Home() {
+  const {user, isAuthenticated} = useAuth0();
   const dispatch = useDispatch();
   useEffect(() => {
+   if(user) dispatch(getUserDetail(user.email));
     dispatch(getProducts());
   }, [dispatch]);
+
 
   return (
     <div className={styles.home}>

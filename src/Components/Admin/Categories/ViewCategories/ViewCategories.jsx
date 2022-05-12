@@ -1,8 +1,6 @@
 import React, { useEffect } from 'react';
 import styles from './ViewCategories.module.css';
 import { useSelector } from 'react-redux';
-import CategoryCreate from '../CategoryCreate/CategoryCreate';
-import AdminNav from '../../AdminNav/AdminNav';
 import Box from '@mui/material/Box';
 import Paper from '@mui/material/Paper';
 import Stack from '@mui/material/Stack';
@@ -44,7 +42,7 @@ function ViewCategories() {
           {
             allCategories?.map(el => { 
               return(
-              <Item key={el.id} value={el.id}>
+              <Item key={el.id} value={el.id} style={{background:'#0080006e'}}>
                 {el.name}
                 { el.id > 5 ? ( 
                       <button className={styles.button}>

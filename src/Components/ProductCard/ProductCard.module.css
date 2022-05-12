@@ -1,3 +1,4 @@
+
 .productCard {
     max-width: 900px;
     height: 150px;
@@ -66,6 +67,8 @@
 }
 
 .productCardPrice {
+    font-family: 'Orbitron', sans-serif;
+    font-size: 1rem;
     line-height: 1rem;
     overflow: visible;
     vertical-align: text-bottom;
@@ -82,6 +85,34 @@
     margin-left: 150px;
 }
 
+.addBtn {
+    border: none;
+    background-color: transparent;
+    width: 30px;
+    height: 30px;
+    background-color: rgba(19, 19, 189, 0.805);
+    border-radius: 100%;
+    box-shadow: 0 0 5px 1px blue;
+    transition: .5s;
+    margin-left: 130px;
+    opacity: .9;
+}
+
+.addBtn:active {
+    box-shadow: 0 0 10px 2px blue;
+}
+
+.addBtn:hover {
+    filter: brightness(1.5);
+    opacity: 1;
+}
+
+.addBtn img {
+    height: 18px;
+    width: auto;
+    margin: auto;
+    display: flex;
+}
 
 @media only screen and (max-width: 768px) {
     .productCard {
@@ -115,4 +146,10 @@
         margin-top: 0;
         margin-left: 0;
     }
+    .addBtn {
+        margin-top: 20px;
+        margin-right: 10px;
+        margin-left: 0;
+    }
+
 }

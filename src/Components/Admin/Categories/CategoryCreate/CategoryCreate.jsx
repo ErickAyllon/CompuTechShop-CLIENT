@@ -62,7 +62,7 @@ function CategoryCreate() {
             className={styles.form}
             component="form"
             sx={{
-                '& .MuiTextField-root': { m: 1, width: '45ch', color: "white", display: "flex" },
+                '& .MuiTextField-root': { m: 1, width: '35ch', display: "flex" },
             }}
             noValidate
             autoComplete="off"

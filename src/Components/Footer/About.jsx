@@ -1,10 +1,12 @@
 import React from 'react'
 import styles from './About.module.css'
 import {Link} from 'react-router-dom'
+import NavBar from '../NavBar/Navbar'
 
 export default function About() {
   return (
-    <div className={styles.productDetail}>
+    <div className={styles.letter}>
+    <NavBar/>
     <div className={styles.productDetailContainer}>
     <div className={styles.productDetailInfo}>
 
@@ -15,15 +17,15 @@ export default function About() {
         <Link to='/'>
         <button>Back</button>
         </Link>
-       
+
 
     </div>
    </div> 
-   
-  
+
+
 
 </div>
-        
+
 
   )
 }
