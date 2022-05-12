@@ -9,7 +9,7 @@ import NotFound404 from "./Components/NotFound404/NotFound404";
 import AllProducts from "./Components/Categories/AllProducts/AllProducts";
 import ProfileForm from "./Components/Profile/ProfileForm";
 import ProductSearched from "./Components/ProductSearched/ProductSearched";
-import Help from "./Components/Footer/Help/Help"
+
 import FAQ from "./Components/Footer/FAQ";
 import FAQ2 from './Components/Footer/FAQ2'
 import WorkWithUs from "./Components/Footer/WorkWithUs";
@@ -77,16 +77,16 @@ function App() {
   const isDarkTheme = useSelector((state) => state.darkMode);
   const darkModeTheme = createTheme(
     isDarkTheme ? getDesignTokens("dark") : getDesignTokens("light")
-    );
+  );
 
-    const ProtectedRoute = ({ isAllowed, redirectPath ='/admin', children }) => {
-      if (!isAllowed) {
-        return <Navigate to={redirectPath} replace />;
-      }
-      return children ? children : <Outlet />;
-    };
+  const ProtectedRoute = ({ isAllowed, redirectPath = '/admin', children }) => {
+    if (!isAllowed) {
+      return <Navigate to={redirectPath} replace />;
+    }
+    return children ? children : <Outlet />;
+  };
 
-    const isAuthenticated = useSelector((state) => state.authenticated)
+  const isAuthenticated = useSelector((state) => state.authenticated)
 
   return (
     <ThemeProvider theme={isDarkTheme ? darkModeTheme : darkModeTheme}>
