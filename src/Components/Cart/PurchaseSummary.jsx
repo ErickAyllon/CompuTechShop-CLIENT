@@ -12,11 +12,12 @@ const PurchaseSummary = () => {
   const obj = {};
   const dispatch = useDispatch();
   const productsFilter = useSelector((state) => state.cart);
+  const userActive = useSelector(state => state.userActive)
   const arregloPrice = productsFilter.map((el) => el.price * el.quantity);
   const reducir = (accumulator, curr) => accumulator + curr;
   let arregloTotal
   const navigate = useNavigate()
-
+  console.log(userActive.email)
   if (arregloPrice.length > 0) { arregloTotal = arregloPrice.reduce(reducir) }
 
   const handleBuyCart = (e) => {
