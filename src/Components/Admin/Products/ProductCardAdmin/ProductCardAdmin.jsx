@@ -7,19 +7,34 @@ import edit from '../../../../Images/edit.png'
 import { useDispatch } from "react-redux";
 import { deleteProduct, getProducts } from "../../../../Redux/Actions";
 import { useNavigate } from "react-router-dom";
+import Swal from "sweetalert2";
 
 function ProductCardAdmin({ name, price, image, calification, id, update, delet }) {
   const dispatch = useDispatch();
   const navigate = useNavigate();
+  const Swal = require('sweetalert2')
   
   function handleDelete(e) {
     e.preventDefault();
-    if (window.confirm('Are you sure?')) {
-      e.preventDefault();
-      dispatch(deleteProduct(e.target.id))
-      window.alert('Product deleted')
-      dispatch(getProducts())
-    }
+    Swal.fire({
+      title: 'Are you sure?',
+      text: "You won't be able to revert this!",
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Yes, delete it!'
+    }).then((result) => {
+      if (result.isConfirmed) {
+        dispatch(deleteProduct(e.target.id))
+        Swal.fire(
+          'Deleted!',
+          'Your product has been deleted.',
+          'success'
+        )
+        dispatch(getProducts())
+      }
+    })
   }
 
   function handleEdit(e) {

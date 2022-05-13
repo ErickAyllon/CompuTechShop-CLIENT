@@ -10,12 +10,14 @@ import edit from '../../../../Images/edit.png'
 import AdminNav2 from '../../AdminNav/AdminNav2';
 import CategoriesAdmin from '../Categories/CategoriesAdmin';
 import DetailReviews from '../../../Detail/DetailReviews/DetailReviews';
+import Swal from 'sweetalert2';
 
 function ProductDetailAdmin (){
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const { name } = useParams();
   const review = useSelector((state) => state.review);
+  const Swal = require('sweetalert2')
 
   useEffect(() => {
     dispatch(getReview(name))
@@ -26,13 +28,26 @@ function ProductDetailAdmin (){
 
   function handleDelete(e) {
     e.preventDefault();
-    console.log(e.target.id)
-    if (window.confirm('Are you sure?')) {
-      e.preventDefault();
-      dispatch(deleteProduct(e.target.id))
-      window.alert('Product deleted')
-      dispatch(getProducts())
-    }
+    Swal.fire({
+      title: 'Are you sure?',
+      text: "You won't be able to revert this!",
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Yes, delete it!'
+    }).then((result) => {
+      if (result.isConfirmed) {
+        e.preventDefault();
+        dispatch(deleteProduct(e.target.id))
+        Swal.fire(
+          'Deleted!',
+          'Your product has been deleted.',
+          'success'
+        )
+        dispatch(getProducts())
+      }
+    })
   }
 
   function handleEdit(e) {

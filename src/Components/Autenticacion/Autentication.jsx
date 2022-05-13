@@ -4,6 +4,9 @@ import { useDispatch, useSelector } from "react-redux";
 import { useAuth0 } from "@auth0/auth0-react";
 import { getUser } from "../../Redux/Actions";
 import { TYPES } from "../../Redux/Actions/shoppingCartActions";
+import styles from './Authentication.module.css'
+import NavBar from "../NavBar/Navbar";
+import { Button } from "@mui/material";
 
 function Autentication() {
   const dispatch = useDispatch();
@@ -35,9 +38,12 @@ function Autentication() {
   }, [dispatch]);
 
   return (
-    <div>
-      <h1>You have been successfully authenticated &#128512; </h1>
-      <button onClick={(e) => handleOnClick(e)}>Go to Profile</button>
+    <div className={styles.authentication}>
+      <NavBar />
+      <div className={styles.content}>
+        <h1>You have been successfully authenticated &#128512; </h1>
+        <Button variant='outlined' onClick={(e) => handleOnClick(e)}>Go to Profile</Button>
+      </div>
     </div>
   );
 }

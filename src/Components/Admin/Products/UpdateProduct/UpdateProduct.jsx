@@ -11,6 +11,9 @@ import ProductCardAdmin from '../ProductCardAdmin/ProductCardAdmin';
 import { useParams } from 'react-router-dom';
 import AdminNav2 from '../../AdminNav/AdminNav2';
 import ProductDetailAdminCard from '../Detail/ProductDetailAdminCard'
+import Swal from 'sweetalert2'
+
+
 
 function UpdateProduct() {
   const dispatch = useDispatch();
@@ -18,6 +21,10 @@ function UpdateProduct() {
   const product = useSelector ((state) => state.productDetail);
   const categories = useSelector((state) => state.categories)
   const [errors, setErrors] = useState({})
+
+  const Swal = require('sweetalert2')
+
+
 
   useEffect(() => {
     dispatch(getCategories());
@@ -73,7 +80,11 @@ function UpdateProduct() {
     e.preventDefault();
     dispatch(updateProduct(product[0].id, input));
     setErrors({});
-    window.alert('Product updated')
+    Swal.fire({
+      title: 'Product Updated!',
+      icon: 'success',
+      confirmButtonText: 'Ok',
+    })
     dispatch(getDetail(input.name))
     setInput({
       name: '',

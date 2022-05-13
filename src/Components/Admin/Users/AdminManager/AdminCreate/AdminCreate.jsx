@@ -6,10 +6,12 @@ import Box from "@mui/material/Box";
 import { useDispatch } from "react-redux";
 import { getUser, postUser } from "../../../../../Redux/Actions";
 import { useNavigate } from "react-router-dom";
+import Swal from "sweetalert2";
 
 function AdminCreate() {
     const dispatch = useDispatch();
     const navigate = useNavigate();
+    const Swal = require('sweetalert2')
 
     const [input, setInput] = useState({
         given_name: '',
@@ -41,7 +43,11 @@ function AdminCreate() {
             is_admin: true,
             email_verified: true
         })
-        alert('Admin created')
+        Swal.fire({
+          title: 'Admin created!',
+          icon: 'success',
+          confirmButtonText: 'Ok',
+        })
         dispatch(getUser());
     }
 

@@ -8,6 +8,7 @@ import { styled } from '@mui/material/styles';
 import { useDispatch } from 'react-redux';
 import { deleteCategory, getCategories } from '../../../../Redux/Actions';
 import trash from '../../../../Images/trash.png'
+import Swal from 'sweetalert2'
 
 const Item = styled(Paper)(({ theme }) => ({
   backgroundColor: theme.palette.mode === 'dark' ? '#1A2027' : '#fff',
@@ -22,14 +23,17 @@ const Item = styled(Paper)(({ theme }) => ({
 function ViewCategories() {
   const allCategories = useSelector((state) => state.categories)
   const dispatch = useDispatch();
+  const Swal = require('sweetalert2')
 
   function handleDelete(e) {
-    if (window.confirm('Are you sure?')) {
       e.preventDefault();
       dispatch(deleteCategory(e.target.id))
-      window.alert('Category deleted')
+      Swal.fire({
+        title: 'Category deleted!',
+        icon: 'success',
+        confirmButtonText: 'Ok',
+      })
       dispatch(getCategories())
-    }
   }
 
   return (
