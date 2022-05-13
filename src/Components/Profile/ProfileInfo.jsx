@@ -7,6 +7,7 @@ import {useAuth0} from '@auth0/auth0-react';
 import styles from './ProfileInfo.module.css'
 import NavBar from "../NavBar/Navbar";
 import Loader from "../Loader/Loader";
+import MyOrders from "./MyOrders/MyOrders";
 
 function ProfileInfo() {
  
@@ -30,6 +31,7 @@ function ProfileInfo() {
             <h2>{user.family_name}</h2>
             <h2>{user.email}</h2>
             <h2>{user.nickname}</h2> 
+            <MyOrders />
           </div> 
         : 
           <Loader/> 

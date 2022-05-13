@@ -52,11 +52,11 @@ export const PurchaseResult = () => {
       <div className={styles.productNotFoundContainer}>
 
         <h1>{mensaje}</h1>
+      <Button variant="contained"  className={styles.backToSite} onClick={handleClick}> Back to Site</Button>
         <div className={styles.productNotFoundText}>
         </div>
       </div>
     </div>
-      <Button variant="contained"  className={styles.backToSite} onClick={handleClick}> Back to Site</Button>
     </div>
 
 

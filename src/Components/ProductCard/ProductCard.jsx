@@ -4,6 +4,7 @@ import { Rating } from "@mui/material";
 import { Link } from "react-router-dom";
 import add from '../../Images/add.png'
 
+
 function ProductCard({
   name,
   price,
@@ -35,9 +36,9 @@ function ProductCard({
           </Link>
           <h3 className={styles.productCardPrice}>${price.toLocaleString('en-US')}</h3>
           <Rating
-            name="half-rating-read"
+            name="half-rating"
             size="small"
-            defaultValue={calification / 2}
+            defaultValue={calification}
             precision={0.5}
             readOnly
             className={styles.productCardCalification}

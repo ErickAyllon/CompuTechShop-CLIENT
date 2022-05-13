@@ -29,7 +29,7 @@ function UpdateProduct() {
     price: '', 
     quantity: '',
     brand: '',
-    calification: '',
+    // calification: '',
     image: '',
     description: '',
     categories: ''
@@ -111,12 +111,12 @@ function UpdateProduct() {
         errors.price = 'Price must be > 0';
     } if (!input.price) {
         errors.price = 'Price required';
-    } if (!input.calification || input.calification > 10) {
-        errors.calification = '10 max';
-    } if (!input.calification || input.calification < 0) {
-        errors.calification = 'Calification must be > 0';
-    } if (!input.calification) {
-        errors.calification = 'Calification required';
+    // } if (!input.calification || input.calification > 10) {
+    //     errors.calification = '10 max';
+    // } if (!input.calification || input.calification < 0) {
+    //     errors.calification = 'Calification must be > 0';
+    // } if (!input.calification) {
+    //     errors.calification = 'Calification required';
     }  if (!input.quantity || input.quantity < 0) {
         errors.quantity = 'Quantity must be > 0';
     }  if (!input.quantity || input.quantity > 1000) {

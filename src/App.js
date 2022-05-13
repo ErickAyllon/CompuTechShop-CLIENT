@@ -36,6 +36,8 @@ import { PurchaseResult } from "./Components/Cart/PurchaseResult";
 import { Navigate, Outlet } from "react-router-dom";
 import AdminManager from "./Components/Admin/Users/AdminManager/AdminManager";
 import AdminUpdate from "./Components/Admin/Users/AdminManager/AdminUpdate/AdminUpdate";
+import MyOrders from "./Components/Profile/MyOrders/MyOrders";
+import MyOrderDetail from "./Components/Profile/MyOrders/MyOrderDetail/MyOrderDetail";
 
 
 const getDesignTokens = (mode) => ({
@@ -98,6 +100,7 @@ function App() {
           {/* <Route path="/profile" element={<Profile />} /> */}
           <Route path="/Allproducts" element={<AllProducts />} />
           <Route path="/profile" element={<ProfileInfo />} />
+          <Route path="/profile/order/:id" element={<MyOrderDetail />} />
           <Route path="/category/:category" element={<Category />} />
           <Route path="/:name" element={<ProductDetail />} />
           <Route path="/search/:search" element={<ProductSearched />} />

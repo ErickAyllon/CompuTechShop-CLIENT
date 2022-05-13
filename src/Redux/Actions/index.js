@@ -43,6 +43,7 @@ export function cleanFilter() {
 }
 
 export function getDetail(name) {
+  console.log('name ', name)
   return async function (dispatch) {
     try {
       var json = await axios.get("http://localhost:3001/products?name=" + name);
@@ -246,8 +247,8 @@ export function deleteProduct(id) {
 }
 
 export function updateProduct(id, payload) {
-  // console.log(id)
-  // console.log(payload)
+  console.log(id)
+  console.log(payload)
   return async function (dispatch) {
     try {
       const json = await axios.put('http://localhost:3001/updateProduct/' + id, payload)
@@ -342,8 +343,6 @@ export function authenticate(payload) {
 }
 
 export function updateUser(id, payload) {
-  console.log(id)
-  console.log(payload)
   return async function (dispatch) {
     try {
       const json = await axios.put('http://localhost:3001/updateUser/' + id, payload)
@@ -353,6 +352,55 @@ export function updateUser(id, payload) {
       })
     } catch (err) {
       console.log(err)
+    }
+  }
+}
+
+export const getOrders = () => {
+  return async function (dispatch) {
+    try {
+      const json = await axios.get(`http://localhost:3001/getOrders`)
+      return dispatch({
+        type: 'GET_ORDERS',
+        payload: json.data,
+      })
+    } catch (err) {
+      console.log(err)
+    }
+  }
+} 
+
+export const getOrdersByEmail = (email) => {
+  return async function (dispatch) {
+    try {
+      const json = await axios.get(`http://localhost:3001/getPayments?email=${email}`)
+      return dispatch({
+        type: 'GET_ORDERS_BY_EMAIL',
+        payload: json.data,
+      })
+    } catch (err) {
+      console.log(err)
+    }
+  }
+} 
+
+export function postReview(payload) {
+  return async function () {
+    let postReview = await axios.post("http://localhost:3001/reviews", payload);
+    return postReview;
+  };
+}
+export function getReview(name) {
+  console.log(name);
+  return async function (dispatch) {
+    try {
+      let json = await axios.get("http://localhost:3001/reviews?productName=" + name);
+      return dispatch({
+        type: 'GET_REVIEW',
+        payload: json.data,
+      })
+    } catch (error) {
+        console.log(error)
     }
   }
 }
