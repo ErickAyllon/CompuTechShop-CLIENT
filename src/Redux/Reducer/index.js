@@ -133,14 +133,14 @@ function rootReducer(state = initialState, action) {
       const filteredP =
         productsFiltered.length > 0
           ? productsFiltered.filter((el) =>
-              min && max
-                ? toNumber(el.price) >= min && toNumber(el.price) <= max
-                : min && !max
+            min && max
+              ? toNumber(el.price) >= min && toNumber(el.price) <= max
+              : min && !max
                 ? toNumber(el.price) >= min
                 : !min && max
-                ? toNumber(el.price) <= max
-                : productsFiltered
-            )
+                  ? toNumber(el.price) <= max
+                  : productsFiltered
+          )
           : null;
       return {
         ...state,
@@ -151,32 +151,32 @@ function rootReducer(state = initialState, action) {
         state.productsFilter.length > 0
           ? action.payload === "more-relevants"
             ? state.productsFilter.sort(
-                (a, b) => toNumber(b.calification) - toNumber(a.calification)
-              )
+              (a, b) => toNumber(b.calification) - toNumber(a.calification)
+            )
             : action.payload === "higher-price"
-            ? state.productsFilter.sort(
+              ? state.productsFilter.sort(
                 (a, b) => toNumber(b.price) - toNumber(a.price)
               )
-            : action.payload === "lower-price"
-            ? state.productsFilter.sort(
-                (a, b) => toNumber(a.price) - toNumber(b.price)
-              )
-            : null
+              : action.payload === "lower-price"
+                ? state.productsFilter.sort(
+                  (a, b) => toNumber(a.price) - toNumber(b.price)
+                )
+                : null
           : state.productsFilter.length === 0
-          ? action.payload === "more-relevants"
-            ? state.products.sort(
+            ? action.payload === "more-relevants"
+              ? state.products.sort(
                 (a, b) => toNumber(b.calification) - toNumber(a.calification)
               )
-            : action.payload === "higher-price"
-            ? state.products.sort(
-                (a, b) => toNumber(b.price) - toNumber(a.price)
-              )
-            : action.payload === "lower-price"
-            ? state.products.sort(
-                (a, b) => toNumber(a.price) - toNumber(b.price)
-              )
-            : null
-          : null;
+              : action.payload === "higher-price"
+                ? state.products.sort(
+                  (a, b) => toNumber(b.price) - toNumber(a.price)
+                )
+                : action.payload === "lower-price"
+                  ? state.products.sort(
+                    (a, b) => toNumber(a.price) - toNumber(b.price)
+                  )
+                  : null
+            : null;
       return {
         ...state,
         productsFilter: order,
@@ -195,38 +195,38 @@ function rootReducer(state = initialState, action) {
       let itemInCart = state.cart.find((item) => item.id === newItem.id);
       return itemInCart
         ? {
-            ...state,
-            cart: state.cart.map((item) =>
-              item.id === newItem.id
-                ? {
-                    ...item,
-                    quantity: item.quantity + 1,
-                    // price: Number(item.price),
-                    // total: item.price * item.cuantity,
-                  }
-                : item
-            ),
-          }
+          ...state,
+          cart: state.cart.map((item) =>
+            item.id === newItem.id
+              ? {
+                ...item,
+                quantity: item.quantity + 1,
+                // price: Number(item.price),
+                // total: item.price * item.cuantity,
+              }
+              : item
+          ),
+        }
         : {
-            ...state,
-            cart: [...state.cart, { ...newItem, quantity: 1 }],
-          };
+          ...state,
+          cart: [...state.cart, { ...newItem, quantity: 1 }],
+        };
     }
     case TYPES.REMOVE_ONE_FROM_CART: {
       let itemToDelete = state.cart.find((item) => item.id === action.payload);
       return itemToDelete.quantity > 1
         ? {
-            ...state,
-            cart: state.cart.map((item) =>
-              item.id === action.payload
-                ? { ...item, quantity: item.quantity - 1 }
-                : item
-            ),
-          }
+          ...state,
+          cart: state.cart.map((item) =>
+            item.id === action.payload
+              ? { ...item, quantity: item.quantity - 1 }
+              : item
+          ),
+        }
         : {
-            ...state,
-            cart: state.cart.filter((item) => item.id !== action.payload),
-          };
+          ...state,
+          cart: state.cart.filter((item) => item.id !== action.payload),
+        };
     }
     case TYPES.REMOVE_ALL_FROM_CART: {
       return {
@@ -271,13 +271,13 @@ function rootReducer(state = initialState, action) {
         state.usersFiltered.length > 0
           ? action.payload === "a-z"
             ? state.usersFiltered.sort((a, b) =>
-                a.family_name.localeCompare(b.family_name)
-              )
+              a.family_name.localeCompare(b.family_name)
+            )
             : action.payload === "z-a"
-            ? state.usersFiltered.sort((a, b) =>
+              ? state.usersFiltered.sort((a, b) =>
                 b.family_name.localeCompare(a.family_name)
               )
-            : state.usersFiltered
+              : state.usersFiltered
           : null;
       return {
         ...state,
@@ -288,13 +288,13 @@ function rootReducer(state = initialState, action) {
         state.shopsFiltered.length > 0
           ? action.payload === "a-z"
             ? state.shopsFiltered.sort((a, b) =>
-                a.userEmail.localeCompare(b.userEmail)
-              )
+              a.userEmail.localeCompare(b.userEmail)
+            )
             : action.payload === "z-a"
-            ? state.shopsFiltered.sort((a, b) =>
+              ? state.shopsFiltered.sort((a, b) =>
                 b.userEmail.localeCompare(a.userEmail)
               )
-            : state.shopsFiltered
+              : state.shopsFiltered
           : null;
       return {
         ...state,
@@ -305,13 +305,13 @@ function rootReducer(state = initialState, action) {
         state.shopsFiltered.length > 0
           ? action.payload === "lower-amount"
             ? state.shopsFiltered.sort(
-                (a, b) => a.total_paid_amount - b.total_paid_amount
-              )
+              (a, b) => a.total_paid_amount - b.total_paid_amount
+            )
             : action.payload === "higher-amount"
-            ? state.shopsFiltered.sort(
+              ? state.shopsFiltered.sort(
                 (a, b) => b.total_paid_amount - a.total_paid_amount
               )
-            : state.shopsFiltered
+              : state.shopsFiltered
           : null;
       return {
         ...state,
@@ -322,14 +322,14 @@ function rootReducer(state = initialState, action) {
         action.payload === "In process"
           ? state.shops.filter((el) => el.state === "In process")
           : action.payload === "Paid"
-          ? state.shops.filter((el) => el.state === "Paid")
-          : action.payload === "On its way"
-          ? state.shops.filter((el) => el.state === "On its way")
-          : action.payload === "Cancelled"
-          ? state.shops.filter((el) => el.state === "Cancelled")
-          : action.payload === "Received"
-          ? state.shops.filter((el) => el.state === "Received")
-          : state.shops;
+            ? state.shops.filter((el) => el.state === "Paid")
+            : action.payload === "On its way"
+              ? state.shops.filter((el) => el.state === "On its way")
+              : action.payload === "Cancelled"
+                ? state.shops.filter((el) => el.state === "Cancelled")
+                : action.payload === "Received"
+                  ? state.shops.filter((el) => el.state === "Received")
+                  : state.shops;
       return {
         ...state,
         shopsFiltered: orders,
@@ -363,11 +363,6 @@ function rootReducer(state = initialState, action) {
         authenticated: action.payload,
       };
     }
-    case "GET_USER_DETAIL":
-      return {
-        ...state,
-        userDetail: action.payload,
-      };
     case "UPDATE_USER": {
       return {
         ...state,
@@ -377,12 +372,6 @@ function rootReducer(state = initialState, action) {
       return {
         ...state,
         orders: action.payload,
-      };
-    }
-    case "GET_ORDERS_BY_EMAIL": {
-      return {
-        ...state,
-        userOrders: action.payload,
       };
     }
     case "GET_ORDERS_BY_EMAIL": {

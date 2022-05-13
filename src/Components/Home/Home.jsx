@@ -15,8 +15,7 @@ function Home() {
   // console.log("esto es el get access", getAccessTokenSilently)
   // console.log("esto es el get ID", getIdTokenClaims)
 
-  const MeLoTraje = localStorage.getItem('clave')
-  console.log(MeLoTraje)
+
   useEffect(() => {
     if (user) dispatch(getUserDetail(user.email));
     dispatch(getProducts());

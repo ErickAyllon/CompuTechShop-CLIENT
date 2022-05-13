@@ -30,7 +30,7 @@ export const PurchaseResult = () => {
 
     dispatch({ type: TYPES.USER_ACTIVE, payload: userActive });
   };
-
+  localStorage.removeItem("carrito")
   function handleClick(e) {
     e.preventDefault()
     if (user) {

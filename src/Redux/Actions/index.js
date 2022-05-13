@@ -1,4 +1,3 @@
-import { ClassNames } from "@emotion/react";
 import axios from "axios";
 
 export const GET_USER_DETAIL = "GET_USER_DETAIL";
@@ -201,6 +200,7 @@ export function postCategory(payload) {
   };
 }
 export function postBuyCart(payload) {
+  console.log(payload)
   return async function (dispatch) {
     const response = await axios.post("/Checkout", payload);
 
