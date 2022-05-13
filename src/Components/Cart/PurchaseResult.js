@@ -6,28 +6,37 @@ import { useAuth0 } from '@auth0/auth0-react';
 import { getPayment, getUser } from '../../Redux/Actions/index';
 import styles from "./PurchaseSummary.module.css"
 import { Button } from '@mui/material';
+import { TYPES } from "../../Redux/Actions/shoppingCartActions";
+import { Link } from 'react-router-dom';
+import Profile from '../Auth0/Profile';
 export const PurchaseResult = () => {
+
   const usuarios = useSelector(state => state.users2)
   const dispatch = useDispatch();
-  let { search } = useLocation()
   const { user } = useAuth0()
+  const navigate = useNavigate()
+  const obj = {}
+  let { search } = useLocation()
   let query = new URLSearchParams(search)
   let payment = query.get("payment_id")
   let status = query.get("collection_status")
-  const navigate = useNavigate()
-  const obj = {}
   let mensaje = ""
   obj.payment = payment
 
   if (user) {
     obj.email = user.email
   }
+  const postUserActive = (userActive) => {
+
+    dispatch({ type: TYPES.USER_ACTIVE, payload: userActive });
+  };
 
   function handleClick(e) {
     e.preventDefault()
     if (user) {
+      postUserActive(user)
       dispatch(getPayment(obj))
-      navigate("/")
+      // navigate("/")
     }
   }
 
@@ -48,15 +57,20 @@ export const PurchaseResult = () => {
 
   return (
     <div className={styles.purchaseResult}>
-    <div className={styles.productNotFound}>
-      <div className={styles.productNotFoundContainer}>
+      <div className={styles.productNotFound}>
+        <div className={styles.productNotFoundContainer}>
 
-        <h1>{mensaje}</h1>
-      <Button variant="contained"  className={styles.backToSite} onClick={handleClick}> Back to Site</Button>
-        <div className={styles.productNotFoundText}>
+          <h1>{mensaje}</h1>
+          <div className={styles.productNotFoundText}>
+          </div>
+        </div>
+        <div className={styles.hideProduct}>
+          <Profile />
         </div>
       </div>
-    </div>
+      <Link to="/">
+        <Button variant="contained" className={styles.backToSite} onClick={{ handleClick }}> Back to Site</Button>
+      </Link>
     </div>
 
 

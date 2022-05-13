@@ -34,6 +34,7 @@ import PurchaseSummary from "./Components/Cart/PurchaseSummary";
 import { PurchaseConfirm } from "./Components/Cart/PurchaseConfirm";
 import { PurchaseResult } from "./Components/Cart/PurchaseResult";
 import { Navigate, Outlet } from "react-router-dom";
+import Autentication from "./Components/Autenticacion/Autentication";
 import AdminManager from "./Components/Admin/Users/AdminManager/AdminManager";
 import AdminUpdate from "./Components/Admin/Users/AdminManager/AdminUpdate/AdminUpdate";
 import MyOrders from "./Components/Profile/MyOrders/MyOrders";
@@ -79,16 +80,16 @@ function App() {
   const isDarkTheme = useSelector((state) => state.darkMode);
   const darkModeTheme = createTheme(
     isDarkTheme ? getDesignTokens("dark") : getDesignTokens("light")
-    );
+  );
 
-    const ProtectedRoute = ({ isAllowed, redirectPath ='/admin', children }) => {
-      if (!isAllowed) {
-        return <Navigate to={redirectPath} replace />;
-      }
-      return children ? children : <Outlet />;
-    };
+  const ProtectedRoute = ({ isAllowed, redirectPath = '/admin', children }) => {
+    if (!isAllowed) {
+      return <Navigate to={redirectPath} replace />;
+    }
+    return children ? children : <Outlet />;
+  };
 
-    const isAuthenticated = useSelector((state) => state.authenticated)
+  const isAuthenticated = useSelector((state) => state.authenticated)
 
   return (
     <ThemeProvider theme={isDarkTheme ? darkModeTheme : darkModeTheme}>
@@ -108,6 +109,7 @@ function App() {
           <Route path="/user" element={<ProfileForm />} />
           <Route path="/form" element={<FormUser />} />
           <Route path="/admin" element={<Admin />} />
+          <Route path="/autentication" element={<Autentication />} />
 
           <Route element={<ProtectedRoute isAllowed={!!isAuthenticated && isAuthenticated.is_admin} />}>
             <Route path="/admin/products/Allproducts" element={<AdminProducts />} />
