@@ -13,6 +13,8 @@ function AutenticationUpdate() {
     dispatch({ type: TYPES.USER_ACTIVE, payload: userActive });
   };
 
+
+
   function handleOnClick(e) {
     e.preventDefault();
     if (user) {

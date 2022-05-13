@@ -18,6 +18,13 @@ function Autentication() {
   //   e.preventDefault()
   //   dispatch(getActiveUser(userInfo))
   // }
+
+  let userLocal = [];
+  if (user) {
+    localStorage.setItem("email", user.email)
+  }
+  userLocal.email = localStorage.getItem("email")
+  console.log(userLocal.email)
   const postUserActive = (userActive) => {
     dispatch({ type: TYPES.USER_ACTIVE, payload: userActive });
   };

@@ -365,12 +365,12 @@ export const getOrders = () => {
       console.log(err)
     }
   }
-} 
+}
 
 export const getOrdersByEmail = (email) => {
   return async function (dispatch) {
     try {
-      const json = await axios.get(`http://localhost:3001/getPayments?email=${email}`)
+      const json = await axios.get(`/getPayments?email=${email}`)
       return dispatch({
         type: 'GET_ORDERS_BY_EMAIL',
         payload: json.data,
@@ -379,7 +379,7 @@ export const getOrdersByEmail = (email) => {
       console.log(err)
     }
   }
-} 
+}
 
 export function postReview(payload) {
   return async function () {
@@ -397,14 +397,14 @@ export function getReview(name) {
         payload: json.data,
       })
     } catch (error) {
-        console.log(error)
+      console.log(error)
     }
   }
 }
 
 export function deleteReview(id) {
   console.log(id)
-  return async function(dispatch) {
+  return async function (dispatch) {
     try {
       const json = await axios.delete('http://localhost:3001/reviews/' + id);
       return dispatch({
@@ -412,7 +412,7 @@ export function deleteReview(id) {
         payload: json.data
       })
     } catch (error) {
-        console.log(error)
+      console.log(error)
     }
   }
 }
