@@ -37,9 +37,7 @@ function Autentication() {
   return (
     <div>
       <h1>You have been successfully authenticated &#128512; </h1>
-      <Link to="/">
-        <button onClick={handleOnClick}>Back!!asdgasdgds </button>
-      </Link>
+      <button onClick={(e) => handleOnClick(e)}>Go to Profile</button>
     </div>
   );
 }

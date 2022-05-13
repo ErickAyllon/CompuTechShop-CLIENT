@@ -43,7 +43,7 @@ function ProfileInfo() {
               </Link>
             </div>
             <div>
-              <MyOrders />
+              <MyOrders variant="outlined" />
             </div>
           </div>
         ) : (
