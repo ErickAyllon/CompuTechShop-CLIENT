@@ -19,6 +19,11 @@ root.render(
       <Auth0Provider
         domain={domain}
         clientId={clientId}
+
+        scope="read:current_user update:current_user_metadata"
+
+        useRefreshTokens={true}
+        cacheLocation="localstorage"
         redirectUri={window.location.origin + process.env.PUBLIC_URL + "/"}
       >
         <App />

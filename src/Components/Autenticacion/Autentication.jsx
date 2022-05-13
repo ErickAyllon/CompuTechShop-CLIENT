@@ -23,7 +23,8 @@ function Autentication() {
 
 
   const postUserActive = (userActive) => {
-    console.log(userActive)
+    console.log(userActive.email)
+
     // dispatch({ type: TYPES.USER_ACTIVE, payload: userActive });
   };
 
