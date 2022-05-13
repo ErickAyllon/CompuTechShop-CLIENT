@@ -10,12 +10,14 @@ import { TextField, MenuItem, Button } from '@mui/material/';
 import styles from './ShopDetails.module.css'
 import Paper from '@mui/material/Paper';
 import { styled } from '@mui/material/styles';
+import Swal from 'sweetalert2';
 
 function ShopDetail() {
   const dispatch = useDispatch();
   const navigate = useNavigate()
   const { id } = useParams();
   const shop = useSelector ((state) => state.shopDetail);
+  const Swal = require('sweetalert2')
   
   const Item = styled(Paper)(({ theme }) => ({
     backgroundColor: theme.palette.mode === 'dark' ? '#1A2027' : '#fff',
@@ -52,7 +54,11 @@ function ShopDetail() {
   function handleClick(e){
     e.preventDefault()
     dispatch(updateShop(id, {state: update}))
-    alert('Order updated')
+    Swal.fire({
+      title: 'Order updated!',
+      icon: 'success',
+      confirmButtonText: 'OK',
+    })
     setUpdate('')
     navigate('/admin/allorders')
     

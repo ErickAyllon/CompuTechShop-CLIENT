@@ -116,50 +116,20 @@ function App() {
             element={<AutenticationUpdate />}
           />
 
-          <Route
-            element={
-              <ProtectedRoute
-                isAllowed={!!isAuthenticated && isAuthenticated.is_admin}
-              />
-            }
-          >
-            <Route
-              path="/admin/products/Allproducts"
-              element={<AdminProducts />}
-            />
-            <Route
-              path="/admin/products/:category"
-              element={<CategoryAdmin />}
-            />
-            <Route
-              path="/admin/products/createProduct"
-              element={<ProductCreate />}
-            />
-            <Route
-              path="/admin/product/:name"
-              element={<ProductDetailAdmin />}
-            />
-            <Route
-              path="/admin/product/update/:name"
-              element={<UpdateProduct />}
-            />
-            <Route
-              path="/admin/search/:search"
-              element={<ProductSearchedAdmin />}
-            />
+          <Route element={<ProtectedRoute isAllowed={!!isAuthenticated && isAuthenticated.is_admin} />}>
+            <Route path="/admin/products/Allproducts" element={<AdminProducts />} />
+            <Route path="/admin/products/:category" element={<CategoryAdmin />} />
+            <Route path="/admin/products/createProduct" element={<ProductCreate />} />
+            <Route path="/admin/product/:name" element={<ProductDetailAdmin />} />
+            <Route path="/admin/product/update/:name" element={<UpdateProduct />} />
+            <Route path="/admin/search/:search" element={<ProductSearchedAdmin />} />
             <Route path="/admin/categories" element={<AdminCategories />} />
             <Route path="/admin/shop/:id" element={<ShopDetails />} />
             <Route path="/admin/allorders" element={<ViewAllOrders />} />
             <Route path="/admin/users" element={<Users />} />
           </Route>
 
-          <Route
-            element={
-              <ProtectedRoute
-                isAllowed={!!isAuthenticated && isAuthenticated.is_admin_pro}
-              />
-            }
-          >
+          <Route element={<ProtectedRoute isAllowed={!!isAuthenticated && isAuthenticated.is_admin_pro} />}>
             <Route path="/admin/manager" element={<AdminManager />} />
             <Route path="/admin/manager/:nickname" element={<AdminUpdate />} />
           </Route>

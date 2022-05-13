@@ -15,12 +15,14 @@ import AdminNav from "../../AdminNav/AdminNav";
 import AdminNav2 from "../../AdminNav/AdminNav2";
 import ProductCardAdmin from "../ProductCardAdmin/ProductCardAdmin";
 import ProductDetailAdminCard from "../Detail/ProductDetailAdminCard";
+import Swal from "sweetalert2";
 
 function ProductCreate() {
   const dispatch = useDispatch();
   const categories = useSelector((state) => state.categories);
   const allProductsCheck = useSelector((state) => state.allProducts);
   const [errors, setErrors] = useState({});
+  const Swal = require('sweetalert2')
 
   const [input, setInput] = useState({
     name: "",
@@ -54,7 +56,11 @@ function ProductCreate() {
   function handleSubmit(e) {
     e.preventDefault();
     dispatch(postProducts(input));
-    alert("Product created");
+    Swal.fire({
+      title: 'Product created!',
+      icon: 'success',
+      confirmButtonText: 'Ok',
+    })
     setInput({
       name: "",
       price: "",

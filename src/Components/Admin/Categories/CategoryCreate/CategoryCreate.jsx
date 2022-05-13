@@ -6,6 +6,7 @@ import styles from './CategoryCreate.module.css'
 import { postCategory, getCategories } from '../../../../Redux/Actions';
 import { useDispatch, useSelector } from 'react-redux';
 import { useEffect } from 'react';
+import Swal from 'sweetalert2'
 
 function CategoryCreate() {
 
@@ -13,6 +14,7 @@ function CategoryCreate() {
     const [error, setError] = useState({});
     const dispatch = useDispatch();
     const allCategoriesCheck = useSelector((state) => state.categories)
+    const Swal = require('sweetalert2')
 
     useEffect(() => {
         dispatch(getCategories());
@@ -31,7 +33,11 @@ function CategoryCreate() {
         dispatch(postCategory(input))
         setInput({name: ''});
         setError({});
-        window.alert('Category created')
+        Swal.fire({
+            title: 'Category created!',
+            icon: 'success',
+            confirmButtonText: 'Ok',
+          })
         dispatch(getCategories())
     }
 

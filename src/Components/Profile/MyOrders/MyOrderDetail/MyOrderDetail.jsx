@@ -10,6 +10,7 @@ import styles from './MyOrderDetail.module.css'
 import Rating from '@mui/material/Rating';
 import { useAuth0 } from "@auth0/auth0-react";
 import anonymous from '../../../../Images/anonymous.png'
+import Swal from 'sweetalert2'
 
 function MyOrderDetail() {
     const dispatch = useDispatch();
@@ -20,6 +21,7 @@ function MyOrderDetail() {
     const userss = useSelector((state) => state.users)
     const userAuth0Email = user?.email
     const userId = userss?.find(user => user.email === userAuth0Email)
+    const Swal = require('sweetalert2')
 
     useEffect(() => {
       dispatch(getShopById(id));
@@ -86,7 +88,11 @@ function MyOrderDetail() {
       dispatch(updateProduct(product[0].id, {calification: newCalification(newInput.calification)}))
       dispatch(postReview({comment: newInput.comment, userId: userId.id, productId: product[0].id, calification: newInput.calification}))
       dispatch(updateShop(id, {state: 'Received'}))
-      alert('Order updated')
+      Swal.fire({
+        title: 'Order updated!',
+        icon: 'success',
+        confirmButtonText: 'OK',
+      })
       dispatch(getShopById(id))
       navigate('/profile')
     }
