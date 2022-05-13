@@ -15,11 +15,12 @@ import NavBar from "../../NavBar/Navbar";
 function AllProducts() {
   let products = useSelector((state) => state.allProducts);
   const productsFilter = useSelector((state) => state.productsFilter);
+  const userActive = useSelector((state) => state.userActive);
   products = productsFilter.length > 0 ? productsFilter : products;
   const dispatch = useDispatch();
   // const category = "allproducts";
   const category = "Allproducts";
-  // console.log(category);
+  console.log(userActive);
 
   // Pagination Info //
   const currentPage = useSelector((state) => state.currentPage);
@@ -42,7 +43,7 @@ function AllProducts() {
   // console.log(products);
   return (
     <div className={styles.allProducts}>
-      <NavBar/>
+      <NavBar />
       <Categories />
       {products.length > 0 ? (
         <>

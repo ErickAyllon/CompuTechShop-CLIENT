@@ -11,6 +11,12 @@ import { useAuth0 } from "@auth0/auth0-react";
 function Home() {
   const { user, isAuthenticated } = useAuth0();
   const dispatch = useDispatch();
+  const { getAccessTokenSilently, getIdTokenClaims } = useAuth0();
+  // console.log("esto es el get access", getAccessTokenSilently)
+  // console.log("esto es el get ID", getIdTokenClaims)
+
+  const MeLoTraje = localStorage.getItem('clave')
+  console.log(MeLoTraje)
   useEffect(() => {
     if (user) dispatch(getUserDetail(user.email));
     dispatch(getProducts());

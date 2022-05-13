@@ -23,14 +23,18 @@ const ShoppingCart = () => {
   const arregloPrice = carti.map((el) => el.price * el.quantity);
   const reducir = (accumulator, curr) => accumulator + curr;
   arregloTotal = arregloPrice.length > 0 ? arregloPrice.reduce(reducir) : arregloPrice;
+  if (carti.length > 0) {
 
-
+    localStorage.setItem("carrito", carti[0].name)
+    localStorage.setItem("car", carti[0].id)
+  }
   const delFromCart = (id, all = false) => {
     all
       ? dispatch({ type: TYPES.REMOVE_ALL_FROM_CART, payload: id })
       : dispatch({ type: TYPES.REMOVE_ONE_FROM_CART, payload: id });
   };
   const clearCart = () => {
+    localStorage.removeItem("carrito")
     dispatch({ type: TYPES.CLEAR_CART });
   };
   const addToCart = (id) => {
@@ -58,7 +62,12 @@ const ShoppingCart = () => {
       navigate("/purchaseConfirm")
     }, 2000)
   }
+  const carritoDelLocal = [];
 
+  carritoDelLocal.name = localStorage.getItem("carrito")
+  carritoDelLocal.id = localStorage.getItem("car")
+
+  console.log(carritoDelLocal)
 
   return (
     <div className={styles.cart}>
@@ -83,7 +92,7 @@ const ShoppingCart = () => {
             <div>
               <article className="box">
                 <Dropdown.Divider />
-                {carti?.map((el, index) => (
+                {carritoDelLocal?.map((el, index) => (
                   <Dropdown.Item>
 
                     <CartItem

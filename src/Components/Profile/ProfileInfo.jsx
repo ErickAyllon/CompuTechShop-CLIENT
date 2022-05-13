@@ -11,10 +11,17 @@ import MyOrders from "./MyOrders/MyOrders";
 function ProfileInfo() {
   let currentUser = useSelector((state) => state.userActive);
   let allUsers = useSelector((state) => state.users2);
-
-  let filteredUser = allUsers.filter((el) => el.email === currentUser.email);
-
   const { user, isAuthenticated } = useAuth0();
+
+  let userLocal = [];
+  if (user) {
+    localStorage.setItem("email", user.email)
+  }
+  userLocal.email = localStorage.getItem("email")
+
+
+  let filteredUser = allUsers.filter((el) => el.email === userLocal.email);
+
 
   if (filteredUser.length !== 0) {
     return (
