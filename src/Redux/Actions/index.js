@@ -1,18 +1,16 @@
 import { ClassNames } from "@emotion/react";
 import axios from "axios";
 
-
-
-export const GET_USER_DETAIL = "GET_USER_DETAIL"
+export const GET_USER_DETAIL = "GET_USER_DETAIL";
 export const getUserDetail = (email) => {
   return async (dispatch) => {
-    var json = await axios.get("/users" + email)
+    var json = await axios.get("/users" + email);
     return dispatch({
       type: "GET_USER_DETAIL",
       payload: json.data,
-    })
-  }
-}
+    });
+  };
+};
 
 export const GET_USER = "GET_USER";
 export const getUser = () => {
@@ -54,6 +52,7 @@ export function cleanFilter() {
 }
 
 export function getDetail(name) {
+  console.log('name ', name)
   return async function (dispatch) {
     try {
       var json = await axios.get("/products?name=" + name);
@@ -84,10 +83,7 @@ export function getCategories() {
 
 export function postProducts(payload) {
   return async function () {
-    const response = await axios.post(
-      "/postProduct",
-      payload
-    );
+    const response = await axios.post("/postProduct", payload);
     return response;
   };
 }
@@ -101,9 +97,7 @@ export function postUser(payload) {
 
 export const filterByCategory = (category) => {
   return async (dispatch) => {
-    var json = await axios.get(
-      "/productCategory?category=" + category
-    );
+    var json = await axios.get("/productCategory?category=" + category);
     return dispatch({
       type: "FILTER_BY_CATEGORY",
       payload: json.data,
@@ -202,34 +196,25 @@ export function setCurrentPage(payload) {
 
 export function postCategory(payload) {
   return async function () {
-    const response = await axios.post(
-      "/postCategory",
-      payload
-    );
+    const response = await axios.post("/postCategory", payload);
     return response;
   };
 }
 export function postBuyCart(payload) {
   return async function (dispatch) {
-    const response = await axios.post(
-      "/Checkout",
-      payload
-    );
+    const response = await axios.post("/Checkout", payload);
 
     return dispatch({
       type: "BUY_CART",
       payload: response.data,
     });
-
-  }
+  };
 }
 
 export function deleteCategory(id) {
   return async function (dispatch) {
     try {
-      const json = await axios.delete(
-        "/deleteCategory/" + id
-      );
+      const json = await axios.delete("/deleteCategory/" + id);
       return dispatch({
         type: "DELETE_CATEGORY",
         payload: json.data,
@@ -243,9 +228,7 @@ export function deleteCategory(id) {
 export function deleteProduct(id) {
   return async function (dispatch) {
     try {
-      const json = await axios.delete(
-        "/deleteProduct/" + id
-      );
+      const json = await axios.delete("/deleteProduct/" + id);
       return dispatch({
         type: "DELETE_PRODUCT",
         payload: json.data,
@@ -257,19 +240,19 @@ export function deleteProduct(id) {
 }
 
 export function updateProduct(id, payload) {
-  // console.log(id)
-  // console.log(payload)
+  console.log(id)
+  console.log(payload)
   return async function (dispatch) {
     try {
-      const json = await axios.put('/updateProduct/' + id, payload)
+      const json = await axios.put("/updateProduct/" + id, payload);
       return dispatch({
         type: "UPDATE_PRODUCT",
-        payload: json.data
-      })
+        payload: json.data,
+      });
     } catch (error) {
-      console.log('catch: ' + error);
+      console.log("catch: " + error);
     }
-  }
+  };
 }
 
 export function sortUsersByLastName(payload) {
@@ -303,15 +286,15 @@ export function sortOrderByAmount(payload) {
 export function updateShop(id, payload) {
   return async function (dispatch) {
     try {
-      const json = await axios.put('/updatePayment/' + id, payload)
+      const json = await axios.put("/updatePayment/" + id, payload);
       return dispatch({
         type: "UPDATE_SHOP",
-        payload: json.data
-      })
+        payload: json.data,
+      });
     } catch (err) {
-      console.log(err)
+      console.log(err);
     }
-  }
+  };
 }
 
 export const getPayment = (payload) => {
@@ -320,7 +303,9 @@ export const getPayment = (payload) => {
   const { payment, email } = payload;
   return async function (dispatch) {
     try {
-      const json = await axios.get("/success?id=" + payment + "&successEmail=" + email);
+      const json = await axios.get(
+        "/success?id=" + payment + "&successEmail=" + email
+      );
       return dispatch({
         type: "GET_PAYMENT",
         payload: json.data,
@@ -329,21 +314,21 @@ export const getPayment = (payload) => {
       console.log(error);
     }
   };
-}
+};
 
 export const getTotalUserPayments = (email) => {
   return async function (dispatch) {
     try {
-      const json = await axios.get(`/getPaymentAcount/${email}`)
+      const json = await axios.get(`/getPaymentAcount/${email}`);
       return dispatch({
-        type: 'GET_TOTAL_USER_PAYMENTS',
+        type: "GET_TOTAL_USER_PAYMENTS",
         payload: json.data,
-      })
+      });
     } catch (err) {
-      console.log(err)
+      console.log(err);
     }
-  }
-}
+  };
+};
 
 export function authenticate(payload) {
   return {
@@ -353,17 +338,81 @@ export function authenticate(payload) {
 }
 
 export function updateUser(id, payload) {
-  console.log(id)
-  console.log(payload)
+  // console.log(id)
+  // console.log(payload)
   return async function (dispatch) {
     try {
-      const json = await axios.put('/updateUser/' + id, payload)
+      var json = await axios.put("/updateUser/" + id, payload);
       return dispatch({
         type: "UPDATE_USER",
-        payload: json.data
+        payload: json.data,
+      });
+    } catch (error) {
+      console.log(error);
+    }
+  };
+}
+
+export const getOrders = () => {
+  return async function (dispatch) {
+    try {
+      const json = await axios.get(`http://localhost:3001/getOrders`)
+      return dispatch({
+        type: 'GET_ORDERS',
+        payload: json.data,
       })
     } catch (err) {
       console.log(err)
+    }
+  }
+} 
+
+export const getOrdersByEmail = (email) => {
+  return async function (dispatch) {
+    try {
+      const json = await axios.get(`http://localhost:3001/getPayments?email=${email}`)
+      return dispatch({
+        type: 'GET_ORDERS_BY_EMAIL',
+        payload: json.data,
+      })
+    } catch (err) {
+      console.log(err)
+    }
+  }
+} 
+
+export function postReview(payload) {
+  return async function () {
+    let postReview = await axios.post("http://localhost:3001/reviews", payload);
+    return postReview;
+  };
+}
+
+export function getReview(name) {
+  return async function (dispatch) {
+    try {
+      let json = await axios.get("http://localhost:3001/reviews?productName=" + name);
+      return dispatch({
+        type: 'GET_REVIEW',
+        payload: json.data,
+      })
+    } catch (error) {
+        console.log(error)
+    }
+  }
+}
+
+export function deleteReview(id) {
+  console.log(id)
+  return async function(dispatch) {
+    try {
+      const json = await axios.delete('http://localhost:3001/reviews/' + id);
+      return dispatch({
+        type: 'DELETE_REVIEW',
+        payload: json.data
+      })
+    } catch (error) {
+        console.log(error)
     }
   }
 }

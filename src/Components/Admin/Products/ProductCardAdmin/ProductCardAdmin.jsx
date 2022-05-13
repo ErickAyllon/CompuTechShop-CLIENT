@@ -43,7 +43,7 @@ function ProductCardAdmin({ name, price, image, calification, id, update, delet 
           <Rating
             name="half-rating-read"
             size="small"
-            defaultValue={calification / 2}
+            defaultValue={calification}
             precision={0.5}
             readOnly
             className={styles.productCardCalification}

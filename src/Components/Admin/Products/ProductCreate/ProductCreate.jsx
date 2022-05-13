@@ -27,7 +27,7 @@ function ProductCreate() {
     price: "",
     quantity: "",
     brand: "",
-    calification: "",
+    // calification: "",
     image: "",
     description: "",
     categories: "",
@@ -60,7 +60,7 @@ function ProductCreate() {
       price: "",
       quantity: "",
       brand: "",
-      calification: "",
+      // calification: "",
       image: "",
       description: "",
       categories: "",
@@ -109,15 +109,15 @@ function ProductCreate() {
     if (!input.price) {
       errors.price = "Price required";
     }
-    if (!input.calification || input.calification > 10) {
-      errors.calification = "10 max";
-    }
-    if (!input.calification || input.calification < 0) {
-      errors.calification = "Calification must be > 0";
-    }
-    if (!input.calification) {
-      errors.calification = "Calification required";
-    }
+    // if (!input.calification || input.calification > 10) {
+    //   errors.calification = "10 max";
+    // }
+    // if (!input.calification || input.calification < 0) {
+    //   errors.calification = "Calification must be > 0";
+    // }
+    // if (!input.calification) {
+    //   errors.calification = "Calification required";
+    // }
     if (!input.quantity || input.quantity < 0) {
       errors.quantity = "Quantity must be > 0";
     }
@@ -313,6 +313,7 @@ function ProductCreate() {
         quantity={input.quantity}
         description={input.description}
         calification={false}
+        category={input.categories}
       />
     </div>
   );

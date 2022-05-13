@@ -3,7 +3,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { Link, useParams, useNavigate } from "react-router-dom";
 import { useAuth0 } from "@auth0/auth0-react";
 
-import { getUser, getUserDetail } from "../../Redux/Actions/index.js";
+import { getOrdersByEmail, getUser, getUserDetail } from "../../Redux/Actions/index.js";
 import styles from "./Profile.module.css";
 import DropdownMenu from "react-bootstrap/esm/DropdownMenu";
 import { Dropdown } from "react-bootstrap";
@@ -12,6 +12,7 @@ import Profile2 from "../Profile/ProfileInfo.jsx";
 
 export default function Profile() {
   const { user, isAuthenticated } = useAuth0();
+
 
   const dispatch = useDispatch();
   let myUsers = useSelector((state) => state.users2);
@@ -38,8 +39,7 @@ export default function Profile() {
             focusFirstItemOnShow="false"
             variant="dark"
           >
-
-            <Dropdown.Item href={"/profile"}>My Profile</Dropdown.Item>
+            <Dropdown.Item href={"/autentication"}>My Profile</Dropdown.Item>
 
             {/* <Dropdown.Item href="/admin">My Orders</Dropdown.Item> */}
             <Dropdown.Divider />
