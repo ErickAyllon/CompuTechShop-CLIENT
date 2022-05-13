@@ -1,5 +1,4 @@
 import React, { useState, useEffect} from 'react'
-//import styles from './ProductDetail.module.css'
 import { getShopById, getUser, updateShop } from '../../../../Redux/Actions'
 import { useSelector, useDispatch } from 'react-redux';
 import { useParams, useNavigate } from 'react-router-dom';
@@ -7,9 +6,8 @@ import { Link } from 'react-router-dom';
 import NotFound404 from '../../../NotFound404/NotFound404';
 import AdminNav from '../../AdminNav/AdminNav'
 import AdminNav2 from '../../AdminNav/AdminNav2';
-import {Box, TextField, MenuItem, Button } from '@mui/material/';
+import { TextField, MenuItem, Button } from '@mui/material/';
 import styles from './ShopDetails.module.css'
-import Stack from '@mui/material/Stack';
 import Paper from '@mui/material/Paper';
 import { styled } from '@mui/material/styles';
 
@@ -28,8 +26,6 @@ function ShopDetail() {
     justifyContent:'space-between' ,
     color: theme.palette.text.secondary,
   }));
-
-
 
   useEffect(() => {
     dispatch(getShopById(id));
@@ -154,15 +150,10 @@ function ShopDetail() {
           </div>
         )
       })
-      
-
       : <NotFound404/>
       }
     </div>
   )
-
-
-
 }
 
 export default ShopDetail

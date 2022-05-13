@@ -39,6 +39,8 @@ import Autentication from "./Components/Autenticacion/Autentication";
 import AdminManager from "./Components/Admin/Users/AdminManager/AdminManager";
 import AdminUpdate from "./Components/Admin/Users/AdminManager/AdminUpdate/AdminUpdate";
 import AutenticationUpdate from "./Components/Autenticacion/AutenticationUpdate";
+import MyOrders from "./Components/Profile/MyOrders/MyOrders";
+import MyOrderDetail from "./Components/Profile/MyOrders/MyOrderDetail/MyOrderDetail";
 
 const getDesignTokens = (mode) => ({
   palette: {
@@ -99,6 +101,7 @@ function App() {
           {/* <Route path="/profile" element={<Profile />} /> */}
           <Route path="/Allproducts" element={<AllProducts />} />
           <Route path="/profile" element={<ProfileInfo />} />
+          <Route path="/profile/order/:id" element={<MyOrderDetail />} />
           <Route path="/category/:category" element={<Category />} />
           <Route path="/:name" element={<ProductDetail />} />
           <Route path="/search/:search" element={<ProductSearched />} />
@@ -147,7 +150,6 @@ function App() {
             <Route path="/admin/categories" element={<AdminCategories />} />
             <Route path="/admin/shop/:id" element={<ShopDetails />} />
             <Route path="/admin/allorders" element={<ViewAllOrders />} />
-
             <Route path="/admin/users" element={<Users />} />
           </Route>
 

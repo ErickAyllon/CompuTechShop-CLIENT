@@ -16,7 +16,7 @@ function Home() {
     dispatch(getProducts());
   }, [dispatch]);
   const userActive = useSelector((state) => state.userActive);
-  console.log(userActive);
+  // console.log(userActive)
   return (
     <div className={styles.home}>
       <NavBar />

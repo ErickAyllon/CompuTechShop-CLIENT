@@ -6,6 +6,7 @@ import NavBar from "../NavBar/Navbar";
 import Loader from "../Loader/Loader";
 import Button from "@mui/material/Button";
 import { useSelector } from "react-redux";
+import MyOrders from "./MyOrders/MyOrders";
 
 function ProfileInfo() {
   let currentUser = useSelector((state) => state.userActive);
@@ -40,6 +41,9 @@ function ProfileInfo() {
               <Link to="/AutenticationUpdate">
                 <Button variant="outlined">Update Your Profile</Button>
               </Link>
+            </div>
+            <div>
+              <MyOrders />
             </div>
           </div>
         ) : (

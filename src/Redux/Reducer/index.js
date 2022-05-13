@@ -24,6 +24,9 @@ const initialState = {
   userDetail: [],
   activeUser: [],
   authenticated: null,
+  orders: [],
+  userOrders: [],
+  review: [],
   userActive: [],
 };
 
@@ -368,6 +371,30 @@ function rootReducer(state = initialState, action) {
     case "UPDATE_USER": {
       return {
         ...state,
+      };
+    }
+    case "GET_ORDERS": {
+      return {
+        ...state,
+        orders: action.payload,
+      };
+    }
+    case "GET_ORDERS_BY_EMAIL": {
+      return {
+        ...state,
+        userOrders: action.payload,
+      };
+    }
+    case "GET_ORDERS_BY_EMAIL": {
+      return {
+        ...state,
+        userOrders: action.payload,
+      };
+    }
+    case "GET_REVIEW": {
+      return {
+        ...state,
+        review: action.payload,
       };
     }
     case TYPES.USER_ACTIVE: {
