@@ -69,13 +69,16 @@ const UpdateForm = ({
             defaultValue={values.nickname}
             required
             disabled
+            hidden
           />
 
           <TextField
+            variant="filled"
+            id="outlined-required"
             name="email_verified"
             value={values.email_verified}
-            disabled
             required
+            disabled
             hidden
           />
 
@@ -84,9 +87,11 @@ const UpdateForm = ({
             id="outlined-required"
             label="Picture"
             name="picture"
+            onChange={handleChange}
             defaultValue={values.picture}
+            error={errors.picture ? true : false}
+            helperText={errors.picture}
             required
-            disabled
           />
 
           <TextField
@@ -120,11 +125,9 @@ const UpdateForm = ({
             id="outlined-required"
             label="Birthdate"
             name="birthday"
-            onChange={handleChange}
             value={values.birthday}
-            error={errors.birthday ? true : false}
-            helperText={errors.birthday}
             required
+            disabled
           />
 
           <div className={styles.createButton}>

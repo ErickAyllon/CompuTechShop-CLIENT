@@ -251,11 +251,6 @@ function rootReducer(state = initialState, action) {
         ...state,
         currentPage: action.payload,
       };
-    // case "UPDATE": {
-    //   return {
-    //     ...state,
-    //   };
-    // }
     case "DELETE_CATEGORY":
       return {
         ...state,
@@ -370,11 +365,6 @@ function rootReducer(state = initialState, action) {
         ...state,
         userDetail: action.payload,
       };
-    case "UPDATE_USER": {
-      return {
-        ...state,
-      };
-    }
     case "UPDATE_USER": {
       return {
         ...state,

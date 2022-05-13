@@ -339,13 +339,10 @@ export function authenticate(payload) {
 export function updateUser(id, payload) {
   return async function (dispatch) {
     try {
-      var updateUser = await axios.put(
-        "http://localhost:3001/updateUser" + id,
-        payload
-      );
+      var json = await axios.put("/updateUser/" + id, payload);
       return dispatch({
         type: "UPDATE_USER",
-        payload: updateUser.data,
+        payload: json.data,
       });
     } catch (error) {
       console.log(error);

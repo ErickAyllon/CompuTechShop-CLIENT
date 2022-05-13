@@ -38,8 +38,7 @@ export default function Profile() {
             focusFirstItemOnShow="false"
             variant="dark"
           >
-
-            <Dropdown.Item href={"/profile"}>My Profile</Dropdown.Item>
+            <Dropdown.Item href={"/autentication"}>My Profile</Dropdown.Item>
 
             {/* <Dropdown.Item href="/admin">My Orders</Dropdown.Item> */}
             <Dropdown.Divider />

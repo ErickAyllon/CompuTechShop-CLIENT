@@ -38,6 +38,7 @@ import UpdateProfile from "./Components/Profile/UpdateProfile";
 import Autentication from "./Components/Autenticacion/Autentication";
 import AdminManager from "./Components/Admin/Users/AdminManager/AdminManager";
 import AdminUpdate from "./Components/Admin/Users/AdminManager/AdminUpdate/AdminUpdate";
+import AutenticationUpdate from "./Components/Autenticacion/AutenticationUpdate";
 
 const getDesignTokens = (mode) => ({
   palette: {
@@ -106,6 +107,11 @@ function App() {
           <Route path="/form" element={<FormUser />} />
           <Route path="/admin" element={<Admin />} />
           <Route path="/autentication" element={<Autentication />} />
+          <Route path="/UpdateProfile" element={<UpdateProfile />} />
+          <Route
+            path="/AutenticationUpdate"
+            element={<AutenticationUpdate />}
+          />
 
           <Route
             element={
