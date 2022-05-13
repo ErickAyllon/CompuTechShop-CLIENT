@@ -354,6 +354,8 @@ export function authenticate(payload) {
 }
 
 export function updateUser(id, payload) {
+  // console.log(id)
+  // console.log(payload)
   return async function (dispatch) {
     try {
       const json = await axios.put('/updateUser/' + id, payload)
@@ -401,14 +403,29 @@ export function postReview(payload) {
     return postReview;
   };
 }
+
 export function getReview(name) {
-  console.log(name);
   return async function (dispatch) {
     try {
       let json = await axios.get("http://localhost:3001/reviews?productName=" + name);
       return dispatch({
         type: 'GET_REVIEW',
         payload: json.data,
+      })
+    } catch (error) {
+        console.log(error)
+    }
+  }
+}
+
+export function deleteReview(id) {
+  console.log(id)
+  return async function(dispatch) {
+    try {
+      const json = await axios.delete('http://localhost:3001/reviews/' + id);
+      return dispatch({
+        type: 'DELETE_REVIEW',
+        payload: json.data
       })
     } catch (error) {
         console.log(error)

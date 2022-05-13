@@ -313,6 +313,7 @@ function ProductCreate() {
         quantity={input.quantity}
         description={input.description}
         calification={false}
+        category={input.categories}
       />
     </div>
   );

@@ -1,6 +1,6 @@
 import React, { useEffect} from 'react'
 import styles from './ProductDetailAdmin.module.css'
-import { deleteProduct, getDetail, getProducts } from '../../../../Redux/Actions/index.js'
+import { deleteProduct, getDetail, getProducts, getReview } from '../../../../Redux/Actions/index.js'
 import { useSelector, useDispatch } from 'react-redux';
 import { useNavigate, useParams } from 'react-router-dom';
 import { Rating } from '@mui/material';
@@ -9,13 +9,16 @@ import trash from '../../../../Images/trash.png'
 import edit from '../../../../Images/edit.png'
 import AdminNav2 from '../../AdminNav/AdminNav2';
 import CategoriesAdmin from '../Categories/CategoriesAdmin';
+import DetailReviews from '../../../Detail/DetailReviews/DetailReviews';
 
 function ProductDetailAdmin (){
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const { name } = useParams();
+  const review = useSelector((state) => state.review);
 
   useEffect(() => {
+    dispatch(getReview(name))
     dispatch(getDetail(name));
   }, [dispatch]);
 
@@ -53,10 +56,8 @@ function ProductDetailAdmin (){
             </div>
             <div className={styles.productDetailInfo}>
                 <h1 className={styles.productDetailName}>{product[0].name}</h1>
-                <Rating className={styles.productDetailRating} name="half-rating-read" size="small" defaultValue={product[0].calification / 2} precision={0.5} readOnly />
+                <Rating className={styles.productDetailRating} name="half-rating-read" size="small" defaultValue={product[0].calification} precision={0.5} readOnly />
                 <p className={styles.productDetailPrice}>${product[0].price}</p>
-                {/* <p>{product[0].brand}</p>
-                <p>{product[0].quantity}</p> */}
             </div>
               <button className={styles.button}>
                 <img src={trash} onClick={handleDelete} id={product[0].id}/>
@@ -66,12 +67,53 @@ function ProductDetailAdmin (){
               </button>
           </div>
 
+          <div className={styles.allInfoDetail}>
+            <div className={styles.characteristics}>
+              <div className={styles.characteristicsContainer}>
+                <h3 style={{textAlign:'center'}}>Characteristics:</h3>
+                <h5>Brand: <span>{product[0].brand}</span></h5>
+                <h5>Category: <span>{product[0].category[0]}</span></h5>
+                <h5>Stock: <span>{product[0].quantity}</span></h5>
+              </div>
+            </div>
             <div className={styles.productDetailDescription}>
               <div className={styles.productDetailDescriptionContainer}>
-                <p>Description:</p>
+                <h3>Description:</h3>
                 <p>{product[0].description}</p>
               </div>
             </div>
+            <div className={styles.reviewContainer}>
+            { review.length ?           
+                  <div className={styles.reviewsContainer}>
+                    <h3>Opinions about {product[0].name}</h3>
+                    <div>
+                      <div className={styles.opinionsPromedy}>
+                        <h5>{product[0].calification}</h5>
+                        <Rating
+                          size="small"
+                          defaultValue={Number(product[0].calification)}
+                          precision={0.5}
+                          readOnly
+                        />
+                      <p>Promedy between {review.length} opinions</p>
+                      </div>
+                    </div>
+                    <div>
+                      {
+                      review.map(e => { 
+                        return (
+                          e.comment ?
+                          <DetailReviews key={e.id} comment={e.comment} user={e.user} calification={e.calification} delet={true} id={e.id} productName={name} />
+                          : null
+                        )
+                      })
+                      }
+                    </div>
+                </div>
+              : null
+              }
+            </div>
+          </div>
         </div>
       : null
     }

@@ -5,7 +5,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import { useNavigate, useParams } from 'react-router-dom';
 import { Rating } from '@mui/material';
 
-function ProductDetailAdmin ({nameD, image, price, brand, quantity, description, calification}) {
+function ProductDetailAdmin ({nameD, image, price, brand, quantity, description, calification, category}) {
   const dispatch = useDispatch();
   const { name } = useParams();
 
@@ -24,21 +24,29 @@ function ProductDetailAdmin ({nameD, image, price, brand, quantity, description,
             <div className={styles.productDetailInfo}>
                 <h1 className={styles.productDetailName}>{nameD}</h1>
                 {   calification ? 
-                    <Rating className={styles.productDetailRating} name="half-rating-read" size="small" defaultValue={calification / 2} precision={0.5} readOnly />
+                    <Rating className={styles.productDetailRating} name="half-rating-read" size="small" defaultValue={calification} precision={0.5} readOnly />
                     : null
                 }
                 <p className={styles.productDetailPrice}>${price}</p>
-                {/* <p>{brand}</p>
-                <p>{quantity}</p> */}
             </div>
           </div>
 
+          <div className={styles.allInfoDetail}>
+            <div className={styles.characteristics}>
+              <div className={styles.characteristicsContainer}>
+                <h3 style={{textAlign:'center'}}>Characteristics:</h3>
+                <h5>Brand: <span>{brand}</span></h5>
+                <h5>Category: <span>{category ? category : ''}</span></h5>
+                <h5>Stock: <span>{quantity}</span></h5>
+              </div>
+            </div>
             <div className={styles.productDetailDescription}>
               <div className={styles.productDetailDescriptionContainer}>
-                <p>Description:</p>
+                <h3>Description:</h3>
                 <p>{description}</p>
               </div>
             </div>
+          </div>
         </div>
 )}
 

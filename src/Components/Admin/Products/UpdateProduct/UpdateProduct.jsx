@@ -280,7 +280,7 @@ function UpdateProduct() {
         : null
         }
         <h3 style={{textAlign:'center'}}>Product Detail updated</h3>
-        <ProductDetailAdminCard nameD={input.name} image={input.image} price={input.price} brand={input.brand} quantity={input.quantity} description={input.description} calification={input.calification} />
+        <ProductDetailAdminCard nameD={input.name} image={input.image} price={input.price} brand={input.brand} quantity={input.quantity} description={input.description} category={input.categories} calification={input.calification} />
     </div>
   )
 }

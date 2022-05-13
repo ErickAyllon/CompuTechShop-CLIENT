@@ -49,41 +49,60 @@ function ProductDetail() {
                 className={styles.productDetailRating}
                 name="half-rating-read"
                 size="small"
-                defaultValue={product[0].calification}
+                defaultValue={Number(product[0].calification)}
                 precision={0.5}
                 readOnly
               />
               <p className={styles.productDetailPrice}>${product[0].price}</p>
               <button className={styles.addBtn} onClick={() => addToCart(product[0].id)}><img src={add} alt="" /></button>
-              {/* <button className= {styles.btn} onClick={() => delFromCart(product[0].id)}>-</button> */}
-              {/* <p>{product[0].brand}</p>
-                <p>{product[0].quantity}</p> */}
             </div>
           </div>
-          <div className={styles.productDetailDescription}>
-            <div className={styles.productDetailDescriptionContainer}>
-              <p>Description:</p>
-              <p>{product[0].description}</p>
-            </div>
-          </div>
-          <div className={styles.productDetailDescription}>
-            { review.length ?           
-                <div className={styles.productDetailDescriptionContainer}>
-                  <p>Reviews:</p>
-                  <div>
-                    {
-                    review.map(e => { 
-                      return (
-                        e.comment ?
-                        <DetailReviews comment={e.comment} user={e.user} calification={e.calification} />
-                        : null
-                      )
-                    })
-                    }
-                  </div>
+          <div className={styles.allInfoDetail}>
+            <div className={styles.characteristics}>
+              <div className={styles.characteristicsContainer}>
+                <h3 style={{textAlign:'center'}}>Characteristics:</h3>
+                <h5>Brand: <span>{product[0].brand}</span></h5>
+                <h5>Category: <span>{product[0].category[0]}</span></h5>
+                <h5>Stock: <span>{product[0].quantity}</span></h5>
               </div>
-            : null
-            }
+            </div>
+            <div className={styles.productDetailDescription}>
+              <div className={styles.productDetailDescriptionContainer}>
+                <h3>Description:</h3>
+                <p>{product[0].description}</p>
+              </div>
+            </div>
+            <div className={styles.reviewContainer}>
+              { review.length ?           
+                  <div className={styles.reviewsContainer}>
+                    <h3>Opinions about {product[0].name}</h3>
+                    <div>
+                      <div className={styles.opinionsPromedy}>
+                        <h5>{product[0].calification}</h5>
+                        <Rating
+                          size="small"
+                          defaultValue={Number(product[0].calification)}
+                          precision={0.5}
+                          readOnly
+                        />
+                      <p>Promedy between {review.length} opinions</p>
+                      </div>
+                    </div>
+                    <div>
+                      {
+                      review.map(e => { 
+                        return (
+                          e.comment ?
+                          <DetailReviews key={e.id} comment={e.comment} user={e.user} calification={e.calification} />
+                          : null
+                        )
+                      })
+                      }
+                    </div>
+                </div>
+              : null
+              }
+            </div>
           </div>
         </div>
       ) : null}
