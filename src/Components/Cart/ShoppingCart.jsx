@@ -65,10 +65,10 @@ const ShoppingCart = () => {
 
     objetoNuevo = JSON.parse(localStorage.getItem("carrito"))
 
-    console.log("este es el carrito ", objetoNuevo)
+    // console.log("este es el carrito ", objetoNuevo)
   } else {
     objetoNuevo = JSON.parse(localStorage.getItem("carrito"))
-    console.log("este es el objetoNuevo cuando venis desde afuera", objetoNuevo)
+    // console.log("este es el objetoNuevo cuando venis desde afuera", objetoNuevo)
   }
 
 
@@ -84,7 +84,7 @@ const ShoppingCart = () => {
 
   return (
     <div className={styles.cart}>
-      <Dropdown active="false" autoClose="outside" >
+      <Dropdown active="false" autoClose="outside" className={styles.drop}>
         <Dropdown.Toggle variant="Secondary" id="dropdown-basic">
           <img
             src={shop}

@@ -41,6 +41,7 @@ import AdminUpdate from "./Components/Admin/Users/AdminManager/AdminUpdate/Admin
 import AutenticationUpdate from "./Components/Autenticacion/AutenticationUpdate";
 import MyOrders from "./Components/Profile/MyOrders/MyOrders";
 import MyOrderDetail from "./Components/Profile/MyOrders/MyOrderDetail/MyOrderDetail";
+import MyFavorites from "./Components/Wishlist/MyFavorites/MyFavorites";
 
 const getDesignTokens = (mode) => ({
   palette: {
@@ -111,6 +112,7 @@ function App() {
           <Route path="/admin" element={<Admin />} />
           <Route path="/autentication" element={<Autentication />} />
           <Route path="/UpdateProfile" element={<UpdateProfile />} />
+          <Route path="/myfavorites" element={<MyFavorites />} />
           <Route
             path="/AutenticationUpdate"
             element={<AutenticationUpdate />}

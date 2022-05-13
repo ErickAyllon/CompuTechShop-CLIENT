@@ -3,6 +3,8 @@ import styles from "./ProductCard.module.css";
 import { Rating } from "@mui/material";
 import { Link } from "react-router-dom";
 import add from '../../Images/add.png'
+import Wishlist from "../Wishlist/WishlistIcon/WishlistIcon";
+
 
 
 function ProductCard({
@@ -45,6 +47,8 @@ function ProductCard({
           />
           <button className={styles.addBtn} onClick={() => addToCart(id)}><img src={add} alt="" /></button>
           {/* <button className = {styles.btn} onClick={() => delFromCart(id)}>-</button> */}
+          <Wishlist id={id} name={name} />
+
       <br />
       {/* <button onClick={() => delFromCart(id, true)}>Eliminar todos</button> */}
         </div>

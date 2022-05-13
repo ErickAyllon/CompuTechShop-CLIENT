@@ -17,7 +17,7 @@ const PurchaseSummary = () => {
   const reducir = (accumulator, curr) => accumulator + curr;
   let arregloTotal
   const navigate = useNavigate()
-  console.log(userActive.email)
+  // console.log(userActive.email)
   if (arregloPrice.length > 0) { arregloTotal = arregloPrice.reduce(reducir) }
 
   const handleBuyCart = (e) => {
@@ -46,7 +46,7 @@ const PurchaseSummary = () => {
       : dispatch({ type: TYPES.REMOVE_ONE_FROM_CART, payload: id });
   };
   const addToCart = (id) => {
-    console.log(id);
+    // console.log(id);
     dispatch({ type: TYPES.ADD_TO_CART, payload: id });
   };
 

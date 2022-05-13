@@ -20,7 +20,7 @@ function AllProducts() {
   const dispatch = useDispatch();
   // const category = "allproducts";
   const category = "Allproducts";
-  console.log(userActive);
+  // console.log(userActive);
 
   // Pagination Info //
   const currentPage = useSelector((state) => state.currentPage);
