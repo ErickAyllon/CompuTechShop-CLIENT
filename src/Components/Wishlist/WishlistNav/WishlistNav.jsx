@@ -6,6 +6,8 @@ import { useEffect } from 'react';
 import { getWishlist } from '../../../Redux/Actions';
 import { useAuth0 } from "@auth0/auth0-react";
 import { Link } from "react-router-dom";
+import Badge from '@mui/material/Badge';
+import { styled } from '@mui/material/styles';
 
 function WishlistNav() {
   const dispatch = useDispatch();
@@ -13,16 +15,31 @@ function WishlistNav() {
   const userss = useSelector((state) => state.users)
   const userAuth0Email = user?.email
   const userId = userss?.find(user => user.email === userAuth0Email)
+  const wishlist = useSelector((state) => state.wishlist)
 
   useEffect(() => {
     dispatch(getWishlist(userId?.id))
   }, [dispatch, userId])
 
+  const StyledBadge = styled(Badge)(({ theme }) => ({
+    '& 	.MuiBadge-standard': {
+      right: -4,
+      top: 5,
+      border: `2px solid ${theme.palette.background.paper}`,
+      letterSpacing: '1px',
+      height:'22px',
+      width:'22px',
+      borderRadius:'100%'
+    },
+  }));
+
   return (
     <div className={styles.wishlistNav}>
       <div className={styles.heart}>
         <Link to='/myfavorites'>
-            <img src={filledFavorite} alt="profileImg" />
+          <StyledBadge badgeContent={Number(wishlist.length)} color="info">
+              <img src={filledFavorite} alt="profileImg" />
+          </StyledBadge>
         </Link>
       </div>
     </div>

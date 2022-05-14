@@ -24,7 +24,7 @@ root.render(
 
         useRefreshTokens={true}
         cacheLocation="localstorage"
-        redirectUri={window.location.origin + process.env.PUBLIC_URL + "/"}
+        redirectUri={window.location.origin + process.env.PUBLIC_URL + "/welcome"}
       >
         <App />
       </Auth0Provider>

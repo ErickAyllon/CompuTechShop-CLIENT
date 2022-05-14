@@ -33,8 +33,10 @@ function NavBar() {
         <div className={styles.searchBarCall}>
           <SearchBar />
         </div>
-        <WishlistNav />
-        <div  style={{marginRight:'8px'}}>
+        <div style={{marginRight:'22px'}}>
+          <WishlistNav />
+        </div>
+        <div style={{marginRight:'8px'}}>
           <ShoppingCart/>
         </div>
         <IconButton sx={{ ml: 1 }} onClick={changeTheme} color="primary">

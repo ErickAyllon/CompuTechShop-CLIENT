@@ -418,7 +418,7 @@ export function deleteReview(id) {
 }
 
 export function getWishlist(id) {
-  console.log('getWhishlist: ', id)
+  // console.log('getWhishlist: ', id)
   return async function(dispatch) {
     try {
       const json = await axios.get("http://localhost:3001/wishlist?userId=" + id);

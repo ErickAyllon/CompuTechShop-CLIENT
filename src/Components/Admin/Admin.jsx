@@ -23,7 +23,7 @@ function Admin() {
 
   function handleAdmin(e) {
     const user = users.filter(e => (e.nickname === input.nickname && e.password === input.password && e.is_admin))
-    console.log(user)
+    // console.log(user)
     // if (users.map(e => (e.nickname === input.nickname && e.password === input.password && e.is_admin) ? true : false)[0]) {
     if (user.length > 0) {
       dispatch(authenticate(user[0]))
@@ -59,7 +59,6 @@ function Admin() {
                   name="nickname"
                   error={inputError.nickname ? true : false}
                   onChange={handleInput}
-                  // helperText={inputError.nickname}
                   style={{width:'36ch'}}
                 />
             </div>
