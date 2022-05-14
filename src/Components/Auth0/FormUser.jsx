@@ -120,6 +120,10 @@ const FormUser = () => {
             address: "",
             phone: "",
             birthday: "",
+            is_admin: false,
+            is_admin_pro: false,
+            password: "",
+            is_banned: false,
           }}
           onSubmit={(values) => {
             if (filteredUser.length === 0) {

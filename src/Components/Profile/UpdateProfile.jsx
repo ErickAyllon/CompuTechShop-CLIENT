@@ -74,6 +74,10 @@ const UpdateProfile = () => {
             address: "",
             phone: "",
             birthday: filteredUser[0].birthday,
+            is_admin: filteredUser[0].is_admin,
+            is_admin_pro: filteredUser[0].is_admin_pro,
+            password: filteredUser[0].password,
+            is_banned: filteredUser[0].is_banned,
           }}
           onSubmit={(values) => {
             dispatch(updateUser(id, values));
