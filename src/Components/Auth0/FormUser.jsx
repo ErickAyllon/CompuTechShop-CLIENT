@@ -128,7 +128,7 @@ const FormUser = () => {
           onSubmit={(values) => {
             if (filteredUser.length === 0) {
               dispatch(postUser(values));
-              alert("USER SUCCESSFULY");
+              alert("USER SUCCESSFULY CREATED");
               navigate("/profile");
             }
             if (filteredUser.length !== 0) {
