@@ -31,6 +31,8 @@ const initialState = {
 };
 
 function rootReducer(state = initialState, action) {
+  let estado = JSON.parse(localStorage.getItem("carrito")) 
+  console.log(estado)
   switch (action.type) {
     case "GET_PRODUCTS":
       let ordered = action.payload.sort(

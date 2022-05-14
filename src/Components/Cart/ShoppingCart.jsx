@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { TYPES } from "../../Redux/Actions/shoppingCartActions";
 import CartItem from "./CartItem";
 import { Dropdown } from "react-bootstrap";
@@ -6,6 +6,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { postBuyCart } from "../../Redux/Actions";
 import { Link, useNavigate } from "react-router-dom";
 import Loader from "../Loader/Loader";
+
 // import styles from './ShoppingCart.module.css'
 import styles from "./CartItem.module.css"
 import shop from '../../Images/shop.png'
@@ -16,17 +17,21 @@ const ShoppingCart = () => {
   const obj = {}
   const navigate = useNavigate()
   const dispatch = useDispatch();
-  const carti = useSelector((state) => state.cart);
+  let carti = useSelector((state) => state.cart);
+  console.log(carti)
+  
   let url = useSelector((state) => state.shopping);
   let arregloTotal = [];
 
-  const arregloPrice = carti.map((el) => el.price * el.quantity);
-  const reducir = (accumulator, curr) => accumulator + curr;
-  arregloTotal = arregloPrice.length > 0 ? arregloPrice.reduce(reducir) : arregloPrice;
+  // const arregloPrice = carti?.map((el) => el.price * el.quantity);
+  // const reducir = (accumulator, curr) => accumulator + curr;
+  // arregloTotal = arregloPrice.length > 0 ? arregloPrice.reduce(reducir) : arregloPrice;
   let nuevoPost = []
-  if (carti.length > 0) {
-    localStorage.setItem('carrito', JSON.stringify(carti))
-  }
+  let objetoNuevo = []
+  // if (carti.length > 0) {
+  //   carti = [...carti, ...objetoNuevo];
+  //   localStorage.setItem('carrito', JSON.stringify(carti))
+  // }
 
 
   const delFromCart = (id, all = false) => {
@@ -40,10 +45,8 @@ const ShoppingCart = () => {
     dispatch({ type: TYPES.CLEAR_CART });
   };
   const addToCart = (id) => {
-
     dispatch({ type: TYPES.ADD_TO_CART, payload: id });
   };
-  let objetoNuevo = []
   //LocalStorage
   if (carti) {
 
@@ -61,13 +64,17 @@ const ShoppingCart = () => {
     obj.picture_url = nuevoPost.map((el) => el.picture_url);
     obj.price = nuevoPost.map((el) => Number(el.price));
     obj.quantity = nuevoPost.map((el) => el.quantity);
-    localStorage.setItem('carrito', JSON.stringify(nuevoPost))
+    // localStorage.setItem('cart', JSON.stringify(nuevoPost))
 
-    objetoNuevo = JSON.parse(localStorage.getItem("carrito"))
+    // objetoNuevo = JSON.parse(localStorage.getItem("cart"))
+    
+    // objetoNuevo.map((el) => { 
+    //   addToCart
+    //  })
 
     console.log("este es el carrito ", objetoNuevo)
   } else {
-    objetoNuevo = JSON.parse(localStorage.getItem("carrito"))
+    // objetoNuevo = JSON.parse(localStorage.getItem("carrito"))
     console.log("este es el objetoNuevo cuando venis desde afuera", objetoNuevo)
   }
 

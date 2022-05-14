@@ -22,7 +22,7 @@ const PurchaseSummary = () => {
 
   const handleBuyCart = (e) => {
     e.preventDefault();
-    const nuevoPost = productsFilter.map((el) => {
+    const nuevoPost = cartProducts.map((el) => {
       return {
         picture_url: el.image,
         name: el.name,
@@ -30,6 +30,8 @@ const PurchaseSummary = () => {
         quantity: el.quantity,
       };
     });
+
+
     obj.name = nuevoPost.map((el) => el.name);
     obj.picture_url = nuevoPost.map((el) => el.picture_url);
     obj.price = nuevoPost.map((el) => Number(el.price));
@@ -51,6 +53,9 @@ const PurchaseSummary = () => {
   };
 
 
+let cartProducts = JSON.parse(localStorage.getItem('cart'))
+console.log(cartProducts)
+
   return (
 
     <div >
@@ -59,8 +64,8 @@ const PurchaseSummary = () => {
 
         <div>
           {
-            productsFilter.length > 0 && arregloTotal.length !== 0 ?
-              productsFilter.map((el) => (
+            cartProducts.length > 0 && arregloTotal.length !== 0 ?
+            cartProducts.map((el) => (
                 <ProductCard
                   name={el.name}
                   price={el.price}
