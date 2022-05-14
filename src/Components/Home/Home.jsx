@@ -15,12 +15,11 @@ function Home() {
   // console.log("esto es el get access", getAccessTokenSilently)
   // console.log("esto es el get ID", getIdTokenClaims)
 
-
   useEffect(() => {
-    if (user) dispatch(getUserDetail(user.email));
+    // if (user) dispatch(getUserDetail(user.email));
     dispatch(getProducts());
   }, [dispatch]);
-  const userActive = useSelector((state) => state.userActive);
+  // const userActive = useSelector((state) => state.userActive);
   // console.log(userActive)
   return (
     <div className={styles.home}>

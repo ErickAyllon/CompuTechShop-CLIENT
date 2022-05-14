@@ -51,7 +51,7 @@ export function cleanFilter() {
 }
 
 export function getDetail(name) {
-  console.log('name ', name)
+  console.log("name ", name);
   return async function (dispatch) {
     try {
       var json = await axios.get("/products?name=" + name);
@@ -200,7 +200,7 @@ export function postCategory(payload) {
   };
 }
 export function postBuyCart(payload) {
-  console.log(payload)
+  console.log(payload);
   return async function (dispatch) {
     const response = await axios.post("/Checkout", payload);
 
@@ -240,8 +240,8 @@ export function deleteProduct(id) {
 }
 
 export function updateProduct(id, payload) {
-  console.log(id)
-  console.log(payload)
+  console.log(id);
+  console.log(payload);
   return async function (dispatch) {
     try {
       const json = await axios.put("/updateProduct/" + id, payload);
@@ -356,30 +356,30 @@ export function updateUser(id, payload) {
 export const getOrders = () => {
   return async function (dispatch) {
     try {
-      const json = await axios.get(`http://localhost:3001/getOrders`)
+      const json = await axios.get(`http://localhost:3001/getOrders`);
       return dispatch({
-        type: 'GET_ORDERS',
+        type: "GET_ORDERS",
         payload: json.data,
-      })
+      });
     } catch (err) {
-      console.log(err)
+      console.log(err);
     }
-  }
-}
+  };
+};
 
 export const getOrdersByEmail = (email) => {
   return async function (dispatch) {
     try {
-      const json = await axios.get(`/getPayments?email=${email}`)
+      const json = await axios.get(`/getPayments?email=${email}`);
       return dispatch({
-        type: 'GET_ORDERS_BY_EMAIL',
+        type: "GET_ORDERS_BY_EMAIL",
         payload: json.data,
-      })
+      });
     } catch (err) {
-      console.log(err)
+      console.log(err);
     }
-  }
-}
+  };
+};
 
 export function postReview(payload) {
   return async function () {
@@ -391,28 +391,30 @@ export function postReview(payload) {
 export function getReview(name) {
   return async function (dispatch) {
     try {
-      let json = await axios.get("http://localhost:3001/reviews?productName=" + name);
+      let json = await axios.get(
+        "http://localhost:3001/reviews?productName=" + name
+      );
       return dispatch({
-        type: 'GET_REVIEW',
+        type: "GET_REVIEW",
         payload: json.data,
-      })
+      });
     } catch (error) {
-      console.log(error)
+      console.log(error);
     }
-  }
+  };
 }
 
 export function deleteReview(id) {
-  console.log(id)
+  console.log(id);
   return async function (dispatch) {
     try {
-      const json = await axios.delete('http://localhost:3001/reviews/' + id);
+      const json = await axios.delete("http://localhost:3001/reviews/" + id);
       return dispatch({
-        type: 'DELETE_REVIEW',
-        payload: json.data
-      })
+        type: "DELETE_REVIEW",
+        payload: json.data,
+      });
     } catch (error) {
-      console.log(error)
+      console.log(error);
     }
-  }
+  };
 }

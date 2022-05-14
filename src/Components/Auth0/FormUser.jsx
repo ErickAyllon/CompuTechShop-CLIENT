@@ -1,6 +1,6 @@
 import React from "react";
 import { useAuth0 } from "@auth0/auth0-react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { postUser } from "../../Redux/Actions";
 import { Formik } from "formik";
 import BasicForm from "./BasicForm";
@@ -10,7 +10,6 @@ import NavBar from "../NavBar/Navbar";
 
 const validation = (values) => {
   let errors = {};
-
   if (!values.given_name) {
     errors.given_name = "First name is required!";
   } else if (values.given_name.length <= 1) {
@@ -18,7 +17,6 @@ const validation = (values) => {
   } else if (!/^[A-Za-zÁÉÍÓÚáéíóúñÑ]+$/.test(values.given_name)) {
     errors.given_name = "First name can only contain letters";
   }
-
   if (!values.family_name) {
     errors.family_name = "Last name is required!";
   } else if (values.family_name.length <= 1) {
@@ -26,7 +24,6 @@ const validation = (values) => {
   } else if (!/^[A-Za-zÁÉÍÓÚáéíóúñÑ]+$/.test(values.family_name)) {
     errors.family_name = "Last name can only contain letters";
   }
-
   if (!values.email) {
     errors.email = "E-mail is required";
   } else if (
@@ -36,11 +33,9 @@ const validation = (values) => {
   ) {
     errors.email = "You should enter a valid E-mail";
   }
-
   if (!values.nickname) {
     errors.nickname = "Nickname is required";
   }
-
   if (!values.picture) {
     errors.picture = "Picture is required";
   } else if (
@@ -51,7 +46,6 @@ const validation = (values) => {
     errors.picture =
       "Picture file type should be .jpg, .gif, .png, .jpge, .img";
   }
-
   if (!values.address) {
     errors.address = "Address is required";
   } else if (values.address.length < 6) {
@@ -59,7 +53,6 @@ const validation = (values) => {
   } else if (!/^[#.0-9a-zA-Z\s,.]+$/.test(values.address)) {
     errors.address = "Only special characters allowed are ('.' and ',')";
   }
-
   if (!values.phone) {
     errors.phone = "Phone is required";
   } else if (values.phone.length < 9 || values.phone.length > 11) {
@@ -67,7 +60,17 @@ const validation = (values) => {
   } else if (!/^([0-9])*$/.test(values.phone)) {
     errors.phone = "You should enter a valid phone NUMBER";
   }
-
+  function calcularEdad(fecha_nacimiento) {
+    var hoy = new Date();
+    var cumpleanos = new Date(fecha_nacimiento);
+    var edad = hoy.getFullYear() - cumpleanos.getFullYear();
+    var m = hoy.getMonth() - cumpleanos.getMonth();
+    if (m < 0 || (m === 0 && hoy.getDate() < cumpleanos.getDate())) {
+      edad--;
+    }
+    return edad;
+  }
+  var edad = calcularEdad(values.birthday);
   if (!values.birthday) {
     errors.birthday = "Birthdate is required";
   } else if (
@@ -76,12 +79,29 @@ const validation = (values) => {
     )
   ) {
     errors.birthday = "You should enter a valid birthdate";
+  } else if (edad < 18) {
+    errors.birthday =
+      "You have to be 18 years old or more in order to get registered";
   }
   return errors;
 };
 
 const FormUser = () => {
+  let allUsers = useSelector((state) => state.users2);
+
   const { user, isAuthenticated } = useAuth0();
+
+  let userLocal = [];
+
+  if (user) {
+    localStorage.setItem("email", user.email);
+  }
+
+  userLocal.email = localStorage.getItem("email");
+
+  let filteredUser = allUsers.filter((el) => el.email === userLocal.email);
+
+  console.log("ESTEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEE", filteredUser.length);
 
   const dispatch = useDispatch();
 
@@ -90,29 +110,35 @@ const FormUser = () => {
   return (
     <div className={styles.formUser}>
       <NavBar />
-        {isAuthenticated && (
-          <Formik
-            initialValues={{
-              given_name: user.given_name,
-              family_name: user.family_name,
-              email: user.email,
-              nickname: user.nickname,
-              email_verified: user.email_verified,
-              picture: user.picture,
-              address: "",
-              phone: "",
-              birthday: "",
-            }}
-            onSubmit={(values) => {
+      {isAuthenticated && (
+        <Formik
+          initialValues={{
+            given_name: user.given_name,
+            family_name: user.family_name,
+            email: user.email,
+            nickname: user.nickname,
+            email_verified: user.email_verified,
+            picture: user.picture,
+            address: "",
+            phone: "",
+            birthday: "",
+          }}
+          onSubmit={(values) => {
+            if (filteredUser.length === 0) {
               dispatch(postUser(values));
-              alert("USIARIO CREADO");
+              alert("USER SUCCESSFULY");
+              navigate("/profile");
+            }
+            if (filteredUser.length !== 0) {
+              alert("THAT E-MAIL ALREADY EXIST");
               navigate("/");
-            }}
-            validate={validation}
-          >
-            {(props) => <BasicForm {...props} />}
-          </Formik>
-        )}
+            }
+          }}
+          validate={validation}
+        >
+          {(props) => <BasicForm {...props} />}
+        </Formik>
+      )}
     </div>
   );
 };

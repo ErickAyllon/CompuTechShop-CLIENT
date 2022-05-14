@@ -7,14 +7,14 @@ import { postBuyCart } from "../../Redux/Actions";
 import { Link, useNavigate } from "react-router-dom";
 import Loader from "../Loader/Loader";
 // import styles from './ShoppingCart.module.css'
-import styles from "./CartItem.module.css"
-import shop from '../../Images/shop.png'
+import styles from "./CartItem.module.css";
+import shop from "../../Images/shop.png";
 import { Button } from "@mui/material";
-import style from "./ShoppingCart.module.css"
+import style from "./ShoppingCart.module.css";
 
 const ShoppingCart = () => {
-  const obj = {}
-  const navigate = useNavigate()
+  const obj = {};
+  const navigate = useNavigate();
   const dispatch = useDispatch();
   const carti = useSelector((state) => state.cart);
   let url = useSelector((state) => state.shopping);
@@ -22,32 +22,27 @@ const ShoppingCart = () => {
 
   const arregloPrice = carti.map((el) => el.price * el.quantity);
   const reducir = (accumulator, curr) => accumulator + curr;
-  arregloTotal = arregloPrice.length > 0 ? arregloPrice.reduce(reducir) : arregloPrice;
-  let nuevoPost = []
+  arregloTotal =
+    arregloPrice.length > 0 ? arregloPrice.reduce(reducir) : arregloPrice;
+  let nuevoPost = [];
   if (carti.length > 0) {
-    localStorage.setItem('carrito', JSON.stringify(carti))
+    localStorage.setItem("carrito", JSON.stringify(carti));
   }
-
 
   const delFromCart = (id, all = false) => {
-    all ?
-      dispatch({ type: TYPES.REMOVE_ALL_FROM_CART, payload: id })
-      :
-      dispatch({ type: TYPES.REMOVE_ONE_FROM_CART, payload: id })
-  }
+    all
+      ? dispatch({ type: TYPES.REMOVE_ALL_FROM_CART, payload: id })
+      : dispatch({ type: TYPES.REMOVE_ONE_FROM_CART, payload: id });
+  };
   const clearCart = () => {
-
     dispatch({ type: TYPES.CLEAR_CART });
   };
   const addToCart = (id) => {
-
     dispatch({ type: TYPES.ADD_TO_CART, payload: id });
   };
-  let objetoNuevo = []
+  let objetoNuevo = [];
   //LocalStorage
   if (carti) {
-
-
     const nuevoPost = carti.map((el) => {
       return {
         picture_url: el.image,
@@ -61,16 +56,18 @@ const ShoppingCart = () => {
     obj.picture_url = nuevoPost.map((el) => el.picture_url);
     obj.price = nuevoPost.map((el) => Number(el.price));
     obj.quantity = nuevoPost.map((el) => el.quantity);
-    localStorage.setItem('carrito', JSON.stringify(nuevoPost))
+    localStorage.setItem("carrito", JSON.stringify(nuevoPost));
 
-    objetoNuevo = JSON.parse(localStorage.getItem("carrito"))
+    objetoNuevo = JSON.parse(localStorage.getItem("carrito"));
 
-    console.log("este es el carrito ", objetoNuevo)
+    // console.log("este es el carrito ", objetoNuevo)
   } else {
-    objetoNuevo = JSON.parse(localStorage.getItem("carrito"))
-    console.log("este es el objetoNuevo cuando venis desde afuera", objetoNuevo)
+    objetoNuevo = JSON.parse(localStorage.getItem("carrito"));
+    console.log(
+      "este es el objetoNuevo cuando venis desde afuera",
+      objetoNuevo
+    );
   }
-
 
   //End LocalStorage
   const handleBuyCart = (e) => {
@@ -78,19 +75,15 @@ const ShoppingCart = () => {
     dispatch(postBuyCart(obj));
 
     setTimeout(function () {
-      navigate("/purchaseConfirm")
-    }, 2000)
-  }
+      navigate("/purchaseConfirm");
+    }, 2000);
+  };
 
   return (
     <div className={styles.cart}>
-      <Dropdown active="false" autoClose="outside" >
+      <Dropdown active="false" autoClose="outside">
         <Dropdown.Toggle variant="Secondary" id="dropdown-basic">
-          <img
-            src={shop}
-            alt="profileImg"
-            className={style.img}
-          />
+          <img src={shop} alt="profileImg" className={style.img} />
         </Dropdown.Toggle>
 
         <Dropdown.Menu
@@ -98,8 +91,14 @@ const ShoppingCart = () => {
           focusFirstItemOnShow="false"
           variant="dark"
         >
-          <Dropdown.Item >
-            <Button className={style.btncito} variant="outlined" onClick={clearCart}>Clean Cart</Button>
+          <Dropdown.Item>
+            <Button
+              className={style.btncito}
+              variant="outlined"
+              onClick={clearCart}
+            >
+              Clean Cart
+            </Button>
           </Dropdown.Item>
           <Dropdown.Item>
             <div>
@@ -107,7 +106,6 @@ const ShoppingCart = () => {
                 <Dropdown.Divider />
                 {carti?.map((el, index) => (
                   <Dropdown.Item>
-
                     <CartItem
                       key={index}
                       data={el}
@@ -123,17 +121,22 @@ const ShoppingCart = () => {
               </div>
               <Dropdown.Item>
                 <div>
-                  <Button className={style.btncito} variant="outlined" onClick={handleBuyCart}>Buy</Button>
-
+                  <Button
+                    className={style.btncito}
+                    variant="outlined"
+                    onClick={handleBuyCart}
+                  >
+                    Buy
+                  </Button>
                 </div>
               </Dropdown.Item>
-
             </div>
             <Dropdown.Divider />
           </Dropdown.Item>
           <Link to="/purchaseSummary">
-            <Button className={style.btncito} variant="outlined">Purchase summary</Button>
-
+            <Button className={style.btncito} variant="outlined">
+              Purchase summary
+            </Button>
           </Link>
         </Dropdown.Menu>
       </Dropdown>
