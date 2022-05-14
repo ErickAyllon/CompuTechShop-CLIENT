@@ -101,8 +101,6 @@ const FormUser = () => {
 
   let filteredUser = allUsers.filter((el) => el.email === userLocal.email);
 
-  console.log("ESTEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEE", filteredUser.length);
-
   const dispatch = useDispatch();
 
   const navigate = useNavigate();
