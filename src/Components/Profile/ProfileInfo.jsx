@@ -1,28 +1,35 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Link } from "react-router-dom";
 import { useAuth0 } from "@auth0/auth0-react";
 import styles from "./ProfileInfo.module.css";
 import NavBar from "../NavBar/Navbar";
 import Loader from "../Loader/Loader";
 import Button from "@mui/material/Button";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import MyOrders from "./MyOrders/MyOrders";
+import { getUser } from "../../Redux/Actions";
 import Footer from "../Footer/Footer";
 
 function ProfileInfo() {
-  let currentUser = useSelector((state) => state.userActive);
+  const dispatch = useDispatch();
+
   let allUsers = useSelector((state) => state.users2);
+
   const { user, isAuthenticated } = useAuth0();
 
   let userLocal = [];
-  if (user) {
-    localStorage.setItem("email", user.email)
-  }
-  userLocal.email = localStorage.getItem("email")
 
+  if (user) {
+    localStorage.setItem("email", user.email);
+  }
+
+  userLocal.email = localStorage.getItem("email");
 
   let filteredUser = allUsers.filter((el) => el.email === userLocal.email);
 
+  useEffect(() => {
+    dispatch(getUser());
+  }, [dispatch]);
 
   if (filteredUser.length !== 0) {
     return (
@@ -46,7 +53,7 @@ function ProfileInfo() {
               <h2 className={styles.h2}>{filteredUser[0].birthday}</h2>
             </div>
             <div className={styles.button}>
-              <Link to="/AutenticationUpdate">
+              <Link to="/UpdateProfile">
                 <Button variant="outlined">Update Your Profile</Button>
               </Link>
             </div>

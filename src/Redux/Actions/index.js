@@ -356,30 +356,30 @@ export function updateUser(id, payload) {
 export const getOrders = () => {
   return async function (dispatch) {
     try {
-      const json = await axios.get(`http://localhost:3001/getOrders`)
+      const json = await axios.get(`http://localhost:3001/getOrders`);
       return dispatch({
-        type: 'GET_ORDERS',
+        type: "GET_ORDERS",
         payload: json.data,
-      })
+      });
     } catch (err) {
-      console.log(err)
+      console.log(err);
     }
-  }
-}
+  };
+};
 
 export const getOrdersByEmail = (email) => {
   return async function (dispatch) {
     try {
-      const json = await axios.get(`/getPayments?email=${email}`)
+      const json = await axios.get(`/getPayments?email=${email}`);
       return dispatch({
-        type: 'GET_ORDERS_BY_EMAIL',
+        type: "GET_ORDERS_BY_EMAIL",
         payload: json.data,
-      })
+      });
     } catch (err) {
-      console.log(err)
+      console.log(err);
     }
-  }
-}
+  };
+};
 
 export function postReview(payload) {
   return async function () {
@@ -391,73 +391,77 @@ export function postReview(payload) {
 export function getReview(name) {
   return async function (dispatch) {
     try {
-      let json = await axios.get("http://localhost:3001/reviews?productName=" + name);
+      let json = await axios.get(
+        "http://localhost:3001/reviews?productName=" + name
+      );
       return dispatch({
-        type: 'GET_REVIEW',
+        type: "GET_REVIEW",
         payload: json.data,
-      })
+      });
     } catch (error) {
-      console.log(error)
+      console.log(error);
     }
-  }
+  };
 }
 
 export function deleteReview(id) {
   // console.log(id)
   return async function (dispatch) {
     try {
-      const json = await axios.delete('http://localhost:3001/reviews/' + id);
+      const json = await axios.delete("http://localhost:3001/reviews/" + id);
       return dispatch({
-        type: 'DELETE_REVIEW',
-        payload: json.data
-      })
+        type: "DELETE_REVIEW",
+        payload: json.data,
+      });
     } catch (error) {
-      console.log(error)
+      console.log(error);
     }
-  }
+  };
 }
 
 export function getWishlist(id) {
   // console.log('getWhishlist: ', id)
-  return async function(dispatch) {
+  return async function (dispatch) {
     try {
-      const json = await axios.get("http://localhost:3001/wishlist?userId=" + id);
-      return dispatch({        
-        type: 'GET_WISHLIST',
-        payload: json.data
-      })
+      const json = await axios.get(
+        "http://localhost:3001/wishlist?userId=" + id
+      );
+      return dispatch({
+        type: "GET_WISHLIST",
+        payload: json.data,
+      });
     } catch (error) {
-        console.log(error);
+      console.log(error);
     }
-  }
+  };
 }
 
 export function postWishlist(wishlist) {
   // console.log(wishlist)
-  return async function(dispatch) {
+  return async function (dispatch) {
     try {
-      const json = await axios.post("http://localhost:3001/wishlist", wishlist)
+      const json = await axios.post("http://localhost:3001/wishlist", wishlist);
       return dispatch({
-        type: 'POST_WISHLIST',
-        payload: json.data
-      })
+        type: "POST_WISHLIST",
+        payload: json.data,
+      });
     } catch (error) {
-        console.log(error);
+      console.log(error);
     }
-  }
+  };
 }
 
 export function deleteWishlist(id) {
   // console.log('deleteWishlist: ', id)
-  return async function(dispatch) {
+  return async function (dispatch) {
     try {
-      const json = await axios.delete("http://localhost:3001/wishlist/" + id)
+      const json = await axios.delete("http://localhost:3001/wishlist/" + id);
       return dispatch({
-        type: 'DELETE_WISHLIST',
-        payload: json.data
-      })
+        type: "DELETE_WISHLIST",
+        payload: json.data,
+      });
     } catch (error) {
-        console.log(error);
+      console.log(error);
     }
-  }
+  };
 }

@@ -14,12 +14,11 @@ const validation = (values) => {
   if (!values.picture) {
     errors.picture = "Picture is required";
   } else if (
-    !/(http|https|ftp|ftps)\:\/\/[a-zA-Z0-9\-\.]+\.[a-zA-Z]{2,3}(\/\S*)?/.test(
+    !/(http)?s?:?(\/\/[^"']*\.(?:png|jpg|jpeg|gif|png|svg))/.test(
       values.picture
     )
   ) {
-    errors.picture =
-      "Picture file type should be .jpg, .gif, .png, .jpge, .img";
+    errors.picture = "You should enter a valid url";
   }
 
   if (!values.address) {
@@ -41,41 +40,57 @@ const validation = (values) => {
 };
 
 const UpdateProfile = () => {
-  let currentUser = useSelector((state) => state.userActive);
   let allUsers = useSelector((state) => state.users2);
 
-  let filteredUser = allUsers.filter((el) => el.email === currentUser.email);
+  const { user } = useAuth0();
+
+  let userLocal = [];
+
+  if (user) {
+    localStorage.setItem("email", user.email);
+  }
+
+  userLocal.email = localStorage.getItem("email");
+
+  let filteredUser = allUsers.filter((el) => el.email === userLocal.email);
 
   let id = filteredUser.map((el) => el.id);
 
   const dispatch = useDispatch();
+
   const navigate = useNavigate();
 
   return (
     <div className={style.UpdateProfile}>
       <NavBar />
-      <Formik
-        initialValues={{
-          given_name: filteredUser[0].given_name,
-          family_name: filteredUser[0].family_name,
-          email: filteredUser[0].email,
-          nickname: filteredUser[0].nickname,
-          email_verified: filteredUser[0].email_verified,
-          picture: "",
-          address: "",
-          phone: "",
-          birthday: filteredUser[0].birthday,
-        }}
-        onSubmit={(values) => {
-          dispatch(updateUser(id, values));
-          alert("USER WAS UPDATED SUCCESSFULLY");
-          navigate("/profile");
-        }}
-        validate={validation}
-      >
-        {(props) => <UpdateForm {...props} />}
-      </Formik>
-      <Footer/>
+      {filteredUser[0] && (
+        <Formik
+          initialValues={{
+            given_name: filteredUser[0].given_name,
+            family_name: filteredUser[0].family_name,
+            email: filteredUser[0].email,
+            nickname: filteredUser[0].nickname,
+            email_verified: filteredUser[0].email_verified,
+            picture: "",
+            address: "",
+            phone: "",
+            birthday: filteredUser[0].birthday,
+            is_admin: filteredUser[0].is_admin,
+            is_admin_pro: filteredUser[0].is_admin_pro,
+            password: filteredUser[0].password,
+            is_banned: filteredUser[0].is_banned,
+          }}
+          onSubmit={(values) => {
+            dispatch(updateUser(id, values));
+            alert("USER WAS UPDATED SUCCESSFULLY");
+            navigate("/profile");
+          }}
+          validate={validation}
+        >
+          {(props) => <UpdateForm {...props} />}
+        </Formik>
+      )}
+      <Footer />
     </div>
   );
 };

@@ -1,6 +1,11 @@
 import React, { useEffect } from "react";
-import { getProducts, getUserDetail } from "../../Redux/Actions";
-import { useDispatch } from "react-redux";
+import {
+  authenticate,
+  getProducts,
+  getUser,
+  getUserDetail,
+} from "../../Redux/Actions";
+import { useDispatch, useSelector } from "react-redux";
 import styles from "./Home.module.css";
 import "bootstrap/dist/css/bootstrap.css";
 import Carousel from "react-bootstrap/Carousel";
@@ -19,7 +24,7 @@ function Home() {
   // console.log(isAuthenticated)
 
   useEffect(() => {
-    if (user) dispatch(getUserDetail(user.email));
+    // if (user) dispatch(getUserDetail(user.email));
     dispatch(getProducts());
   }, [dispatch, user]);
   // const userActive = useSelector((state) => state.userActive);
