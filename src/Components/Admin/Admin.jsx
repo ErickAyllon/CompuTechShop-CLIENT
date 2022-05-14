@@ -52,7 +52,6 @@ function Admin() {
         <div className={styles.adminCard}>
             <div className={styles.password}>
                 <TextField
-                  id="standard-password-input"
                   label="Nickname"
                   autoComplete="current-password"
                   variant="outlined"
@@ -64,7 +63,6 @@ function Admin() {
             </div>
             <div className={styles.password}>
                 <TextField
-                  id="standard-password-input"
                   label="Password"
                   type="password"
                   autoComplete="current-password"

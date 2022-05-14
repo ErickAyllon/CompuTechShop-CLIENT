@@ -83,13 +83,10 @@ function CategoriesAdmin() {
                     sx={{
                         '& > :not(style)': { m: 1, display: 'flex', width: '17ch', color:'white', position: 'absolute'},
                     }}
-                    // className={styles.filterByBrand}
                     variant="standard"
                     id="outlined-select-currency"
                     name="categories"
                     select
-                    // label="All Categories"
-                    displayEmpty
                     value={categorySelect}
                     onChange={(e) => handleCategorySelect(e)}
                 > 

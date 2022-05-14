@@ -24,7 +24,7 @@ function ProductDetailAdmin ({nameD, image, price, brand, quantity, description,
             <div className={styles.productDetailInfo}>
                 <h1 className={styles.productDetailName}>{nameD}</h1>
                 {   calification ? 
-                    <Rating className={styles.productDetailRating} name="half-rating-read" size="small" defaultValue={calification} precision={0.5} readOnly />
+                    <Rating className={styles.productDetailRating} name="half-rating-read" size="small" defaultValue={Number(calification)} precision={0.5} readOnly />
                     : null
                 }
                 <p className={styles.productDetailPrice}>${price}</p>

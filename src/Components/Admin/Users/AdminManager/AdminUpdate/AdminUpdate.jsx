@@ -204,7 +204,7 @@ function AdminUpdate() {
                 : false
             }
         >
-            Update Admin
+            Update User
           </Button>
       </div>
     </Box>

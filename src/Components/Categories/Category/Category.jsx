@@ -11,6 +11,7 @@ import ProductNotFound from "../../ProductNotFound/ProductNotFound";
 import { useParams } from "react-router-dom";
 import { TYPES } from "../../../Redux/Actions/shoppingCartActions";
 import NavBar from "../../NavBar/Navbar";
+import Footer from "../../Footer/Footer";
 
 function Category() {
   const { category } = useParams();
@@ -74,6 +75,7 @@ function Category() {
       ) : (
         <ProductNotFound />
       )}
+      <Footer />
     </div>
   );
 }

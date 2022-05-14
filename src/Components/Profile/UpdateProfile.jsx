@@ -7,6 +7,7 @@ import UpdateForm from "./UpdateForm";
 import style from "./UpdateProfile.module.css";
 import NavBar from "../NavBar/Navbar";
 import { useAuth0 } from "@auth0/auth0-react";
+import Footer from "../Footer/Footer";
 
 const validation = (values) => {
   let errors = {};
@@ -74,6 +75,7 @@ const UpdateProfile = () => {
       >
         {(props) => <UpdateForm {...props} />}
       </Formik>
+      <Footer/>
     </div>
   );
 };

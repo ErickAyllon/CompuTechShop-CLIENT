@@ -7,6 +7,7 @@ import Loader from "../Loader/Loader";
 import Button from "@mui/material/Button";
 import { useSelector } from "react-redux";
 import MyOrders from "./MyOrders/MyOrders";
+import Footer from "../Footer/Footer";
 
 function ProfileInfo() {
   let currentUser = useSelector((state) => state.userActive);
@@ -80,6 +81,7 @@ function ProfileInfo() {
             </div>
           </div>
         )}
+        <Footer/>
       </div>
     );
   }

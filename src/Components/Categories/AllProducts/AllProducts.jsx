@@ -11,6 +11,7 @@ import { TYPES } from "../../../Redux/Actions/shoppingCartActions";
 import ProductNotFound from "../../ProductNotFound/ProductNotFound";
 import { useParams } from "react-router-dom";
 import NavBar from "../../NavBar/Navbar";
+import Footer from "../../Footer/Footer";
 
 function AllProducts() {
   let products = useSelector((state) => state.allProducts);
@@ -79,6 +80,7 @@ function AllProducts() {
       ) : (
         <Loader />
       )}
+      <Footer />
     </div>
   );
 }

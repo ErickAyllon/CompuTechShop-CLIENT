@@ -3,6 +3,7 @@ import TextField from "@mui/material/TextField";
 import Button from "@mui/material/Button";
 import Box from "@mui/material/Box";
 import styles from "./UpdateForm.module.css";
+import Footer from "../Footer/Footer";
 
 const UpdateForm = ({
   handleChange,
@@ -137,6 +138,7 @@ const UpdateForm = ({
           </div>
         </div>
       </Box>
+      <Footer/>
     </div>
   );
 };

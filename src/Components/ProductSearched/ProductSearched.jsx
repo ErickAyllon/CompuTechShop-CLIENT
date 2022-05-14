@@ -9,6 +9,7 @@ import PaginationC from '../Pagination/PaginationC.jsx'
 import ProductNotFound from '../ProductNotFound/ProductNotFound'
 import styles from './ProductSearched.module.css'
 import NavBar from '../NavBar/Navbar'
+import Footer from '../Footer/Footer'
 
 function ProductSearched() {
   let products = useSelector((state) => state.allProducts); 
@@ -74,6 +75,7 @@ function ProductSearched() {
             <ProductNotFound/>
           </div>
       }
+      <Footer />
     </div>
   )
 }

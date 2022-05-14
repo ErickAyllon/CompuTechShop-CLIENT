@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import styles from "./ProductCardAdmin.module.css";
 import { Rating } from "@mui/material";
 import { Link } from "react-router-dom";
@@ -7,7 +7,6 @@ import edit from '../../../../Images/edit.png'
 import { useDispatch } from "react-redux";
 import { deleteProduct, getProducts } from "../../../../Redux/Actions";
 import { useNavigate } from "react-router-dom";
-import Swal from "sweetalert2";
 
 function ProductCardAdmin({ name, price, image, calification, id, update, delet }) {
   const dispatch = useDispatch();
@@ -58,7 +57,7 @@ function ProductCardAdmin({ name, price, image, calification, id, update, delet 
           <Rating
             name="half-rating-read"
             size="small"
-            defaultValue={calification}
+            defaultValue={Number(calification)}
             precision={0.5}
             readOnly
             className={styles.productCardCalification}

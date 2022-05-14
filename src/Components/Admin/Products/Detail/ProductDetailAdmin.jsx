@@ -71,7 +71,7 @@ function ProductDetailAdmin (){
             </div>
             <div className={styles.productDetailInfo}>
                 <h1 className={styles.productDetailName}>{product[0].name}</h1>
-                <Rating className={styles.productDetailRating} name="half-rating-read" size="small" defaultValue={product[0].calification} precision={0.5} readOnly />
+                <Rating className={styles.productDetailRating} name="half-rating-read" size="small" defaultValue={Number(product[0].calification)} precision={0.5} readOnly />
                 <p className={styles.productDetailPrice}>${product[0].price}</p>
             </div>
               <button className={styles.button}>

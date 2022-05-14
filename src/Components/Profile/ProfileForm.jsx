@@ -3,6 +3,7 @@ import { useState } from 'react';
 // import styles from './Admin.module.css'
 import { postUser } from '../../Redux/Actions/index'
 import { useDispatch } from 'react-redux';
+import Footer from '../Footer/Footer';
 // import Navbar from '../NavBar/Navbar'
 
 function ProfileForm() {
@@ -47,6 +48,7 @@ function ProfileForm() {
         <input name="image" onChange={handleChange} placeholder="image" value={input.image}></input>
         <button type="submit" onClick={handleSubmit}>Create</button>
       </form>
+      <Footer />
     </div>
   )
 }

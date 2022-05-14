@@ -7,6 +7,7 @@ import BasicForm from "./BasicForm";
 import { useNavigate } from "react-router-dom";
 import styles from "./FormUser.module.css";
 import NavBar from "../NavBar/Navbar";
+import Footer from "../Footer/Footer";
 
 const validation = (values) => {
   let errors = {};
@@ -90,6 +91,7 @@ const FormUser = () => {
   return (
     <div className={styles.formUser}>
       <NavBar />
+      <div className={styles.formUserContainer}>
         {isAuthenticated && (
           <Formik
             initialValues={{
@@ -113,6 +115,8 @@ const FormUser = () => {
             {(props) => <BasicForm {...props} />}
           </Formik>
         )}
+        </div>
+        <Footer/>
     </div>
   );
 };

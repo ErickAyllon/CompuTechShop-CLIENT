@@ -1,23 +1,24 @@
 .myFavorites {
+    color: white;
+    text-align: center;
+    justify-content: center;
+    position: relative;
     min-height: 100vh;
 }
 
-.superCardsContainer {
-    background-color: white;
+.myFavoritesContainer {
     display: flex;
-    width: 900px;
-    justify-content: center;
-    margin: 50px auto;
-    border-radius: 50px;
-    overflow: auto;
+    margin: 0 auto;
+    max-width: 1400px;
+    margin-bottom: 100px;
 }
 
 .cardsContainer {
     max-width: 900px;
-    display: flex;
-    flex-direction: column;
-    margin: auto;
-    justify-content: center;
+    margin: 20px auto;
+    background-color: white;
+    border-radius: 50px;
+    overflow: auto;  
 }
 
 .favTitle {
@@ -28,4 +29,10 @@
 
 .favTitle {
     font-size: 2rem;
+}
+
+@media only screen and (max-width: 768px) {
+    .myFavoritesContainer {
+        display:block;
+    }
 }
