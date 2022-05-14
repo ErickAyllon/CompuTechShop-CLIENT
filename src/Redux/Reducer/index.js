@@ -28,6 +28,7 @@ const initialState = {
   userOrders: [],
   review: [],
   userActive: [],
+  wishlist: []
 };
 
 function rootReducer(state = initialState, action) {
@@ -395,6 +396,22 @@ function rootReducer(state = initialState, action) {
     case 'DELETE_REVIEW': {
       return {
         ...state
+      }
+    }
+    case 'GET_WISHLIST': {
+      return {
+        ...state,
+        wishlist: action.payload
+      }
+    }
+    case 'POST_WISHLIST': {
+      return {
+        ...state,
+      }
+    }
+    case 'DELETE_WISHLIST': {
+      return {
+        ...state,
       }
     }
     default:

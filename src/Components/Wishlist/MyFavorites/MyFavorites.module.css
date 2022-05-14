@@ -1,0 +1,31 @@
+.myFavorites {
+    min-height: 100vh;
+}
+
+.superCardsContainer {
+    background-color: white;
+    display: flex;
+    width: 900px;
+    justify-content: center;
+    margin: 50px auto;
+    border-radius: 50px;
+    overflow: auto;
+}
+
+.cardsContainer {
+    max-width: 900px;
+    display: flex;
+    flex-direction: column;
+    margin: auto;
+    justify-content: center;
+}
+
+.favTitle {
+    display: flex;
+    margin-top: 50px;
+    justify-content: center;
+}
+
+.favTitle {
+    font-size: 2rem;
+}

@@ -9,13 +9,11 @@
     background-color: white;
     margin: 20px 0;
     font-family: 'Orbitron', sans-serif;
-    border-radius: 50px;
 }
 
 .productCardContainer {
     border: 1px solid rgba(128, 128, 128, 0.258);
     background-color: white;
-    border-radius: 50px;
 }
 
 .productCardImgContainer{
@@ -84,6 +82,8 @@
     margin-top: 15px;
     margin-left: 150px;
 }
+
+
 
 .addBtn {
     border: none;

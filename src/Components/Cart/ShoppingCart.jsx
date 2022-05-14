@@ -11,6 +11,8 @@ import styles from "./CartItem.module.css";
 import shop from "../../Images/shop.png";
 import { Button } from "@mui/material";
 import style from "./ShoppingCart.module.css";
+import Badge from "@mui/material/Badge";
+import { styled } from "@mui/material/styles";
 
 const ShoppingCart = () => {
   const obj = {};
@@ -19,6 +21,7 @@ const ShoppingCart = () => {
   const carti = useSelector((state) => state.cart);
   let url = useSelector((state) => state.shopping);
   let arregloTotal = [];
+  const cart = useSelector((state) => state.cart);
 
   const arregloPrice = carti.map((el) => el.price * el.quantity);
   const reducir = (accumulator, curr) => accumulator + curr;
@@ -63,10 +66,7 @@ const ShoppingCart = () => {
     // console.log("este es el carrito ", objetoNuevo)
   } else {
     objetoNuevo = JSON.parse(localStorage.getItem("carrito"));
-    console.log(
-      "este es el objetoNuevo cuando venis desde afuera",
-      objetoNuevo
-    );
+    // console.log("este es el objetoNuevo cuando venis desde afuera", objetoNuevo)
   }
 
   //End LocalStorage
@@ -79,11 +79,25 @@ const ShoppingCart = () => {
     }, 2000);
   };
 
+  const StyledBadge = styled(Badge)(({ theme }) => ({
+    "& 	.MuiBadge-standard": {
+      right: -4,
+      top: 7,
+      border: `2px solid ${theme.palette.background.paper}`,
+      letterSpacing: "1px",
+      height: "22px",
+      width: "22px",
+      borderRadius: "100%",
+    },
+  }));
+
   return (
     <div className={styles.cart}>
-      <Dropdown active="false" autoClose="outside">
+      <Dropdown active="false" autoClose="outside" className={styles.drop}>
         <Dropdown.Toggle variant="Secondary" id="dropdown-basic">
-          <img src={shop} alt="profileImg" className={style.img} />
+          <StyledBadge badgeContent={Number(cart.length)} color="info">
+            <img src={shop} alt="profileImg" className={style.img} />
+          </StyledBadge>
         </Dropdown.Toggle>
 
         <Dropdown.Menu

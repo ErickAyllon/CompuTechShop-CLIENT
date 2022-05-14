@@ -1,5 +1,10 @@
 import React, { useEffect } from "react";
-import { getProducts, getUserDetail } from "../../Redux/Actions";
+import {
+  authenticate,
+  getProducts,
+  getUser,
+  getUserDetail,
+} from "../../Redux/Actions";
 import { useDispatch, useSelector } from "react-redux";
 import styles from "./Home.module.css";
 import "bootstrap/dist/css/bootstrap.css";
@@ -14,6 +19,7 @@ function Home() {
   const { getAccessTokenSilently, getIdTokenClaims } = useAuth0();
   // console.log("esto es el get access", getAccessTokenSilently)
   // console.log("esto es el get ID", getIdTokenClaims)
+  // console.log(isAuthenticated)
 
   useEffect(() => {
     // if (user) dispatch(getUserDetail(user.email));

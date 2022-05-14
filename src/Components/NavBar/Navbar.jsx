@@ -11,6 +11,7 @@ import Brightness4Icon from "@mui/icons-material/Brightness4";
 import Brightness7Icon from "@mui/icons-material/Brightness7";
 import styles from "./NavBar.module.css";
 import ShoppingCart from "../Cart/ShoppingCart.jsx";
+import WishlistNav from "../Wishlist/WishlistNav/WishlistNav.jsx";
 // import Profile2 from "../Auth0/Profile2.jsx";
 
 
@@ -32,8 +33,11 @@ function NavBar() {
         <div className={styles.searchBarCall}>
           <SearchBar />
         </div>
-        <div>
-          <ShoppingCart />
+        <div style={{marginRight:'22px'}}>
+          <WishlistNav />
+        </div>
+        <div style={{marginRight:'8px'}}>
+          <ShoppingCart/>
         </div>
         <IconButton sx={{ ml: 1 }} onClick={changeTheme} color="primary">
           {isDarkTheme ? <Brightness4Icon /> : <Brightness7Icon />}

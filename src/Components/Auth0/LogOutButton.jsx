@@ -5,11 +5,9 @@ import { TYPES } from "../../Redux/Actions/shoppingCartActions";
 import { useDispatch } from "react-redux";
 
 export default function LogOutButton() {
-
   const dispatch = useDispatch();
-
   const { logout } = useAuth0();
-
+  
   const postUserActive = (userActive) => {
 
     dispatch({ type: TYPES.USER_ACTIVE, payload: userActive });
