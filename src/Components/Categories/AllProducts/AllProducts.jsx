@@ -35,7 +35,7 @@ function AllProducts() {
   const totalPages = Math.ceil(products.length / productsPerPage);
 
   useEffect(() => {
-    dispatch(getProducts());
+    // dispatch(getProducts());
   }, [dispatch]);
   // End Pagination Info //
   const addToCart = (id) => {

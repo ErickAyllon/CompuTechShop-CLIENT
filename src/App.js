@@ -40,6 +40,7 @@ import MyOrderDetail from "./Components/Profile/MyOrders/MyOrderDetail/MyOrderDe
 import MyFavorites from "./Components/Wishlist/MyFavorites/MyFavorites";
 import Banned from "./Components/Banned/Banned";
 import Welcome from "./Components/Welcome/Welcome";
+import {SnackbarProvider} from 'notistack'
 
 const getDesignTokens = (mode) => ({
   palette: {
@@ -101,6 +102,7 @@ function App() {
 
   return (
     <ThemeProvider theme={isDarkTheme ? darkModeTheme : darkModeTheme}>
+      <SnackbarProvider maxSnack={2}>
       <CssBaseline />
       <BrowserRouter>
         <Routes>
@@ -158,6 +160,7 @@ function App() {
 
         </Routes>
       </BrowserRouter>
+    </SnackbarProvider>
     </ThemeProvider>
   );
 }

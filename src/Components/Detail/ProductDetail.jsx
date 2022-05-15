@@ -10,6 +10,7 @@ import NavBar from "../NavBar/Navbar";
 import add from '../../Images/add.png'
 import DetailReviews from "./DetailReviews/DetailReviews";
 import Footer from "../Footer/Footer";
+import Wishlist from "../Wishlist/WishlistIcon/WishlistIcon";
 
 
 function ProductDetail() {
@@ -56,6 +57,9 @@ function ProductDetail() {
               />
               <p className={styles.productDetailPrice}>${product[0].price}</p>
               <button className={styles.addBtn} onClick={() => addToCart(product[0].id)}><img src={add} alt="" /></button>
+              <div className={styles.wishlist}>
+                <Wishlist id={product[0].id} name={product[0].name} />
+              </div>
             </div>
           </div>
           <div className={styles.allInfoDetail}>
