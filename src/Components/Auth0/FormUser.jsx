@@ -7,7 +7,7 @@ import BasicForm from "./BasicForm";
 import { useNavigate } from "react-router-dom";
 import styles from "./FormUser.module.css";
 import NavBar from "../NavBar/Navbar";
-import Footer from "../Footer/Footer";
+import Swal from 'sweetalert2'
 
 const validation = (values) => {
   let errors = {};
@@ -89,6 +89,7 @@ const validation = (values) => {
 
 const FormUser = () => {
   let allUsers = useSelector((state) => state.users2);
+  const Swal = require('sweetalert2')
 
   const { user, isAuthenticated } = useAuth0();
 
@@ -129,11 +130,19 @@ const FormUser = () => {
           onSubmit={(values) => {
             if (filteredUser.length === 0) {
               dispatch(postUser(values));
-              alert("USER SUCCESSFULY CREATED");
+              Swal.fire({
+                title: 'USER SUCCESSFULY CREATED!',
+                icon: 'success',
+                confirmButtonText: 'OK',
+              })
               navigate("/profile");
             }
             if (filteredUser.length !== 0) {
-              alert("THAT E-MAIL ALREADY EXIST");
+              Swal.fire({
+                title: 'THAT E-MAIL ALREADY EXIST!',
+                icon: 'warning',
+                confirmButtonText: 'OK',
+              })
               navigate("/");
             }
           }}
@@ -142,7 +151,6 @@ const FormUser = () => {
           {(props) => <BasicForm {...props} />}
         </Formik>
       )}
-      <Footer />
     </div>
   );
 };

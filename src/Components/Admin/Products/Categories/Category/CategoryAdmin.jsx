@@ -13,6 +13,7 @@ import AdminNav from "../../../AdminNav/AdminNav";
 import AdminNav2 from "../../../AdminNav/AdminNav2";
 import { Link } from 'react-router-dom'
 import { Button } from '@mui/material'
+import Footer from "../../../../Footer/Footer";
 
 function CategoryAdmin() {
   const {category} = useParams();
@@ -80,6 +81,7 @@ function CategoryAdmin() {
       ) : (
         <ProductNotFound />
       )}
+      <Footer />
     </div>
   );
 }

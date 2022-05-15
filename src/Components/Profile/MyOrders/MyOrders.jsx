@@ -78,13 +78,13 @@ function MyOrders() {
     <div className={styles.myOrders}>
       {!watch ? (
         <div>
-          <Button variant="outlined" onClick={watchOrders}>
+          <Button variant="outlined" style={{margin: '20px auto'}} onClick={watchOrders}>
             Watch orders
           </Button>
         </div>
       ) : (
         <div>
-          <Button variant="outlined" onClick={watchOrders}>
+          <Button variant="outlined" style={{margin: '20px auto'}}  onClick={watchOrders}>
             Close orders
           </Button>
         </div>

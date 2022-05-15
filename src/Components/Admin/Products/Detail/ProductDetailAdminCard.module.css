@@ -5,7 +5,8 @@
     background-color: white;
     border-radius: 50px;
     padding: 10px 30px 40px 30px;
-    color: black
+    color: black;
+    margin-bottom: 100px;
 }
 .productDetailContainerTwo {
     margin: 0 auto;
@@ -55,6 +56,8 @@
     border-radius: 40px;
     padding: 0 40px 40px 40px;
     box-shadow: 0 0 10px 1px rgba(128, 128, 128, 0.628);
+
+
 }
 
 .characteristics {

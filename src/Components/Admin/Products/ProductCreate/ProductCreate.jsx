@@ -16,6 +16,7 @@ import AdminNav2 from "../../AdminNav/AdminNav2";
 import ProductCardAdmin from "../ProductCardAdmin/ProductCardAdmin";
 import ProductDetailAdminCard from "../Detail/ProductDetailAdminCard";
 import Swal from "sweetalert2";
+import Footer from '../../../Footer/Footer'
 
 function ProductCreate() {
   const dispatch = useDispatch();
@@ -321,6 +322,7 @@ function ProductCreate() {
         calification={false}
         category={input.categories}
       />
+      <Footer />
     </div>
   );
 }

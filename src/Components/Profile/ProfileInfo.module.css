@@ -2,8 +2,15 @@
     color: white;
     text-align: center;
     justify-content: center;
-    min-height: 88vh;
-    display: grid;
+    min-height: 100vh;
+    position: relative;
+}
+
+.profileInfo2 {
+    justify-content: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
 .profileInfo .h2Div {
@@ -20,7 +27,6 @@
     height: 150px;
     width: 150px;
 }
-
 
 .profileInfo .h2 {
     align-items: center;

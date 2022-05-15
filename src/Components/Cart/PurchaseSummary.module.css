@@ -24,7 +24,6 @@
         display: flex;
         width: 50%;
         text-align: center;
-        background-color: white;
         border-radius: 15px;
         height: auto;
         position: absolute;
@@ -34,12 +33,16 @@
     }
     
     .productNotFoundContainer {
-        color: black;
+        color: white;
         height: auto;
         display: flex;
         flex-direction: column;
         margin: auto;
         justify-content: center;
+    }
+
+    .productNotFoundContainer h1 {
+        margin-bottom: 100px;
     }
 
     .purchaseResult {

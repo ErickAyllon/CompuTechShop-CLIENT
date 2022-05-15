@@ -33,10 +33,10 @@ function ProfileInfo() {
 
   if (filteredUser.length !== 0) {
     return (
-      <div>
+      <div className={styles.profileInfo}>
         <NavBar />
         {filteredUser ? (
-          <div className={styles.profileInfo}>
+          <div className={styles.profileInfo2}>
             <div>
               <img
                 className={styles.img}
@@ -64,11 +64,12 @@ function ProfileInfo() {
         ) : (
           <Loader />
         )}
+        <Footer />
       </div>
     );
   } else {
     return (
-      <div>
+      <div className={styles.profileInfo2}>
         <NavBar />
         {isAuthenticated && (
           <div className={styles.profileInfo}>

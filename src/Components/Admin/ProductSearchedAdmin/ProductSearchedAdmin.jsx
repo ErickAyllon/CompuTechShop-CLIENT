@@ -12,6 +12,7 @@ import AdminNav from '../AdminNav/AdminNav'
 import AdminNav2 from '../AdminNav/AdminNav2'
 import { Link } from 'react-router-dom'
 import { Button } from '@mui/material'
+import Footer from '../../Footer/Footer'
 
 function ProductSearched() {
   let products = useSelector((state) => state.allProducts); 
@@ -84,6 +85,7 @@ function ProductSearched() {
             <ProductNotFound/>
           </div>
       }
+      <Footer/>
     </div>
   )
 }

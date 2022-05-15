@@ -39,7 +39,7 @@ function NavBar() {
         <div style={{marginRight:'8px'}}>
           <ShoppingCart/>
         </div>
-        <IconButton sx={{ ml: 1 }} onClick={changeTheme} color="primary">
+        <IconButton sx={{ ml: 1 }} className={styles.darkMode} onClick={changeTheme} color="primary">
           {isDarkTheme ? <Brightness4Icon /> : <Brightness7Icon />}
         </IconButton>
         <div className={styles.auth0}>

@@ -11,6 +11,7 @@ import PaginationCAdmin from '../../Pagination/PaginationCAdmin'
 import CategoriesAdmin from '../CategoriesAdmin'
 import { Link } from 'react-router-dom'
 import { Button } from '@mui/material'
+import Footer from '../../../../Footer/Footer'
 
 function AllProductsAdmin() {
   let products = useSelector((state) => state.allProducts);
@@ -75,6 +76,7 @@ function AllProductsAdmin() {
       ) : (
         <Loader />
       )}
+      <Footer />
     </div>
   );
 }
