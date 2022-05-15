@@ -40,6 +40,7 @@ import MyOrderDetail from "./Components/Profile/MyOrders/MyOrderDetail/MyOrderDe
 import MyFavorites from "./Components/Wishlist/MyFavorites/MyFavorites";
 import Banned from "./Components/Banned/Banned";
 import Welcome from "./Components/Welcome/Welcome";
+import { Carrito } from "./Components/PruebaCarrito/Carrito";
 
 const getDesignTokens = (mode) => ({
   palette: {
@@ -105,7 +106,7 @@ function App() {
       <BrowserRouter>
         <Routes>
 
-        <Route element={<ProtectedRouteBan isAllowed={!userAuthenticated || !userAuthenticated.is_banned} />}>
+          <Route element={<ProtectedRouteBan isAllowed={!userAuthenticated || !userAuthenticated.is_banned} />}>
             <Route path="/" element={<Home />} />
             <Route path="/Allproducts" element={<AllProducts />} />
             <Route path="/profile" element={<ProfileInfo />} />
@@ -121,7 +122,7 @@ function App() {
             <Route path="/UpdateProfile" element={<UpdateProfile />} />
             <Route path="/myfavorites" element={<MyFavorites />} />
             <Route path="/AutenticationUpdate" element={<AutenticationUpdate />} />
-            <Route path="/welcome" element={<Welcome/>}/>
+            <Route path="/welcome" element={<Welcome />} />
             <Route path="/FAQ" element={<FAQ />} />
             <Route path="/FAQ2" element={<FAQ2 />} />
             <Route path="/WorkWithUs" element={<WorkWithUs />} />
@@ -129,14 +130,16 @@ function App() {
             <Route path="/purchaseSummary" element={<PurchaseSummary />} />
             <Route path="/purchaseConfirm" element={<PurchaseConfirm />} />
             <Route path="/purchaseResult" element={<PurchaseResult />} />
+            <Route path="/prueba" element={<Carrito />} />
+
           </Route>
 
           <Route path="/banned" element={
             <ProtectedRoute redirectPath="/" isAllowed={!!userAuthenticated && userAuthenticated.is_banned}>
-             <Banned />
+              <Banned />
             </ProtectedRoute>
-          }/>
-          
+          } />
+
           <Route element={<ProtectedRoute isAllowed={!!userAuthenticated && userAuthenticated.is_admin} />}>
             <Route path="/admin/products/Allproducts" element={<AdminProducts />} />
             <Route path="/admin/products/:category" element={<CategoryAdmin />} />

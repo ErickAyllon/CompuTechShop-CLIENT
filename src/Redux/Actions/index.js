@@ -25,7 +25,7 @@ export const getUser = () => {
 export const GET_ACTIVE_USER = "GET_ACTIVE_USER";
 export const getActiveUser = () => {
   return async (dispatch) => {
-    var json = await axios.get("http://localhost:3001/users");
+    var json = await axios.get("/users");
     return dispatch({
       type: "GET_ACTIVE_USER",
       payload: json.data,

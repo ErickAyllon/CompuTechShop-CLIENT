@@ -11,7 +11,7 @@ const initialState = {
   productDetail: [],
   categories: [],
   darkMode: true,
-  cart: JSON.parse(window.localStorage.getItem('carrito')),
+  cart: JSON.parse(window.localStorage.getItem('carrito')) || [],
   shops: [],
   shopsFiltered: [],
   shopDetail: [],
