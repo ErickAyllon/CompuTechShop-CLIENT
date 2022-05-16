@@ -28,7 +28,8 @@ const initialState = {
   userOrders: [],
   review: [],
   userActive: [],
-  wishlist: []
+  wishlist: [],
+  prod: []
 };
 
 function rootReducer(state = initialState, action) {
@@ -44,6 +45,7 @@ function rootReducer(state = initialState, action) {
         productsNotPriceChangeable: ordered,
         productDetail: [],
         productsFilter: ordered,
+        prod: action.payload
       };
     case "GET_CATEGORIES": {
       return {
@@ -190,10 +192,12 @@ function rootReducer(state = initialState, action) {
       };
 
     case TYPES.ADD_TO_CART: {
-      let newItem = state.allProducts.find(
+      let newItem = state.prod.find(
         (product) => product.id === action.payload
       );
+
       let itemInCart = state.cart.find((item) => item.id === newItem.id);
+
       return itemInCart
         ? {
           ...state,

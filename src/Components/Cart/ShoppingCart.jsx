@@ -28,9 +28,8 @@ const ShoppingCart = () => {
   arregloTotal =
     arregloPrice.length > 0 ? arregloPrice.reduce(reducir) : arregloPrice;
   let nuevoPost = [];
-  if (carti.length > 0) {
-    localStorage.setItem("carrito", JSON.stringify(carti));
-  }
+
+  localStorage.setItem("carrito", JSON.stringify(carti));
 
   const delFromCart = (id, all = false) => {
     all
@@ -59,14 +58,14 @@ const ShoppingCart = () => {
     obj.picture_url = nuevoPost.map((el) => el.picture_url);
     obj.price = nuevoPost.map((el) => Number(el.price));
     obj.quantity = nuevoPost.map((el) => el.quantity);
-    localStorage.setItem("carrito", JSON.stringify(nuevoPost));
+    localStorage.setItem("carrito", JSON.stringify(carti));
 
     objetoNuevo = JSON.parse(localStorage.getItem("carrito"));
 
-    // console.log("este es el carrito ", objetoNuevo)
+
   } else {
     objetoNuevo = JSON.parse(localStorage.getItem("carrito"));
-    // console.log("este es el objetoNuevo cuando venis desde afuera", objetoNuevo)
+
   }
 
   //End LocalStorage
@@ -93,67 +92,13 @@ const ShoppingCart = () => {
 
   return (
     <div className={styles.cart}>
-      <Dropdown active="false" autoClose="outside" className={styles.drop}>
-        <Dropdown.Toggle variant="Secondary" id="dropdown-basic">
-          <StyledBadge badgeContent={Number(cart.length)} color="info">
-            <img src={shop} alt="profileImg" className={style.img} />
-          </StyledBadge>
-        </Dropdown.Toggle>
-
-        <Dropdown.Menu
-          className="dropMenu"
-          focusFirstItemOnShow="false"
-          variant="dark"
-        >
-          <Dropdown.Item>
-            <Button
-              className={style.btncito}
-              variant="outlined"
-              onClick={clearCart}
-            >
-              Clean Cart
-            </Button>
-          </Dropdown.Item>
-          <Dropdown.Item>
-            <div>
-              <article className="box">
-                <Dropdown.Divider />
-                {carti?.map((el, index) => (
-                  <Dropdown.Item>
-                    <CartItem
-                      key={index}
-                      data={el}
-                      delFromCart={delFromCart}
-                      addToCart={addToCart}
-                    />
-                  </Dropdown.Item>
-                ))}
-              </article>
-              <div>
-                <label>Total Price: $</label>
-                {arregloTotal ? arregloTotal : <Loader />}
-              </div>
-              <Dropdown.Item>
-                <div>
-                  <Button
-                    className={style.btncito}
-                    variant="outlined"
-                    onClick={handleBuyCart}
-                  >
-                    Buy
-                  </Button>
-                </div>
-              </Dropdown.Item>
-            </div>
-            <Dropdown.Divider />
-          </Dropdown.Item>
-          <Link to="/purchaseSummary">
-            <Button className={style.btncito} variant="outlined">
-              Purchase summary
-            </Button>
-          </Link>
-        </Dropdown.Menu>
-      </Dropdown>
+      {/* <Dropdown active="false" autoClose="outside" className={styles.drop}>
+        <Dropdown.Toggle variant="Secondary" id="dropdown-basic"> */}
+      <Link to="/purchaseSummary">
+        <StyledBadge badgeContent={Number(cart.length)} color="info">
+          <img src={shop} alt="profileImg" className={style.img} />
+        </StyledBadge>
+      </Link>
     </div>
   );
 };

@@ -7,6 +7,7 @@ const CartItem = ({ data, delFromCart, addToCart }) => {
   return (
     <div className={styles.container}>
       <div>{name}</div>
+
       <Button variant="outlined" onClick={() => delFromCart(id)}>-</Button>
 
       <Button variant="outlined" onClick={() => delFromCart(id, true)}>

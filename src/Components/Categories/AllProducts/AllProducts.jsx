@@ -41,6 +41,12 @@ function AllProducts() {
   const addToCart = (id) => {
     dispatch({ type: TYPES.ADD_TO_CART, payload: id });
   };
+
+  const delFromCart = (id, all = false) => {
+    all
+      ? dispatch({ type: TYPES.REMOVE_ALL_FROM_CART, payload: id })
+      : dispatch({ type: TYPES.REMOVE_ONE_FROM_CART, payload: id });
+  };
   // console.log(products);
   return (
     <div className={styles.allProducts}>
@@ -65,6 +71,7 @@ function AllProducts() {
                       calification={el.calification}
                       quantity={el.quantity}
                       addToCart={addToCart}
+
                     />
                   );
                 })
