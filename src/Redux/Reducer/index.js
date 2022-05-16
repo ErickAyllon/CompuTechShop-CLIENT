@@ -35,16 +35,16 @@ const initialState = {
 function rootReducer(state = initialState, action) {
   switch (action.type) {
     case "GET_PRODUCTS":
-      let ordered = action.payload.sort(
-        (a, b) => toNumber(b.calification) - toNumber(a.calification)
-      );
+      // let ordered = action.payload.sort(
+      //   (a, b) => toNumber(b.calification) - toNumber(a.calification)
+      // );
       return {
         ...state,
-        allProducts: ordered,
-        products: ordered,
-        productsNotPriceChangeable: ordered,
+        allProducts: action.payload,
+        products: action.payload,
+        productsNotPriceChangeable: action.payload,
         productDetail: [],
-        productsFilter: ordered,
+        productsFilter: action.payload,
         prod: action.payload
       };
     case "GET_CATEGORIES": {
