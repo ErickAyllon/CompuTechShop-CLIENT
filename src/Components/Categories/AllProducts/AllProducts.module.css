@@ -1,22 +1,23 @@
 .allProducts {
-    color: white;
+    /* color: white; */
     text-align: center;
     justify-content: center;
     position: relative;
     min-height: 100vh;
 }
 
-.productsCardsContainer {
-    max-width: 900px;
-    margin: 20px auto;
-    background-color: white;
-    border-radius: 50px;
-}
-
 .productsContainer {
     display: flex;
     margin: 0 auto;
     max-width: 1400px;
+}
+
+.productsCardsContainer {
+    max-width: 900px;
+    margin: 20px auto;
+    /* background-color: white; */
+    border-radius: 50px;
+    overflow: auto;  
 }
 
 @media only screen and (max-width: 768px) {

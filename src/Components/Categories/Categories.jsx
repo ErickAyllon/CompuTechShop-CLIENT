@@ -2,7 +2,7 @@ import React from 'react'
 import styles from './Categories.module.css'
 import { Link } from 'react-router-dom'
 import { getCategories } from '../../Redux/Actions'
-import {Box, TextField, MenuItem, Button } from '@mui/material/';
+import { TextField, MenuItem } from '@mui/material/';
 import { useDispatch, useSelector } from 'react-redux';
 import { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
@@ -32,7 +32,6 @@ function Categories() {
     }, []);
     
     const brandMap = unicBrand.map((el) => el.name);
-    
 
       function handleCategorySelect(e) {
         e.preventDefault();
@@ -84,13 +83,10 @@ function Categories() {
                     sx={{
                         '& > :not(style)': { m: 1, display: 'flex', width: '17ch', color:'white', position: 'absolute'},
                     }}
-                    // className={styles.filterByBrand}
                     variant="standard"
                     id="outlined-select-currency"
                     name="categories"
                     select
-                    // label="All Categories"
-                    displayEmpty
                     value={categorySelect}
                     onChange={(e) => handleCategorySelect(e)}
                 > 

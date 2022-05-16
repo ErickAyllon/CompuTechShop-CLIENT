@@ -15,19 +15,22 @@ import AdminNav from "../../AdminNav/AdminNav";
 import AdminNav2 from "../../AdminNav/AdminNav2";
 import ProductCardAdmin from "../ProductCardAdmin/ProductCardAdmin";
 import ProductDetailAdminCard from "../Detail/ProductDetailAdminCard";
+import Swal from "sweetalert2";
+import Footer from '../../../Footer/Footer'
 
 function ProductCreate() {
   const dispatch = useDispatch();
   const categories = useSelector((state) => state.categories);
   const allProductsCheck = useSelector((state) => state.allProducts);
   const [errors, setErrors] = useState({});
+  const Swal = require('sweetalert2')
 
   const [input, setInput] = useState({
     name: "",
     price: "",
     quantity: "",
     brand: "",
-    calification: "",
+    // calification: "",
     image: "",
     description: "",
     categories: "",
@@ -54,13 +57,17 @@ function ProductCreate() {
   function handleSubmit(e) {
     e.preventDefault();
     dispatch(postProducts(input));
-    alert("Product created");
+    Swal.fire({
+      title: 'Product created!',
+      icon: 'success',
+      confirmButtonText: 'Ok',
+    })
     setInput({
       name: "",
       price: "",
       quantity: "",
       brand: "",
-      calification: "",
+      // calification: "",
       image: "",
       description: "",
       categories: "",
@@ -109,15 +116,15 @@ function ProductCreate() {
     if (!input.price) {
       errors.price = "Price required";
     }
-    if (!input.calification || input.calification > 10) {
-      errors.calification = "10 max";
-    }
-    if (!input.calification || input.calification < 0) {
-      errors.calification = "Calification must be > 0";
-    }
-    if (!input.calification) {
-      errors.calification = "Calification required";
-    }
+    // if (!input.calification || input.calification > 10) {
+    //   errors.calification = "10 max";
+    // }
+    // if (!input.calification || input.calification < 0) {
+    //   errors.calification = "Calification must be > 0";
+    // }
+    // if (!input.calification) {
+    //   errors.calification = "Calification required";
+    // }
     if (!input.quantity || input.quantity < 0) {
       errors.quantity = "Quantity must be > 0";
     }
@@ -313,7 +320,9 @@ function ProductCreate() {
         quantity={input.quantity}
         description={input.description}
         calification={false}
+        category={input.categories}
       />
+      <Footer />
     </div>
   );
 }

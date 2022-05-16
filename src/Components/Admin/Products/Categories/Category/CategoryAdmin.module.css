@@ -15,6 +15,7 @@
     margin: 20px auto;
     background-color: white;
     border-radius: 50px;
+    overflow: auto;  
 }
 
 .productsContainer {

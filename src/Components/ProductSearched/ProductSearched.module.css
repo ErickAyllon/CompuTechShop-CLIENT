@@ -1,19 +1,17 @@
 .searched {
-    color: white;
     text-align: center;
     justify-content: center;
     margin-top: 2%;
     position: relative;
     min-height: 100vh;
-    background-color: black;
     margin: 0;
 }
 
 .productsCardsContainer {
     max-width: 900px;
     margin: 20px auto;
-    background-color: white;
     border-radius: 50px;
+    overflow: hidden;  
 }
 
 .productsContainer {

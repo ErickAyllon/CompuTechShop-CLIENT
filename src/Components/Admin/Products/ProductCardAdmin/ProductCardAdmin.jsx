@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import styles from "./ProductCardAdmin.module.css";
 import { Rating } from "@mui/material";
 import { Link } from "react-router-dom";
@@ -11,15 +11,29 @@ import { useNavigate } from "react-router-dom";
 function ProductCardAdmin({ name, price, image, calification, id, update, delet }) {
   const dispatch = useDispatch();
   const navigate = useNavigate();
+  const Swal = require('sweetalert2')
   
   function handleDelete(e) {
     e.preventDefault();
-    if (window.confirm('Are you sure?')) {
-      e.preventDefault();
-      dispatch(deleteProduct(e.target.id))
-      window.alert('Product deleted')
-      dispatch(getProducts())
-    }
+    Swal.fire({
+      title: 'Are you sure?',
+      text: "You won't be able to revert this!",
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Yes, delete it!'
+    }).then((result) => {
+      if (result.isConfirmed) {
+        dispatch(deleteProduct(e.target.id))
+        Swal.fire(
+          'Deleted!',
+          'Your product has been deleted.',
+          'success'
+        )
+        dispatch(getProducts())
+      }
+    })
   }
 
   function handleEdit(e) {
@@ -43,7 +57,7 @@ function ProductCardAdmin({ name, price, image, calification, id, update, delet 
           <Rating
             name="half-rating-read"
             size="small"
-            defaultValue={calification / 2}
+            defaultValue={Number(calification)}
             precision={0.5}
             readOnly
             className={styles.productCardCalification}

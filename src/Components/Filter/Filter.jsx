@@ -64,7 +64,6 @@ function Filter() {
     e.preventDefault()
     dispatch(orderProducts(e.target.value))
     setOrder(e.target.value)  
-    // dispatch(filterByBrand(brandSelect))
   }
 
   function handleRestart(e) {
@@ -73,7 +72,6 @@ function Filter() {
       min: '',
       max: '',
     })
-    // dispatch(filterByPrice(input))
     dispatch(filterByBrand('all'))
     setbrandSelect('all')
     setOrder('more-relevants')
@@ -128,9 +126,9 @@ function Filter() {
             <TextField sx={{ '& > :not(style)': { m: .1, height: '6ch'}}}
               value={input.max}
               id="outlined-basic" className="inputTag" label="Max Price" variant="outlined" onChange={handleFilterPrice} name='max'/>
-            <button className={styles.filterButton}>
+            <div className={styles.filterButton}>
               <button className={styles.play} onClick={handleFilterPriceSubmit}><img src={play}/></button>
-            </button>
+            </div>
           </Box>
 
           <TextField

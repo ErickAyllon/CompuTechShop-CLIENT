@@ -2,15 +2,17 @@
     min-height: 100vh;
     margin-bottom: 100px;
     color: black;
+    position: relative;
 }
 
 .productDetailContainer {
     margin: 20px auto;
     max-width: 1200px;
-    height: 1000px;
+    min-height: 1000px;
     background-color: white;
     border-radius: 50px;
-    /* display: flex; */
+    padding: 10px 30px 40px 30px;
+    margin-bottom: 100px;
 }
 
 .productDetailContainerTwo {
@@ -37,8 +39,8 @@
 }
 
 .productDetailInfo {
-    width: 800px;
-    margin: 50px 25px;
+    width: 750px;
+    margin: 50px 0 0 50px;
     display: flex;
     flex-direction: column;
 }
@@ -57,17 +59,76 @@
     margin-top: 10px;
 }
 
-.productDetailDescription {
+.allInfoDetail {
+    background-color: rgba(222, 222, 222, 0.29);
+    border-radius: 40px;
+    padding: 0 40px 40px 40px;
+    box-shadow: 0 0 10px 1px rgba(128, 128, 128, 0.628);
+}
+
+.characteristics {
     width: 100%;
     text-align: center;
-    min-height: 300px;
+    padding: 10px 0;
+    justify-content: center;
+    display: flex;
+    margin: auto;
+    min-width: 200px;
+
+}
+
+.characteristicsContainer {
+    margin: 0 auto;
+    height: 100%;
+    min-width: 200px;
+    text-align: left;
+}
+
+.characteristicsContainer span {
+    font-weight: bold;
+}
+
+.productDetailDescription {
+    padding: 10px 0;
+    border-top: 1px solid rgba(128, 128, 128, 0.259);
+    width: 100%;
+    text-align: center;
+}
+
+.reviewContainer {
+    padding: 10px 0;
+    border-top: 1px solid rgba(128, 128, 128, 0.259);
+    width: 100%;
+    text-align: center;
 }
 
 .productDetailDescriptionContainer {
     margin: 0 auto;
     height: 100%;
     width: 90%;
-    background-color: rgba(222, 222, 222, 0.29);
+    border-radius: 40px;
+}
+
+.reviewsContainer {
+    margin: 0 auto;
+    height: 100%;
+    width: 50%;
+    border-bottom: 1px solid rgba(128, 128, 128, 0.259);
+}
+
+.opinionsPromedy {
+    border-bottom: 1px solid rgba(128, 128, 128, 0.259);
+}
+
+.opinionsPromedy h5 {
+    font-size: 1.8rem;
+    font-weight: 400;
+    margin: 0;
+    font-family: 'Orbitron', sans-serif;
+}
+
+.opinionsPromedy p {
+    line-height: .2;
 }
 
 .addBtn {
@@ -98,6 +159,12 @@
     width: auto;
     margin: auto;
     display: flex;
+}
+
+.wishlist {
+    margin-left: auto;
+    margin-right: 38px;
+    margin-top: 5px;
 }
 
 
@@ -156,5 +223,9 @@
 
     .addBtn img {
         height: 18px;
+    }
+
+    .reviewsContainer {
+        width: 80%;
     }
 }

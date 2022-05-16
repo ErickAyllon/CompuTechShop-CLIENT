@@ -11,7 +11,7 @@ const initialState = {
   productDetail: [],
   categories: [],
   darkMode: true,
-  cart: [],
+  cart: JSON.parse(window.localStorage.getItem('carrito')) || [],
   shops: [],
   shopsFiltered: [],
   shopDetail: [],
@@ -21,7 +21,15 @@ const initialState = {
   payment: [],
   userPayment: [],
   totalUserPayment: [],
+  userDetail: [],
+  activeUser: [],
   authenticated: null,
+  orders: [],
+  userOrders: [],
+  review: [],
+  userActive: [],
+  wishlist: [],
+  prod: []
 };
 
 function rootReducer(state = initialState, action) {
@@ -37,6 +45,7 @@ function rootReducer(state = initialState, action) {
         productsNotPriceChangeable: ordered,
         productDetail: [],
         productsFilter: ordered,
+        prod: action.payload
       };
     case "GET_CATEGORIES": {
       return {
@@ -55,18 +64,23 @@ function rootReducer(state = initialState, action) {
         shopping: action.payload,
       };
     }
-    // case "GET_USER":
-    //   return {
-    //     ...state,
-    //     users: action.payload,
-    //   };
+    case "GET_USER_DETAIL":
+      return {
+        ...state,
+        userDetail: action.payload,
+      };
+    case "GET_ACTIVE_USER":
+      return {
+        ...state,
+        activeUser: action.payload,
+      };
     case "GET_USER":
       return {
         ...state,
         users: action.payload,
         usersFiltered: action.payload,
         users2: action.payload,
-      }
+      };
     case "GET_DETAILS":
       return {
         ...state,
@@ -174,14 +188,16 @@ function rootReducer(state = initialState, action) {
     case "DARKMODE":
       return {
         ...state,
-        darkMode: action.payload,
+        darkMode: action.payload
       };
 
     case TYPES.ADD_TO_CART: {
-      let newItem = state.allProducts.find(
+      let newItem = state.prod.find(
         (product) => product.id === action.payload
       );
+
       let itemInCart = state.cart.find((item) => item.id === newItem.id);
+
       return itemInCart
         ? {
           ...state,
@@ -231,7 +247,7 @@ function rootReducer(state = initialState, action) {
       return {
         ...state,
         shops: action.payload,
-        shopsFiltered: action.payload
+        shopsFiltered: action.payload,
       };
     case "GET_SHOP_BY_ID":
       return {
@@ -243,11 +259,6 @@ function rootReducer(state = initialState, action) {
         ...state,
         currentPage: action.payload,
       };
-    // case "UPDATE": {
-    //   return {
-    //     ...state,
-    //   };
-    // }
     case "DELETE_CATEGORY":
       return {
         ...state,
@@ -261,103 +272,148 @@ function rootReducer(state = initialState, action) {
         ...state,
       };
     case "SORT_USER_BY_LASTNAME":
-      const sort = 
-      state.usersFiltered.length > 0
-      ? action.payload === 'a-z'
-        ? state.usersFiltered.sort(
-          (a, b) => a.family_name.localeCompare(b.family_name)
-        )
-        : action.payload === 'z-a'
-        ? state.usersFiltered.sort(
-          (a, b) => b.family_name.localeCompare(a.family_name)
-        )
-        : state.usersFiltered
-        : null
+      const sort =
+        state.usersFiltered.length > 0
+          ? action.payload === "a-z"
+            ? state.usersFiltered.sort((a, b) =>
+              a.family_name.localeCompare(b.family_name)
+            )
+            : action.payload === "z-a"
+              ? state.usersFiltered.sort((a, b) =>
+                b.family_name.localeCompare(a.family_name)
+              )
+              : state.usersFiltered
+          : null;
       return {
         ...state,
-        usersFiltered: sort
-      }
+        usersFiltered: sort,
+      };
     case "SORT_ORDER_BY_EMAIL":
-      const sortOrder = 
-      state.shopsFiltered.length > 0
-      ? action.payload === 'a-z'
-        ? state.shopsFiltered.sort(
-          (a, b) => a.userEmail.localeCompare(b.userEmail)
-        )
-        : action.payload === 'z-a'
-        ? state.shopsFiltered.sort(
-          (a, b) => b.userEmail.localeCompare(a.userEmail)
-        )
-        : state.shopsFiltered
-        : null
+      const sortOrder =
+        state.shopsFiltered.length > 0
+          ? action.payload === "a-z"
+            ? state.shopsFiltered.sort((a, b) =>
+              a.userEmail.localeCompare(b.userEmail)
+            )
+            : action.payload === "z-a"
+              ? state.shopsFiltered.sort((a, b) =>
+                b.userEmail.localeCompare(a.userEmail)
+              )
+              : state.shopsFiltered
+          : null;
       return {
         ...state,
-        usersFiltered: sortOrder
-      }
-      case "SORT_ORDER_BY_AMOUNT":
-        const sortAmount = 
+        usersFiltered: sortOrder,
+      };
+    case "SORT_ORDER_BY_AMOUNT":
+      const sortAmount =
         state.shopsFiltered.length > 0
-        ? action.payload === 'lower-amount'
-          ? state.shopsFiltered.sort(
-            (a, b) => a.total_paid_amount - b.total_paid_amount
-          )
-          : action.payload === 'higher-amount'
-          ? state.shopsFiltered.sort(
-            (a, b) => b.total_paid_amount - a.total_paid_amount
-          )
-          : state.shopsFiltered
-          : null
-        return {
-          ...state,
-          usersFiltered: sortAmount
-        }
-      case "FILTER_ORDER_BY_STATE":
-        const orders = 
-          action.payload === 'In process'
-           ? state.shops.filter(el => el.state === 'In process')
-           : action.payload === 'Paid'
-           ? state.shops.filter(el => el.state === 'Paid')
-           : action.payload === 'On its way'
-           ? state.shops.filter(el => el.state === 'On its way')
-           : action.payload === 'Cancelled'
-           ? state.shops.filter(el => el.state === 'Cancelled')
-           : action.payload === 'Received'
-           ? state.shops.filter(el => el.state === 'Received')
-           : state.shops;
-          return{
-            ...state,
-            shopsFiltered: orders
-          }
-      case "UPDATE_SHOP":
-        return{
-          ...state,
-        }
+          ? action.payload === "lower-amount"
+            ? state.shopsFiltered.sort(
+              (a, b) => a.total_paid_amount - b.total_paid_amount
+            )
+            : action.payload === "higher-amount"
+              ? state.shopsFiltered.sort(
+                (a, b) => b.total_paid_amount - a.total_paid_amount
+              )
+              : state.shopsFiltered
+          : null;
+      return {
+        ...state,
+        usersFiltered: sortAmount,
+      };
+    case "FILTER_ORDER_BY_STATE":
+      const orders =
+        action.payload === "In process"
+          ? state.shops.filter((el) => el.state === "In process")
+          : action.payload === "Paid"
+            ? state.shops.filter((el) => el.state === "Paid")
+            : action.payload === "On its way"
+              ? state.shops.filter((el) => el.state === "On its way")
+              : action.payload === "Cancelled"
+                ? state.shops.filter((el) => el.state === "Cancelled")
+                : action.payload === "Received"
+                  ? state.shops.filter((el) => el.state === "Received")
+                  : state.shops;
+      return {
+        ...state,
+        shopsFiltered: orders,
+      };
+    case "UPDATE_SHOP":
+      return {
+        ...state,
+      };
 
     case "GET_PAYMENT": {
       return {
         ...state,
-        payment: action.payload
-      }
+        payment: action.payload,
+      };
     }
     case "GET_PAYMENT_USER": {
       return {
         ...state,
-        userPayment: action.payload
-      }
+        userPayment: action.payload,
+      };
     }
     case "GET_TOTAL_USER_PAYMENTS": {
       return {
         ...state,
-        totalUserPayment: action.payload
-      }
+        totalUserPayment: action.payload,
+      };
     }
     case "AUTHENTICATE": {
       return {
         ...state,
-        authenticated: action.payload
-      }
+        authenticated: action.payload,
+      };
     }
     case "UPDATE_USER": {
+      return {
+        ...state,
+      };
+    }
+    case "GET_ORDERS": {
+      return {
+        ...state,
+        orders: action.payload,
+      };
+    }
+    case "GET_ORDERS_BY_EMAIL": {
+      return {
+        ...state,
+        userOrders: action.payload,
+      };
+    }
+    case "GET_REVIEW": {
+      return {
+        ...state,
+        review: action.payload,
+      };
+    }
+    case TYPES.USER_ACTIVE: {
+      return {
+        ...state,
+        userActive: action.payload,
+      };
+    }
+    case 'DELETE_REVIEW': {
+      return {
+        ...state
+      }
+    }
+    case 'GET_WISHLIST': {
+      return {
+        ...state,
+        wishlist: action.payload
+      }
+    }
+    case 'POST_WISHLIST': {
+      return {
+        ...state,
+      }
+    }
+    case 'DELETE_WISHLIST': {
       return {
         ...state,
       }
@@ -368,4 +424,3 @@ function rootReducer(state = initialState, action) {
 }
 
 export default rootReducer;
-

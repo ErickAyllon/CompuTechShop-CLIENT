@@ -1,26 +1,29 @@
 import React, { useEffect } from "react";
 import styles from "./ProductDetail.module.css";
-import { getDetail, getProducts } from "../../Redux/Actions/index.js";
+import { getCategories, getDetail, getReview } from "../../Redux/Actions/index.js";
 import { useSelector, useDispatch } from "react-redux";
 import { useParams } from "react-router-dom";
 import { Rating } from "@mui/material";
-
 import Categories from "../Categories/Categories";
 import { TYPES } from "../../Redux/Actions/shoppingCartActions";
 import NavBar from "../NavBar/Navbar";
 import add from '../../Images/add.png'
+import DetailReviews from "./DetailReviews/DetailReviews";
+import Footer from "../Footer/Footer";
+import Wishlist from "../Wishlist/WishlistIcon/WishlistIcon";
 
 
 function ProductDetail() {
   const dispatch = useDispatch();
   const { name } = useParams();
+  const product = useSelector((state) => state.productDetail);
+  const review = useSelector((state) => state.review);
 
   useEffect(() => {
-    //  dispatch(getProducts());
+    dispatch(getReview(name))
     dispatch(getDetail(name));
   }, [dispatch]);
 
-  const product = useSelector((state) => state.productDetail);
   const delFromCart = (id, all = false) => {
     all
       ? dispatch({ type: TYPES.REMOVE_ALL_FROM_CART, payload: id })
@@ -28,7 +31,7 @@ function ProductDetail() {
   };
 
   const addToCart = (id) => {
-    console.log(id);
+    // console.log(id);
     dispatch({ type: TYPES.ADD_TO_CART, payload: id });
   };
 
@@ -48,29 +51,67 @@ function ProductDetail() {
                 className={styles.productDetailRating}
                 name="half-rating-read"
                 size="small"
-                defaultValue={product[0].calification / 2}
+                defaultValue={Number(product[0].calification)}
                 precision={0.5}
                 readOnly
               />
               <p className={styles.productDetailPrice}>${product[0].price}</p>
               <button className={styles.addBtn} onClick={() => addToCart(product[0].id)}><img src={add} alt="" /></button>
-              {/* <button className= {styles.btn} onClick={() => delFromCart(product[0].id)}>-</button> */}
-
-              {/* <p>{product[0].brand}</p>
-                <p>{product[0].quantity}</p> */}
+              <div className={styles.wishlist}>
+                <Wishlist id={product[0].id} name={product[0].name} />
+              </div>
             </div>
-
           </div>
-
-          <div className={styles.productDetailDescription}>
-            <div className={styles.productDetailDescriptionContainer}>
-              <p>Description:</p>
-              <p>{product[0].description}</p>
+          <div className={styles.allInfoDetail}>
+            <div className={styles.characteristics}>
+              <div className={styles.characteristicsContainer}>
+                <h3 style={{textAlign:'center'}}>Characteristics:</h3>
+                <h5>Brand: <span>{product[0].brand}</span></h5>
+                <h5>Category: <span>{product[0].category[0]}</span></h5>
+                <h5>Stock: <span>{product[0].quantity}</span></h5>
+              </div>
             </div>
-
+            <div className={styles.productDetailDescription}>
+              <div className={styles.productDetailDescriptionContainer}>
+                <h3>Description:</h3>
+                <p>{product[0].description}</p>
+              </div>
+            </div>
+            <div className={styles.reviewContainer}>
+              { review.length ?           
+                  <div className={styles.reviewsContainer}>
+                    <h3>Opinions about {product[0].name}</h3>
+                    <div>
+                      <div className={styles.opinionsPromedy}>
+                        <h5>{product[0].calification}</h5>
+                        <Rating
+                          size="small"
+                          defaultValue={Number(product[0].calification)}
+                          precision={0.5}
+                          readOnly
+                        />
+                      <p>Promedy between {review.length} opinions</p>
+                      </div>
+                    </div>
+                    <div>
+                      {
+                      review.map(e => { 
+                        return (
+                          e.comment ?
+                          <DetailReviews key={e.id} comment={e.comment} user={e.user} calification={e.calification} />
+                          : null
+                        )
+                      })
+                      }
+                    </div>
+                </div>
+              : null
+              }
+            </div>
           </div>
         </div>
       ) : null}
+      <Footer/>
     </div>
   );
 }

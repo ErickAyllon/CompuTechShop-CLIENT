@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from "react-redux";
-import { getShops, sortOrderByEmail, sortOrderByAmount, filterOrderByState, getTotalUserPayments } from "../../../../Redux/Actions";
+import { getShops, sortOrderByEmail, sortOrderByAmount, filterOrderByState, getTotalUserPayments, getOrders } from "../../../../Redux/Actions";
 import styles from './ViewAllOrders.module.css';
 import AdminNav from '../../AdminNav/AdminNav'
 import AdminNav2 from '../../AdminNav/AdminNav2';
@@ -25,12 +25,14 @@ function ViewAllOrders(){
 
   useEffect(() => {
     dispatch(getShops());
-    console.log('shops',shops)
+    // dispatch(getOrders())
+    // console.log('shops',shops)
   }, [dispatch]);
 
 
   // const shops = useSelector((state) => state.shops);
   const shops = useSelector((state) => state.shopsFiltered);
+  const orders = useSelector((state) => state.orders);
 
   function handleSortByEmail(e) {
     e.preventDefault()
@@ -87,6 +89,9 @@ const columns = [
     format: (value) => value.toFixed(2),
   },
 ];
+
+// const order = orders
+// console.log(orders[0].payments)
 
 const rows = shops
 

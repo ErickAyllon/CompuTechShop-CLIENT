@@ -1,5 +1,4 @@
 import React, { useState, useEffect} from 'react'
-//import styles from './ProductDetail.module.css'
 import { getShopById, getUser, updateShop } from '../../../../Redux/Actions'
 import { useSelector, useDispatch } from 'react-redux';
 import { useParams, useNavigate } from 'react-router-dom';
@@ -7,17 +6,18 @@ import { Link } from 'react-router-dom';
 import NotFound404 from '../../../NotFound404/NotFound404';
 import AdminNav from '../../AdminNav/AdminNav'
 import AdminNav2 from '../../AdminNav/AdminNav2';
-import {Box, TextField, MenuItem, Button } from '@mui/material/';
+import { TextField, MenuItem, Button } from '@mui/material/';
 import styles from './ShopDetails.module.css'
-import Stack from '@mui/material/Stack';
 import Paper from '@mui/material/Paper';
 import { styled } from '@mui/material/styles';
+import Swal from 'sweetalert2';
 
 function ShopDetail() {
   const dispatch = useDispatch();
   const navigate = useNavigate()
   const { id } = useParams();
   const shop = useSelector ((state) => state.shopDetail);
+  const Swal = require('sweetalert2')
   
   const Item = styled(Paper)(({ theme }) => ({
     backgroundColor: theme.palette.mode === 'dark' ? '#1A2027' : '#fff',
@@ -28,8 +28,6 @@ function ShopDetail() {
     justifyContent:'space-between' ,
     color: theme.palette.text.secondary,
   }));
-
-
 
   useEffect(() => {
     dispatch(getShopById(id));
@@ -56,7 +54,11 @@ function ShopDetail() {
   function handleClick(e){
     e.preventDefault()
     dispatch(updateShop(id, {state: update}))
-    alert('Order updated')
+    Swal.fire({
+      title: 'Order updated!',
+      icon: 'success',
+      confirmButtonText: 'OK',
+    })
     setUpdate('')
     navigate('/admin/allorders')
     
@@ -154,15 +156,10 @@ function ShopDetail() {
           </div>
         )
       })
-      
-
       : <NotFound404/>
       }
     </div>
   )
-
-
-
 }
 
 export default ShopDetail

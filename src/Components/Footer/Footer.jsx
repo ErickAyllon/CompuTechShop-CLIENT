@@ -37,6 +37,7 @@ function Footer() {
   
   
   return (
+    <div className={styles.footerSuperContainer}>
     <div className={styles.footerContainer}>
       
         <div className={styles.footer}>
@@ -70,6 +71,7 @@ function Footer() {
             </a>
           </div>
         </div>
+    </div>
     </div>
   )
 }

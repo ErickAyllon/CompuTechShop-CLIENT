@@ -11,6 +11,9 @@ import ProductNotFound from "../../ProductNotFound/ProductNotFound";
 import { useParams } from "react-router-dom";
 import { TYPES } from "../../../Redux/Actions/shoppingCartActions";
 import NavBar from "../../NavBar/Navbar";
+import Footer from "../../Footer/Footer";
+import { useState } from "react";
+import { CircularProgress } from "@mui/material";
 
 function Category() {
   const { category } = useParams();
@@ -36,6 +39,13 @@ function Category() {
   const addToCart = (id) => {
     dispatch({ type: TYPES.ADD_TO_CART, payload: id });
   };
+
+  const [load, setLoad] = useState(true)
+
+  setTimeout(function () {
+   setLoad(false)
+ }, 1000)
+
   return (
     <div className={styles.category}>
       <NavBar/>
@@ -45,7 +55,10 @@ function Category() {
           <div className={styles.productsContainer}>
             <Filter />
             <div className={styles.productsCardsContainer}>
-              {productsFilter.length > 0 ? (
+            {          
+              load ? 
+              <CircularProgress color="inherit" style={{position:'absolute', top:'50%', left:'50%'}}/>
+            : productsFilter.length > 0 ? (
                 currentProducts.map((el) => {
                   return (
                     <ProductCard
@@ -67,13 +80,14 @@ function Category() {
               )}
             </div>
           </div>
-          {productsFilter.length > 0 ? (
+          {productsFilter.length > 0 && !load ? (
             <PaginationC category={category} totalPages={totalPages} />
           ) : null}
         </>
       ) : (
         <ProductNotFound />
       )}
+      <Footer />
     </div>
   );
 }

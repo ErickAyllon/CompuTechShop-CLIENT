@@ -1,26 +1,37 @@
-import React, { useState, useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { Link, useParams, useNavigate } from "react-router-dom";
 import { useAuth0 } from "@auth0/auth0-react";
-
-import { getUser, getUserDetail } from "../../Redux/Actions/index.js";
+import { getUser, authenticate } from "../../Redux/Actions/index.js";
 import styles from "./Profile.module.css";
-import DropdownMenu from "react-bootstrap/esm/DropdownMenu";
 import { Dropdown } from "react-bootstrap";
 import LogOutButton from "./LogOutButton";
-import Profile2 from "../Profile/ProfileInfo.jsx";
+import SelectInput from "@mui/material/Select/SelectInput";
 
 export default function Profile() {
   const { user, isAuthenticated } = useAuth0();
-
   const dispatch = useDispatch();
+  const users = useSelector((state) => state.users)
+  const auth0Email = user?.email
+  const userLogged = users?.length > 0 ? users?.find(e => (e.email === auth0Email)) : false;
+
   let myUsers = useSelector((state) => state.users2);
 
   useEffect(() => {
-    dispatch(getUser());
-  }, [dispatch]);
-
+    dispatch(getUser())
+    dispatch(authenticate(userLogged))
+  }, [dispatch])
   // console.log(user);
+
+  // let allUsers = useSelector((state) => state.users2);
+  // let userLocal = [];
+  // if (user) {
+  //   localStorage.setItem("email", user.email);
+  // }
+
+  // userLocal.email = localStorage.getItem("email");
+  // let filteredUser = allUsers.filter((el) => el.email === userLocal.email);
+  // console.log(filteredUser)
+
   return (
     isAuthenticated && (
       <div className={styles.profile}>
@@ -38,7 +49,6 @@ export default function Profile() {
             focusFirstItemOnShow="false"
             variant="dark"
           >
-
             <Dropdown.Item href={"/profile"}>My Profile</Dropdown.Item>
 
             {/* <Dropdown.Item href="/admin">My Orders</Dropdown.Item> */}

@@ -3,7 +3,6 @@
     display: flex;
     width: 600px;
     height: 35px;
-    background: rgba(0, 0, 0, 0.845);
     border-radius: 8px;
     border: 1px solid rgba(255, 255, 255, 0.202);
     box-shadow: 0 0 5px 1px rgba(255, 255, 255, 0.219);
@@ -12,8 +11,8 @@
   
   .searchBarContainer input {
     text-align: center;
-    color: blue;
-    letter-spacing: .1rem;
+    letter-spacing: .2rem;
+    font-size: 1.1rem;
     background-size: 30px 30px;
     background-repeat: no-repeat;
     font-family: 'Iceland', cursive;
@@ -47,9 +46,8 @@
   }
     
   .searchBarContainer .searchBarButton:hover {
-    color: black;
-    background: blue;
-    border-color: blue;
+    background: rgba(47, 47, 225, 0.843);
+    border-color: rgba(47, 47, 225, 0.843);
   }
   
   .searchBarContainer .searchBarButton:active {

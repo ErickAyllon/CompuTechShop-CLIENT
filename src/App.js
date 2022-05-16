@@ -1,20 +1,17 @@
 import Home from "./Components/Home/Home";
 import { useSelector } from "react-redux";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import Footer from "./Components/Footer/Footer";
 import Admin from "./Components/Admin/Admin";
-import Profile from "./Components/Auth0/Profile"
 import ProductDetail from "./Components/Detail/ProductDetail";
 import NotFound404 from "./Components/NotFound404/NotFound404";
 import AllProducts from "./Components/Categories/AllProducts/AllProducts";
 import ProfileForm from "./Components/Profile/ProfileForm";
 import ProductSearched from "./Components/ProductSearched/ProductSearched";
-import Help from "./Components/Footer/Help/Help"
 import FAQ from "./Components/Footer/FAQ";
-import FAQ2 from './Components/Footer/FAQ2'
+import FAQ2 from "./Components/Footer/FAQ2";
 import WorkWithUs from "./Components/Footer/WorkWithUs";
 import About from "./Components/Footer/About";
-import ProfileInfo from "./Components/Profile/ProfileInfo"
+import ProfileInfo from "./Components/Profile/ProfileInfo";
 import { CssBaseline } from "@mui/material";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 import { amber, deepOrange, grey } from "@mui/material/colors";
@@ -29,14 +26,21 @@ import ProductDetailAdmin from "./Components/Admin/Products/Detail/ProductDetail
 import CategoryAdmin from "./Components/Admin/Products/Categories/Category/CategoryAdmin";
 import Users from "./Components/Admin/Users/Users";
 import UpdateProduct from "./Components/Admin/Products/UpdateProduct/UpdateProduct";
-import ProductSearchedAdmin from './Components/Admin/ProductSearchedAdmin/ProductSearchedAdmin'
+import ProductSearchedAdmin from "./Components/Admin/ProductSearchedAdmin/ProductSearchedAdmin";
 import PurchaseSummary from "./Components/Cart/PurchaseSummary";
 import { PurchaseConfirm } from "./Components/Cart/PurchaseConfirm";
 import { PurchaseResult } from "./Components/Cart/PurchaseResult";
 import { Navigate, Outlet } from "react-router-dom";
+import UpdateProfile from "./Components/Profile/UpdateProfile";
+import Autentication from "./Components/Autenticacion/Autentication";
 import AdminManager from "./Components/Admin/Users/AdminManager/AdminManager";
 import AdminUpdate from "./Components/Admin/Users/AdminManager/AdminUpdate/AdminUpdate";
-
+import AutenticationUpdate from "./Components/Autenticacion/AutenticationUpdate";
+import MyOrderDetail from "./Components/Profile/MyOrders/MyOrderDetail/MyOrderDetail";
+import MyFavorites from "./Components/Wishlist/MyFavorites/MyFavorites";
+import Banned from "./Components/Banned/Banned";
+import Welcome from "./Components/Welcome/Welcome";
+import { SnackbarProvider } from 'notistack'
 
 const getDesignTokens = (mode) => ({
   palette: {
@@ -55,15 +59,15 @@ const getDesignTokens = (mode) => ({
     }),
     ...(mode === "light" && {
       background: {
-        default: "#4b4b4b",
+        default: '#495464',
         paper: deepOrange[900],
       },
     }),
     text: {
       ...(mode === "light"
         ? {
-          primary: grey[900],
-          secondary: grey[800],
+          primary: '#000000',
+          secondary: '#000000',
         }
         : {
           primary: "#ffffff",
@@ -77,64 +81,88 @@ function App() {
   const isDarkTheme = useSelector((state) => state.darkMode);
   const darkModeTheme = createTheme(
     isDarkTheme ? getDesignTokens("dark") : getDesignTokens("light")
-    );
+  );
 
-    const ProtectedRoute = ({ isAllowed, redirectPath ='/admin', children }) => {
-      if (!isAllowed) {
-        return <Navigate to={redirectPath} replace />;
-      }
-      return children ? children : <Outlet />;
-    };
+  const ProtectedRouteBan = ({ isAllowed, redirectPath = "/banned", children }) => {
+    if (!isAllowed) {
+      return <Navigate to={redirectPath} replace />;
+    }
+    return children ? children : <Outlet />;
+  };
 
-    const isAuthenticated = useSelector((state) => state.authenticated)
+  const ProtectedRoute = ({ isAllowed, redirectPath = "/admin", children }) => {
+    if (!isAllowed) {
+      return <Navigate to={redirectPath} replace />;
+    }
+    return children ? children : <Outlet />;
+  };
+
+  const userAuthenticated = useSelector((state) => state.authenticated);
+  // console.log(user?.length)
 
   return (
     <ThemeProvider theme={isDarkTheme ? darkModeTheme : darkModeTheme}>
-      <CssBaseline />
-      <BrowserRouter>
+      <SnackbarProvider maxSnack={2}>
+        <CssBaseline />
+        <BrowserRouter>
+          <Routes>
 
-        <Routes>
-          <Route path="/" element={<Home />} />
-          {/* <Route path="/profile" element={<Profile />} /> */}
-          <Route path="/Allproducts" element={<AllProducts />} />
-          <Route path="/profile" element={<ProfileInfo />} />
-          <Route path="/category/:category" element={<Category />} />
-          <Route path="/:name" element={<ProductDetail />} />
-          <Route path="/search/:search" element={<ProductSearched />} />
-          <Route path="*" element={<NotFound404 />} />
-          <Route path="/user" element={<ProfileForm />} />
-          <Route path="/form" element={<FormUser />} />
-          <Route path="/admin" element={<Admin />} />
+            <Route element={<ProtectedRouteBan isAllowed={!userAuthenticated || !userAuthenticated.is_banned} />}>
+              <Route path="/" element={<Home />} />
+              <Route path="/Allproducts" element={<AllProducts />} />
+              <Route path="/profile" element={<ProfileInfo />} />
+              <Route path="/profile/order/:id" element={<MyOrderDetail />} />
+              <Route path="/category/:category" element={<Category />} />
+              <Route path="/:name" element={<ProductDetail />} />
+              <Route path="/search/:search" element={<ProductSearched />} />
+              <Route path="*" element={<NotFound404 />} />
+              <Route path="/user" element={<ProfileForm />} />
+              <Route path="/form" element={<FormUser />} />
+              <Route path="/admin" element={<Admin />} />
+              <Route path="/autentication" element={<Autentication />} />
+              <Route path="/UpdateProfile" element={<UpdateProfile />} />
+              <Route path="/myfavorites" element={<MyFavorites />} />
+              <Route path="/AutenticationUpdate" element={<AutenticationUpdate />} />
+              <Route path="/welcome" element={<Welcome />} />
+              <Route path="/FAQ" element={<FAQ />} />
+              <Route path="/FAQ2" element={<FAQ2 />} />
+              <Route path="/WorkWithUs" element={<WorkWithUs />} />
+              <Route path="/About" element={<About />} />
+              <Route path="/purchaseSummary" element={<PurchaseSummary />} />
+              <Route path="/purchaseConfirm" element={<PurchaseConfirm />} />
+              <Route path="/purchaseResult" element={<PurchaseResult />} />
 
-          <Route element={<ProtectedRoute isAllowed={!!isAuthenticated && isAuthenticated.is_admin} />}>
-            <Route path="/admin/products/Allproducts" element={<AdminProducts />} />
-            <Route path="/admin/products/:category" element={<CategoryAdmin />} />
-            <Route path="/admin/products/createProduct" element={<ProductCreate />} />
-            <Route path="/admin/product/:name" element={<ProductDetailAdmin />} />
-            <Route path="/admin/product/update/:name" element={<UpdateProduct />} />
-            <Route path="/admin/search/:search" element={<ProductSearchedAdmin />} />
-            <Route path="/admin/categories" element={<AdminCategories />} />
-            <Route path="/admin/shop/:id" element={<ShopDetails />} />
-            <Route path="/admin/allorders" element={<ViewAllOrders />} />
-            <Route path="/admin/users" element={<Users />} />
-          </Route>
 
-          <Route element={<ProtectedRoute isAllowed={!!isAuthenticated && isAuthenticated.is_admin_pro} />}>
-            <Route path="/admin/manager" element={<AdminManager />} />
-            <Route path="/admin/manager/:nickname" element={<AdminUpdate />} />
-          </Route>
+            </Route>
 
-          <Route path='/FAQ' element={<FAQ />} />
-          <Route path='/FAQ2' element={<FAQ2 />} />
-          <Route path='/WorkWithUs' element={<WorkWithUs />} />
-          <Route path='/About' element={<About />} />
-          <Route path="/purchaseSummary" element={<PurchaseSummary />} />
-          <Route path="/purchaseConfirm" element={<PurchaseConfirm />} />
-          <Route path="/purchaseResult" element={<PurchaseResult />} />
+            <Route path="/banned" element={
+              <ProtectedRoute redirectPath="/" isAllowed={!!userAuthenticated && userAuthenticated.is_banned}>
+                <Banned />
+              </ProtectedRoute>
+            } />
 
-        </Routes>
-        <Footer />
-      </BrowserRouter>
+            <Route element={<ProtectedRoute isAllowed={!!userAuthenticated && userAuthenticated.is_admin} />}>
+              <Route path="/admin/products/Allproducts" element={<AdminProducts />} />
+              <Route path="/admin/products/:category" element={<CategoryAdmin />} />
+              <Route path="/admin/products/createProduct" element={<ProductCreate />} />
+              <Route path="/admin/product/:name" element={<ProductDetailAdmin />} />
+              <Route path="/admin/product/update/:name" element={<UpdateProduct />} />
+              <Route path="/admin/search/:search" element={<ProductSearchedAdmin />} />
+              <Route path="/admin/categories" element={<AdminCategories />} />
+              <Route path="/admin/shop/:id" element={<ShopDetails />} />
+              <Route path="/admin/allorders" element={<ViewAllOrders />} />
+              <Route path="/admin/users" element={<Users />} />
+            </Route>
+
+            <Route element={<ProtectedRoute isAllowed={!!userAuthenticated && userAuthenticated.is_admin_pro} />}>
+              <Route path="/admin/manager" element={<AdminManager />} />
+              <Route path="/admin/manager/:nickname" element={<AdminUpdate />} />
+            </Route>
+
+
+          </Routes>
+        </BrowserRouter>
+      </SnackbarProvider>
     </ThemeProvider>
   );
 }

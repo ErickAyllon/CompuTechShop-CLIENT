@@ -11,6 +11,10 @@ import ProductCardAdmin from '../ProductCardAdmin/ProductCardAdmin';
 import { useParams } from 'react-router-dom';
 import AdminNav2 from '../../AdminNav/AdminNav2';
 import ProductDetailAdminCard from '../Detail/ProductDetailAdminCard'
+import Swal from 'sweetalert2'
+import Footer from '../../../Footer/Footer';
+
+
 
 function UpdateProduct() {
   const dispatch = useDispatch();
@@ -18,6 +22,10 @@ function UpdateProduct() {
   const product = useSelector ((state) => state.productDetail);
   const categories = useSelector((state) => state.categories)
   const [errors, setErrors] = useState({})
+
+  const Swal = require('sweetalert2')
+
+
 
   useEffect(() => {
     dispatch(getCategories());
@@ -29,7 +37,7 @@ function UpdateProduct() {
     price: '', 
     quantity: '',
     brand: '',
-    calification: '',
+    // calification: '',
     image: '',
     description: '',
     categories: ''
@@ -73,7 +81,11 @@ function UpdateProduct() {
     e.preventDefault();
     dispatch(updateProduct(product[0].id, input));
     setErrors({});
-    window.alert('Product updated')
+    Swal.fire({
+      title: 'Product Updated!',
+      icon: 'success',
+      confirmButtonText: 'Ok',
+    })
     dispatch(getDetail(input.name))
     setInput({
       name: '',
@@ -111,12 +123,12 @@ function UpdateProduct() {
         errors.price = 'Price must be > 0';
     } if (!input.price) {
         errors.price = 'Price required';
-    } if (!input.calification || input.calification > 10) {
-        errors.calification = '10 max';
-    } if (!input.calification || input.calification < 0) {
-        errors.calification = 'Calification must be > 0';
-    } if (!input.calification) {
-        errors.calification = 'Calification required';
+    // } if (!input.calification || input.calification > 10) {
+    //     errors.calification = '10 max';
+    // } if (!input.calification || input.calification < 0) {
+    //     errors.calification = 'Calification must be > 0';
+    // } if (!input.calification) {
+    //     errors.calification = 'Calification required';
     }  if (!input.quantity || input.quantity < 0) {
         errors.quantity = 'Quantity must be > 0';
     }  if (!input.quantity || input.quantity > 1000) {
@@ -280,7 +292,8 @@ function UpdateProduct() {
         : null
         }
         <h3 style={{textAlign:'center'}}>Product Detail updated</h3>
-        <ProductDetailAdminCard nameD={input.name} image={input.image} price={input.price} brand={input.brand} quantity={input.quantity} description={input.description} calification={input.calification} />
+        <ProductDetailAdminCard nameD={input.name} image={input.image} price={input.price} brand={input.brand} quantity={input.quantity} description={input.description} category={input.categories} calification={input.calification} />
+        <Footer />
     </div>
   )
 }

@@ -2,12 +2,10 @@ import React, { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
 import AdminNav from '../../Admin/AdminNav/AdminNav';
 import { useDispatch } from 'react-redux';
-import { getTotalUserPayments, getUser, sortUsersByLastName } from '../../../Redux/Actions/index';
-import UserCard from './UserCard'
-import ProductNotFound from '../../ProductNotFound/ProductNotFound';
+import { getUser, sortUsersByLastName } from '../../../Redux/Actions/index';
 import styles from './Users.module.css'
 import AdminNav2 from '../AdminNav/AdminNav2';
-import {Box, TextField, MenuItem, Button } from '@mui/material/';
+import { TextField, MenuItem, Button } from '@mui/material/';
 import Paper from '@mui/material/Paper';
 import Table from '@mui/material/Table';
 import TableBody from '@mui/material/TableBody';
@@ -19,9 +17,7 @@ import TableRow from '@mui/material/TableRow';
 import { useNavigate } from 'react-router-dom';
 
 
-
 function Users() {
-  const allCategories = useSelector((state) => state.categories)
   const dispatch = useDispatch();
   const [order, setOrder] = useState('')
   const navigate = useNavigate();

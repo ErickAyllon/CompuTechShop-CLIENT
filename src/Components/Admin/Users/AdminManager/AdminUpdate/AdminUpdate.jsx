@@ -9,6 +9,7 @@ import AdminNav from "../../../AdminNav/AdminNav";
 import AdminNav2 from "../../../AdminNav/AdminNav2";
 import { useNavigate, useParams } from "react-router-dom";
 import { MenuItem } from "@mui/material";
+import Swal from "sweetalert2";
 
 function AdminUpdate() {
     const dispatch = useDispatch();
@@ -16,6 +17,7 @@ function AdminUpdate() {
     const admin = useSelector((state) => state.users);
     const adminUpdate = admin.filter(admin => admin.nickname === nickname);
     const navigate = useNavigate();
+    const Swal = require('sweetalert2')
     
     const [input, setInput] = useState({
         given_name: adminUpdate[0].given_name,
@@ -48,7 +50,11 @@ function AdminUpdate() {
             is_admin: false,
             is_banned: null
         })
-        alert('User Updated')
+        Swal.fire({
+          title: 'User updated!',
+          icon: 'success',
+          confirmButtonText: 'Ok',
+        })
         navigate('/admin/users')
     }
 
@@ -198,7 +204,7 @@ function AdminUpdate() {
                 : false
             }
         >
-            Update Admin
+            Update User
           </Button>
       </div>
     </Box>

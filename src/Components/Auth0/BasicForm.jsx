@@ -4,6 +4,7 @@ import styles from "./BasicForm.module.css";
 import TextField from "@mui/material/TextField";
 import Button from "@mui/material/Button";
 import Box from "@mui/material/Box";
+import Footer from "../Footer/Footer";
 
 const BasicForm = ({
   handleChange,
@@ -15,7 +16,7 @@ const BasicForm = ({
   const { user, isAuthenticated } = useAuth0();
   return (
     isAuthenticated && (
-      <div>
+      <div className={styles.basicForm}>
         <Box
           className={styles.form}
           component="form"
@@ -199,6 +200,38 @@ const BasicForm = ({
               required
             />
 
+            <TextField
+              name="is_admin"
+              value={values.is_admin}
+              disabled
+              required
+              hidden
+            />
+
+            <TextField
+              name="is_admin_pro"
+              value={values.is_admin}
+              disabled
+              required
+              hidden
+            />
+
+            <TextField
+              name="password"
+              value={values.password}
+              disabled
+              required
+              hidden
+            />
+
+            <TextField
+              name="is_banned"
+              value={values.is_banned}
+              disabled
+              required
+              hidden
+            />
+
             <div className={styles.createButton}>
               <Button disabled={isSubmitting} type="submit" variant="outlined">
                 Create User
@@ -206,6 +239,7 @@ const BasicForm = ({
             </div>
           </div>
         </Box>
+        <Footer />
       </div>
     )
   );
