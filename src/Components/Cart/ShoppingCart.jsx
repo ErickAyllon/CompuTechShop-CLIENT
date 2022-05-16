@@ -59,15 +59,8 @@ const ShoppingCart = () => {
     obj.price = nuevoPost.map((el) => Number(el.price));
     obj.quantity = nuevoPost.map((el) => el.quantity);
     localStorage.setItem("carrito", JSON.stringify(carti));
-
-    objetoNuevo = JSON.parse(localStorage.getItem("carrito"));
-
-
-  } else {
-    objetoNuevo = JSON.parse(localStorage.getItem("carrito"));
-
   }
-
+  console.log(obj)
   //End LocalStorage
   const handleBuyCart = (e) => {
     e.preventDefault();
