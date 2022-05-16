@@ -186,7 +186,7 @@ function rootReducer(state = initialState, action) {
     case "DARKMODE":
       return {
         ...state,
-        darkMode: action.payload,
+        darkMode: action.payload
       };
 
     case TYPES.ADD_TO_CART: {

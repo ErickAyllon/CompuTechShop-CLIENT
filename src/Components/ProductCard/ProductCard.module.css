@@ -6,9 +6,11 @@
     align-items: center;
     box-sizing: border-box;
     color: black;
-    background-color: white;
+    /* background-color: white; */
     margin: 20px 0;
     font-family: 'Orbitron', sans-serif;
+    animation-name: appear;
+    animation-duration: .5s;
 }
 
 .productCardContainer {
@@ -32,6 +34,15 @@
     max-width: 208px;
     display: flex;
     margin: auto;
+    transition: .5s;
+    backface-visibility: hidden; 
+    -ms-transform: translateZ(0); 
+    -webkit-transform: translateZ(0); 
+    transform: translateZ(0);
+}
+
+.productImg:hover {
+    transform: scale(1.1);
 }
 
 .productCard h3 {
@@ -104,6 +115,7 @@
 
 .addBtn:hover {
     filter: brightness(1.5);
+    transform: scale(1.1);
     opacity: 1;
 }
 
@@ -151,5 +163,9 @@
         margin-right: 10px;
         margin-left: 0;
     }
+}
 
+@keyframes appear {
+    from {opacity: 0;}
+    to {opacity: 1;}
 }

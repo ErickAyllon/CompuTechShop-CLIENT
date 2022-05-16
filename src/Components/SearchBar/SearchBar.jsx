@@ -19,7 +19,7 @@ function SearchBar() {
 
   useEffect(()=> {
     dispatch(getProducts())
-  }, [])
+  }, [dispatch])
 
   function handleSubmit(e) {
     e.preventDefault();
@@ -44,7 +44,6 @@ function SearchBar() {
         options={products.map((option) => option.name)}
         renderInput={(params) => (
           <TextField
-            filterSelectedOptions
             focus='false'
             value={name}
             variant='filled'
@@ -54,7 +53,6 @@ function SearchBar() {
             placeholder="Search product..."
             InputProps={{
               disableUnderline: true,
-              filterSelectedOptions:true,
               ...params.InputProps,
               type: 'search',
               style: { height: 35, alignContent:'center', backgroundColor:'transparent'}

@@ -22,8 +22,8 @@ export const PurchaseConfirm = () => {
             sx={{ color: '#fff', zIndex: (theme) => theme.zIndex.drawer + 1 }}
             open={true}
           >
-        <CircularProgress color="inherit" />
-      </Backdrop>
+            <CircularProgress color="inherit" />
+          </Backdrop>
         </div>
       </div>
       <div>

@@ -59,15 +59,15 @@ const getDesignTokens = (mode) => ({
     }),
     ...(mode === "light" && {
       background: {
-        default: "#4b4b4b",
+        default: '#495464',
         paper: deepOrange[900],
       },
     }),
     text: {
       ...(mode === "light"
         ? {
-          primary: grey[900],
-          secondary: grey[800],
+          primary: '#000000',
+          secondary: '#000000',
         }
         : {
           primary: "#ffffff",

@@ -6,8 +6,7 @@
     align-items: center;
     text-align: center;
     border-bottom: 1px solid rgba(0, 0, 0, 0.3);
-    color: rgb(243, 243, 243);
-    font-size: 0.6em;
+    /* color: rgb(243, 243, 243); */
     letter-spacing: .2rem;
     text-decoration: none;
     border-bottom: 1px solid rgba(255, 255, 255, 0.1);
@@ -39,16 +38,13 @@
     margin-left: 50px;
     transition: .5s;
   }
+
+  .logo:hover {
+    transform: scale(1.1);
+  }
   
   .searchBarCall {
     margin: auto;
-  }
-  
-  .navCategories {
-    padding: 5px;
-    text-align: center;
-    width: 100%;
-    margin: 0 auto;
   }
 
   @media only screen and (max-width: 768px) {
@@ -70,6 +66,4 @@
     .searchBarCall {
       margin: 0 10px;
     }
-    /* .navCategories {
-    } */
 }

@@ -23,12 +23,12 @@ const ShoppingCart = () => {
   let arregloTotal = [];
   const cart = useSelector((state) => state.cart);
 
-  const arregloPrice = carti.map((el) => el.price * el.quantity);
+  const arregloPrice = carti?.map((el) => el.price * el.quantity);
   const reducir = (accumulator, curr) => accumulator + curr;
   arregloTotal =
-    arregloPrice.length > 0 ? arregloPrice.reduce(reducir) : arregloPrice;
+    arregloPrice?.length > 0 ? arregloPrice.reduce(reducir) : arregloPrice;
   let nuevoPost = [];
-  if (carti.length > 0) {
+  if (carti?.length > 0) {
     localStorage.setItem("carrito", JSON.stringify(carti));
   }
 
@@ -46,7 +46,7 @@ const ShoppingCart = () => {
   let objetoNuevo = [];
   //LocalStorage
   if (carti) {
-    const nuevoPost = carti.map((el) => {
+    const nuevoPost = carti?.map((el) => {
       return {
         picture_url: el.image,
         name: el.name,
@@ -88,6 +88,7 @@ const ShoppingCart = () => {
       height: "22px",
       width: "22px",
       borderRadius: "100%",
+      border:'1px solid black'
     },
   }));
 
@@ -95,7 +96,7 @@ const ShoppingCart = () => {
     <div className={styles.cart}>
       <Dropdown active="false" autoClose="outside" className={styles.drop}>
         <Dropdown.Toggle variant="Secondary" id="dropdown-basic">
-          <StyledBadge badgeContent={Number(cart.length)} color="info">
+          <StyledBadge badgeContent={Number(cart?.length)} color="info">
             <img src={shop} alt="profileImg" className={style.img} />
           </StyledBadge>
         </Dropdown.Toggle>
@@ -118,7 +119,7 @@ const ShoppingCart = () => {
             <div>
               <article className="box">
                 <Dropdown.Divider />
-                {carti?.map((el, index) => (
+                {carti?.length > 0 ? carti?.map((el, index) => (
                   <Dropdown.Item>
                     <CartItem
                       key={index}
@@ -127,7 +128,7 @@ const ShoppingCart = () => {
                       addToCart={addToCart}
                     />
                   </Dropdown.Item>
-                ))}
+                )): null}
               </article>
               <div>
                 <label>Total Price: $</label>
