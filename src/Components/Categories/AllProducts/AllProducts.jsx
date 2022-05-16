@@ -9,14 +9,15 @@ import Loader from "../../Loader/Loader";
 import styles from "./AllProducts.module.css";
 import { TYPES } from "../../../Redux/Actions/shoppingCartActions";
 import ProductNotFound from "../../ProductNotFound/ProductNotFound";
-import { useParams } from "react-router-dom";
 import NavBar from "../../NavBar/Navbar";
 import Footer from "../../Footer/Footer";
+import { useState } from "react";
+import { CircularProgress } from "@mui/material";
 
 function AllProducts() {
   let products = useSelector((state) => state.allProducts);
   const productsFilter = useSelector((state) => state.productsFilter);
-  const userActive = useSelector((state) => state.userActive);
+  // const userActive = useSelector((state) => state.userActive);
   products = productsFilter.length > 0 ? productsFilter : products;
   const dispatch = useDispatch();
   // const category = "allproducts";
@@ -34,9 +35,9 @@ function AllProducts() {
       : null;
   const totalPages = Math.ceil(products.length / productsPerPage);
 
-  useEffect(() => {
-    dispatch(getProducts());
-  }, [dispatch]);
+  // useEffect(() => {
+    // dispatch(getProducts());
+  // }, [dispatch]);
   // End Pagination Info //
   const addToCart = (id) => {
     dispatch({ type: TYPES.ADD_TO_CART, payload: id });
@@ -48,6 +49,13 @@ function AllProducts() {
       : dispatch({ type: TYPES.REMOVE_ONE_FROM_CART, payload: id });
   };
   // console.log(products);
+
+  const [load, setLoad] = useState(true)
+
+  setTimeout(function () {
+   setLoad(false)
+ }, 1000)
+
   return (
     <div className={styles.allProducts}>
       <NavBar />
@@ -57,7 +65,11 @@ function AllProducts() {
           <div className={styles.productsContainer}>
             <Filter />
             <div className={styles.productsCardsContainer}>
-              {productsFilter.length > 0 ? (
+            {          
+              load ? 
+              <CircularProgress color="inherit" style={{position:'absolute', top:'50%', left:'50%'}}/>
+            : 
+              productsFilter.length > 0 ? (
                 currentProducts?.map((el) => {
                   return (
                     <ProductCard
@@ -77,10 +89,11 @@ function AllProducts() {
                 })
               ) : (
                 <ProductNotFound />
-              )}
+              )
+            }
             </div>
           </div>
-          {productsFilter.length > 0 ? (
+          {productsFilter.length > 0 && !load ? (
             <PaginationC category={category} totalPages={totalPages} />
           ) : null}
         </>

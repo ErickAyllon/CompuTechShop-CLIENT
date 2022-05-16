@@ -22,15 +22,15 @@ export default function Profile() {
   }, [dispatch])
   // console.log(user);
 
-  let allUsers = useSelector((state) => state.users2);
-  let userLocal = [];
-  if (user) {
-    localStorage.setItem("email", user.email);
-  }
+  // let allUsers = useSelector((state) => state.users2);
+  // let userLocal = [];
+  // if (user) {
+  //   localStorage.setItem("email", user.email);
+  // }
 
-  userLocal.email = localStorage.getItem("email");
-  let filteredUser = allUsers.filter((el) => el.email === userLocal.email);
-
+  // userLocal.email = localStorage.getItem("email");
+  // let filteredUser = allUsers.filter((el) => el.email === userLocal.email);
+  // console.log(filteredUser)
 
   return (
     isAuthenticated && (

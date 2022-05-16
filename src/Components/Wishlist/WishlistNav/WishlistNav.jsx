@@ -8,6 +8,7 @@ import { useAuth0 } from "@auth0/auth0-react";
 import { Link } from "react-router-dom";
 import Badge from '@mui/material/Badge';
 import { styled } from '@mui/material/styles';
+import { color } from '@mui/system';
 
 function WishlistNav() {
   const dispatch = useDispatch();
@@ -29,7 +30,8 @@ function WishlistNav() {
       letterSpacing: '1px',
       height:'22px',
       width:'22px',
-      borderRadius:'100%'
+      borderRadius:'100%',
+      border:'1px solid black'
     },
   }));
 

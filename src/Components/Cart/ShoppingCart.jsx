@@ -23,10 +23,10 @@ const ShoppingCart = () => {
   let arregloTotal = [];
   const cart = useSelector((state) => state.cart);
 
-  const arregloPrice = carti.map((el) => el.price * el.quantity);
+  const arregloPrice = carti?.map((el) => el.price * el.quantity);
   const reducir = (accumulator, curr) => accumulator + curr;
   arregloTotal =
-    arregloPrice.length > 0 ? arregloPrice.reduce(reducir) : arregloPrice;
+    arregloPrice?.length > 0 ? arregloPrice.reduce(reducir) : arregloPrice;
   let nuevoPost = [];
 
   localStorage.setItem("carrito", JSON.stringify(carti));
@@ -45,7 +45,7 @@ const ShoppingCart = () => {
   let objetoNuevo = [];
   //LocalStorage
   if (carti) {
-    const nuevoPost = carti.map((el) => {
+    const nuevoPost = carti?.map((el) => {
       return {
         picture_url: el.image,
         name: el.name,
@@ -87,6 +87,7 @@ const ShoppingCart = () => {
       height: "22px",
       width: "22px",
       borderRadius: "100%",
+      border: '1px solid black'
     },
   }));
 
