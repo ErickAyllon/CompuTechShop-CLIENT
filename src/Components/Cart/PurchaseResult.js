@@ -36,10 +36,10 @@ export const PurchaseResult = () => {
     if (user) {
       postUserActive(user)
       dispatch(getPayment(obj))
+      console.log("esta pinchila es un objeto", obj)
       // navigate("/")
     }
   }
-  console.log(obj)
   switch (status) {
     case "approved":
       mensaje = "Your payment is approved, Thank you for shopping on our website."
@@ -69,7 +69,7 @@ export const PurchaseResult = () => {
         </div>
       </div>
       <Link to="/">
-        <Button variant="contained" className={styles.backToSite} onClick={{ handleClick }}> Back to Site</Button>
+        <Button variant="contained" className={styles.backToSite} onClick={(e) => handleClick(e)}> Back to Site</Button>
       </Link>
     </div>
 

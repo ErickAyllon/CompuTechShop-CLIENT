@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { useAuth0 } from "@auth0/auth0-react";
 import { getUser, authenticate } from "../../Redux/Actions/index.js";
@@ -8,7 +8,7 @@ import styles from "./Welcome.module.css";
 import logo3 from "../../Images/logo3.png";
 
 function Welcome() {
-  const { user, isAuthenticated } = useAuth0();
+  const { user } = useAuth0();
   const dispatch = useDispatch();
   const users = useSelector((state) => state.users);
 
