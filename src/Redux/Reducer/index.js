@@ -28,8 +28,7 @@ const initialState = {
   userOrders: [],
   review: [],
   userActive: [],
-  wishlist: [],
-  prod: []
+  wishlist: []
 };
 
 function rootReducer(state = initialState, action) {
@@ -39,17 +38,16 @@ function rootReducer(state = initialState, action) {
   }
   switch (action.type) {
     case "GET_PRODUCTS":
-      // let ordered = action.payload.sort(
-      //   (a, b) => toNumber(b.calification) - toNumber(a.calification)
-      // );
+      let ordered = action.payload.sort(
+        (a, b) => toNumber(b.calification) - toNumber(a.calification)
+      );
       return {
         ...state,
-        allProducts: action.payload,
-        products: action.payload,
-        productsNotPriceChangeable: action.payload,
+        allProducts: ordered,
+        products: ordered,
+        productsNotPriceChangeable: ordered,
         productDetail: [],
-        productsFilter: action.payload,
-        prod: action.payload
+        productsFilter: ordered,
       };
     case "GET_CATEGORIES": {
       return {
@@ -92,26 +90,26 @@ function rootReducer(state = initialState, action) {
         products: [],
       };
     case "FILTER_BY_CATEGORY":
-      // let orderedC = action.payload.sort(
-      //   (a, b) => toNumber(b.calification) - toNumber(a.calification)
-      // );
+      let orderedC = action.payload.sort(
+        (a, b) => toNumber(b.calification) - toNumber(a.calification)
+      );
       return {
         ...state,
-        products: action.payload,
-        productsFilter: action.payload,
-        productsNotPriceChangeable: action.payload,
+        products: orderedC,
+        productsFilter: orderedC,
+        productsNotPriceChangeable: orderedC,
         productDetail: [],
       };
     case "GET_PRODUCTS_BY_NAME":
-      // let orderedD = action.payload.sort(
-      //   (a, b) => toNumber(b.calification) - toNumber(a.calification)
-      // );
+      let orderedD = action.payload.sort(
+        (a, b) => toNumber(b.calification) - toNumber(a.calification)
+      );
       return {
         ...state,
-        products: action.payload,
-        productsFilter: action.payload,
-        productsNotPriceChangeable: action.payload,
-        // allProducts: action.payload,
+        products: orderedD,
+        productsFilter: orderedD,
+        productsNotPriceChangeable: orderedD,
+        // allProducts: orderedD,
         productDetail: [],
       };
     case "FILTER_BY_BRAND":
@@ -130,10 +128,10 @@ function rootReducer(state = initialState, action) {
         productsNotPriceChangeable: filtered,
       };
     case "FILTER_BY_PRICE":
-      // function toNumber(something) {
-      //   let result = parseInt(something.replace(".", ""));
-      //   return Number(result);
-      // }
+      function toNumber(something) {
+        let result = parseInt(something.replace(".", ""));
+        return Number(result);
+      }
       let productsFiltered = state.productsNotPriceChangeable;
       let min = action.payload.min;
       let max = action.payload.max;
@@ -192,16 +190,14 @@ function rootReducer(state = initialState, action) {
     case "DARKMODE":
       return {
         ...state,
-        darkMode: action.payload
+        darkMode: action.payload,
       };
 
     case TYPES.ADD_TO_CART: {
-      let newItem = state.prod.find(
+      let newItem = state.allProducts.find(
         (product) => product.id === action.payload
       );
-
       let itemInCart = state.cart.find((item) => item.id === newItem.id);
-
       return itemInCart
         ? {
           ...state,
