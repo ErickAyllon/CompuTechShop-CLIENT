@@ -8,7 +8,6 @@ import { useAuth0 } from "@auth0/auth0-react";
 import { Link } from "react-router-dom";
 import Badge from '@mui/material/Badge';
 import { styled } from '@mui/material/styles';
-import { color } from '@mui/system';
 
 function WishlistNav() {
   const dispatch = useDispatch();
@@ -28,10 +27,10 @@ function WishlistNav() {
       top: 5,
       border: `2px solid ${theme.palette.background.paper}`,
       letterSpacing: '1px',
-      height:'22px',
-      width:'22px',
-      borderRadius:'100%',
-      border:'1px solid black'
+      height: '22px',
+      width: '22px',
+      borderRadius: '100%',
+      // border:'1px solid black'
     },
   }));
 
@@ -40,7 +39,7 @@ function WishlistNav() {
       <div className={styles.heart}>
         <Link to='/myfavorites'>
           <StyledBadge badgeContent={Number(wishlist.length)} color="info">
-              <img src={filledFavorite} alt="profileImg" />
+            <img src={filledFavorite} alt="profileImg" />
           </StyledBadge>
         </Link>
       </div>

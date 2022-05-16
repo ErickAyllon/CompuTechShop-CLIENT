@@ -39,10 +39,10 @@ function ProductCard({
             className={styles.productCardCalification}
           />
           <button className={styles.addBtn} onClick={() => addToCart(id)}><img src={add} alt="" /></button>
-          {delFromCart ?
+          {/* {delFromCart ?
             <div><button className={styles.addBtn} onClick={() => delFromCart(id)}><img src={add} alt="" /></button>
               <button className={styles.addBtn} onClick={() => delFromCart(id, true)}><img src={add} alt="" /></button></div>
-            : null}
+            : null} */}
           <Wishlist id={id} name={name} />
         </div>
       </div>

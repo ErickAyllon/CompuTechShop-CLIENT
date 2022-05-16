@@ -6,8 +6,8 @@ import noFavorites from '../../../../Images/noFavorites.png'
 function NoFavoritesFound() {
   return (
     <div className={styles.noFavoritesFound}>
-        <h1>Nothing found 😭</h1>
-        <img src={noFavorites} />
+      <h1>Nothing found 😭</h1>
+      <img src={noFavorites} alt=" not found" />
     </div>
   )
 }
