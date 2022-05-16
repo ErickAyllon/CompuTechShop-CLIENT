@@ -3,7 +3,7 @@ import axios from "axios";
 export const GET_USER_DETAIL = "GET_USER_DETAIL";
 export const getUserDetail = (email) => {
   return async (dispatch) => {
-    var json = await axios.get("/users" + email);
+    var json = await axios.get("/users/" + email);
     return dispatch({
       type: "GET_USER_DETAIL",
       payload: json.data,
@@ -25,7 +25,7 @@ export const getUser = () => {
 export const GET_ACTIVE_USER = "GET_ACTIVE_USER";
 export const getActiveUser = () => {
   return async (dispatch) => {
-    var json = await axios.get("http://localhost:3001/users");
+    var json = await axios.get("/users");
     return dispatch({
       type: "GET_ACTIVE_USER",
       payload: json.data,
@@ -36,6 +36,7 @@ export const getActiveUser = () => {
 export function getProducts() {
   return async function (dispatch) {
     var json = await axios.get("/products");
+    console.log(json.data)
     return dispatch({
       type: "GET_PRODUCTS",
       payload: json.data,
@@ -202,7 +203,7 @@ export function postCategory(payload) {
 export function postBuyCart(payload) {
   // console.log(payload)
   return async function (dispatch) {
-    const response = await axios.post("/Checkout", payload);
+    const response = await axios.post("/checkout", payload);
 
     return dispatch({
       type: "BUY_CART",
@@ -299,7 +300,7 @@ export function updateShop(id, payload) {
 
 export const getPayment = (payload) => {
   // console.log(payload.email)
-  // console.log(payload);
+  console.log(payload);
   const { payment, email } = payload;
   return async function (dispatch) {
     try {
@@ -356,7 +357,7 @@ export function updateUser(id, payload) {
 export const getOrders = () => {
   return async function (dispatch) {
     try {
-      const json = await axios.get(`http://localhost:3001/getOrders`);
+      const json = await axios.get(`/getOrders`);
       return dispatch({
         type: "GET_ORDERS",
         payload: json.data,
@@ -383,7 +384,7 @@ export const getOrdersByEmail = (email) => {
 
 export function postReview(payload) {
   return async function () {
-    let postReview = await axios.post("http://localhost:3001/reviews", payload);
+    let postReview = await axios.post("/reviews", payload);
     return postReview;
   };
 }
@@ -392,7 +393,7 @@ export function getReview(name) {
   return async function (dispatch) {
     try {
       let json = await axios.get(
-        "http://localhost:3001/reviews?productName=" + name
+        "/reviews?productName=" + name
       );
       return dispatch({
         type: "GET_REVIEW",
@@ -408,7 +409,7 @@ export function deleteReview(id) {
   // console.log(id)
   return async function (dispatch) {
     try {
-      const json = await axios.delete("http://localhost:3001/reviews/" + id);
+      const json = await axios.delete("/reviews/" + id);
       return dispatch({
         type: "DELETE_REVIEW",
         payload: json.data,
@@ -424,7 +425,7 @@ export function getWishlist(id) {
   return async function (dispatch) {
     try {
       const json = await axios.get(
-        "http://localhost:3001/wishlist?userId=" + id
+        "/wishlist?userId=" + id
       );
       return dispatch({
         type: "GET_WISHLIST",
@@ -440,7 +441,7 @@ export function postWishlist(wishlist) {
   // console.log(wishlist)
   return async function (dispatch) {
     try {
-      const json = await axios.post("http://localhost:3001/wishlist", wishlist);
+      const json = await axios.post("/wishlist", wishlist);
       return dispatch({
         type: "POST_WISHLIST",
         payload: json.data,
@@ -455,7 +456,7 @@ export function deleteWishlist(id) {
   // console.log('deleteWishlist: ', id)
   return async function (dispatch) {
     try {
-      const json = await axios.delete("http://localhost:3001/wishlist/" + id);
+      const json = await axios.delete("/wishlist/" + id);
       return dispatch({
         type: "DELETE_WISHLIST",
         payload: json.data,

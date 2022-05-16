@@ -11,9 +11,9 @@ export default function Profile() {
   const { user, isAuthenticated } = useAuth0();
   const dispatch = useDispatch();
   const users = useSelector((state) => state.users)
-  const auth0Email = user.email
+  const auth0Email = user?.email
   const userLogged = users?.length > 0 ? users?.find(e => (e.email === auth0Email)) : false;
-  
+
   let myUsers = useSelector((state) => state.users2);
 
   useEffect(() => {

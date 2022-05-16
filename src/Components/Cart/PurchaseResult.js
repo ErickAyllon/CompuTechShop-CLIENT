@@ -23,9 +23,9 @@ export const PurchaseResult = () => {
   let mensaje = ""
   obj.payment = payment
 
-  if (user) {
-    obj.email = user.email
-  }
+
+  obj.email = window.localStorage.getItem("email")
+
   const postUserActive = (userActive) => {
 
     dispatch({ type: TYPES.USER_ACTIVE, payload: userActive });
@@ -39,7 +39,7 @@ export const PurchaseResult = () => {
       // navigate("/")
     }
   }
-
+  console.log(obj)
   switch (status) {
     case "approved":
       mensaje = "Your payment is approved, Thank you for shopping on our website."

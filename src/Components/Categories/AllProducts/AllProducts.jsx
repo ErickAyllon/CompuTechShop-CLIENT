@@ -36,19 +36,25 @@ function AllProducts() {
   const totalPages = Math.ceil(products.length / productsPerPage);
 
   // useEffect(() => {
-    // dispatch(getProducts());
+  // dispatch(getProducts());
   // }, [dispatch]);
   // End Pagination Info //
   const addToCart = (id) => {
     dispatch({ type: TYPES.ADD_TO_CART, payload: id });
+  };
+
+  const delFromCart = (id, all = false) => {
+    all
+      ? dispatch({ type: TYPES.REMOVE_ALL_FROM_CART, payload: id })
+      : dispatch({ type: TYPES.REMOVE_ONE_FROM_CART, payload: id });
   };
   // console.log(products);
 
   const [load, setLoad] = useState(true)
 
   setTimeout(function () {
-   setLoad(false)
- }, 1000)
+    setLoad(false)
+  }, 1000)
 
   return (
     <div className={styles.allProducts}>
@@ -59,31 +65,32 @@ function AllProducts() {
           <div className={styles.productsContainer}>
             <Filter />
             <div className={styles.productsCardsContainer}>
-            {          
-              load ? 
-              <CircularProgress color="inherit" style={{position:'absolute', top:'50%', left:'50%'}}/>
-            : 
-              productsFilter.length > 0 ? (
-                currentProducts?.map((el) => {
-                  return (
-                    <ProductCard
-                      name={el.name}
-                      price={el.price}
-                      image={el.image}
-                      key={el.id}
-                      id={el.id}
-                      brand={el.brand}
-                      description={el.description}
-                      calification={el.calification}
-                      quantity={el.quantity}
-                      addToCart={addToCart}
-                    />
-                  );
-                })
-              ) : (
-                <ProductNotFound />
-              )
-            }
+              {
+                load ?
+                  <CircularProgress color="inherit" style={{ position: 'absolute', top: '50%', left: '50%' }} />
+                  :
+                  productsFilter.length > 0 ? (
+                    currentProducts?.map((el) => {
+                      return (
+                        <ProductCard
+                          name={el.name}
+                          price={el.price}
+                          image={el.image}
+                          key={el.id}
+                          id={el.id}
+                          brand={el.brand}
+                          description={el.description}
+                          calification={el.calification}
+                          quantity={el.quantity}
+                          addToCart={addToCart}
+
+                        />
+                      );
+                    })
+                  ) : (
+                    <ProductNotFound />
+                  )
+              }
             </div>
           </div>
           {productsFilter.length > 0 && !load ? (

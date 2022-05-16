@@ -12,7 +12,7 @@ const PurchaseSummary = () => {
   const obj = {};
   const dispatch = useDispatch();
   const productsFilter = useSelector((state) => state.cart);
-  const userActive = useSelector(state => state.userActive)
+  const prod = useSelector(state => state.prod)
   const arregloPrice = productsFilter.map((el) => el.price * el.quantity);
   const reducir = (accumulator, curr) => accumulator + curr;
   let arregloTotal
@@ -49,7 +49,9 @@ const PurchaseSummary = () => {
     // console.log(id);
     dispatch({ type: TYPES.ADD_TO_CART, payload: id });
   };
-
+  const clearCart = () => {
+    dispatch({ type: TYPES.CLEAR_CART });
+  };
 
   return (
 
@@ -73,6 +75,8 @@ const PurchaseSummary = () => {
                   quantity={el.quantity}
                   addToCart={addToCart}
                   delFromCart={delFromCart}
+                  priceTotal={true}
+
                 />
 
               )) : (<div className={styles.productNotFound}>
@@ -90,6 +94,13 @@ const PurchaseSummary = () => {
           <div className={styles.containerImgBtn}>
             <label className={styles.text}>Total Price:  $ {arregloTotal}</label>
             <button className={styles.btn} onClick={handleBuyCart}>Comprar</button>
+            <button
+
+
+              onClick={clearCart}
+            >
+              Clean Cart
+            </button>
           </div>
           : null)}
 
