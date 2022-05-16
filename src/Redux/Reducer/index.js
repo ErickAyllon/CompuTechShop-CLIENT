@@ -88,26 +88,26 @@ function rootReducer(state = initialState, action) {
         products: [],
       };
     case "FILTER_BY_CATEGORY":
-      let orderedC = action.payload.sort(
-        (a, b) => toNumber(b.calification) - toNumber(a.calification)
-      );
+      // let orderedC = action.payload.sort(
+      //   (a, b) => toNumber(b.calification) - toNumber(a.calification)
+      // );
       return {
         ...state,
-        products: orderedC,
-        productsFilter: orderedC,
-        productsNotPriceChangeable: orderedC,
+        products: action.payload,
+        productsFilter: action.payload,
+        productsNotPriceChangeable: action.payload,
         productDetail: [],
       };
     case "GET_PRODUCTS_BY_NAME":
-      let orderedD = action.payload.sort(
-        (a, b) => toNumber(b.calification) - toNumber(a.calification)
-      );
+      // let orderedD = action.payload.sort(
+      //   (a, b) => toNumber(b.calification) - toNumber(a.calification)
+      // );
       return {
         ...state,
-        products: orderedD,
-        productsFilter: orderedD,
-        productsNotPriceChangeable: orderedD,
-        // allProducts: orderedD,
+        products: action.payload,
+        productsFilter: action.payload,
+        productsNotPriceChangeable: action.payload,
+        // allProducts: action.payload,
         productDetail: [],
       };
     case "FILTER_BY_BRAND":
