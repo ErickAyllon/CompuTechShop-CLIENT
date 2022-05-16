@@ -58,9 +58,11 @@ function Wishlist({id, name}) {
   return (
     <div>
         { whatIs ?
-            <button className={styles.filledFavorite} onClick={() => handleFavoriteDelete(id)}><img onClick={removedAlert('error')} src={filledFavorite} alt="" /></button>
+            <button className={styles.filledFavorite} onClick={(id) => handleFavoriteDelete(id)}><img onClick={removedAlert('error')} src={filledFavorite} alt="" /></button>
+            // <button className={styles.filledFavorite} onClick={() => handleFavoriteDelete(id)}><img onClick={removedAlert('error')} src={filledFavorite} alt="" /></button>
             :
-            <button className={styles.emptyFavorite} onClick={() => handleFavorite(id)}><img onClick={addedAlert('success')} src={emptyFavorite} alt="" /></button>
+            <button className={styles.emptyFavorite} onClick={(id) => handleFavorite(id)}><img onClick={addedAlert('success')} src={emptyFavorite} alt="" /></button>
+            // <button className={styles.emptyFavorite} onClick={() => handleFavorite(id)}><img onClick={addedAlert('success')} src={emptyFavorite} alt="" /></button>
         }
     </div>
   )
