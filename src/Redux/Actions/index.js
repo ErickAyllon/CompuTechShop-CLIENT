@@ -202,7 +202,7 @@ export function postCategory(payload) {
 export function postBuyCart(payload) {
   // console.log(payload)
   return async function (dispatch) {
-    const response = await axios.post("/Checkout", payload);
+    const response = await axios.post("/checkout", payload);
 
     return dispatch({
       type: "BUY_CART",
@@ -299,7 +299,7 @@ export function updateShop(id, payload) {
 
 export const getPayment = (payload) => {
   // console.log(payload.email)
-  // console.log(payload);
+  console.log(payload);
   const { payment, email } = payload;
   return async function (dispatch) {
     try {

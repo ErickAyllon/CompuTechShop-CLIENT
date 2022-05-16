@@ -60,7 +60,7 @@ const ShoppingCart = () => {
     obj.quantity = nuevoPost.map((el) => el.quantity);
     localStorage.setItem("carrito", JSON.stringify(carti));
   }
-  console.log(obj)
+
   //End LocalStorage
   const handleBuyCart = (e) => {
     e.preventDefault();
