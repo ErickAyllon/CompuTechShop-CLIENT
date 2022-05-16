@@ -19,7 +19,7 @@ const FAQ = () => {
     },
     {
       title: 'How do I rate the product?',
-      content: `You can rate your purchase by clicking on the stars just below the the article you've just bought. Also, you can leave a comment giving further details of your experience...`
+      content: `You can rate your purchase by clicking on the stars just below the the article you've just bought. Also, you can leave a comment giving further details of your experience...!!!`
     }
   ];
 
