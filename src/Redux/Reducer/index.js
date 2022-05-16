@@ -33,6 +33,10 @@ const initialState = {
 };
 
 function rootReducer(state = initialState, action) {
+  function toNumber(something) {
+    let result = parseInt(something.replace(".", ""));
+    return Number(result);
+  }
   switch (action.type) {
     case "GET_PRODUCTS":
       // let ordered = action.payload.sort(
@@ -126,10 +130,10 @@ function rootReducer(state = initialState, action) {
         productsNotPriceChangeable: filtered,
       };
     case "FILTER_BY_PRICE":
-      function toNumber(something) {
-        let result = parseInt(something.replace(".", ""));
-        return Number(result);
-      }
+      // function toNumber(something) {
+      //   let result = parseInt(something.replace(".", ""));
+      //   return Number(result);
+      // }
       let productsFiltered = state.productsNotPriceChangeable;
       let min = action.payload.min;
       let max = action.payload.max;
