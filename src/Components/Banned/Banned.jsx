@@ -6,7 +6,7 @@ function Banned() {
   return (
     <div className={styles.banned}>
     <div className={styles.bannedContainer}>
-        <h1>You has been banned!</h1>
+        <h1>You have been banned!</h1>
         <img src={banned} alt="banned"/>
     </div>
 </div>
