@@ -12,8 +12,9 @@
   
   .searchBarContainer input {
     text-align: center;
-    color: blue;
-    letter-spacing: .1rem;
+    color: cyan;
+    letter-spacing: .2rem;
+    font-size: 1.1rem;
     background-size: 30px 30px;
     background-repeat: no-repeat;
     font-family: 'Iceland', cursive;

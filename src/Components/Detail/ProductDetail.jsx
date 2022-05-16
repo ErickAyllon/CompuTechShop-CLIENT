@@ -9,6 +9,7 @@ import { TYPES } from "../../Redux/Actions/shoppingCartActions";
 import NavBar from "../NavBar/Navbar";
 import add from '../../Images/add.png'
 import DetailReviews from "./DetailReviews/DetailReviews";
+import Footer from "../Footer/Footer";
 
 
 function ProductDetail() {
@@ -29,7 +30,7 @@ function ProductDetail() {
   };
 
   const addToCart = (id) => {
-    console.log(id);
+    // console.log(id);
     dispatch({ type: TYPES.ADD_TO_CART, payload: id });
   };
 
@@ -106,6 +107,7 @@ function ProductDetail() {
           </div>
         </div>
       ) : null}
+      <Footer/>
     </div>
   );
 }

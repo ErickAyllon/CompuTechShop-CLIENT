@@ -5,6 +5,7 @@ import Typography from '@mui/material/Typography';
 import Modal from '@mui/material/Modal';
 import { useState } from 'react';
 import styles from './Help.module.css'
+import { NoEncryptionTwoTone } from '@mui/icons-material';
 
 
 
@@ -22,13 +23,13 @@ export default function BasicModal() {
     bgcolor: 'background.paper',
     border: '2px solid #000',
     boxShadow: 24,
-    p: 4,
+    p: 4    
   };
 
   return (
-    <div className={styles.help}>
-      <Button onClick={handleOpen} className={styles.btn}>Help</Button>
-      <Modal
+    <div >
+      <Button onClick={handleOpen} className={styles.help} >Help</Button>
+      <Modal 
         open={open}
         onClose={handleClose}
         aria-labelledby="modal-modal-title"

@@ -1,5 +1,10 @@
 import React, { useEffect } from "react";
-import { getProducts, getUserDetail } from "../../Redux/Actions";
+import {
+  authenticate,
+  getProducts,
+  getUser,
+  getUserDetail,
+} from "../../Redux/Actions";
 import { useDispatch, useSelector } from "react-redux";
 import styles from "./Home.module.css";
 import "bootstrap/dist/css/bootstrap.css";
@@ -7,20 +12,22 @@ import Carousel from "react-bootstrap/Carousel";
 import Categories from "../Categories/Categories";
 import NavBar from "../NavBar/Navbar";
 import { useAuth0 } from "@auth0/auth0-react";
+import Footer from '../Footer/Footer'
 
 function Home() {
-  const { user, isAuthenticated } = useAuth0();
+  const { user } = useAuth0();
   const dispatch = useDispatch();
-  const { getAccessTokenSilently, getIdTokenClaims } = useAuth0();
+  // const { isAuthenticated } = useAuth0();
+  // const { getAccessTokenSilently, getIdTokenClaims } = useAuth0();
   // console.log("esto es el get access", getAccessTokenSilently)
   // console.log("esto es el get ID", getIdTokenClaims)
-
+  // console.log(isAuthenticated)
 
   useEffect(() => {
-    if (user) dispatch(getUserDetail(user.email));
+    // if (user) dispatch(getUserDetail(user.email));
     dispatch(getProducts());
-  }, [dispatch]);
-  const userActive = useSelector((state) => state.userActive);
+  }, [dispatch, user]);
+  // const userActive = useSelector((state) => state.userActive);
   // console.log(userActive)
   return (
     <div className={styles.home}>
@@ -101,6 +108,7 @@ function Home() {
           </Carousel>
         </div>
       </div>
+      <Footer/>
     </div>
   );
 }

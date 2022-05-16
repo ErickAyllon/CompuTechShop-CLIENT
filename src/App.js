@@ -1,15 +1,12 @@
 import Home from "./Components/Home/Home";
 import { useSelector } from "react-redux";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import Footer from "./Components/Footer/Footer";
 import Admin from "./Components/Admin/Admin";
-import Profile from "./Components/Auth0/Profile";
 import ProductDetail from "./Components/Detail/ProductDetail";
 import NotFound404 from "./Components/NotFound404/NotFound404";
 import AllProducts from "./Components/Categories/AllProducts/AllProducts";
 import ProfileForm from "./Components/Profile/ProfileForm";
 import ProductSearched from "./Components/ProductSearched/ProductSearched";
-import Help from "./Components/Footer/Help/Help";
 import FAQ from "./Components/Footer/FAQ";
 import FAQ2 from "./Components/Footer/FAQ2";
 import WorkWithUs from "./Components/Footer/WorkWithUs";
@@ -39,8 +36,10 @@ import Autentication from "./Components/Autenticacion/Autentication";
 import AdminManager from "./Components/Admin/Users/AdminManager/AdminManager";
 import AdminUpdate from "./Components/Admin/Users/AdminManager/AdminUpdate/AdminUpdate";
 import AutenticationUpdate from "./Components/Autenticacion/AutenticationUpdate";
-import MyOrders from "./Components/Profile/MyOrders/MyOrders";
 import MyOrderDetail from "./Components/Profile/MyOrders/MyOrderDetail/MyOrderDetail";
+import MyFavorites from "./Components/Wishlist/MyFavorites/MyFavorites";
+import Banned from "./Components/Banned/Banned";
+import Welcome from "./Components/Welcome/Welcome";
 
 const getDesignTokens = (mode) => ({
   palette: {
@@ -83,6 +82,13 @@ function App() {
     isDarkTheme ? getDesignTokens("dark") : getDesignTokens("light")
   );
 
+  const ProtectedRouteBan = ({ isAllowed, redirectPath = "/banned", children }) => {
+    if (!isAllowed) {
+      return <Navigate to={redirectPath} replace />;
+    }
+    return children ? children : <Outlet />;
+  };
+
   const ProtectedRoute = ({ isAllowed, redirectPath = "/admin", children }) => {
     if (!isAllowed) {
       return <Navigate to={redirectPath} replace />;
@@ -90,33 +96,48 @@ function App() {
     return children ? children : <Outlet />;
   };
 
-  const isAuthenticated = useSelector((state) => state.authenticated);
+  const userAuthenticated = useSelector((state) => state.authenticated);
+  // console.log(user?.length)
 
   return (
     <ThemeProvider theme={isDarkTheme ? darkModeTheme : darkModeTheme}>
       <CssBaseline />
       <BrowserRouter>
         <Routes>
-          <Route path="/" element={<Home />} />
-          {/* <Route path="/profile" element={<Profile />} /> */}
-          <Route path="/Allproducts" element={<AllProducts />} />
-          <Route path="/profile" element={<ProfileInfo />} />
-          <Route path="/profile/order/:id" element={<MyOrderDetail />} />
-          <Route path="/category/:category" element={<Category />} />
-          <Route path="/:name" element={<ProductDetail />} />
-          <Route path="/search/:search" element={<ProductSearched />} />
-          <Route path="*" element={<NotFound404 />} />
-          <Route path="/user" element={<ProfileForm />} />
-          <Route path="/form" element={<FormUser />} />
-          <Route path="/admin" element={<Admin />} />
-          <Route path="/autentication" element={<Autentication />} />
-          <Route path="/UpdateProfile" element={<UpdateProfile />} />
-          <Route
-            path="/AutenticationUpdate"
-            element={<AutenticationUpdate />}
-          />
 
-          <Route element={<ProtectedRoute isAllowed={!!isAuthenticated && isAuthenticated.is_admin} />}>
+        <Route element={<ProtectedRouteBan isAllowed={!userAuthenticated || !userAuthenticated.is_banned} />}>
+            <Route path="/" element={<Home />} />
+            <Route path="/Allproducts" element={<AllProducts />} />
+            <Route path="/profile" element={<ProfileInfo />} />
+            <Route path="/profile/order/:id" element={<MyOrderDetail />} />
+            <Route path="/category/:category" element={<Category />} />
+            <Route path="/:name" element={<ProductDetail />} />
+            <Route path="/search/:search" element={<ProductSearched />} />
+            <Route path="*" element={<NotFound404 />} />
+            <Route path="/user" element={<ProfileForm />} />
+            <Route path="/form" element={<FormUser />} />
+            <Route path="/admin" element={<Admin />} />
+            <Route path="/autentication" element={<Autentication />} />
+            <Route path="/UpdateProfile" element={<UpdateProfile />} />
+            <Route path="/myfavorites" element={<MyFavorites />} />
+            <Route path="/AutenticationUpdate" element={<AutenticationUpdate />} />
+            <Route path="/welcome" element={<Welcome/>}/>
+            <Route path="/FAQ" element={<FAQ />} />
+            <Route path="/FAQ2" element={<FAQ2 />} />
+            <Route path="/WorkWithUs" element={<WorkWithUs />} />
+            <Route path="/About" element={<About />} />
+            <Route path="/purchaseSummary" element={<PurchaseSummary />} />
+            <Route path="/purchaseConfirm" element={<PurchaseConfirm />} />
+            <Route path="/purchaseResult" element={<PurchaseResult />} />
+          </Route>
+
+          <Route path="/banned" element={
+            <ProtectedRoute redirectPath="/" isAllowed={!!userAuthenticated && userAuthenticated.is_banned}>
+             <Banned />
+            </ProtectedRoute>
+          }/>
+          
+          <Route element={<ProtectedRoute isAllowed={!!userAuthenticated && userAuthenticated.is_admin} />}>
             <Route path="/admin/products/Allproducts" element={<AdminProducts />} />
             <Route path="/admin/products/:category" element={<CategoryAdmin />} />
             <Route path="/admin/products/createProduct" element={<ProductCreate />} />
@@ -129,20 +150,13 @@ function App() {
             <Route path="/admin/users" element={<Users />} />
           </Route>
 
-          <Route element={<ProtectedRoute isAllowed={!!isAuthenticated && isAuthenticated.is_admin_pro} />}>
+          <Route element={<ProtectedRoute isAllowed={!!userAuthenticated && userAuthenticated.is_admin_pro} />}>
             <Route path="/admin/manager" element={<AdminManager />} />
             <Route path="/admin/manager/:nickname" element={<AdminUpdate />} />
           </Route>
 
-          <Route path="/FAQ" element={<FAQ />} />
-          <Route path="/FAQ2" element={<FAQ2 />} />
-          <Route path="/WorkWithUs" element={<WorkWithUs />} />
-          <Route path="/About" element={<About />} />
-          <Route path="/purchaseSummary" element={<PurchaseSummary />} />
-          <Route path="/purchaseConfirm" element={<PurchaseConfirm />} />
-          <Route path="/purchaseResult" element={<PurchaseResult />} />
+
         </Routes>
-        <Footer />
       </BrowserRouter>
     </ThemeProvider>
   );

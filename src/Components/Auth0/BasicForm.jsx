@@ -199,6 +199,38 @@ const BasicForm = ({
               required
             />
 
+            <TextField
+              name="is_admin"
+              value={values.is_admin}
+              disabled
+              required
+              hidden
+            />
+
+            <TextField
+              name="is_admin_pro"
+              value={values.is_admin}
+              disabled
+              required
+              hidden
+            />
+
+            <TextField
+              name="password"
+              value={values.password}
+              disabled
+              required
+              hidden
+            />
+
+            <TextField
+              name="is_banned"
+              value={values.is_banned}
+              disabled
+              required
+              hidden
+            />
+
             <div className={styles.createButton}>
               <Button disabled={isSubmitting} type="submit" variant="outlined">
                 Create User
