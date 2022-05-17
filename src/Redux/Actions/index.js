@@ -299,13 +299,12 @@ export function updateShop(id, payload) {
 }
 
 export const getPayment = (payload) => {
-  // console.log(payload.email)
-
-  const { payment, email } = payload;
+  console.log(payload)
+  const { payment, email, extraAddress, extraEmail } = payload;
   return async function (dispatch) {
     try {
       const json = await axios.get(
-        `/success?id=${payment}&successEmail=${email}`
+        `/success?id=${payment}&successEmail=${email}&extraEmail=${extraEmail}&extraAddress=${extraAddress}`
       );
       return dispatch({
         type: "GET_PAYMENT",
