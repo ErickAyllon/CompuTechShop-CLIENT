@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { getUser, postBuyCart } from "../../Redux/Actions";
+import { postBuyCart } from "../../Redux/Actions";
 import CartItem from "./CartItem";
 import { TYPES } from "../../Redux/Actions/shoppingCartActions";
 import ProductCard from "../ProductCard/ProductCard";
@@ -12,39 +12,34 @@ const PurchaseSummary = () => {
   const obj = {};
   const dispatch = useDispatch();
   const productsFilter = useSelector((state) => state.cart);
-  const userByEmail = useSelector((state) => state.users2)
   const prod = useSelector(state => state.prod)
   const arregloPrice = productsFilter.map((el) => el.price * el.quantity);
   const reducir = (accumulator, curr) => accumulator + curr;
   let arregloTotal
   const navigate = useNavigate()
-
+  // console.log(userActive.email)
   if (arregloPrice.length > 0) { arregloTotal = arregloPrice.reduce(reducir) }
-
-  useEffect(() => {
-    dispatch(getUser())
-
-  }, [dispatch])
-
 
   const handleBuyCart = (e) => {
     e.preventDefault();
-    // const nuevoPost = productsFilter.map((el) => {
-    //   return {
-    //     picture_url: el.image,
-    //     name: el.name,
-    //     price: el.price,
-    //     quantity: el.quantity,
-    //   };
-    // });
-    // obj.name = nuevoPost.map((el) => el.name);
-    // obj.picture_url = nuevoPost.map((el) => el.picture_url);
-    // obj.price = nuevoPost.map((el) => Number(el.price));
-    // obj.quantity = nuevoPost.map((el) => el.quantity);
-    // JSON.stringify(obj);
-    // dispatch(postBuyCart(obj));
+    const nuevoPost = cartProducts.map((el) => {
+      return {
+        picture_url: el.image,
+        name: el.name,
+        price: el.price,
+        quantity: el.quantity,
+      };
+    });
+
+
+    obj.name = nuevoPost.map((el) => el.name);
+    obj.picture_url = nuevoPost.map((el) => el.picture_url);
+    obj.price = nuevoPost.map((el) => Number(el.price));
+    obj.quantity = nuevoPost.map((el) => el.quantity);
+    JSON.stringify(obj);
+    dispatch(postBuyCart(obj));
     setTimeout(function () {
-      navigate("/cartSend")
+      navigate("/purchaseConfirm")
     }, 2000)
   };
   const delFromCart = (id, all = false) => {
@@ -60,6 +55,11 @@ const PurchaseSummary = () => {
     dispatch({ type: TYPES.CLEAR_CART });
   };
 
+let cartProducts = JSON.parse(localStorage.getItem('cart'))
+console.log(cartProducts)
+
+
+
   return (
 
     <div >
@@ -68,8 +68,8 @@ const PurchaseSummary = () => {
 
         <div>
           {
-            productsFilter.length > 0 && arregloTotal.length !== 0 ?
-              productsFilter.map((el) => (
+            cartProducts.length > 0 && arregloTotal.length !== 0 ?
+            cartProducts.map((el) => (
                 <ProductCard
                   name={el.name}
                   price={el.price}
@@ -99,7 +99,7 @@ const PurchaseSummary = () => {
           }</div>
         {(arregloPrice.length !== 0 ?
           <div className={styles.containerImgBtn}>
-            <label className={styles.text}>Total Price:  $ {arregloTotal}</label>
+            <label className={styles.text}>Total Price:  $ {new Intl.NumberFormat().format(arregloTotal)}</label>
             <button className={styles.btn} onClick={handleBuyCart}>Comprar</button>
             <button
 

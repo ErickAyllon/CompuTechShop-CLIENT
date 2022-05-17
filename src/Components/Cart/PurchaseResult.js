@@ -25,8 +25,6 @@ export const PurchaseResult = () => {
 
 
   obj.email = window.localStorage.getItem("email")
-  obj.extraEmail = window.localStorage.getItem("extraEmail")
-  obj.extraAddress = window.localStorage.getItem("extraAddress")
 
   const postUserActive = (userActive) => {
 
@@ -38,8 +36,9 @@ export const PurchaseResult = () => {
     if (user) {
       postUserActive(user)
       dispatch(getPayment(obj))
+      // console.log("esta pinchila es un objeto", obj)
+      navigate("/")
     }
-    navigate("/")
   }
   switch (status) {
     case "approved":
@@ -69,7 +68,9 @@ export const PurchaseResult = () => {
           <Profile />
         </div>
       </div>
-      <Button variant="contained" className={styles.backToSite} onClick={(e) => handleClick(e)}> Back to Site</Button>
+      <Link to="/">
+        <Button variant="contained" className={styles.backToSite} onClick={(e) => handleClick(e)}> Back to Site</Button>
+      </Link>
     </div>
 
 
