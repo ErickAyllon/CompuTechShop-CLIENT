@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { filterByCategory } from "../../../Redux/Actions";
+import { filterByCategory, getProducts } from "../../../Redux/Actions";
 import Categories from "../Categories";
 import ProductCard from "../../ProductCard/ProductCard";
 import Filter from "../../Filter/Filter";
@@ -75,18 +75,23 @@ function Category() {
                     />
                   );
                 })
-              ) : (
+              ) :            
+              load ? 
+                <CircularProgress color="inherit" style={{position:'absolute', top:'50%', left:'50%'}}/>
+              : 
                 <ProductNotFound />
-              )}
+              }
             </div>
           </div>
           {productsFilter.length > 0 && !load ? (
             <PaginationC category={category} totalPages={totalPages} />
           ) : null}
         </>
-      ) : (
-        <ProductNotFound />
-      )}
+      ) : load ? 
+      <CircularProgress color="inherit" style={{position:'absolute', top:'50%', left:'50%'}}/>
+    : 
+      <ProductNotFound />
+    }
       <Footer />
     </div>
   );

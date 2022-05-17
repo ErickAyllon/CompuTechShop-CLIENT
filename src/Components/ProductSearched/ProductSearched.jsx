@@ -83,6 +83,9 @@ function ProductSearched() {
           }
         </>
           :  
+          load ? 
+          <CircularProgress color="inherit" style={{ position: 'absolute', top: '50%', left: '50%' }} />
+          :
           <div className={styles.productNotFoundContainer}>
             <ProductNotFound/>
           </div>

@@ -35,9 +35,9 @@ function AllProducts() {
       : null;
   const totalPages = Math.ceil(products.length / productsPerPage);
 
-  // useEffect(() => {
-  // dispatch(getProducts());
-  // }, [dispatch]);
+  useEffect(() => {
+  dispatch(getProducts());
+  }, [dispatch]);
   // End Pagination Info //
   const addToCart = (id) => {
     dispatch({ type: TYPES.ADD_TO_CART, payload: id });
@@ -98,9 +98,9 @@ function AllProducts() {
           ) : null}
         </>
       ) : (
-        <Loader />
+        <CircularProgress color="inherit" style={{ position: 'absolute', top: '50%', left: '50%' }} />
       )}
-      <Footer />
+      {/* <CircularProgress color="inherit" style={{ position: 'absolute', top: '50%', left: '50%' }} /> */}
     </div>
   );
 }

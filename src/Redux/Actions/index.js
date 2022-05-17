@@ -466,3 +466,15 @@ export function deleteWishlist(id) {
     }
   };
 }
+
+export function getProductsSearchbar() {
+  return async function (dispatch) {
+    var json = await axios.get("/products");
+
+    return dispatch({
+      type: "GET_PRODUCTS_SEARCHBAR",
+      payload: json.data,
+    });
+  };
+}
+
