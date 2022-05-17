@@ -28,7 +28,8 @@ const initialState = {
   userOrders: [],
   review: [],
   userActive: [],
-  wishlist: []
+  wishlist: [],
+  searchBar: []
 };
 
 function rootReducer(state = initialState, action) {
@@ -416,6 +417,12 @@ function rootReducer(state = initialState, action) {
     case 'DELETE_WISHLIST': {
       return {
         ...state,
+      }
+    }
+    case 'GET_PRODUCTS_SEARCHBAR': {
+      return {
+        ...state,
+        searchBar: action.payload
       }
     }
     default:

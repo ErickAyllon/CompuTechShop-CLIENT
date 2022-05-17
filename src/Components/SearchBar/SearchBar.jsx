@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import styles from "./SearchBar.module.css";
-import { getProductsByName, getProducts } from "../../Redux/Actions/index";
+import { getProductsByName, getProductsSearchbar } from "../../Redux/Actions/index";
 import { useNavigate } from "react-router-dom";
 import TextField from '@mui/material/TextField';
 import Stack from '@mui/material/Stack';
@@ -18,7 +18,7 @@ function SearchBar() {
   }
 
   useEffect(()=> {
-    dispatch(getProducts())
+    dispatch(getProductsSearchbar())
   }, [dispatch])
 
   function handleSubmit(e) {
@@ -27,7 +27,7 @@ function SearchBar() {
     setName("");
     navigate("/search/" + name);
   }
-  const products = useSelector((state) => state.allProducts)
+  const products = useSelector((state) => state.searchBar)
 
   return (
     <div className={styles.searchBarContainer}>

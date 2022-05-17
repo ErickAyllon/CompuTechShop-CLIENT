@@ -32,10 +32,14 @@ function Wishlist({id, name}) {
 
     const removedAlert = (variant) => () => {
       // variant could be success, error, warning, info, or default
-      enqueueSnackbar('Removed from favorites!', { variant });
+      if (userId) {
+        enqueueSnackbar('Removed from favorites!', { variant });
+      }
     };
     const addedAlert = (variant) => () => {
-      enqueueSnackbar('Added to favorites!', { variant });
+      if (userId) {
+        enqueueSnackbar('Added to favorites!', { variant });
+      }
     };
 
     function handleFavorite() {
@@ -52,7 +56,7 @@ function Wishlist({id, name}) {
         setFavorite(!favorite)
         setTimeout(() => {
           dispatch(getWishlist(userId.id))  
-        }, "500") 
+        }, "250") 
       }
     }
     
@@ -64,7 +68,7 @@ function Wishlist({id, name}) {
         setFavorite(false)
         setTimeout(() => {
           dispatch(getWishlist(userId.id))
-        }, "500") 
+        }, "250") 
       }
     }
     

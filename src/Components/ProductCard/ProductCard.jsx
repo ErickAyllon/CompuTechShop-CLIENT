@@ -37,7 +37,7 @@ function ProductCard({
             defaultValue={Number(calification)}
             precision={0.5}
             readOnly
-            className={styles.productCardCalification}
+            className={styles.productCardCalification}  
           />
           <button className={styles.addBtn} onClick={() => addToCart(id)}><img src={add} alt="" /></button>
           {/* {delFromCart ?
