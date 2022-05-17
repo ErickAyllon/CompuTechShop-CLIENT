@@ -41,7 +41,7 @@ const FAQ = () => {
      
       <Link to='/'> 
     
-      <button className={styles.button} >Back</button>
+      <button  >Back</button>
       </Link>
       </div>
        

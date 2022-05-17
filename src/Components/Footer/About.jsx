@@ -10,9 +10,7 @@ export default function About() {
   return ( 
     
    <div> 
-        <Link to='/'>
-    <button >Back</button>
-        </Link>
+
     <div className={styles.aboutSection}>
       <div className={styles.box1}> 
         <h1>This is the CompuTechShop Dreamteam!</h1>
@@ -43,6 +41,10 @@ export default function About() {
                         </a>
                         </div>
                       </div>
+                      
+          <Link to='/'>
+    <button >Back </button>
+        </Link>
               </div>
             </div>
           </div>
@@ -66,6 +68,10 @@ export default function About() {
                         </a>
                       </div>
                   </div>
+                  
+          <Link to='/'>
+    <button >Back </button>
+        </Link>
           </div>
          </div>
         </div>
@@ -87,8 +93,11 @@ export default function About() {
             <img src={LinkedInIcon} alt="Not found" />
             </a>
             </div>
-
           </div>
+          
+          <Link to='/'>
+    <button >Back </button>
+        </Link>
         </div>
         </div>
         </div>
@@ -110,8 +119,10 @@ export default function About() {
             <img src={LinkedInIcon} alt="Not found" />
             </a>
           </div>
-
           </div>
+          <Link to='/'>
+    <button >Back </button>
+        </Link>
         </div>
         </div>
         </div>
@@ -135,6 +146,10 @@ export default function About() {
           </div>
 
           </div>
+          
+          <Link to='/'>
+    <button >Back </button>
+        </Link>
         </div>
         </div>
         </div>
@@ -157,11 +172,13 @@ export default function About() {
             </a>
           </div>
           </div>
-        
+    
+          <Link to='/'>
+    <button >Back </button>
+        </Link>    
       </div>
       </div>
     
-  
   </div>
 
   </div>

@@ -65,19 +65,12 @@ const ShoppingCart = () => {
   }
 
   //End LocalStorage
-  const handleBuyCart = (e) => {
-    e.preventDefault();
-    dispatch(postBuyCart(obj));
 
-    setTimeout(function () {
-      navigate("/purchaseConfirm");
-    }, 2000);
-  };
 
   const StyledBadge = styled(Badge)(({ theme }) => ({
     "& 	.MuiBadge-standard": {
-      right: -4,
-      top: 7,
+      right: 4,
+      top: 8,
       border: `2px solid ${theme.palette.background.paper}`,
       letterSpacing: "1px",
       height: "22px",

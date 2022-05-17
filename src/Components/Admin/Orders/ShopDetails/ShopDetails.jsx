@@ -132,6 +132,22 @@ function ShopDetail() {
                 defaultValue={el.status}
                 variant="filled"
               />
+              <TextField
+              style={{width:'40ch', margin:'5px 0' , background:'red'}}
+                disabled
+                id="filled-disabled"
+                label="Adress"
+                defaultValue={'To be completed'}
+                variant="filled"
+              />
+              <TextField
+              style={{width:'40ch', margin:'5px 0' , background:'#0080006e'}}
+                disabled
+                id="filled-disabled"
+                label="Shop State"
+                value={state}
+                variant="filled"
+              />
               <div style={{margin: 'auto'}}>
                 <TextField
                   sx={{

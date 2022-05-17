@@ -8,12 +8,12 @@ const CartItem = ({ data, delFromCart, addToCart }) => {
     <div className={styles.container}>
       <div>{name}</div>
 
-      <Button variant="outlined" onClick={() => delFromCart(id)}>-</Button>
+      {/* <Button variant="outlined" onClick={() => delFromCart(id)}>-</Button>
 
       <Button variant="outlined" onClick={() => delFromCart(id, true)}>
         delete all</Button>
 
-      <Button variant="outlined" onClick={() => addToCart(id)}>+</Button>
+      <Button variant="outlined" onClick={() => addToCart(id)}>+</Button> */}
       <div>
         ${price} x {quantity} = ${quantity * price}
       </div>

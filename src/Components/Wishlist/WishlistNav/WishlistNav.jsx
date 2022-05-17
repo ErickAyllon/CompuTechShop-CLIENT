@@ -23,7 +23,7 @@ function WishlistNav() {
 
   const StyledBadge = styled(Badge)(({ theme }) => ({
     '& 	.MuiBadge-standard': {
-      right: -4,
+      right: 0,
       top: 5,
       border: `2px solid ${theme.palette.background.paper}`,
       letterSpacing: '1px',

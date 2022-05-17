@@ -41,8 +41,9 @@ import MyFavorites from "./Components/Wishlist/MyFavorites/MyFavorites";
 import Banned from "./Components/Banned/Banned";
 import Welcome from "./Components/Welcome/Welcome";
 import { SnackbarProvider } from 'notistack'
-
 import Help from "./Components/Footer/Help";
+import CartSend from "./Components/Cart/cartSend"
+
 const getDesignTokens = (mode) => ({
   palette: {
     mode,
@@ -134,6 +135,8 @@ function App() {
               <Route path="/purchaseSummary" element={<PurchaseSummary />} />
               <Route path="/purchaseConfirm" element={<PurchaseConfirm />} />
               <Route path="/purchaseResult" element={<PurchaseResult />} />
+              <Route path="/help" element={<Help />} />
+              <Route path="/cartSend" element={<CartSend />} />
 
 
             </Route>
