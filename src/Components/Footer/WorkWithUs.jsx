@@ -1,12 +1,11 @@
 import React from 'react'
-import NavBar from '../NavBar/Navbar'
 import styles from './WorkWithUs.module.css'
 import {Link} from 'react-router-dom'
 
 export default function WorkWithUs() {
   return (
-    <div className={styles.background}>
-      <NavBar/>
+    <div >
+ 
       
     
     <div className={styles.caja}> 

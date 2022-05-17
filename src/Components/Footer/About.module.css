@@ -1,12 +1,15 @@
 body {
     font-family: Arial, Helvetica, sans-serif;
     margin: 0;
-    background-color: rgb(70, 20, 233);
+    /* background-color: rgb(70, 20, 233); */
   }
   
   
   html {
     box-sizing: border-box;
+    /* background-image: url("https://wallpaperaccess.com/full/6547781.jpg"); */
+
+    
   }
   
   *, *:before, *:after {
@@ -18,31 +21,40 @@ body {
     width: 30%;
     margin-bottom: 16px;
     padding: 0 8px;
+    /* background-image: url("https://wallpaperaccess.com/full/6547781.jpg"); */
+
   }
   
-  .fondo{
-    background-color: #f1f1f1;
-  }
+
   .card {
     
-    box-shadow: 0 4px 4px 0 rgba(11, 67, 222, 0.2);
-    margin: 8px;
-    background-color: rgb(13, 15, 15);  
-    
-    
-    
+    box-shadow: 4px 4px 4px 4px rgba(11, 67, 222, 0.2);
+    box-sizing: border-box;
+    margin: 10px;
+    border-radius: 50px;
+    border: rgb(23, 8, 191);
+    padding: 60px;
+    border-width: 20px;
+    align-items: center;
   }
+
   
+
   .aboutSection {
     padding: 50px;
     text-align: center;
-    background-color: #8199da;
-    color: white;
+    color: rgb(5, 5, 5);
   }
+  .box1 {
+    background-color: rgba(0,0,0,.5);
+    color: #ffffff;
+    border-radius: 10%;
+}
   
   .container {
     padding: 0 16px;
     text-align: center;
+
   }
   
   .container::after, .row::after {
@@ -60,15 +72,14 @@ body {
     outline: 0;
     display: inline-block;
     padding: 8px;
-    color: white;
-    background-color: #000;
+    color: rgb(12, 49, 212);
     text-align: center;
     cursor: pointer;
     width: 100%;
   }
   
   .button:hover {
-    background-color: #555;
+    background-color: slateblue;
   }
   
   @media screen and (max-width: 650px) {
@@ -87,7 +98,7 @@ body {
     border-radius: 48px;
       width: 100%;
       height: 200px;
-      border: 2px solid rgb(0, 161, 129); 
+      border: 2px solid rgb(3, 26, 158); 
     }
 
     .div{

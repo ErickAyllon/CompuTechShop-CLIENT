@@ -26,8 +26,12 @@ const FAQ = () => {
 
   return (
     <div > 
+    <div  > 
+      
       <h1 className={styles.title}>Frequently Asked Questions</h1>
-      <div className={styles.accordionTitle}>
+    </div > 
+
+      <div >
        
         {accordionData.map(({ title, content }) => (
          
