@@ -41,6 +41,7 @@ import MyFavorites from "./Components/Wishlist/MyFavorites/MyFavorites";
 import Banned from "./Components/Banned/Banned";
 import Welcome from "./Components/Welcome/Welcome";
 
+import Help from "./Components/Footer/Help";
 const getDesignTokens = (mode) => ({
   palette: {
     mode,
@@ -125,6 +126,8 @@ function App() {
             <Route path="/FAQ" element={<FAQ />} />
             <Route path="/FAQ2" element={<FAQ2 />} />
             <Route path="/WorkWithUs" element={<WorkWithUs />} />
+            <Route path="/Help" element={<Help />} />
+  
             <Route path="/About" element={<About />} />
             <Route path="/purchaseSummary" element={<PurchaseSummary />} />
             <Route path="/purchaseConfirm" element={<PurchaseConfirm />} />

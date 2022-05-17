@@ -19,22 +19,31 @@ const FAQ = () => {
     },
     {
       title: 'How do I rate the product?',
-      content: `You can rate your purchase by clicking on the stars just below the the article you've just bought. Also, you can leave a comment giving further details of your experience..`
+      content: `You can rate your purchase by clicking on the stars just below the the article you've just bought. Also, you can leave a comment giving further details of your experience!`
     }
   ];
 
 
   return (
-    <div className={styles.background}> 
-      <h1>Frequently Asked Questions</h1>
+    <div > 
+      <h1 className={styles.title}>Frequently Asked Questions</h1>
       <div className={styles.accordionTitle}>
+       
         {accordionData.map(({ title, content }) => (
-          <FAQ2 title={title} content={content} />
+         
+          <FAQ2 title={title}  content={content} />
+        
         ))}
-      </div>
+     
       <Link to='/'> 
-      <button>Back</button>
+    
+      <button className={styles.button} >Back</button>
       </Link>
+      </div>
+       
+        
+      
+     
     </div>
   );
 };
