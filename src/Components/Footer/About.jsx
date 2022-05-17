@@ -124,7 +124,7 @@ export default function About() {
       <div className={styles.column}>
       <div className={styles.card}>
       <div className={styles.container}> 
-        <img className={styles.img} src="https://scontent.faep14-2.fna.fbcdn.net/v/t39.30808-6/275424007_10228542708572066_511071485883864013_n.jpg?_nc_cat=106&ccb=1-6&_nc_sid=174925&_nc_ohc=cCelNInGZw8AX-fUrwk&_nc_ht=scontent.faep14-2.fna&oh=00_AT_KxvwdafF3JNyibCgW69m4pHibr66XvsMspfgpwAx77Q&oe=6286EF1F" alt="Mike"  />
+        <img className={styles.img} src="https://avatars.githubusercontent.com/u/85033184?v=4" alt="Mike"  />
         
           <h2>Fabricio Richieri</h2>
           <p >An amazing geek &#129299;</p>
