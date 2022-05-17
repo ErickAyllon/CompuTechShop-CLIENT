@@ -18,19 +18,19 @@ import { CircularProgress } from "@mui/material";
 function Category() {
   const { category } = useParams();
   const dispatch = useDispatch();
-  let products = useSelector((state) => state.products);
+  // let products = useSelector((state) => state.products);
   const productsFilter = useSelector((state) => state.productsFilter);
-  products = productsFilter.length > 0 ? productsFilter : products;
+  // products = productsFilter.length > 0 ? productsFilter : products;
 
   const currentPage = useSelector((state) => state.currentPage);
   const productsPerPage = 6;
   const indexLastProduct = currentPage * productsPerPage;
   const indexFirstProduct = indexLastProduct - productsPerPage;
   const currentProducts =
-    products.length > 0
-      ? products.slice(indexFirstProduct, indexLastProduct)
+    productsFilter?.length > 0
+      ? productsFilter.slice(indexFirstProduct, indexLastProduct)
       : null;
-  const totalPages = Math.ceil(products.length / productsPerPage);
+  const totalPages = Math.ceil(productsFilter.length / productsPerPage);
 
   useEffect(() => {
     dispatch(filterByCategory(category));
@@ -50,7 +50,7 @@ function Category() {
     <div className={styles.category}>
       <NavBar/>
       <Categories />
-      {products.length > 0 ? (
+      {productsFilter.length > 0 ? (
         <>
           <div className={styles.productsContainer}>
             <Filter />

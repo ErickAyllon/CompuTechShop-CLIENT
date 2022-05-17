@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
 import Profile from "../Auth0/Profile.jsx";
@@ -17,13 +17,14 @@ import WishlistNav from "../Wishlist/WishlistNav/WishlistNav.jsx";
 
 function NavBar() {
   const { isAuthenticated } = useAuth0();
-  const dispatch = useDispatch();
   const [isDarkTheme, setIsDarkTheme] = useState(true);
+  const dispatch = useDispatch();
 
   const changeTheme = () => {
     setIsDarkTheme(!isDarkTheme);
     dispatch(darkMode(!isDarkTheme));
   };
+  
   return (
     <div>
       <nav className={styles.NavBar}>
@@ -39,7 +40,7 @@ function NavBar() {
         <div style={{marginRight:'8px'}}>
           <ShoppingCart/>
         </div>
-        <IconButton sx={{ ml: 1 }} className={styles.darkMode} onClick={changeTheme} color="primary">
+        <IconButton sx={{ ml: 1 }} className={styles.darkMode} onClick={(e) => changeTheme(e)} color="primary">
           {isDarkTheme ? <Brightness4Icon /> : <Brightness7Icon />}
         </IconButton>
         <div className={styles.auth0}>

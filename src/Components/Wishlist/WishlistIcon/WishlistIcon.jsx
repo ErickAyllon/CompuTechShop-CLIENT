@@ -42,7 +42,7 @@ function Wishlist({id, name}) {
       console.log('wishlist post: ', wishlist)
       if (!userId) {
         Swal.fire({
-          title: 'You has to be logged to add products to favorites!',
+          title: 'You must be logged to add products to favorites!',
           icon: 'info',
           confirmButtonText: 'OK',
         })
@@ -52,8 +52,7 @@ function Wishlist({id, name}) {
         setFavorite(!favorite)
         setTimeout(() => {
           dispatch(getWishlist(userId.id))  
-        }, "100") 
-        addedAlert('success')
+        }, "500") 
       }
     }
     
@@ -65,18 +64,18 @@ function Wishlist({id, name}) {
         setFavorite(false)
         setTimeout(() => {
           dispatch(getWishlist(userId.id))
-        }, "100") 
+        }, "500") 
       }
     }
     
   return (
     <div>
         { whatIs ?
-            <button className={styles.filledFavorite} onClick={handleFavoriteDelete}><img src={filledFavorite} alt="" /></button>
-            // <button className={styles.filledFavorite} onClick={() => handleFavoriteDelete(id)}><img onClick={removedAlert('error')} src={filledFavorite} alt="" /></button>
+            // <button className={styles.filledFavorite} onClick={handleFavoriteDelete}><img src={filledFavorite} alt="" /></button>
+            <button className={styles.filledFavorite} onClick={() => handleFavoriteDelete()}><img onClick={removedAlert('error')} src={filledFavorite} alt="" /></button>
             :
-            <button className={styles.emptyFavorite} onClick={handleFavorite}><img src={emptyFavorite} alt="" /></button>
-            // <button className={styles.emptyFavorite} onClick={() => handleFavorite(id)}><img onClick={addedAlert('success')} src={emptyFavorite} alt="" /></button>
+            // <button className={styles.emptyFavorite} onClick={handleFavorite}><img src={emptyFavorite} alt="" /></button>
+            <button className={styles.emptyFavorite} onClick={() => handleFavorite()}><img onClick={addedAlert('success')} src={emptyFavorite} alt="" /></button>
         }
     </div>
   )
