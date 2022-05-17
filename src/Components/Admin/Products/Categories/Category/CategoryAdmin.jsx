@@ -88,9 +88,11 @@ function CategoryAdmin() {
           : null
           }
         </>
-      ) : (
-        <ProductNotFound />
-      )}
+      ) : load ? 
+            <CircularProgress color="inherit" style={{position:'absolute', top:'50%', left:'50%'}}/>
+          :
+            <ProductNotFound />
+      }
       <Footer />
     </div>
   );

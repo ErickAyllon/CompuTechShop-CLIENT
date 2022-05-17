@@ -86,7 +86,7 @@ function AllProductsAdmin() {
           ) : null}
         </>
       ) : (
-        <Loader />
+        <CircularProgress color="inherit" style={{ position: 'absolute', top: '50%', left: '50%' }} />
       )}
       <Footer />
     </div>

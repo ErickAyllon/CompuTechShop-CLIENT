@@ -1,6 +1,5 @@
 .filter {
     margin: 0 20px;
-    /* color: white; */
     width: 350px;
 }
 
@@ -53,8 +52,14 @@
 @media only screen and (max-width: 768px) {
     .filter {
         display: flex;
+        flex-direction: column;
         width: 100%;
         margin: 0;
+    }
+    .toggleFilters img {
+        width: 40px;
+        margin: 5px 0;
+        opacity: .8;
     }
     .filterContainer {
         display: flex;
@@ -69,4 +74,16 @@
         right: 0;
         max-width: 30px;
     }
+
+    .toggleFilters {
+        margin-top: 30px;
+    }
+    .filterContainer {
+        margin: 0;
+    }
+}
+
+@keyframes appear {
+    from {opacity: 0;}
+    to {opacity: 1;}
 }

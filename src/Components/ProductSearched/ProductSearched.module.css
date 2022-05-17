@@ -28,4 +28,7 @@
     .productsContainer {
         display:block;
     }
+    .productsCardsContainer {
+        margin-top: 5px;
+    }
 }

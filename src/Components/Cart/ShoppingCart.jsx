@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { TYPES } from "../../Redux/Actions/shoppingCartActions";
 import CartItem from "./CartItem";
 import { Dropdown } from "react-bootstrap";
@@ -6,6 +6,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { postBuyCart } from "../../Redux/Actions";
 import { Link, useNavigate } from "react-router-dom";
 import Loader from "../Loader/Loader";
+
 // import styles from './ShoppingCart.module.css'
 import styles from "./CartItem.module.css";
 import shop from "../../Images/shop.png";
@@ -18,7 +19,9 @@ const ShoppingCart = () => {
   const obj = {};
   const navigate = useNavigate();
   const dispatch = useDispatch();
-  const carti = useSelector((state) => state.cart);
+  let carti = useSelector((state) => state.cart);
+  console.log(carti)
+  
   let url = useSelector((state) => state.shopping);
   let arregloTotal = [];
   const cart = useSelector((state) => state.cart);
@@ -73,8 +76,8 @@ const ShoppingCart = () => {
 
   const StyledBadge = styled(Badge)(({ theme }) => ({
     "& 	.MuiBadge-standard": {
-      right: -4,
-      top: 7,
+      right: 4,
+      top: 8,
       border: `2px solid ${theme.palette.background.paper}`,
       letterSpacing: "1px",
       height: "22px",

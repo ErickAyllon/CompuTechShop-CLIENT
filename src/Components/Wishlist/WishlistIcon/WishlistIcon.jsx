@@ -43,7 +43,6 @@ function Wishlist({id, name}) {
     };
 
     function handleFavorite() {
-      console.log('wishlist post: ', wishlist)
       if (!userId) {
         Swal.fire({
           title: 'You must be logged to add products to favorites!',
@@ -73,7 +72,7 @@ function Wishlist({id, name}) {
     }
     
   return (
-    <div>
+    <div className={styles.wishIcon}>
         { whatIs ?
             // <button className={styles.filledFavorite} onClick={handleFavoriteDelete}><img src={filledFavorite} alt="" /></button>
             <button className={styles.filledFavorite} onClick={() => handleFavoriteDelete()}><img onClick={removedAlert('error')} src={filledFavorite} alt="" /></button>

@@ -1,6 +1,6 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import styles from "./ProductDetail.module.css";
-import { getCategories, getDetail, getReview } from "../../Redux/Actions/index.js";
+import { getDetail, getReview } from "../../Redux/Actions/index.js";
 import { useSelector, useDispatch } from "react-redux";
 import { useParams } from "react-router-dom";
 import { Rating } from "@mui/material";
@@ -11,7 +11,7 @@ import add from '../../Images/add.png'
 import DetailReviews from "./DetailReviews/DetailReviews";
 import Footer from "../Footer/Footer";
 import Wishlist from "../Wishlist/WishlistIcon/WishlistIcon";
-
+import { CircularProgress } from "@mui/material";
 
 function ProductDetail() {
   const dispatch = useDispatch();
@@ -35,11 +35,21 @@ function ProductDetail() {
     dispatch({ type: TYPES.ADD_TO_CART, payload: id });
   };
 
+  const [load, setLoad] = useState(true)
+
+  setTimeout(function () {
+    setLoad(false)
+  }, 1000)
+
   return (
     <div className={styles.productDetail}>
       <NavBar />
       <Categories />
-      {product.length > 0 ? (
+      {
+        load ? 
+          <CircularProgress color="inherit" style={{ position: 'absolute', top: '50%', left: '50%' }} />
+        :
+       product.length > 0 ? (
         <div className={styles.productDetailContainer}>
           <div className={styles.productDetailContainerTwo}>
             <div className={styles.productDetailImgContainer}>

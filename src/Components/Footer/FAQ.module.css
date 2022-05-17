@@ -1,4 +1,105 @@
-.faq {
+/* *   
+ {
+    margin: 0;
+    padding: 0;
+  } 
+   */
+ 
+
+
+  .caja { 
+        
+    font-family: Century Gothic,CenturyGothic,AppleGothic,sans-serif; 
+    color: #ffffff; 
+    font-size: 18px; 
+    font-weight: 400; 
+    text-align: center; 
+    background: #889ccf; 
+    margin: 0 0 25px; 
+    overflow: hidden; 
+    padding: 20px; 
+    border-radius: 35px 0px 35px 0px; 
+    -moz-border-radius: 35px 0px 35px 0px; 
+    -webkit-border-radius: 35px 0px 35px 0px; 
+    border: 2px solid #5878ca;
+        }
+  .background {
+    background-color: #000;
+    background-image: url("https://wallpaperaccess.com/full/6547781.jpg");
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
     min-height: 100vh;
-    color: black;
 }
+  /* .box {
+    background-color: rgb(255, 255, 255);
+    border-radius: 0.5rem;
+    padding: 2rem;
+    margin: 0 auto;
+    width: 80%;
+    box-shadow: 0px 0px 10px rgb(0, 0, 0, 0.5);
+  } */
+  
+   .title {
+     text-align: center;
+   }
+   
+   .button {
+    background-color: blue;
+    border: none;
+    color: white;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: flex;
+    font-size: 16px;
+    margin: 4px 2px;
+    padding: 12px 28px;
+    border-radius: 8px;
+    transition-duration: 0.4s;
+  }
+  .button:hover {
+    background-color: rgb(17, 17, 18);
+    color: white;
+  }
+
+  .centrado{
+    text-align: center;
+  }
+
+
+  .accordion {
+    max-width: 600px;
+    margin: 2rem auto;
+  }
+  
+  .accordionTitle {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    cursor: pointer;
+    background-color: #ca2121;
+  }
+  
+  .accordionTitle:hover {
+    background-color: #e2e1e7;
+  }
+  
+  .accordionTitle,
+  .accordionContent {
+    padding: 1rem;
+    color:rgb(14, 14, 14);
+    font-size: 1.25rem;
+  }
+  
+ 
+  
+  @media screen and (max-width: 700px) {
+    body {
+      font-size: 18px;
+    }
+  
+    .accordion {
+      width: 90%;
+    }
+  }

@@ -64,17 +64,20 @@
   
   @media only screen and (max-width: 700px) {
     .searchBarContainer {
-      right: 20px;
-      width: 200px;
-      margin: 0 2px;
-      font-size: .7rem;
+      max-width: 190px;
+      font-size: .6rem;
+      box-shadow: 0 0 5px 1px rgba(255, 255, 255, 0.219);
+      height: 35px;
     }
     .searchBarContainer .searchBarButton {
       width: 70px;
+      font-size: .6rem;
+    }
+    .searchBarContainer .searchBarButton:active {
+      box-shadow: 0px 0px 10px 0px #e1e1e1;
     }
     .searchBarContainer input {
       margin-left: 0;
-      padding: 2px;
     }
     .searchBarContainer input {
       background:none;

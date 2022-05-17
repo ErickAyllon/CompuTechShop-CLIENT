@@ -8,16 +8,14 @@ export default function WorkWithUs() {
     <div className={styles.background}>
       <NavBar/>
       
-    
     <div className={styles.caja}> 
-        <h1 className={styles.text}>
-        Become part of the dream team!
+      <h1>
+      If you need urgent asistance please call us at: +54 9 11 22 33 44
       </h1>
       <h2 > 
-        If you are interested in working at Compu Tech Shop, please attach your resume or cv, and a video telling us why we should hire you to computechshop@computechshop.com
-        </h2>
+      For more information please send an email to:
+            computechshop@computechshop.com        </h2>
         <div> 
-
 
     </div>
         <Link to='/'>

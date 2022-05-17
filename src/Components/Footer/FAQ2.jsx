@@ -1,24 +1,22 @@
 import React, { useState } from 'react';
+import styles from './FAQ.module.css'
 
-
-export default function FAQ2 ({ title, content }) {
+const FAQ2 = ({ title, content }) => {
   const [isActive, setIsActive] = useState(false);
 
   return (
-    <div>
-      
-    <div className="accordion-item">
-      <div className="accordion-title" onClick={() => setIsActive(!isActive)}>
-        <div>{title}</div>
+    <div className={styles.caja}> 
+    <div > 
+    <div className={styles.accordion}>
+      <div className={styles.accordionTitle} onClick={() => setIsActive(!isActive)}>
+        <div >{title}</div>
         <div>{isActive ? '-' : '+'}</div>
       </div>
-      {isActive && 
-      <div 
-      className="accordion-content">{content}
-      </div>}
+      {isActive && <div className="accordion-content">{content}</div>}
     </div>
-      
-      </div>
+    </div>
+    </div>
   );
 };
 
+export default FAQ2;

@@ -5,8 +5,8 @@
     height: 35px;
     border-radius: 100%;
     transition: .5s;
-    margin-left: 130px;
     opacity: .9;
+    margin-right: 2px;
 }
 
 
@@ -19,7 +19,6 @@
 .emptyFavorite img {
     height: 25px;
     width: auto;
-    margin: auto;
     display: flex;
 }
 .filledFavorite {
@@ -29,10 +28,9 @@
     height: 35px;
     border-radius: 100%;
     transition: .5s;
-    margin-left: 130px;
     opacity: .9;
+    margin-right: 2px;
 }
-
 
 .filledFavorite:hover {
     filter: brightness(2);
@@ -43,6 +41,15 @@
 .filledFavorite img {
     height: 25px;
     width: auto;
-    margin: auto;
     display: flex;
 }
+
+/* @media only screen and (max-width: 768px) {
+    .wishIcon {
+        display: flex;
+        margin: 0;
+    }
+    .wishIcon img {
+        margin: 0;
+    }
+} */
