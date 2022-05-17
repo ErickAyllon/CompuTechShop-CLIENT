@@ -28,7 +28,8 @@ function ProductCard({
           <Link to={"/" + name.split("/").join("-")}>
             <h3 className={styles.productCardName}>{name}</h3>
           </Link>
-          {priceTotal && quantity > 1 ? <h3 className={styles.productCardPrice}>{quantity} x ${price.toLocaleString('en-US')}</h3> : <h3 className={styles.productCardPrice}>${price.toLocaleString('en-US')}</h3>}
+          {priceTotal && quantity > 1 ? <h3 className={styles.productCardPrice}>{quantity} x $ {new Intl.NumberFormat().format(price)}</h3> : 
+            <h3 className={styles.productCardPrice}>$ {new Intl.NumberFormat().format(price)}</h3>}
 
           <Rating
             name="half-rating"
@@ -39,10 +40,10 @@ function ProductCard({
             className={styles.productCardCalification}
           />
           <button className={styles.addBtn} onClick={() => addToCart(id)}><img src={add} alt="" /></button>
-          {delFromCart ?
+          {/* {delFromCart ?
             <div><button className={styles.addBtn} onClick={() => delFromCart(id)}><img src={add} alt="" /></button>
               <button className={styles.addBtn} onClick={() => delFromCart(id, true)}><img src={add} alt="" /></button></div>
-            : null}
+            : null} */}
           <Wishlist id={id} name={name} />
         </div>
       </div>

@@ -92,7 +92,7 @@ const PurchaseSummary = () => {
           }</div>
         {(arregloPrice.length !== 0 ?
           <div className={styles.containerImgBtn}>
-            <label className={styles.text}>Total Price:  $ {arregloTotal}</label>
+            <label className={styles.text}>Total Price:  $ {new Intl.NumberFormat().format(arregloTotal)}</label>
             <button className={styles.btn} onClick={handleBuyCart}>Comprar</button>
             <button
 

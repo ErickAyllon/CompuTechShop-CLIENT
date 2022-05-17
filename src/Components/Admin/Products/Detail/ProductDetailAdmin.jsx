@@ -72,7 +72,7 @@ function ProductDetailAdmin (){
             <div className={styles.productDetailInfo}>
                 <h1 className={styles.productDetailName}>{product[0].name}</h1>
                 <Rating className={styles.productDetailRating} name="half-rating-read" size="small" defaultValue={Number(product[0].calification)} precision={0.5} readOnly />
-                <p className={styles.productDetailPrice}>${product[0].price}</p>
+                <p className={styles.productDetailPrice}>$ {new Intl.NumberFormat().format(product[0].price)}</p>
             </div>
               <button className={styles.button}>
                 <img src={trash} onClick={handleDelete} id={product[0].id}/>

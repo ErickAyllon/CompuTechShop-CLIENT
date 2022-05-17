@@ -36,7 +36,7 @@ export const getActiveUser = () => {
 export function getProducts() {
   return async function (dispatch) {
     var json = await axios.get("/products");
-    console.log(json.data)
+
     return dispatch({
       type: "GET_PRODUCTS",
       payload: json.data,
@@ -300,12 +300,12 @@ export function updateShop(id, payload) {
 
 export const getPayment = (payload) => {
   // console.log(payload.email)
-  console.log(payload);
+
   const { payment, email } = payload;
   return async function (dispatch) {
     try {
       const json = await axios.get(
-        "/success?id=" + payment + "&successEmail=" + email
+        `/success?id=${payment}&successEmail=${email}`
       );
       return dispatch({
         type: "GET_PAYMENT",
