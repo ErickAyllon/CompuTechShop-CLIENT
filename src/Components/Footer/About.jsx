@@ -12,7 +12,7 @@ export default function About() {
     <div className={styles.aboutSection}>
       <h1>This is the CompuTechShop Dreamteam!</h1>
       <h2>We are a young company made by young people who are passionate about technology. 
-            Our mission is to bring options to those who seek it and to provide them with the best possible experience.
+            Our mission is to bring options to those who seek it and to provide them with the best possible experience!
       </h2>
   </div>
 
