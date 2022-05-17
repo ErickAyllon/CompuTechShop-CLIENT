@@ -42,6 +42,7 @@ import Banned from "./Components/Banned/Banned";
 import Welcome from "./Components/Welcome/Welcome";
 import { SnackbarProvider } from 'notistack'
 import Help from "./Components/Footer/Help";
+import CartSend from "./Components/Cart/cartSend"
 
 const getDesignTokens = (mode) => ({
   palette: {
@@ -133,6 +134,9 @@ function App() {
               <Route path="/purchaseConfirm" element={<PurchaseConfirm />} />
               <Route path="/purchaseResult" element={<PurchaseResult />} />
               <Route path="/help" element={<Help />} />
+              <Route path="/cartSend" element={<CartSend />} />
+
+
             </Route>
 
             <Route path="/banned" element={
