@@ -53,7 +53,7 @@ function ProductCardAdmin({ name, price, image, calification, id, update, delet 
           <Link to={"/admin/product/" + name.split("/").join("-")}>
             <h3 className={styles.productCardName}>{name}</h3>
           </Link>
-          <h3 className={styles.productCardPrice}>{price ? `$` : null}{price.toLocaleString('en-US')}</h3>
+          <h3 className={styles.productCardPrice}>{price ? `$` : null} {new Intl.NumberFormat().format(price)}</h3>
           <Rating
             name="half-rating-read"
             size="small"

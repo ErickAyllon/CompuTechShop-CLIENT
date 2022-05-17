@@ -27,7 +27,7 @@ function ProductDetailAdmin ({nameD, image, price, brand, quantity, description,
                     <Rating className={styles.productDetailRating} name="half-rating-read" size="small" defaultValue={Number(calification)} precision={0.5} readOnly />
                     : null
                 }
-                <p className={styles.productDetailPrice}>${price}</p>
+                <p className={styles.productDetailPrice}>$ {new Intl.NumberFormat().format(price)}</p>
             </div>
           </div>
 

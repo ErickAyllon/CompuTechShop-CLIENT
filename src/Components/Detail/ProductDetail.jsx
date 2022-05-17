@@ -55,7 +55,7 @@ function ProductDetail() {
                 precision={0.5}
                 readOnly
               />
-              <p className={styles.productDetailPrice}>${product[0].price}</p>
+              <p className={styles.productDetailPrice}>$ {new Intl.NumberFormat().format(product[0].price)}</p>
               <button className={styles.addBtn} onClick={() => addToCart(product[0].id)}><img src={add} alt="" /></button>
               <div className={styles.wishlist}>
                 <Wishlist id={product[0].id} name={product[0].name} />
