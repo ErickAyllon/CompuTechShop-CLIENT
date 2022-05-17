@@ -36,8 +36,8 @@ export const PurchaseResult = () => {
     if (user) {
       postUserActive(user)
       dispatch(getPayment(obj))
-      console.log("esta pinchila es un objeto", obj)
-      // navigate("/")
+      // console.log("esta pinchila es un objeto", obj)
+      navigate("/")
     }
   }
   switch (status) {

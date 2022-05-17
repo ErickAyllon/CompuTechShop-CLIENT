@@ -1,4 +1,4 @@
-import React, { useEffect} from 'react'
+import React, { useEffect, useState} from 'react'
 import styles from './ProductDetailAdmin.module.css'
 import { deleteProduct, getDetail, getProducts, getReview } from '../../../../Redux/Actions/index.js'
 import { useSelector, useDispatch } from 'react-redux';
@@ -11,6 +11,7 @@ import AdminNav2 from '../../AdminNav/AdminNav2';
 import CategoriesAdmin from '../Categories/CategoriesAdmin';
 import DetailReviews from '../../../Detail/DetailReviews/DetailReviews';
 import Swal from 'sweetalert2';
+import { CircularProgress } from "@mui/material";
 
 function ProductDetailAdmin (){
   const navigate = useNavigate();
@@ -55,6 +56,12 @@ function ProductDetailAdmin (){
     navigate('/admin/product/update/' + e.target.name)
   }
 
+  const [load, setLoad] = useState(true)
+
+  setTimeout(function () {
+    setLoad(false)
+  }, 1000)
+
 
   return (
   <div className={styles.productDetail}>
@@ -62,6 +69,9 @@ function ProductDetailAdmin (){
     <AdminNav2/>
     <CategoriesAdmin/>
     {
+        load ? 
+          <CircularProgress color="inherit" style={{ position: 'absolute', top: '50%', left: '50%'}} />
+        :
       product.length > 0 ?
         <div className={styles.productDetailContainer}>
 

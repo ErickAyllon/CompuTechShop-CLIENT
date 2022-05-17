@@ -34,14 +34,14 @@ function NavBar() {
         <div className={styles.searchBarCall}>
           <SearchBar />
         </div>
-        <div style={{marginRight:'22px'}}>
+        <div className={styles.wishlistNav}>
           <WishlistNav />
         </div>
-        <div style={{marginRight:'8px'}}>
+        <div className={styles.shoppignCartNav}>
           <ShoppingCart/>
         </div>
-        <IconButton sx={{ ml: 1 }} className={styles.darkMode} onClick={(e) => changeTheme(e)} color="primary">
-          {isDarkTheme ? <Brightness4Icon /> : <Brightness7Icon />}
+        <IconButton className={styles.darkMode} onClick={(e) => changeTheme(e)} color="primary">
+          {isDarkTheme ? <Brightness4Icon className={styles.darkMode}/> : <Brightness7Icon className={styles.darkMode}/>}
         </IconButton>
         <div className={styles.auth0}>
           {isAuthenticated ? <Profile /> : <LoginButton />}

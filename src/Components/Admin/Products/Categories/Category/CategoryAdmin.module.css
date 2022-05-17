@@ -28,6 +28,9 @@
     .productsContainer {
         display:block;
     }
+    .productsCardsContainer {
+        margin-top: 5px;
+    }
     .category .create {
         margin-top: 30px;
     }

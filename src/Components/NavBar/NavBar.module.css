@@ -14,9 +14,13 @@
   }
 
   .auth0 {
-    margin-right: 20px;
+    margin-right: 10px;
     display: flex;
     width: 60px;
+  }
+
+  .darkMode {
+    margin: 0 5px;
   }
 
   .darkMode img {
@@ -47,14 +51,20 @@
     margin: auto;
   }
 
-  @media only screen and (max-width: 768px) {
-    /* .NavBar {
+  .wishlistNav {
+    margin: 0 10px;
+  }
 
-    } */
+  .shoppignCartNav {
+    margin: 0 10px;
+  }
+
+  @media only screen and (max-width: 768px) {
     .auth0 {
       position: relative;
       right: 0;
-      margin-right: 10px;
+      margin: 0 -5px;
+      padding: 0;
     }
     .logo {
       position: relative;
@@ -64,6 +74,18 @@
       height: 40px;
     }
     .searchBarCall {
-      margin: 0 10px;
+      margin: 0 0 0 10px;
+    }
+    .darkMode img, .darkMode{
+      padding: 0;
+      margin: 0 -5px 0 0;
+    }
+
+    .wishlistNav {
+      margin: 0 5px;
+
+    }
+    .shoppignCartNav {
+      margin: 0 5px;
     }
 }

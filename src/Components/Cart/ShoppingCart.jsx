@@ -73,8 +73,8 @@ const ShoppingCart = () => {
 
   const StyledBadge = styled(Badge)(({ theme }) => ({
     "& 	.MuiBadge-standard": {
-      right: -4,
-      top: 7,
+      right: 4,
+      top: 8,
       border: `2px solid ${theme.palette.background.paper}`,
       letterSpacing: "1px",
       height: "22px",
