@@ -62,14 +62,7 @@ const ShoppingCart = () => {
   }
 
   //End LocalStorage
-  const handleBuyCart = (e) => {
-    e.preventDefault();
-    dispatch(postBuyCart(obj));
 
-    setTimeout(function () {
-      navigate("/purchaseConfirm");
-    }, 2000);
-  };
 
   const StyledBadge = styled(Badge)(({ theme }) => ({
     "& 	.MuiBadge-standard": {
