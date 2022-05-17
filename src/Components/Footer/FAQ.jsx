@@ -1,30 +1,51 @@
-import React from 'react'
+import React from 'react';
+import FAQ2 from "./FAQ2" 
 import {Link} from 'react-router-dom'
 import styles from './FAQ.module.css'
-import NavBar from '../NavBar/Navbar.jsx';
+const FAQ = () => {
 
-export default function About() {
+  const accordionData = [
+    {
+      title: 'Where do I find my products? ',
+      content: `You can find your products in your profile after you signed up properly`
+    },
+    {
+      title: 'How can I change the shippment adress?',
+      content: `You must go to your profile and update your address.`
+    },
+    {
+      title: 'Which is your range of shipment?',
+      content: `Every country within Latinamerica, USA and Canada`
+    },
+    {
+      title: 'How do I rate the product?',
+      content: `You can rate your purchase by clicking on the stars just below the the article you've just bought. Also, you can leave a comment giving further details of your experience!`
+    }
+  ];
+
+
   return (
-    <div className={styles.productDetail}>
-    <div className={styles.productDetailContainer}>
-    <div className={styles.productDetailInfo}>
-
-        <h1> 
-            We are a young company made by young people who are passionate about technology. 
-            Our mission is to bring options to those who seek it and to provide them with the best possible experience.
-        </h1>
-        <Link to='/'>
-        <button>Back</button>
-        </Link>
-
-
+    <div > 
+      <h1 className={styles.title}>Frequently Asked Questions</h1>
+      <div className={styles.accordionTitle}>
+       
+        {accordionData.map(({ title, content }) => (
+         
+          <FAQ2 title={title}  content={content} />
+        
+        ))}
+     
+      <Link to='/'> 
+    
+      <button className={styles.button} >Back</button>
+      </Link>
+      </div>
+       
+        
+      
+     
     </div>
-    </div> 
+  );
+};
 
-
-
-    </div>
-
-
-  )
-}
+export default FAQ;

@@ -42,6 +42,7 @@ import Banned from "./Components/Banned/Banned";
 import Welcome from "./Components/Welcome/Welcome";
 import { SnackbarProvider } from 'notistack'
 
+import Help from "./Components/Footer/Help";
 const getDesignTokens = (mode) => ({
   palette: {
     mode,
