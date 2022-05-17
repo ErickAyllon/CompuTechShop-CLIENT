@@ -13,6 +13,9 @@ import AdminNav from "../../../AdminNav/AdminNav";
 import AdminNav2 from "../../../AdminNav/AdminNav2";
 import { Link } from 'react-router-dom'
 import { Button } from '@mui/material'
+import Footer from "../../../../Footer/Footer";
+import { useState } from "react";
+import { CircularProgress } from "@mui/material";
 
 function CategoryAdmin() {
   const {category} = useParams();
@@ -32,6 +35,12 @@ function CategoryAdmin() {
     dispatch(filterByCategory(category));
   }, [dispatch, category]);
 
+  const [load, setLoad] = useState(true)
+
+  setTimeout(function () {
+   setLoad(false)
+ }, 1000)
+
   return (
     <div className={styles.category}>
     <AdminNav />
@@ -45,8 +54,10 @@ function CategoryAdmin() {
           <div className={styles.productsContainer}>
             <Filter />
             <div className={styles.productsCardsContainer}>
-            {
-              productsFilter.length > 0 ?
+            {          
+              load ? 
+              <CircularProgress color="inherit" style={{position:'absolute', top:'50%', left:'50%'}}/>
+            : productsFilter.length > 0 ?
               currentProducts.map((el) => {
                 return (
                   <ProductCardAdmin
@@ -69,7 +80,7 @@ function CategoryAdmin() {
             </div>
           </div>
           {
-            productsFilter.length > 0 ?
+            productsFilter.length > 0 && !load ?
               <PaginationCAdmin
                 category={category}
                 totalPages={totalPages}
@@ -80,6 +91,7 @@ function CategoryAdmin() {
       ) : (
         <ProductNotFound />
       )}
+      <Footer />
     </div>
   );
 }

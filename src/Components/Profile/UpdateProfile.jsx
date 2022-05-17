@@ -8,6 +8,7 @@ import style from "./UpdateProfile.module.css";
 import NavBar from "../NavBar/Navbar";
 import { useAuth0 } from "@auth0/auth0-react";
 import Footer from "../Footer/Footer";
+import Swal from 'sweetalert2'
 
 const validation = (values) => {
   let errors = {};
@@ -82,7 +83,11 @@ const UpdateProfile = () => {
           }}
           onSubmit={(values) => {
             dispatch(updateUser(id, values));
-            alert("USER WAS UPDATED SUCCESSFULLY");
+            Swal.fire({
+              title: 'USER WAS UPDATED SUCCESSFULLY!',
+              icon: 'success',
+              confirmButtonText: 'OK',
+            })
             navigate("/profile");
           }}
           validate={validation}

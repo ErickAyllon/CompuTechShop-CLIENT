@@ -12,23 +12,25 @@ import { useParams } from "react-router-dom";
 import { TYPES } from "../../../Redux/Actions/shoppingCartActions";
 import NavBar from "../../NavBar/Navbar";
 import Footer from "../../Footer/Footer";
+import { useState } from "react";
+import { CircularProgress } from "@mui/material";
 
 function Category() {
   const { category } = useParams();
   const dispatch = useDispatch();
-  let products = useSelector((state) => state.products);
+  // let products = useSelector((state) => state.products);
   const productsFilter = useSelector((state) => state.productsFilter);
-  products = productsFilter.length > 0 ? productsFilter : products;
+  // products = productsFilter.length > 0 ? productsFilter : products;
 
   const currentPage = useSelector((state) => state.currentPage);
   const productsPerPage = 6;
   const indexLastProduct = currentPage * productsPerPage;
   const indexFirstProduct = indexLastProduct - productsPerPage;
   const currentProducts =
-    products.length > 0
-      ? products.slice(indexFirstProduct, indexLastProduct)
+    productsFilter?.length > 0
+      ? productsFilter.slice(indexFirstProduct, indexLastProduct)
       : null;
-  const totalPages = Math.ceil(products.length / productsPerPage);
+  const totalPages = Math.ceil(productsFilter.length / productsPerPage);
 
   useEffect(() => {
     dispatch(filterByCategory(category));
@@ -37,16 +39,26 @@ function Category() {
   const addToCart = (id) => {
     dispatch({ type: TYPES.ADD_TO_CART, payload: id });
   };
+
+  const [load, setLoad] = useState(true)
+
+  setTimeout(function () {
+   setLoad(false)
+ }, 1000)
+
   return (
     <div className={styles.category}>
       <NavBar/>
       <Categories />
-      {products.length > 0 ? (
+      {productsFilter.length > 0 ? (
         <>
           <div className={styles.productsContainer}>
             <Filter />
             <div className={styles.productsCardsContainer}>
-              {productsFilter.length > 0 ? (
+            {          
+              load ? 
+              <CircularProgress color="inherit" style={{position:'absolute', top:'50%', left:'50%'}}/>
+            : productsFilter.length > 0 ? (
                 currentProducts.map((el) => {
                   return (
                     <ProductCard
@@ -68,7 +80,7 @@ function Category() {
               )}
             </div>
           </div>
-          {productsFilter.length > 0 ? (
+          {productsFilter.length > 0 && !load ? (
             <PaginationC category={category} totalPages={totalPages} />
           ) : null}
         </>

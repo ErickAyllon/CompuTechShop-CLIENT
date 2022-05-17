@@ -13,6 +13,7 @@ import Categories from "../Categories/Categories";
 import NavBar from "../NavBar/Navbar";
 import { useAuth0 } from "@auth0/auth0-react";
 import Footer from '../Footer/Footer'
+import ProductsHome from "./ProductsHome/ProductsHome";
 
 function Home() {
   const { user } = useAuth0();
@@ -23,10 +24,9 @@ function Home() {
   // console.log("esto es el get ID", getIdTokenClaims)
   // console.log(isAuthenticated)
 
-  useEffect(() => {
+  // useEffect(() => {
     // if (user) dispatch(getUserDetail(user.email));
-    dispatch(getProducts());
-  }, [dispatch, user]);
+  // }, [dispatch, user]);
   // const userActive = useSelector((state) => state.userActive);
   // console.log(userActive)
   return (
@@ -107,6 +107,7 @@ function Home() {
             </Carousel.Item>
           </Carousel>
         </div>
+      {/* <ProductsHome /> */}
       </div>
       <Footer/>
     </div>

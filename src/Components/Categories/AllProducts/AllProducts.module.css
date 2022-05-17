@@ -1,5 +1,5 @@
 .allProducts {
-    color: white;
+    /* color: white; */
     text-align: center;
     justify-content: center;
     position: relative;
@@ -15,7 +15,7 @@
 .productsCardsContainer {
     max-width: 900px;
     margin: 20px auto;
-    background-color: white;
+    /* background-color: white; */
     border-radius: 50px;
     overflow: auto;  
 }

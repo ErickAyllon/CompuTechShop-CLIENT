@@ -12,6 +12,7 @@ import { useParams } from 'react-router-dom';
 import AdminNav2 from '../../AdminNav/AdminNav2';
 import ProductDetailAdminCard from '../Detail/ProductDetailAdminCard'
 import Swal from 'sweetalert2'
+import Footer from '../../../Footer/Footer';
 
 
 
@@ -292,6 +293,7 @@ function UpdateProduct() {
         }
         <h3 style={{textAlign:'center'}}>Product Detail updated</h3>
         <ProductDetailAdminCard nameD={input.name} image={input.image} price={input.price} brand={input.brand} quantity={input.quantity} description={input.description} category={input.categories} calification={input.calification} />
+        <Footer />
     </div>
   )
 }

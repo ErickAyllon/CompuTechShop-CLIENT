@@ -12,6 +12,9 @@ function ProductCard({
   id,
   calification,
   addToCart,
+  quantity,
+  delFromCart,
+  priceTotal
 }) {
   return (
     <div className={styles.productCardContainer}>
@@ -25,7 +28,9 @@ function ProductCard({
           <Link to={"/" + name.split("/").join("-")}>
             <h3 className={styles.productCardName}>{name}</h3>
           </Link>
-          <h3 className={styles.productCardPrice}>${price.toLocaleString('en-US')}</h3>
+          {priceTotal && quantity > 1 ? <h3 className={styles.productCardPrice}>{quantity} x $ {new Intl.NumberFormat().format(price)}</h3> : 
+            <h3 className={styles.productCardPrice}>$ {new Intl.NumberFormat().format(price)}</h3>}
+
           <Rating
             name="half-rating"
             size="small"
@@ -35,6 +40,10 @@ function ProductCard({
             className={styles.productCardCalification}
           />
           <button className={styles.addBtn} onClick={() => addToCart(id)}><img src={add} alt="" /></button>
+          {/* {delFromCart ?
+            <div><button className={styles.addBtn} onClick={() => delFromCart(id)}><img src={add} alt="" /></button>
+              <button className={styles.addBtn} onClick={() => delFromCart(id, true)}><img src={add} alt="" /></button></div>
+            : null} */}
           <Wishlist id={id} name={name} />
         </div>
       </div>

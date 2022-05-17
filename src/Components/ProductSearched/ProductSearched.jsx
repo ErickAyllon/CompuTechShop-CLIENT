@@ -1,4 +1,4 @@
-import React, { useEffect }  from 'react'
+import React, { useEffect, useState }  from 'react'
 import {useDispatch, useSelector} from 'react-redux'
 import { useParams } from 'react-router-dom'
 import { getProductsByName } from '../../Redux/Actions'
@@ -10,6 +10,8 @@ import ProductNotFound from '../ProductNotFound/ProductNotFound'
 import styles from './ProductSearched.module.css'
 import NavBar from '../NavBar/Navbar'
 import Footer from '../Footer/Footer'
+import CircularProgress from '@mui/material/CircularProgress';
+
 
 function ProductSearched() {
   let products = useSelector((state) => state.allProducts); 
@@ -30,6 +32,13 @@ function ProductSearched() {
     dispatch(getProductsByName(search))
   }, [dispatch, search]);
  // End Pagination //
+
+ const [load, setLoad] = useState(true)
+
+ setTimeout(function () {
+  setLoad(false)
+}, 1000)
+
   
   return (
     <div className={styles.searched}>
@@ -41,7 +50,10 @@ function ProductSearched() {
       <div className={styles.productsContainer}>
         <Filter />
         <div className={styles.productsCardsContainer}>
-          {
+        {          
+          load ? 
+            <CircularProgress color="inherit" style={{position:'absolute', top:'50%', left:'50%'}}/>
+          : 
             productsFilter.length > 0 ?
             currentProducts.map((el) => {
             return (
@@ -62,7 +74,7 @@ function ProductSearched() {
         </div>
       </div>
           {
-            productsFilter.length > 0 ?
+            productsFilter.length > 0 && !load ?
               <PaginationC
                 category={search}
                 totalPages={totalPages}
@@ -70,7 +82,7 @@ function ProductSearched() {
           : null
           }
         </>
-          : 
+          :  
           <div className={styles.productNotFoundContainer}>
             <ProductNotFound/>
           </div>

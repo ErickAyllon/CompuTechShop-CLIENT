@@ -11,6 +11,9 @@ import PaginationCAdmin from '../../Pagination/PaginationCAdmin'
 import CategoriesAdmin from '../CategoriesAdmin'
 import { Link } from 'react-router-dom'
 import { Button } from '@mui/material'
+import Footer from '../../../../Footer/Footer'
+import { useState } from "react";
+import { CircularProgress } from "@mui/material";
 
 function AllProductsAdmin() {
   let products = useSelector((state) => state.allProducts);
@@ -34,6 +37,13 @@ function AllProductsAdmin() {
     dispatch(getProducts());
   }, [dispatch]);
 
+  const [load, setLoad] = useState(true)
+
+  setTimeout(function () {
+   setLoad(false)
+ }, 1000)
+
+
   return (
     <div className={styles.viewProducts}>
       <CategoriesAdmin/>
@@ -45,7 +55,10 @@ function AllProductsAdmin() {
           <div className={styles.productsContainer}>
             <Filter />
             <div className={styles.productsCardsContainer}>
-              {productsFilter.length > 0 ? (
+            {          
+              load ? 
+              <CircularProgress color="inherit" style={{position:'absolute', top:'50%', left:'50%'}}/>
+            : productsFilter.length > 0 ? (
                 currentProducts?.map((el) => {
                   return (
                     <ProductCardAdmin
@@ -68,13 +81,14 @@ function AllProductsAdmin() {
               )}
             </div>
           </div>
-          {productsFilter.length > 0 ? (
+          {productsFilter.length > 0 && !load ? (
             <PaginationCAdmin category={category} totalPages={totalPages} />
           ) : null}
         </>
       ) : (
         <Loader />
       )}
+      <Footer />
     </div>
   );
 }

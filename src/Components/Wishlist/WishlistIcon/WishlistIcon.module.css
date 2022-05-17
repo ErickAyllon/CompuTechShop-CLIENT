@@ -13,6 +13,7 @@
 .emptyFavorite:hover {
     filter: brightness(1.5);
     opacity: 1;
+    transform: scale(1.1);
 }
 
 .emptyFavorite img {
@@ -35,6 +36,7 @@
 
 .filledFavorite:hover {
     filter: brightness(2);
+    transform: scale(1.1);
     opacity: 1;
 }
 
