@@ -19,7 +19,8 @@ const ShoppingCart = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const carti = useSelector((state) => state.cart);
-
+  let url = useSelector((state) => state.shopping);
+  let arregloTotal = [];
   const cart = useSelector((state) => state.cart);
 
   const arregloPrice = carti?.map((el) => el.price * el.quantity);
