@@ -37,65 +37,91 @@
 // }
 
 import React, { useEffect } from 'react';
-import { useFormik } from 'formik';
+import { Formik } from "formik";
 import { useSelector, useDispatch } from "react-redux"
-import { getUser } from '../../Redux/Actions';
+import { getUser, postBuyCart } from '../../Redux/Actions';
+import { useAuth0 } from '@auth0/auth0-react';
+import { useNavigate } from 'react-router-dom';
+import CartForm from './CartForm';
 export default function CartSend() {
     // Note that we have to initialize ALL of fields with values. These
     // could come from props, but since we don’t want to prefill this form,
     // we just use an empty string. If we don’t do this, React will yell
     // at us.
-    const users = useSelector(state => state.users2)
     const dispatch = useDispatch();
+    const navigate = useNavigate();
+    let allUsers = useSelector((state) => state.users2);
+    const { user } = useAuth0();
 
+    const productsFilter = useSelector((state) => state.cart);
+    let obj = {}
     useEffect(() => {
         dispatch(getUser());
     }, [dispatch]);
 
-    const emailLogueado = localStorage.getItem("email")
-    // console.log(emailLogueado)
-    // console.log(users)
-    // const usuarioEncontrado = users?.find(el => el.email === emailLogueado)
-    // let domicilioInicial = usuarioEncontrado["address"]
-    const userLogged =
-        users?.length > 0 ? users?.find((e) => e.email === emailLogueado) : false;
+    let userLocal = [];
 
-    console.log(userLogged.address)
+    if (user) {
+        localStorage.setItem("email", user.email);
+    }
 
-    const formik = useFormik({
-        initialValues: {
-            extraAddress: userLogged.address,
-            extraEmail: emailLogueado,
-        },
-        onSubmit: values => {
-            console.log(values)
-            localStorage.setItem("extraAddress", values.extraAddress)
-            localStorage.setItem("extraEmail", values.extraEmail)
-        },
+    userLocal.email = localStorage.getItem("email");
+
+    let filteredUser = allUsers.filter((el) => el.email === userLocal.email);
+
+    let address = filteredUser.map((el) => el.address);
+    localStorage.setItem("address", address);
+
+
+    // const handleBuyCart = (e) => {
+
+    const nuevoPost = productsFilter.map((el) => {
+        return {
+            picture_url: el.image,
+            name: el.name,
+            price: el.price,
+            quantity: el.quantity,
+        };
     });
+    obj.name = nuevoPost.map((el) => el.name);
+    obj.picture_url = nuevoPost.map((el) => el.picture_url);
+    obj.price = nuevoPost.map((el) => Number(el.price));
+    obj.quantity = nuevoPost.map((el) => el.quantity);
+    JSON.stringify(obj);
+    // dispatch(postBuyCart(obj));
+    // setTimeout(function () {
+    //     navigate("/purchaseConfirm")
+    // }, 2000)
+    // };
+    console.log(obj)
+
     return (
-        <form onSubmit={formik.handleSubmit}>
-            <label htmlFor="extraAddress">extra Address</label>
-            <input
-                id="extraAddress"
-                name="extraAddress"
-                type="text"
-                onChange={formik.handleChange}
-                value={formik.values.extraAddress}
-            />
+
+        <div>
+            <Formik
+                initialValues={{
+                    address: localStorage.getItem('address'),
+                    email: userLocal.email
+                }}
+                onSubmit={(values) => {
+                    localStorage.setItem("extraEmail", values.email)
+                    localStorage.setItem("extraAddress", values.address)
+                    dispatch(postBuyCart(obj));
+                    setTimeout(function () {
+                        navigate("/purchaseConfirm")
+                    }, 2000)
+                }}
+
+            >
+                {(props) => <CartForm {...props} />}
+            </Formik>
+            <div>
+                {/* <CartItem>
+
+                </CartItem> */}
+            </div>
 
 
-
-            <label htmlFor="extraEmail">Email</label>
-            <input
-                id="extraEmail"
-                name="extraEmail"
-                type="extraEmail"
-                onChange={formik.handleChange}
-                value={formik.values.extraEmail}
-            />
-
-            <button type="submit">Confirm Checkout</button>
-        </form>
+        </div >
     );
 };
