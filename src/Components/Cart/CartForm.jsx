@@ -8,7 +8,8 @@ function CartForm({
     handleChange,
     handleSubmit,
     isSubmitting,
-    values
+    values,
+    errors
 }) {
     let allUsers = useSelector((state) => state.users2);
     const { user } = useAuth0();
@@ -55,10 +56,13 @@ function CartForm({
                 <TextField
                     variant="filled"
                     id="outlined-required"
-                    label="Email"
+                    label="E-mail"
                     name="email"
                     onChange={handleChange}
                     value={values.email}
+                    error={errors.email ? true : false}
+                    helperText={errors.email}
+                    required
                 />
                 <Button disabled={isSubmitting} type="submit" variant="outlined">
                     Confirm purchase

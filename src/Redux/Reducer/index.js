@@ -54,6 +54,7 @@ function rootReducer(state = initialState, action) {
       return {
         ...state,
         categories: action.payload,
+        // allProducts:action.payload
       };
     }
     case "POST_PRODUCT":
@@ -195,7 +196,7 @@ function rootReducer(state = initialState, action) {
       };
 
     case TYPES.ADD_TO_CART: {
-      let newItem = state.allProducts.find(
+      let newItem = state.products.find(
         (product) => product.id === action.payload
       );
       let itemInCart = state.cart.find((item) => item.id === newItem.id);
@@ -207,8 +208,6 @@ function rootReducer(state = initialState, action) {
               ? {
                 ...item,
                 quantity: item.quantity + 1,
-                // price: Number(item.price),
-                // total: item.price * item.cuantity,
               }
               : item
           ),
@@ -422,7 +421,8 @@ function rootReducer(state = initialState, action) {
     case 'GET_PRODUCTS_SEARCHBAR': {
       return {
         ...state,
-        searchBar: action.payload
+        searchBar: action.payload,
+        allProducts: action.payload
       }
     }
     default:

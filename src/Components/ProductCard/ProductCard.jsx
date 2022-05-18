@@ -21,12 +21,12 @@ function ProductCard({
     <div className={styles.productCardContainer}>
       <div className={styles.productCard}>
         <div className={styles.productCardImgContainer}>
-          <Link to={"/" + name.split("/").join("-")}>
+          <Link to={"/" + name}>
             <img src={image} alt="" className={styles.productImg} />
           </Link>
         </div>
         <div className={styles.productCardInfo}>
-          <Link to={"/" + name.split("/").join("-")}>
+          <Link to={"/" + name}>
             <h3 className={styles.productCardName}>{name}</h3>
           </Link>
           {priceTotal && quantity > 1 ? <h3 className={styles.productCardPrice}>{quantity} x $ {new Intl.NumberFormat().format(price)}</h3> :

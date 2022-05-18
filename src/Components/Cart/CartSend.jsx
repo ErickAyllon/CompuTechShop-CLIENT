@@ -9,6 +9,18 @@ import CartItem from './CartItem';
 import styles from "./CartSend.module.css";
 import Swal from 'sweetalert2'
 import NavBar from '../NavBar/Navbar';
+
+const validation = (values) => {
+    let errors = {};
+    if (!values.address) {
+        errors.address = "Address is required";
+    } else if (values.address.length < 6) {
+        errors.address = "You should enter a valid address";
+    } else if (!/^[#.0-9a-zA-Z\s,.]+$/.test(values.address)) {
+        errors.address = "Only special characters allowed are ('.' and ',')";
+    }
+    return errors;
+};
 export default function CartSend() {
 
     const dispatch = useDispatch();
@@ -76,7 +88,7 @@ export default function CartSend() {
                             })
                         }
                     }}
-
+                    validate={validation}
                 >
                     {(props) => <CartForm {...props} />}
                 </Formik>
