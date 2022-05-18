@@ -19,11 +19,11 @@ function Home() {
   const { user } = useAuth0();
   const dispatch = useDispatch();
   // const { isAuthenticated } = useAuth0();
-  const { getAccessTokenSilently, getIdTokenClaims } = useAuth0();
-  console.log("esto es el get access", getAccessTokenSilently(user))
-  console.log("esto es el get ID", getIdTokenClaims())
+  // const { getAccessTokenSilently, getIdTokenClaims } = useAuth0();
+  // console.log("esto es el get access", getAccessTokenSilently(user))
+  // console.log("esto es el get ID", getIdTokenClaims())
 
-  getAccessTokenSilently(user).then(console.log(user))
+  // getAccessTokenSilently(user).then(console.log(user))
 
   // useEffect(() => {
   // if (user) dispatch(getUserDetail(user.email));
