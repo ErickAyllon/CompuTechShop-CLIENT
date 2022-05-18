@@ -64,7 +64,7 @@ export default function CartSend() {
               email: userLocal.email,
             }}
             onSubmit={(values) => {
-              if (user) {
+              if (filteredUser.length !== 0) {
                 localStorage.setItem("extraEmail", values.email);
                 localStorage.setItem("extraAddress", values.address);
                 dispatch(postBuyCart(obj));

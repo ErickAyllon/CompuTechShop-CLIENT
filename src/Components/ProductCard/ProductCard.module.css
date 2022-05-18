@@ -104,7 +104,6 @@
     box-shadow: 0 0 5px 1px blue;
     transition: .5s;
     opacity: .9;
-    margin: 0 10px;
 }
 
 .addBtn:active, .subsBtn:active, .dltAll:active, .addMore:active {
@@ -142,7 +141,7 @@
     align-items: center;
     margin: auto;
     justify-content: space-between;
-    margin-right: 0;   
+    margin-right: 0;  
 }
 
 .cardsBtns {
@@ -154,11 +153,9 @@
 .superBtnsContainer {
     display: flex;
 }
-.superBtnsContainer button{
-    margin: auto 5px;
-
+.superBtnsContainer button {
+    margin: 0 5px;
 }
-
 
 @media only screen and (max-width: 768px) {
     .productCard {
@@ -193,7 +190,8 @@
         margin-left: 0;
     }
     .wishAndCartBtns {
-        flex-direction: column;
+        flex-direction: row;
+        position: absolute;
     }
 }
 

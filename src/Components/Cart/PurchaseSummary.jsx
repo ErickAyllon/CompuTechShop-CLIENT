@@ -10,6 +10,8 @@ import { useAuth0 } from "@auth0/auth0-react"
 import Swal from 'sweetalert2'
 import Footer from "../Footer/Footer";
 import { Button } from "@mui/material";
+import { useState } from "react";
+import { CircularProgress } from "@mui/material";
 
 const PurchaseSummary = () => {
   const dispatch = useDispatch();
@@ -56,13 +58,24 @@ const PurchaseSummary = () => {
     dispatch({ type: TYPES.CLEAR_CART });
   };
 
+  const [load, setLoad] = useState(true)
+
+  setTimeout(function () {
+    setLoad(false)
+  }, 1000)
+
   return (
     <div className={styles.purchaseSummary}>
       <NavBar />
+      <Button variant='outlined' style={{margin:'10px auto 0 auto', display:'flex'}} onClick={() => navigate("/Allproducts")}>Back to Products</Button>
       <h1 className={styles.title}>My cart:</h1>
       <div className={styles.summaryContainer} >
         <div className={styles.cardsContainer}>
-          {
+
+        {
+            load ?
+                <CircularProgress color="inherit" style={{ position: 'absolute', top: '50%', left: '50%' }} />
+            : 
             productsFilter.length > 0 && arregloTotal.length !== 0 ?
               productsFilter.map((el) => (
                 <ProductCard
@@ -88,14 +101,13 @@ const PurchaseSummary = () => {
                     <p>Check all products</p>
                     <p>Browse the categories to find a product</p>
                   </div>
-                  <Button variant='outlined' onClick={() => navigate("/")}>Back to Products</Button>
                 </div>
               </div>)
           }</div>
         {(arregloPrice.length !== 0 ?
           <div className={styles.containerImgBtn}>
             <label className={styles.text}>Total Price:  $ {new Intl.NumberFormat().format(arregloTotal)}</label>
-            <Button variant='outlined' className={styles.btn} onClick={handleBuyCart}>Comprar</Button>
+            <Button variant='outlined' className={styles.btn} onClick={handleBuyCart}>Buy cart</Button>
             <Button
               variant='outlined'
               onClick={clearCart}
