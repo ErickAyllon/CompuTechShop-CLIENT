@@ -26,6 +26,10 @@ const PurchaseSummary = () => {
 
   }, [dispatch])
 
+    
+  
+ 
+
 
   const handleBuyCart = (e) => {
     e.preventDefault();
@@ -43,8 +47,11 @@ const PurchaseSummary = () => {
       })
     }
   };
+
+
+
   const delFromCart = (id, all = false) => {
-    all
+    all 
       ? dispatch({ type: TYPES.REMOVE_ALL_FROM_CART, payload: id })
       : dispatch({ type: TYPES.REMOVE_ONE_FROM_CART, payload: id });
   };
@@ -52,7 +59,7 @@ const PurchaseSummary = () => {
     // console.log(id);
     dispatch({ type: TYPES.ADD_TO_CART, payload: id });
   };
-  const clearCart = () => {
+  const clearCart = () => { 
     dispatch({ type: TYPES.CLEAR_CART });
   };
 
@@ -96,11 +103,7 @@ const PurchaseSummary = () => {
           <div className={styles.containerImgBtn}>
             <label className={styles.text}>Total Price:  $ {new Intl.NumberFormat().format(arregloTotal)}</label>
             <Button variant='outlined' className={styles.btn} onClick={handleBuyCart}>Comprar</Button>
-            <Button
-              variant='outlined'
-              onClick={clearCart}
-            >
-              Clean Cart
+            <Button variant='outlined' onClick={clearCart} > Clean Cart
             </Button>
           </div>
           : null)}
