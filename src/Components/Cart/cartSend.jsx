@@ -11,7 +11,6 @@ import Swal from 'sweetalert2'
 import NavBar from '../NavBar/Navbar';
 import Footer from "../Footer/Footer";
 
-
 export default function CartSend() {
     const dispatch = useDispatch();
     const navigate = useNavigate();
