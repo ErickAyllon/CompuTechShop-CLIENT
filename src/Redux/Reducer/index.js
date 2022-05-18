@@ -195,7 +195,7 @@ function rootReducer(state = initialState, action) {
       };
 
     case TYPES.ADD_TO_CART: {
-      let newItem = state.allProducts.find(
+      let newItem = state.products.find(
         (product) => product.id === action.payload
       );
       let itemInCart = state.cart.find((item) => item.id === newItem.id);

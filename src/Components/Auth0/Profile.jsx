@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { useAuth0 } from "@auth0/auth0-react";
-import { getUser, authenticate } from "../../Redux/Actions/index.js";
+import { getUser, authenticate, getOrdersByEmail } from "../../Redux/Actions/index.js";
 import styles from "./Profile.module.css";
 import { Dropdown } from "react-bootstrap";
 import LogOutButton from "./LogOutButton";
@@ -19,6 +19,7 @@ export default function Profile() {
   useEffect(() => {
     dispatch(getUser())
     dispatch(authenticate(userLogged))
+    dispatch(getOrdersByEmail(user.email));
   }, [dispatch])
   // console.log(user);
 
@@ -50,6 +51,7 @@ export default function Profile() {
             variant="dark"
           >
             <Dropdown.Item href={"/profile"}>My Profile</Dropdown.Item>
+            <Dropdown.Item href={"/profile/myorders"}>My Orders</Dropdown.Item>
 
             {/* <Dropdown.Item href="/admin">My Orders</Dropdown.Item> */}
             <Dropdown.Divider />

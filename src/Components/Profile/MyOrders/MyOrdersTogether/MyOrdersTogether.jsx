@@ -44,7 +44,7 @@ function MyOrdersTogether() {
 
   const columns = [
     { id: "id", label: "ID", minWidth: 100 },
-    { id: "extraEmail", label: "Email", minWidth: 220 },
+    { id: "userEmail", label: "Email", minWidth: 220 },
     {
       id: "total_paid_amount",
       label: "Amount",

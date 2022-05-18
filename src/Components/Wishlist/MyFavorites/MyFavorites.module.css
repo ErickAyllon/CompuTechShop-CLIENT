@@ -15,16 +15,19 @@
 
 .cardsContainer {
     max-width: 900px;
-    margin: 20px auto;
+    margin: 0 auto;
     background-color: white;
     border-radius: 50px;
     overflow: auto;  
 }
 
 .favTitle {
+    border-top: 1px solid rgba(255, 255, 255, 0.188);
+    padding-top: 15px;
     display: flex;
-    margin-top: 50px;
+    margin-top: 10px;
     justify-content: center;
+    color: white;
 }
 
 .favTitle {

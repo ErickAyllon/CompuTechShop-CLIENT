@@ -8,6 +8,8 @@ import { useNavigate } from "react-router-dom"
 import styles from "./PurchaseSummary.module.css"
 import { useAuth0 } from "@auth0/auth0-react"
 import Swal from 'sweetalert2'
+import Footer from "../Footer/Footer";
+import { Button } from "@mui/material";
 
 const PurchaseSummary = () => {
   const dispatch = useDispatch();
@@ -55,12 +57,11 @@ const PurchaseSummary = () => {
   };
 
   return (
-
-    <div >
+    <div className={styles.purchaseSummary}>
       <NavBar />
+      <h1 className={styles.title}>My cart:</h1>
       <div className={styles.summaryContainer} >
-
-        <div>
+        <div className={styles.cardsContainer}>
           {
             productsFilter.length > 0 && arregloTotal.length !== 0 ?
               productsFilter.map((el) => (
@@ -77,7 +78,7 @@ const PurchaseSummary = () => {
                   addToCart={addToCart}
                   delFromCart={delFromCart}
                   priceTotal={true}
-
+                  wishlist={false}
                 />
 
               )) : (<div className={styles.productNotFound}>
@@ -87,26 +88,25 @@ const PurchaseSummary = () => {
                     <p>Check all products</p>
                     <p>Browse the categories to find a product</p>
                   </div>
-                  <button onClick={() => navigate("/")}>Back to Products</button>
+                  <Button variant='outlined' onClick={() => navigate("/")}>Back to Products</Button>
                 </div>
               </div>)
           }</div>
         {(arregloPrice.length !== 0 ?
           <div className={styles.containerImgBtn}>
             <label className={styles.text}>Total Price:  $ {new Intl.NumberFormat().format(arregloTotal)}</label>
-            <button className={styles.btn} onClick={handleBuyCart}>Comprar</button>
-            <button
-
-
+            <Button variant='outlined' className={styles.btn} onClick={handleBuyCart}>Comprar</Button>
+            <Button
+              variant='outlined'
               onClick={clearCart}
             >
               Clean Cart
-            </button>
+            </Button>
           </div>
           : null)}
-
       </div>
       <br />
+      <Footer />
     </div >
   );
 };

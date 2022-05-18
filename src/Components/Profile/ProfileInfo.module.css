@@ -11,16 +11,17 @@
     display: flex;
     flex-direction: column;
     align-items: center;
+    margin-bottom: 100px;
 }
 
 .profileInfo .h2Div {
     align-items: center;
     justify-content: center;
-    width: 800px;
+    width: 500px;
 }
 
 .profileInfo .img {
-    margin-top: 40px;
+    margin-top: 20px;
     justify-content: center;
     border-radius: 100%;
     border: 4px solid rgb(48, 0, 84);
@@ -31,7 +32,7 @@
 .profileInfo .h2 {
     align-items: center;
     justify-content: center;
-    margin-top: 40px;
+    margin-top: 20px;
     border: 2px solid rgba(50, 0, 93, 0.815);
     border-width: 4px 12px 4px 12px;
 }
