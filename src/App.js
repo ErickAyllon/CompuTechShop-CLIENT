@@ -43,6 +43,8 @@ import Welcome from "./Components/Welcome/Welcome";
 import { SnackbarProvider } from 'notistack'
 import Help from "./Components/Footer/Help";
 import CartSend from "./Components/Cart/cartSend"
+import ViewOrdersTogether from "./Components/Admin/Orders/ViewAllOrdersCart/ViewOrdersTogether";
+import MyOrdersTogether from './Components/Profile/MyOrders/MyOrdersTogether/MyOrdersTogether';
 
 const getDesignTokens = (mode) => ({
   palette: {
@@ -114,6 +116,7 @@ function App() {
               <Route path="/Allproducts" element={<AllProducts />} />
               <Route path="/profile" element={<ProfileInfo />} />
               <Route path="/profile/order/:id" element={<MyOrderDetail />} />
+              <Route path="/profile/cart/:id" element={<MyOrdersTogether />} />
               <Route path="/category/:category" element={<Category />} />
               <Route path="/:name" element={<ProductDetail />} />
               <Route path="/search/:search" element={<ProductSearched />} />
@@ -135,8 +138,6 @@ function App() {
               <Route path="/purchaseResult" element={<PurchaseResult />} />
               <Route path="/help" element={<Help />} />
               <Route path="/cartSend" element={<CartSend />} />
-
-
             </Route>
 
             <Route path="/banned" element={
@@ -155,6 +156,7 @@ function App() {
               <Route path="/admin/categories" element={<AdminCategories />} />
               <Route path="/admin/shop/:id" element={<ShopDetails />} />
               <Route path="/admin/allorders" element={<ViewAllOrders />} />
+              <Route path="/admin/orderstogether/:id" element={<ViewOrdersTogether />} />
               <Route path="/admin/users" element={<Users />} />
             </Route>
 

@@ -20,7 +20,7 @@ const ShoppingCart = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   let carti = useSelector((state) => state.cart);
-  console.log(carti)
+  // console.log(carti)
   
   let url = useSelector((state) => state.shopping);
   let arregloTotal = [];

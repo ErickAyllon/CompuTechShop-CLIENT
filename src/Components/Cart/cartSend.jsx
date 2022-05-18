@@ -93,7 +93,7 @@ export default function CartSend() {
     //     navigate("/purchaseConfirm")
     // }, 2000)
     // };
-    console.log(obj)
+    // console.log(obj)
 
     return (
 
