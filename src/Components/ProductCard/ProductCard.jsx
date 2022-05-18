@@ -5,7 +5,9 @@ import { Link } from "react-router-dom";
 import add from '../../Images/add.png'
 import Wishlist from "../Wishlist/WishlistIcon/WishlistIcon";
 import deleteOne from "../../Images/deleteOne.png"
-import removeAll from "../../Images/removeAll.png"
+import addmore from "../../Images/addmore.png"
+import substractmore from "../../Images/substractmore.png"
+
 function ProductCard({
   name,
   price,
@@ -15,7 +17,8 @@ function ProductCard({
   addToCart,
   quantity,
   delFromCart,
-  priceTotal
+  priceTotal,
+  wishlist
 }) {
   return (
     <div className={styles.productCardContainer}>
@@ -40,13 +43,28 @@ function ProductCard({
             readOnly
             className={styles.productCardCalification}
           />
-          <div className={styles.wishAndCartBtns}>
-            <button className={styles.addBtn} onClick={() => addToCart(id)}><img src={add} alt="add" /></button>
-            {delFromCart ?
-              <div><button className={styles.addBtn} onClick={() => delFromCart(id)}><img src={deleteOne} alt="deleteOne" /></button>
-                <button className={styles.addBtn} onClick={() => delFromCart(id, true)}><img src={removeAll} alt="removeAll" /></button></div>
-              : null}
-            <Wishlist id={id} name={name} className={styles.wishlist} />
+          <div className={styles.superBtnsContainer}>
+            <div className={styles.wishAndCartBtns}>
+              { delFromCart ?
+                null 
+              :
+                <button className={styles.addBtn} onClick={() => addToCart(id)}><img src={add} alt="add" /></button>
+              } 
+              {
+                wishlist ?
+                  <Wishlist id={id} name={name} className={styles.wishlist} />
+                : null
+              }
+            </div>
+            {
+              delFromCart ?
+                <div className={styles.cardsBtns}>
+                    <button className={styles.addMore} onClick={() => addToCart(id)}><img src={addmore} alt="add" /></button>
+                    <button className={styles.subsBtn} onClick={() => delFromCart(id)}><img src={substractmore} alt="substractmore" /></button>
+                    <button className={styles.dltAll} onClick={() => delFromCart(id, true)}><img src={deleteOne} alt="removeAll" /></button>
+                </div>
+              : null
+            }
           </div>
         </div>
       </div>

@@ -384,7 +384,7 @@ export const getOrders = () => {
 export const getOrdersByEmail = (email) => {
   return async function (dispatch) {
     try {
-      const json = await axios.get(`/getOrderByEmail?userEmail=${email}`);
+      const json = await axios.get(`/getOrders?userEmail=${email}`);
       return dispatch({
         type: "GET_ORDERS_BY_EMAIL",
         payload: json.data,

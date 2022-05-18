@@ -170,6 +170,14 @@ function MyOrderDetail() {
                 style={{width:'40ch', margin:'5px 0', background:'#0080006e' }}
                 disabled
                 id="filled-disabled"
+                label="Quantity"
+                defaultValue={shop[0].quantity}
+                variant="filled"
+              />
+              <TextField
+                style={{width:'40ch', margin:'5px 0', background:'#0080006e' }}
+                disabled
+                id="filled-disabled"
                 label="Address"
                 defaultValue={el.extraAddress ? el.extraAddress : userId.address}
                 variant="filled"

@@ -12,7 +12,6 @@ import NavBar from '../NavBar/Navbar'
 import Footer from '../Footer/Footer'
 import CircularProgress from '@mui/material/CircularProgress';
 
-
 function ProductSearched() {
   let products = useSelector((state) => state.allProducts); 
   const productsFilter = useSelector((state) => state.productsFilter);
@@ -45,7 +44,7 @@ function ProductSearched() {
       <NavBar />
       <Categories />
       {
-        productsFilter.length > 0 ?
+        products.length > 0 ?
         <>
       <div className={styles.productsContainer}>
         <Filter />
@@ -66,7 +65,9 @@ function ProductSearched() {
                     brand={el.brand} 
                     description={el.description} 
                     calification={el.calification} 
-                    quantity={el.quantity}/>
+                    quantity={el.quantity}
+                    wishlist={true}
+                  />
               )
             })
             : <ProductNotFound />

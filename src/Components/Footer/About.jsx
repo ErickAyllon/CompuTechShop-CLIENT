@@ -30,8 +30,8 @@ export default function About() {
                <div className={styles.box1}>
                 <h2>Francisco Geary</h2>
                   <p>An amazing geek &#129299;</p>
-                  <p>Some text that describes.</p>
-                  <p>jane@example.com</p>
+                  <p>Product Manager of CompuTechShop</p>
+                  <p>moctesuma260@gmail.com</p>
                       <div className={styles.div}>
                         <a target="_blank"href='https://github.com/elHenryettas'> 
                         <img src={GitHubIcon} alt="Not found" />
@@ -42,9 +42,7 @@ export default function About() {
                         </div>
                       </div>
                       
-          <Link to='/'>
-    <button >Back </button>
-        </Link>
+   
               </div>
             </div>
           </div>
@@ -54,10 +52,10 @@ export default function About() {
             <div className={styles.container}> 
               <img className={styles.img} src='https://media-exp1.licdn.com/dms/image/C4D03AQG6ErOXSOOKjQ/profile-displayphoto-shrink_800_800/0/1649178118474?e=1658361600&v=beta&t=RakfMNQecyqUjaUtfqRQaAcF7rhMXj4hWnkiMY0C31E' alt='not found' /> 
             <div className={styles.box1}> 
-               <h2>Lucas Mandioca</h2>
+               <h2>Lucas Mandirola </h2>
                 <p>An amazing geek &#129299;</p>
-                <p>Some text that describes.</p>
-                <p>jane@example.com</p>
+                <p>CTO of CompuTechShop.</p>
+                <p>llucasmandirola.staclara@gmail.com</p>
            
                       <div className={styles.div}>
                         <a target="_blank" href='https://github.com/lucasmandirola'> 
@@ -69,9 +67,7 @@ export default function About() {
                       </div>
                   </div>
                   
-          <Link to='/'>
-    <button >Back </button>
-        </Link>
+          
           </div>
          </div>
         </div>
@@ -83,7 +79,7 @@ export default function About() {
         <div className={styles.box1}> 
           <h2>Martin Raschinsky</h2>
           <p>An amazing geek &#129299;</p>
-          <p>Some text that describes.</p>
+          <p>General Manager.</p>
           <p>jane@example.com</p>
           <div className={styles.div}>
             <a target="_blank"href='https://github.com/TinchoRas'> 
@@ -95,9 +91,7 @@ export default function About() {
             </div>
           </div>
           
-          <Link to='/'>
-    <button >Back </button>
-        </Link>
+ 
         </div>
         </div>
         </div>
@@ -109,8 +103,8 @@ export default function About() {
         <div className={styles.box1}> 
           <h2>Erick Ayllon</h2>
           <p>An amazing geek &#129299;</p>
-          <p>Some text that describes.</p>
-          <p>jane@example.com</p>
+          <p>Shipping Manager.</p>
+          <p>erickayllon@gmail.com</p>
           <div className={styles.div}>
             <a target="_blank"href='https://github.com/ErickAyllon'> 
             <img src={GitHubIcon} alt="Not found" />
@@ -120,9 +114,7 @@ export default function About() {
             </a>
           </div>
           </div>
-          <Link to='/'>
-    <button >Back </button>
-        </Link>
+    
         </div>
         </div>
         </div>
@@ -134,8 +126,8 @@ export default function About() {
 
           <h2>Jesús Rafael Matute Díaz </h2>
           <p>An amazing geek &#129299;</p>
-          <p>Some text that describes.</p>
-          <p>jane@example.com</p>
+          <p>Executive Chairman</p>
+          <p>mttrox@gmail.com</p>
           <div className={styles.div}>
             <a target="_blank"href='https://github.com/RoxZkiL'> 
             <img src={GitHubIcon} alt="Not found" />
@@ -147,9 +139,7 @@ export default function About() {
 
           </div>
           
-          <Link to='/'>
-    <button >Back </button>
-        </Link>
+   
         </div>
         </div>
         </div>
@@ -157,12 +147,12 @@ export default function About() {
       <div className={styles.column}>
       <div className={styles.card}>
       <div className={styles.container}> 
-        <img className={styles.img} src="https://scontent.faep14-2.fna.fbcdn.net/v/t39.30808-6/275424007_10228542708572066_511071485883864013_n.jpg?_nc_cat=106&ccb=1-6&_nc_sid=174925&_nc_ohc=cCelNInGZw8AX-fUrwk&_nc_ht=scontent.faep14-2.fna&oh=00_AT_KxvwdafF3JNyibCgW69m4pHibr66XvsMspfgpwAx77Q&oe=6286EF1F" alt="Mike"  />
+        <img className={styles.img} src="https://avatars.githubusercontent.com/u/85033184?v=4" alt="Mike"  />
         <div className={styles.box1}> 
           <h2>Fabricio Richieri</h2>
           <p >An amazing geek &#129299;</p>
-          <p>Some .</p>
-          <p>mike@example.com</p>
+          <p>CEO of CompuTechShop</p>
+          <p>fabririchieri@gmail.com</p>
           <div className={styles.div}>
             <a target="_blank"href='https://github.com/FARichieri'> 
             <img src={GitHubIcon} alt="Not found" />
@@ -173,11 +163,11 @@ export default function About() {
           </div>
           </div>
     
+      </div>
+      </div>
           <Link to='/'>
-    <button >Back </button>
+    <button className={styles.button} >Back </button>
         </Link>    
-      </div>
-      </div>
     
   </div>
 

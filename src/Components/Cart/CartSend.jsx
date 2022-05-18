@@ -9,6 +9,7 @@ import CartItem from "./CartItem";
 import styles from "./CartSend.module.css";
 import Swal from "sweetalert2";
 import NavBar from "../NavBar/Navbar";
+import Footer from "../Footer/Footer";
 
 const validation = (values) => {
     let errors = {};
@@ -69,43 +70,49 @@ export default function CartSend() {
     obj.quantity = nuevoPost.map((el) => el.quantity);
     JSON.stringify(obj);
 
-    if (filteredUser.length !== 0) {
-        return (
-            <>
-                <NavBar />
-                <div className={styles.containerForm}>
-                    <Formik
-                        initialValues={{
-                            address: localStorage.getItem("address"),
-                            email: userLocal.email,
-                        }}
-                        onSubmit={(values) => {
-                            if (user) {
-                                localStorage.setItem("extraEmail", values.email);
-                                localStorage.setItem("extraAddress", values.address);
-                                dispatch(postBuyCart(obj));
-                                setTimeout(function () {
-                                    navigate("/purchaseConfirm");
-                                }, 2000);
-                            } else {
-                                Swal.fire({
-                                    title: "You must be logged to buy products!",
-                                    icon: "info",
-                                    confirmButtonText: "OK",
-                                });
-                            }
-                        }}
-                        validate={validation}
-                    >
-                        {(props) => <CartForm {...props} />}
-                    </Formik>
-                    <div className={styles.containerImg}>
-                        {productsFilter.map((el) => (
-                            <CartItem data={el} />
-                        ))}
-                    </div>
+
+    return (
+        <div className={styles.cartSend}>
+            <NavBar />
+            <div className={styles.containerForm}>
+                <Formik
+                    initialValues={{
+                        address: localStorage.getItem('address'),
+                        email: userLocal.email
+                    }}
+                    onSubmit={(values) => {
+                        if (user) {
+
+                            localStorage.setItem("extraEmail", values.email)
+                            localStorage.setItem("extraAddress", values.address)
+                            dispatch(postBuyCart(obj));
+                            setTimeout(function () {
+                                navigate("/purchaseConfirm")
+                            }, 2000)
+                        } else {
+                            Swal.fire({
+                                title: 'You must be logged to buy products!',
+                                icon: 'info',
+                                confirmButtonText: 'OK',
+                            })
+                        }
+                    }}
+
+                >
+                    {(props) => <CartForm {...props} />}
+                </Formik>
+                <div className={styles.containerImg}>
+                    {productsFilter.map((el, index) => (
+                        <CartItem
+                            data={el}
+                            key={index}
+
+                        />))}
                 </div>
-            </>
-        );
-    }
-}
+
+
+            </div >
+            <Footer />
+        </div>
+    );
+};

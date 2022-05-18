@@ -83,7 +83,7 @@ function AllProducts() {
                           calification={el.calification}
                           quantity={el.quantity}
                           addToCart={addToCart}
-
+                          wishlist={true}
                         />
                       );
                     })

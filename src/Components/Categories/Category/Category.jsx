@@ -18,7 +18,7 @@ import { CircularProgress } from "@mui/material";
 function Category() {
   const { category } = useParams();
   const dispatch = useDispatch();
-  // let products = useSelector((state) => state.products);
+  let products = useSelector((state) => state.products);
   const productsFilter = useSelector((state) => state.productsFilter);
   // products = productsFilter.length > 0 ? productsFilter : products;
   console.log(productsFilter)
@@ -50,7 +50,7 @@ function Category() {
     <div className={styles.category}>
       <NavBar />
       <Categories />
-      {productsFilter.length > 0 ? (
+      {products.length > 0 ? (
         <>
           <div className={styles.productsContainer}>
             <Filter />
@@ -72,6 +72,7 @@ function Category() {
                           calification={el.calification}
                           quantity={el.quantity}
                           addToCart={addToCart}
+                          wishlist={true}
                         />
                       );
                     })

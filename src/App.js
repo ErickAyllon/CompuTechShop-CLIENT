@@ -45,6 +45,7 @@ import Help from "./Components/Footer/Help";
 import CartSend from "./Components/Cart/cartSend";
 import ViewOrdersTogether from "./Components/Admin/Orders/ViewAllOrdersCart/ViewOrdersTogether";
 import MyOrdersTogether from './Components/Profile/MyOrders/MyOrdersTogether/MyOrdersTogether';
+import MyOrders from "./Components/Profile/MyOrders/MyOrders.jsx";
 
 const getDesignTokens = (mode) => ({
   palette: {
@@ -115,6 +116,7 @@ function App() {
               <Route path="/" element={<Home />} />
               <Route path="/Allproducts" element={<AllProducts />} />
               <Route path="/profile" element={<ProfileInfo />} />
+              <Route path="/profile/myorders" element={<MyOrders />} />
               <Route path="/profile/order/:id" element={<MyOrderDetail />} />
               <Route path="/profile/cart/:id" element={<MyOrdersTogether />} />
               <Route path="/category/:category" element={<Category />} />

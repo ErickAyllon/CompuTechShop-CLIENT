@@ -1,3 +1,21 @@
+.purchaseSummary {
+    min-height: 100vh;
+    position: relative;
+}
+
+.containerImgBtn button {
+    margin: 10px 0;
+}
+
+.title {
+    border-top: 1px solid rgba(255, 255, 255, 0.188);
+    padding-top: 15px;
+    display: flex;
+    margin-top: 10px;
+    justify-content: center;
+    color: white;
+}
+
 .redirect {
     min-height: 100vh;
 }
@@ -7,12 +25,20 @@
     align-items: center;
     display: flex;
     justify-content: space-evenly;
+    margin-bottom: 100px;
+}
+
+.cardsContainer {
+    border-radius: 50px;
+    overflow: auto;  
+    min-width: 900px;
 }
 
 
 .text {
     font-size: 52px;
-    width: 230px;}
+    width: 230px;
+}
 
     .containerImgBtn{
         display: flex;
@@ -24,12 +50,14 @@
         display: flex;
         width: 50%;
         text-align: center;
-        border-radius: 15px;
         height: auto;
         position: absolute;
         left: 50%;
         top: 50%;
         transform: translate(-50%,-50%);
+        width: 350px;
+        height: 250px;
+        /* box-shadow: 0 0 5px 1px rgba(255, 255, 255, 0.218); */
     }
     
     .productNotFoundContainer {
@@ -42,7 +70,7 @@
     }
 
     .productNotFoundContainer h1 {
-        margin-bottom: 100px;
+        margin-bottom: 20px;
     }
 
     .purchaseResult {
