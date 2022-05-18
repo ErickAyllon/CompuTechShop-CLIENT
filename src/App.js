@@ -133,6 +133,8 @@ function App() {
               <Route path="/FAQ2" element={<FAQ2 />} />
               <Route path="/WorkWithUs" element={<WorkWithUs />} />
               <Route path="/About" element={<About />} />
+              <Route path="/Help" element={<Help />} />
+
               <Route path="/purchaseSummary" element={<PurchaseSummary />} />
               <Route path="/purchaseConfirm" element={<PurchaseConfirm />} />
               <Route path="/purchaseResult" element={<PurchaseResult />} />

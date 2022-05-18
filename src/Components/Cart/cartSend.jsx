@@ -42,7 +42,7 @@ import { useSelector, useDispatch } from "react-redux"
 import { getUser, postBuyCart } from '../../Redux/Actions';
 import { useAuth0 } from '@auth0/auth0-react';
 import { useNavigate } from 'react-router-dom';
-import CartForm from './CartForm';
+// import CartForm from './CartForm';
 export default function CartSend() {
     // Note that we have to initialize ALL of fields with values. These
     // could come from props, but since we don’t want to prefill this form,
@@ -113,7 +113,7 @@ export default function CartSend() {
                 }}
 
             >
-                {(props) => <CartForm {...props} />}
+                {/* {(props) => <CartForm {...props} />}     */}
             </Formik>
             <div>
                 {/* <CartItem>

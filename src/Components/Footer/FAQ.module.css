@@ -6,7 +6,11 @@
    */
  
 
-
+  .box1 {
+    background-color: rgba(0,0,0,.5);
+    color: #ffffff;
+    border-radius: 10%;
+}
   .caja { 
         
     font-family: Century Gothic,CenturyGothic,AppleGothic,sans-serif; 
@@ -14,7 +18,6 @@
     font-size: 18px; 
     font-weight: 400; 
     text-align: center; 
-    background: #889ccf; 
     margin: 0 0 25px; 
     overflow: hidden; 
     padding: 20px; 

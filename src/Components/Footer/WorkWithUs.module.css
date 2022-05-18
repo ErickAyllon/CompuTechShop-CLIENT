@@ -6,17 +6,10 @@
 }
 
 .text{
-    color: rgb(250, 5, 5);
+    color: rgb(255, 245, 245);
     font-size: 4em;
 }
-.background {
-    background-color: #000;
-    background-image: url("https://wallpaperaccess.com/full/6547781.jpg");
-    background-repeat: no-repeat;
-    background-position: center;
-    background-size: cover;
-    min-height: 100vh;
-}
+
 
 
     .caja { 

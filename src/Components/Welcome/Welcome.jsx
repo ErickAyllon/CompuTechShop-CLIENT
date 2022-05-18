@@ -29,7 +29,6 @@ function Welcome() {
   const auth0Email = user?.email;
   const userLogged =
     users?.length > 0 ? users?.find((e) => e.email === auth0Email) : false;
-  localStorage.setItem("extraAddress", userLogged.address)
   useEffect(() => {
     dispatch(getUser());
     dispatch(authenticate(userLogged));
