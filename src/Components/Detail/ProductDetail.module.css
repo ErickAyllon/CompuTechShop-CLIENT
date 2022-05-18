@@ -136,8 +136,6 @@
     background-color: transparent;
     width: 40px;
     height: 40px;
-    right: 150px;
-    margin-left: 90%;
     background-color: rgba(19, 19, 189, 0.805);
     border-radius: 100%;
     box-shadow: 0 0 5px 1px blue;
@@ -161,10 +159,11 @@
     display: flex;
 }
 
-.wishlist {
-    margin-left: auto;
-    margin-right: 38px;
-    margin-top: 5px;
+
+.wishAndCartContainer {
+    justify-content: center;
+    margin-left: 90%;
+    text-align: center;
 }
 
 
@@ -216,7 +215,6 @@
     }
 
     .addBtn {
-        margin: auto;
         height: 30px;
         width: 30px;
     }
