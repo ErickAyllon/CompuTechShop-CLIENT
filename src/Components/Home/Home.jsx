@@ -19,13 +19,14 @@ function Home() {
   const { user } = useAuth0();
   const dispatch = useDispatch();
   // const { isAuthenticated } = useAuth0();
-  // const { getAccessTokenSilently, getIdTokenClaims } = useAuth0();
-  // console.log("esto es el get access", getAccessTokenSilently)
-  // console.log("esto es el get ID", getIdTokenClaims)
-  // console.log(isAuthenticated)
+  const { getAccessTokenSilently, getIdTokenClaims } = useAuth0();
+  console.log("esto es el get access", getAccessTokenSilently(user))
+  console.log("esto es el get ID", getIdTokenClaims())
+
+  getAccessTokenSilently(user).then(console.log(user))
 
   // useEffect(() => {
-    // if (user) dispatch(getUserDetail(user.email));
+  // if (user) dispatch(getUserDetail(user.email));
   // }, [dispatch, user]);
   // const userActive = useSelector((state) => state.userActive);
   // console.log(userActive)
@@ -38,6 +39,7 @@ function Home() {
           className={styles.carouselContainer}
           style={{ display: "block", width: "auto", padding: 0 }}
         >
+
           <Carousel>
             <Carousel.Item interval={3000}>
               <img
@@ -107,9 +109,9 @@ function Home() {
             </Carousel.Item>
           </Carousel>
         </div>
-      {/* <ProductsHome /> */}
+        {/* <ProductsHome /> */}
       </div>
-      <Footer/>
+      <Footer />
     </div>
   );
 }

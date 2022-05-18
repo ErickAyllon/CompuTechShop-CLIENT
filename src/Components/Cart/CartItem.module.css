@@ -1,14 +1,13 @@
     .containerImgBtn {
-    width: 300px;
+    
     display: flex;
     flex-direction: column;
-    width: 70%;
+    width: 100px;
 }
 
 .container {
     display: flex;
     max-width: 602px;
-    height: 150px;
     display: flex;
     align-items: center;
     box-sizing: border-box;
@@ -25,6 +24,7 @@
     display: flex;
     flex-wrap: wrap;
     flex-direction: row;
+    width:100px
 }
 
 .cart {
@@ -45,4 +45,8 @@
     border: none;
     box-shadow: 0;
     border: 0;
+}
+
+.cartImg{
+    width: 100px;
 }

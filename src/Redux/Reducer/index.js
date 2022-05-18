@@ -241,8 +241,7 @@ function rootReducer(state = initialState, action) {
       };
     }
     case TYPES.CLEAR_CART:
-      let clean = initialState.cart;
-      return { ...state, cart: clean };
+      return { ...state, cart: [] };
 
     case "GET_SHOPS":
       return {
