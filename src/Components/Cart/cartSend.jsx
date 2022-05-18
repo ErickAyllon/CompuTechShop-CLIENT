@@ -12,12 +12,14 @@ import NavBar from '../NavBar/Navbar';
 
 const validation = (values) => {
     let errors = {};
-    if (!values.address) {
-        errors.address = "Address is required";
-    } else if (values.address.length < 6) {
-        errors.address = "You should enter a valid address";
-    } else if (!/^[#.0-9a-zA-Z\s,.]+$/.test(values.address)) {
-        errors.address = "Only special characters allowed are ('.' and ',')";
+    if (!values.email) {
+        errors.email = "E-mail is required";
+    } else if (
+        !/^[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?$/.test(
+            values.email
+        )
+    ) {
+        errors.email = "You should enter a valid E-mail";
     }
     return errors;
 };
