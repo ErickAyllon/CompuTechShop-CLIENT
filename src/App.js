@@ -42,7 +42,7 @@ import Banned from "./Components/Banned/Banned";
 import Welcome from "./Components/Welcome/Welcome";
 import { SnackbarProvider } from "notistack";
 import Help from "./Components/Footer/Help";
-import CartSend from "./Components/Cart/CartSend";
+import CartSend from "./Components/Cart/cartSend";
 import ViewOrdersTogether from "./Components/Admin/Orders/ViewAllOrdersCart/ViewOrdersTogether";
 import MyOrdersTogether from "./Components/Profile/MyOrders/MyOrdersTogether/MyOrdersTogether";
 import MyOrders from "./Components/Profile/MyOrders/MyOrders.jsx";
