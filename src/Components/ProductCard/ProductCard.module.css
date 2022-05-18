@@ -104,7 +104,6 @@
     box-shadow: 0 0 5px 1px blue;
     transition: .5s;
     opacity: .9;
-    margin: 0 10px;
 }
 
 .addBtn:active, .subsBtn:active, .dltAll:active, .addMore:active {
@@ -155,8 +154,7 @@
     display: flex;
 }
 .superBtnsContainer button{
-    margin: auto 5px;
-
+    margin: 0 5px;
 }
 
 

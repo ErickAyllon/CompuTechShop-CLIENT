@@ -9,10 +9,11 @@ import { useSelector, useDispatch } from "react-redux";
 import MyOrders from "./MyOrders/MyOrders";
 import { getUser } from "../../Redux/Actions";
 import Footer from "../Footer/Footer";
+import { useNavigate } from "react-router-dom";
 
 function ProfileInfo() {
   const dispatch = useDispatch();
-
+  const navigate = useNavigate();
   let allUsers = useSelector((state) => state.users2);
 
   const { user, isAuthenticated } = useAuth0();
@@ -35,6 +36,7 @@ function ProfileInfo() {
     return (
       <div className={styles.profileInfo}>
         <NavBar />
+        <Button variant='outlined' style={{margin:'10px auto 0 auto', display:'flex'}} onClick={() => navigate("/Allproducts")}>Back to Products</Button>
         {filteredUser ? (
           <div>
             <div className={styles.profileInfo2}>
@@ -53,7 +55,7 @@ function ProfileInfo() {
               </div>
               <div className={styles.button}>
                 <Link to="/UpdateProfile">
-                  <Button variant="outlined">Update Your Profile</Button>
+                  <Button variant="outlined">Update my Profile</Button>
                 </Link>
               </div>
             </div>
