@@ -235,6 +235,7 @@ function rootReducer(state = initialState, action) {
         };
     }
     case TYPES.REMOVE_ALL_FROM_CART: {
+
       return {
         ...state,
         cart: state.cart.filter((item) => item.id !== action.payload),
