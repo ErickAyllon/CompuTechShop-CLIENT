@@ -9,8 +9,9 @@ import CartItem from './CartItem';
 import styles from "./CartSend.module.css";
 import Swal from 'sweetalert2'
 import NavBar from '../NavBar/Navbar';
-export default function CartSend() {
+import Footer from "../Footer/Footer";
 
+export default function CartSend() {
     const dispatch = useDispatch();
     const navigate = useNavigate();
     let allUsers = useSelector((state) => state.users2);
@@ -51,7 +52,7 @@ export default function CartSend() {
 
 
     return (
-        <>
+        <div className={styles.cartSend}>
             <NavBar />
             <div className={styles.containerForm}>
                 <Formik
@@ -91,6 +92,7 @@ export default function CartSend() {
 
 
             </div >
-        </>
+            <Footer />
+        </div>
     );
 };
