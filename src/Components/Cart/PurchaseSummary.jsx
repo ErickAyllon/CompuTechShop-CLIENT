@@ -101,7 +101,6 @@ const PurchaseSummary = () => {
                     <p>Check all products</p>
                     <p>Browse the categories to find a product</p>
                   </div>
-                  <Button variant='outlined' onClick={() => navigate("/Allproducts")}>Back to Products</Button>
                 </div>
               </div>)
           }</div>
