@@ -94,7 +94,7 @@
     margin-left: 150px;
 }
 
-.addBtn {
+.addBtn, .subsBtn, .dltAll, .addMore {
     border: none;
     background-color: transparent;
     width: 30px;
@@ -104,33 +104,61 @@
     box-shadow: 0 0 5px 1px blue;
     transition: .5s;
     opacity: .9;
+    margin: 0 10px;
 }
 
-.addBtn:active {
+.addBtn:active, .subsBtn:active, .dltAll:active, .addMore:active {
     box-shadow: 0 0 10px 2px blue;
+    transform: scale(1.2);
 }
 
-.addBtn:hover {
+.addBtn:hover, .subsBtn:hover, .dltAll:hover, .addMore:hover {
     filter: brightness(1.5);
     transform: scale(1.1);
     opacity: 1;
 }
 
-.addBtn img {
+.addBtn img, .subsBtn img, .dltAll img, .addMore img {
     height: 18px;
     width: auto;
     display: flex;
 }
+.subsBtn {
+    background-color: gray;
+    box-shadow: 0 0 5px 1px black;
+}
+.dltAll {
+    background-color: rgba(255, 0, 0, 0.97);
+    box-shadow: 0 0 5px 1px black;
+}
+.addMore {
+    background-color: green;
+    box-shadow: black;
+}
+
 .wishAndCartBtns {
     display: flex;
     flex-direction: column;
     align-items: center;
-    width: 50px;
     margin: auto;
-    width: 80px;
     justify-content: space-between;
-    margin-right: 0;
+    margin-right: 0;   
 }
+
+.cardsBtns {
+    display: flex;
+    flex-direction: row;
+    margin-right: 10px;  
+}
+
+.superBtnsContainer {
+    display: flex;
+}
+.superBtnsContainer button{
+    margin: auto 5px;
+
+}
+
 
 @media only screen and (max-width: 768px) {
     .productCard {

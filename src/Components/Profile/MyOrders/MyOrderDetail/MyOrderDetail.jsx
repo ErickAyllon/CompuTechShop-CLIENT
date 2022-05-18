@@ -11,6 +11,9 @@ import Rating from '@mui/material/Rating';
 import { useAuth0 } from "@auth0/auth0-react";
 import anonymous from '../../../../Images/anonymous.png'
 import Swal from 'sweetalert2'
+import { CircularProgress } from "@mui/material";
+import Footer from '../../../Footer/Footer';
+
 
 function MyOrderDetail() {
     const dispatch = useDispatch();
@@ -97,11 +100,19 @@ function MyOrderDetail() {
       navigate('/profile')
     }
 
+    const [load, setLoad] = useState(true)
+
+    setTimeout(function () {
+      setLoad(false)
+    }, 1000)
 
   return (
     <div className={styles.shopDetails}>
       <NavBar />
-      {shop.length ? shop.map(el => {
+      {load ?
+        <CircularProgress color="inherit" style={{ position: 'absolute', top: '50%', left: '50%' }} />
+        :
+        shop.length ? shop.map(el => {
         return(
           <div key={el.id} className={styles.shopDetailCardContainer}>
             <div className={styles.shopDetailCard}>
@@ -127,7 +138,7 @@ function MyOrderDetail() {
                 disabled
                 id="filled-disabled"
                 label="Email"
-                defaultValue={el.userEmail}
+                defaultValue={el.extraEmail ? el.extraEmail : el?.userEmail}
                 variant="filled"
               />
               <TextField
@@ -155,6 +166,23 @@ function MyOrderDetail() {
                   </div>
                 )
                 })} 
+              <TextField
+                style={{width:'40ch', margin:'5px 0', background:'#0080006e' }}
+                disabled
+                id="filled-disabled"
+                label="Quantity"
+                defaultValue={shop[0].quantity}
+                variant="filled"
+              />
+              <TextField
+                style={{width:'40ch', margin:'5px 0', background:'#0080006e' }}
+                disabled
+                id="filled-disabled"
+                label="Address"
+                defaultValue={el.extraAddress ? el.extraAddress : userId.address}
+                variant="filled"
+              />
+
               <TextField
               style={{width:'40ch', margin:'5px 0' , background:'#0080006e'}}
                 disabled
@@ -215,6 +243,7 @@ function MyOrderDetail() {
       })
       : <NotFound404/>
       }
+        <Footer />
     </div>
   )
 }

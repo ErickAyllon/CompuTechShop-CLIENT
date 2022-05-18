@@ -36,30 +36,30 @@ function ProfileInfo() {
       <div className={styles.profileInfo}>
         <NavBar />
         {filteredUser ? (
-          <div className={styles.profileInfo2}>
-            <div>
+          <div>
+            <div className={styles.profileInfo2}>
               <img
-                className={styles.img}
-                src={filteredUser[0].picture}
-                alt="Not found"
-              />
+                  className={styles.img}
+                  src={filteredUser[0].picture}
+                  alt="Not found"
+                />
+              <div className={styles.h2Div}>
+                <h2 className={styles.h2}>{filteredUser[0].given_name}</h2>
+                <h2 className={styles.h2}>{filteredUser[0].family_name}</h2>
+                <h2 className={styles.h2}>{filteredUser[0].email}</h2>
+                <h2 className={styles.h2}>{filteredUser[0].address}</h2>
+                <h2 className={styles.h2}>{filteredUser[0].phone}</h2>
+                <h2 className={styles.h2}>{filteredUser[0].birthday}</h2>
+              </div>
+              <div className={styles.button}>
+                <Link to="/UpdateProfile">
+                  <Button variant="outlined">Update Your Profile</Button>
+                </Link>
+              </div>
             </div>
-            <div className={styles.h2Div}>
-              <h2 className={styles.h2}>{filteredUser[0].given_name}</h2>
-              <h2 className={styles.h2}>{filteredUser[0].family_name}</h2>
-              <h2 className={styles.h2}>{filteredUser[0].email}</h2>
-              <h2 className={styles.h2}>{filteredUser[0].address}</h2>
-              <h2 className={styles.h2}>{filteredUser[0].phone}</h2>
-              <h2 className={styles.h2}>{filteredUser[0].birthday}</h2>
-            </div>
-            <div className={styles.button}>
-              <Link to="/UpdateProfile">
-                <Button variant="outlined">Update Your Profile</Button>
-              </Link>
-            </div>
-            <div>
+            {/* <div>
               <MyOrders variant="outlined" />
-            </div>
+            </div> */}
           </div>
         ) : (
           <Loader />

@@ -1,17 +1,14 @@
-import React, { useEffect } from 'react'
-import { useDispatch, useSelector } from 'react-redux';
+import React from 'react'
+import { useDispatch } from 'react-redux';
 import { useLocation, useNavigate } from 'react-router';
-import CartItem from './CartItem';
 import { useAuth0 } from '@auth0/auth0-react';
-import { getPayment, getUser } from '../../Redux/Actions/index';
+import { getPayment } from '../../Redux/Actions/index';
 import styles from "./PurchaseSummary.module.css"
 import { Button } from '@mui/material';
 import { TYPES } from "../../Redux/Actions/shoppingCartActions";
 import { Link } from 'react-router-dom';
 import Profile from '../Auth0/Profile';
 export const PurchaseResult = () => {
-
-  const usuarios = useSelector(state => state.users2)
   const dispatch = useDispatch();
   const { user } = useAuth0()
   const navigate = useNavigate()
@@ -21,25 +18,31 @@ export const PurchaseResult = () => {
   let payment = query.get("payment_id")
   let status = query.get("collection_status")
   let mensaje = ""
+
+
   obj.payment = payment
-
-
   obj.email = window.localStorage.getItem("email")
-  obj.extraEmail = window.localStorage.getItem("extraEmail")
-  obj.extraAddress = window.localStorage.getItem("extraAddress")
 
   const postUserActive = (userActive) => {
 
     dispatch({ type: TYPES.USER_ACTIVE, payload: userActive });
   };
+  const clearCart = () => {
+    dispatch({ type: TYPES.CLEAR_CART });
+  };
+
   localStorage.removeItem("carrito")
+
   function handleClick(e) {
     e.preventDefault()
     if (user) {
       postUserActive(user)
       dispatch(getPayment(obj))
+      if (status !== "null") {
+        clearCart()
+      }
+      navigate("/")
     }
-    navigate("/")
   }
   switch (status) {
     case "approved":
@@ -52,6 +55,7 @@ export const PurchaseResult = () => {
       mensaje = "Your payment is rejected, you can try making the purchase again with another card"
       break;
     default:
+      mensaje = "Something went wrong"
       break;
   }
 
@@ -69,9 +73,9 @@ export const PurchaseResult = () => {
           <Profile />
         </div>
       </div>
-      <Button variant="contained" className={styles.backToSite} onClick={(e) => handleClick(e)}> Back to Site</Button>
+      <Link to="/">
+        <Button variant="contained" className={styles.backToSite} onClick={(e) => handleClick(e)}> Back to Site</Button>
+      </Link>
     </div>
-
-
   )
 }

@@ -7,7 +7,7 @@ import { useDispatch } from "react-redux";
 export default function LogOutButton() {
   const dispatch = useDispatch();
   const { logout } = useAuth0();
-  
+
   const postUserActive = (userActive) => {
 
     dispatch({ type: TYPES.USER_ACTIVE, payload: userActive });
@@ -15,6 +15,7 @@ export default function LogOutButton() {
   const handleOnClick = () => {
     postUserActive([])
     logout();
+    localStorage.setItem('email', [])
 
   }
   return (

@@ -64,6 +64,8 @@ function ShopDetail() {
     
   }
 
+  let usere = users?.filter(e => e.email === shop[0]?.userEmail);
+
   return (
     <div className={styles.shopDetails}>
       <AdminNav/>
@@ -96,7 +98,7 @@ function ShopDetail() {
                 disabled
                 id="filled-disabled"
                 label="Email"
-                defaultValue={el.userEmail}
+                defaultValue={el.extraEmail ? el.extraEmail : el?.userEmail}
                 variant="filled"
               />
               <TextField
@@ -125,7 +127,7 @@ function ShopDetail() {
                 )
         })} 
               <TextField
-              style={{width:'40ch', margin:'5px 0' , background:'#0080006e'}}
+                style={{width:'40ch', margin:'5px 0' , background:'#0080006e'}}
                 disabled
                 id="filled-disabled"
                 label="Payment status"
@@ -133,15 +135,15 @@ function ShopDetail() {
                 variant="filled"
               />
               <TextField
-              style={{width:'40ch', margin:'5px 0' , background:'red'}}
+                style={{width:'40ch', margin:'5px 0', background:'#0080006e' }}
                 disabled
                 id="filled-disabled"
-                label="Adress"
-                defaultValue={'To be completed'}
+                label="Address"
+                defaultValue={el.extraAddress ? el.extraAddress : usere[0].address}
                 variant="filled"
               />
               <TextField
-              style={{width:'40ch', margin:'5px 0' , background:'#0080006e'}}
+                style={{width:'40ch', margin:'5px 0' , background:'#0080006e'}}
                 disabled
                 id="filled-disabled"
                 label="Shop State"

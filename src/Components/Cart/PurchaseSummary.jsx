@@ -1,24 +1,24 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { getUser, postBuyCart } from "../../Redux/Actions";
-import CartItem from "./CartItem";
+import { getUser } from "../../Redux/Actions";
 import { TYPES } from "../../Redux/Actions/shoppingCartActions";
 import ProductCard from "../ProductCard/ProductCard";
 import NavBar from "../NavBar/Navbar";
-import { Link, useNavigate } from "react-router-dom"
+import { useNavigate } from "react-router-dom"
 import styles from "./PurchaseSummary.module.css"
+import { useAuth0 } from "@auth0/auth0-react"
+import Swal from 'sweetalert2'
+import Footer from "../Footer/Footer";
+import { Button } from "@mui/material";
 
 const PurchaseSummary = () => {
-  const obj = {};
   const dispatch = useDispatch();
   const productsFilter = useSelector((state) => state.cart);
-  const userByEmail = useSelector((state) => state.users2)
-  const prod = useSelector(state => state.prod)
   const arregloPrice = productsFilter.map((el) => el.price * el.quantity);
   const reducir = (accumulator, curr) => accumulator + curr;
   let arregloTotal
   const navigate = useNavigate()
-
+  const { user } = useAuth0();
   if (arregloPrice.length > 0) { arregloTotal = arregloPrice.reduce(reducir) }
 
   useEffect(() => {
@@ -29,23 +29,19 @@ const PurchaseSummary = () => {
 
   const handleBuyCart = (e) => {
     e.preventDefault();
-    // const nuevoPost = productsFilter.map((el) => {
-    //   return {
-    //     picture_url: el.image,
-    //     name: el.name,
-    //     price: el.price,
-    //     quantity: el.quantity,
-    //   };
-    // });
-    // obj.name = nuevoPost.map((el) => el.name);
-    // obj.picture_url = nuevoPost.map((el) => el.picture_url);
-    // obj.price = nuevoPost.map((el) => Number(el.price));
-    // obj.quantity = nuevoPost.map((el) => el.quantity);
-    // JSON.stringify(obj);
-    // dispatch(postBuyCart(obj));
-    setTimeout(function () {
+    if (user) {
+
+      // setTimeout(function () {
       navigate("/cartSend")
-    }, 2000)
+      // }, 2000)
+    }
+    else {
+      Swal.fire({
+        title: 'You must be logged to buy products!',
+        icon: 'info',
+        confirmButtonText: 'OK',
+      })
+    }
   };
   const delFromCart = (id, all = false) => {
     all
@@ -61,12 +57,11 @@ const PurchaseSummary = () => {
   };
 
   return (
-
-    <div >
+    <div className={styles.purchaseSummary}>
       <NavBar />
+      <h1 className={styles.title}>My cart:</h1>
       <div className={styles.summaryContainer} >
-
-        <div>
+        <div className={styles.cardsContainer}>
           {
             productsFilter.length > 0 && arregloTotal.length !== 0 ?
               productsFilter.map((el) => (
@@ -83,7 +78,7 @@ const PurchaseSummary = () => {
                   addToCart={addToCart}
                   delFromCart={delFromCart}
                   priceTotal={true}
-
+                  wishlist={false}
                 />
 
               )) : (<div className={styles.productNotFound}>
@@ -93,26 +88,25 @@ const PurchaseSummary = () => {
                     <p>Check all products</p>
                     <p>Browse the categories to find a product</p>
                   </div>
-                  <button onClick={() => navigate("/")}>Back to Products</button>
+                  <Button variant='outlined' onClick={() => navigate("/")}>Back to Products</Button>
                 </div>
               </div>)
           }</div>
         {(arregloPrice.length !== 0 ?
           <div className={styles.containerImgBtn}>
-            <label className={styles.text}>Total Price:  $ {arregloTotal}</label>
-            <button className={styles.btn} onClick={handleBuyCart}>Comprar</button>
-            <button
-
-
+            <label className={styles.text}>Total Price:  $ {new Intl.NumberFormat().format(arregloTotal)}</label>
+            <Button variant='outlined' className={styles.btn} onClick={handleBuyCart}>Comprar</Button>
+            <Button
+              variant='outlined'
               onClick={clearCart}
             >
               Clean Cart
-            </button>
+            </Button>
           </div>
           : null)}
-
       </div>
       <br />
+      <Footer />
     </div >
   );
 };

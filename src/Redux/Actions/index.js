@@ -173,6 +173,19 @@ export function getShops() {
     }
   };
 }
+// export function getShops() {
+//   return async function (dispatch) {
+//     try {
+//       var json = await axios.get("/getPayments");
+//       return dispatch({
+//         type: "GET_SHOPS",
+//         payload: json.data,
+//       });
+//     } catch (error) {
+//       console.log(error);
+//     }
+//   };
+// }
 
 export function getShopById(id) {
   return async function (dispatch) {
@@ -299,12 +312,13 @@ export function updateShop(id, payload) {
 }
 
 export const getPayment = (payload) => {
-  console.log(payload)
-  const { payment, email, extraAddress, extraEmail } = payload;
+  // console.log(payload.email)
+
+  const { payment, email } = payload;
   return async function (dispatch) {
     try {
       const json = await axios.get(
-        `/success?id=${payment}&successEmail=${email}&extraEmail=${extraEmail}&extraAddress=${extraAddress}`
+        `/success?id=${payment}&successEmail=${email}`
       );
       return dispatch({
         type: "GET_PAYMENT",
@@ -370,7 +384,7 @@ export const getOrders = () => {
 export const getOrdersByEmail = (email) => {
   return async function (dispatch) {
     try {
-      const json = await axios.get(`/getPayments?email=${email}`);
+      const json = await axios.get(`/getOrders?userEmail=${email}`);
       return dispatch({
         type: "GET_ORDERS_BY_EMAIL",
         payload: json.data,

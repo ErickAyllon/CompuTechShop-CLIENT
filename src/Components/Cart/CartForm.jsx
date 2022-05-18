@@ -1,9 +1,9 @@
 import { useAuth0 } from '@auth0/auth0-react';
 import { Box, Button, TextField } from '@mui/material';
-import React, { useEffect } from 'react'
+import React from 'react'
 import { useSelector } from 'react-redux';
-import { getUser } from '../../Redux/Actions';
 
+import styles from "./CartForm.module.css";
 function CartForm({
     handleChange,
     handleSubmit,
@@ -12,7 +12,7 @@ function CartForm({
 }) {
     let allUsers = useSelector((state) => state.users2);
     const { user } = useAuth0();
-    // const formik = useFormik();
+
     let userLocal = [];
 
     if (user) {
@@ -27,7 +27,7 @@ function CartForm({
     localStorage.setItem("address", address);
 
     return (
-        <>
+        <div className={styles.containerForm}>
             <Box
 
                 component="form"
@@ -64,7 +64,7 @@ function CartForm({
                     Confirm purchase
                 </Button>
             </Box>
-        </>
+        </div>
     )
 }
 

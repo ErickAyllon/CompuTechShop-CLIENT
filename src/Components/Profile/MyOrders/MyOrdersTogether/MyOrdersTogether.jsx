@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { getOrdersByEmail, getUser } from "../../../Redux/Actions";
-import styles from "./MyOrders.module.css";
+import { getOrdersByEmail, getUser } from "../../../../Redux/Actions";
+import styles from "./MyOrdersTogether.module.css";
 import { Button } from "@mui/material";
 import Paper from "@mui/material/Paper";
 import Table from "@mui/material/Table";
@@ -11,31 +11,27 @@ import TableContainer from "@mui/material/TableContainer";
 import TableHead from "@mui/material/TableHead";
 import TablePagination from "@mui/material/TablePagination";
 import TableRow from "@mui/material/TableRow";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { useAuth0 } from "@auth0/auth0-react";
-import NavBar from "../../NavBar/Navbar";
-import Footer from "../../Footer/Footer";
+import NavBar from "../../../NavBar/Navbar";
+import Footer from "../../../Footer/Footer";
 import { CircularProgress } from "@mui/material";
 
-function MyOrders() {
+
+function MyOrdersTogether() {
   const dispatch = useDispatch();
-  // const users = useSelector((state) => (state.users))
-  const orders = useSelector((state) => state.userOrders);
-  const [watch, setWatch] = useState(true);
   const navigate = useNavigate();
   const { user } = useAuth0();
+  const {id} = useParams();
 
-  // function watchOrders() {
-  //   dispatch(getOrdersByEmail(user.email));
-  //   setWatch(!watch);
-  // }
+  const [page, setPage] = React.useState(0);
+  const [rowsPerPage, setRowsPerPage] = React.useState(10);
+
+  const orders = useSelector((state) => state.userOrders);
 
   useEffect(() => {
     dispatch(getOrdersByEmail(user?.email));
   }, [dispatch])
-
-  const [page, setPage] = React.useState(0);
-  const [rowsPerPage, setRowsPerPage] = React.useState(10);
 
   const handleChangePage = (event, newPage) => {
     setPage(newPage);
@@ -47,12 +43,12 @@ function MyOrders() {
   };
 
   const columns = [
-    { id: "idTogether", label: "ID", minWidth: 200 },
-    { id: "email", label: "Email", minWidth: 220 },
+    { id: "id", label: "ID", minWidth: 100 },
+    { id: "userEmail", label: "Email", minWidth: 220 },
     {
-      id: "totalCarrito",
+      id: "total_paid_amount",
       label: "Amount",
-      minWidth: 220,
+      minWidth: 100,
       align: "right",
       format: (value) => `$${value.toLocaleString("en-US")}`,
     },
@@ -63,22 +59,23 @@ function MyOrders() {
       align: "right",
       format: (value) => value.toLocaleString("en-US"),
     },
-    // {
-    //   id: "state",
-    //   label: "State",
-    //   minWidth: 100,
-    //   align: "right",
-    //   format: (value) => value.toFixed(2),
-    // },
+    {
+      id: "state",
+      label: "State",
+      minWidth: 100,
+      align: "right",
+      format: (value) => value.toFixed(2),
+    },
   ];
 
-  //   const thisUserOrders = orders.filter(e => e.userEmail === user.userEmail ? e : false)
-  // console.log(orders.filter(e => e.idTogether))
-  const rows = orders
+  // const ordersFiltered = orders ? orders?.filter(e => e.idTogether == id)[0].payments : null
+  const ordersFiltered = orders?.filter(e => e.idTogether == id)[0].payments
+
+  const rows = ordersFiltered
 
   function handleDetail(e) {
     e.preventDefault();
-    navigate(`/profile/cart/${e.target.id}`);
+    navigate(`/profile/order/${e.target.id}`);
   }
 
   const [load, setLoad] = useState(true)
@@ -90,30 +87,16 @@ function MyOrders() {
   return (
     <div className={styles.myOrders}>
       <NavBar />
-      {/* {!watch ? (
-        <div>
-          <Button variant="outlined" style={{margin: '20px auto'}} onClick={watchOrders}>
-            Watch orders
-          </Button>
-        </div>
-      ) : (
-        <div>
-          <Button variant="outlined" style={{margin: '20px auto'}}  onClick={watchOrders}>
-            Close orders
-          </Button>
-        </div>
-      )} */}
       <div>
-      {load ?
-        <CircularProgress color="inherit" style={{ position: 'absolute', top: '50%', left: '50%' }} />
+      { load ?
+          <CircularProgress color="inherit" style={{ position: 'absolute', top: '50%', left: '50%' }} />
         :
         orders?.length > 0 ? (
           <div className={styles.tabla}>
             <Paper
               sx={{
                 width: "100%",
-                background: "white",
-                borderTop: "1px solid gray",
+                borderTop: "1px solid black",
               }}
             >
               <TableContainer sx={{ maxHeight: 440 }}>
@@ -129,7 +112,7 @@ function MyOrders() {
                           fontSize: "2rem",
                         }}
                       >
-                        My Orders
+                        My order {id}
                       </TableCell>
                     </TableRow>
                     <TableRow>
@@ -166,12 +149,12 @@ function MyOrders() {
                                   <TableCell
                                     key={column.id}
                                     align={column.align}
-                                    id={row.idTogether}
+                                    id={row.id}
                                     onClick={handleDetail}
                                     style={{
                                       fontSize: "1rem",
                                       fontWeight: "600",
-                                      color: "white",
+                                      color: "black",
                                     }}
                                   >
                                     {column.format && typeof value === "number"
@@ -206,9 +189,9 @@ function MyOrders() {
           </div>
         ) : null}
       </div>
-      <Footer />
+      <Footer/>
     </div>
   );
 }
 
-export default MyOrders;
+export default MyOrdersTogether;
