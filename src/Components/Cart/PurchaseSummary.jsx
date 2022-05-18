@@ -45,10 +45,16 @@ const PurchaseSummary = () => {
       })
     }
   };
+
   const delFromCart = (id, all = false) => {
-    all
-      ? dispatch({ type: TYPES.REMOVE_ALL_FROM_CART, payload: id })
-      : dispatch({ type: TYPES.REMOVE_ONE_FROM_CART, payload: id });
+    if (all) {
+      window.confirm("Are you sure you want to delete")
+      dispatch({ type: TYPES.REMOVE_ALL_FROM_CART, payload: id })
+    }
+    else {
+
+      dispatch({ type: TYPES.REMOVE_ONE_FROM_CART, payload: id });
+    }
   };
   const addToCart = (id) => {
     // console.log(id);
@@ -67,43 +73,43 @@ const PurchaseSummary = () => {
   return (
     <div className={styles.purchaseSummary}>
       <NavBar />
-      <Button variant='outlined' style={{margin:'10px auto 0 auto', display:'flex'}} onClick={() => navigate("/Allproducts")}>Back to Products</Button>
+      <Button variant='outlined' style={{ margin: '10px auto 0 auto', display: 'flex' }} onClick={() => navigate("/Allproducts")}>Back to Products</Button>
       <h1 className={styles.title}>My cart:</h1>
       <div className={styles.summaryContainer} >
         <div className={styles.cardsContainer}>
 
-        {
+          {
             load ?
-                <CircularProgress color="inherit" style={{ position: 'absolute', top: '50%', left: '50%' }} />
-            : 
-            productsFilter.length > 0 && arregloTotal.length !== 0 ?
-              productsFilter.map((el) => (
-                <ProductCard
-                  name={el.name}
-                  price={el.price}
-                  image={el.image}
-                  key={el.id}
-                  id={el.id}
-                  brand={el.brand}
-                  description={el.description}
-                  calification={el.calification}
-                  quantity={el.quantity}
-                  addToCart={addToCart}
-                  delFromCart={delFromCart}
-                  priceTotal={true}
-                  wishlist={false}
-                />
+              <CircularProgress color="inherit" style={{ position: 'absolute', top: '50%', left: '50%' }} />
+              :
+              productsFilter.length > 0 && arregloTotal.length !== 0 ?
+                productsFilter.map((el) => (
+                  <ProductCard
+                    name={el.name}
+                    price={el.price}
+                    image={el.image}
+                    key={el.id}
+                    id={el.id}
+                    brand={el.brand}
+                    description={el.description}
+                    calification={el.calification}
+                    quantity={el.quantity}
+                    addToCart={addToCart}
+                    delFromCart={delFromCart}
+                    priceTotal={true}
+                    wishlist={false}
+                  />
 
-              )) : (<div className={styles.productNotFound}>
-                <div className={styles.productNotFoundContainer}>
-                  <h1>Cart Empty</h1>
-                  <div className={styles.productNotFoundText}>
-                    <p>Check all products</p>
-                    <p>Browse the categories to find a product</p>
+                )) : (<div className={styles.productNotFound}>
+                  <div className={styles.productNotFoundContainer}>
+                    <h1>Cart Empty</h1>
+                    <div className={styles.productNotFoundText}>
+                      <p>Check all products</p>
+                      <p>Browse the categories to find a product</p>
+                    </div>
+                    <Button variant='outlined' onClick={() => navigate("/Allproducts")}>Back to Products</Button>
                   </div>
-                  <Button variant='outlined' onClick={() => navigate("/Allproducts")}>Back to Products</Button>
-                </div>
-              </div>)
+                </div>)
           }</div>
         {(arregloPrice.length !== 0 ?
           <div className={styles.containerImgBtn}>

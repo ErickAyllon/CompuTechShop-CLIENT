@@ -14,7 +14,7 @@ function MyFavorites() {
     const navigate = useNavigate();
     const myFavorites = useSelector((state) => state.wishlist)
     const [load, setLoad] = useState(true)
-
+    console.log(myFavorites)
     setTimeout(function () {
         setLoad(false)
     }, 1000)
@@ -37,6 +37,7 @@ function MyFavorites() {
                                         return (
                                             <ProductCard
                                                 key={e.id}
+                                                id={e.product[0].id}
                                                 name={e.product[0]}
                                                 price={e.price[0]}
                                                 image={e.image[0]}
