@@ -48,7 +48,25 @@ const PurchaseSummary = () => {
   };
   const delFromCart = (id, all = false) => {
     all
-      ? dispatch({ type: TYPES.REMOVE_ALL_FROM_CART, payload: id })
+      ? 
+      Swal.fire({
+        title: 'Are you sure?',
+        text: "Do you want to delete all products?",
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'Yes, delete them!'
+      }).then((result) => {
+        if (result.isConfirmed) {
+          dispatch({ type: TYPES.REMOVE_ALL_FROM_CART, payload: id })
+          Swal.fire(
+            'Cleaned!',
+            'Your products has been deleted.',
+            'success'
+          )
+        }
+      })
       : dispatch({ type: TYPES.REMOVE_ONE_FROM_CART, payload: id });
   };
   const addToCart = (id) => {

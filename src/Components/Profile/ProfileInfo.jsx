@@ -28,6 +28,8 @@ function ProfileInfo() {
 
   let filteredUser = allUsers.filter((el) => el.email === userLocal.email);
 
+  window.localStorage.setItem("usuarioRegistrado", filteredUser);
+
   useEffect(() => {
     dispatch(getUser());
   }, [dispatch]);
@@ -41,10 +43,10 @@ function ProfileInfo() {
           <div>
             <div className={styles.profileInfo2}>
               <img
-                  className={styles.img}
-                  src={filteredUser[0].picture}
-                  alt="Not found"
-                />
+                className={styles.img}
+                src={filteredUser[0].picture}
+                alt="Not found"
+              />
               <div className={styles.h2Div}>
                 <h2 className={styles.h2}>{filteredUser[0].given_name}</h2>
                 <h2 className={styles.h2}>{filteredUser[0].family_name}</h2>

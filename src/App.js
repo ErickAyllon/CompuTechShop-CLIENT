@@ -40,11 +40,11 @@ import MyOrderDetail from "./Components/Profile/MyOrders/MyOrderDetail/MyOrderDe
 import MyFavorites from "./Components/Wishlist/MyFavorites/MyFavorites";
 import Banned from "./Components/Banned/Banned";
 import Welcome from "./Components/Welcome/Welcome";
-import { SnackbarProvider } from 'notistack'
+import { SnackbarProvider } from "notistack";
 import Help from "./Components/Footer/Help";
 import CartSend from "./Components/Cart/CartSend";
 import ViewOrdersTogether from "./Components/Admin/Orders/ViewAllOrdersCart/ViewOrdersTogether";
-import MyOrdersTogether from './Components/Profile/MyOrders/MyOrdersTogether/MyOrdersTogether';
+import MyOrdersTogether from "./Components/Profile/MyOrders/MyOrdersTogether/MyOrdersTogether";
 import MyOrders from "./Components/Profile/MyOrders/MyOrders.jsx";
 
 const getDesignTokens = (mode) => ({
@@ -64,20 +64,20 @@ const getDesignTokens = (mode) => ({
     }),
     ...(mode === "light" && {
       background: {
-        default: '#495464',
+        default: "#495464",
         paper: deepOrange[900],
       },
     }),
     text: {
       ...(mode === "light"
         ? {
-          primary: '#000000',
-          secondary: '#000000',
-        }
+            primary: "#000000",
+            secondary: "#000000",
+          }
         : {
-          primary: "#ffffff",
-          secondary: grey[500],
-        }),
+            primary: "#ffffff",
+            secondary: grey[500],
+          }),
     },
   },
 });
@@ -88,7 +88,11 @@ function App() {
     isDarkTheme ? getDesignTokens("dark") : getDesignTokens("light")
   );
 
-  const ProtectedRouteBan = ({ isAllowed, redirectPath = "/banned", children }) => {
+  const ProtectedRouteBan = ({
+    isAllowed,
+    redirectPath = "/banned",
+    children,
+  }) => {
     if (!isAllowed) {
       return <Navigate to={redirectPath} replace />;
     }
@@ -111,8 +115,13 @@ function App() {
         <CssBaseline />
         <BrowserRouter>
           <Routes>
-
-            <Route element={<ProtectedRouteBan isAllowed={!userAuthenticated || !userAuthenticated.is_banned} />}>
+            <Route
+              element={
+                <ProtectedRouteBan
+                  isAllowed={!userAuthenticated || !userAuthenticated.is_banned}
+                />
+              }
+            >
               <Route path="/" element={<Home />} />
               <Route path="/Allproducts" element={<AllProducts />} />
               <Route path="/profile" element={<ProfileInfo />} />
@@ -129,7 +138,10 @@ function App() {
               <Route path="/autentication" element={<Autentication />} />
               <Route path="/UpdateProfile" element={<UpdateProfile />} />
               <Route path="/myfavorites" element={<MyFavorites />} />
-              <Route path="/AutenticationUpdate" element={<AutenticationUpdate />} />
+              <Route
+                path="/AutenticationUpdate"
+                element={<AutenticationUpdate />}
+              />
               <Route path="/welcome" element={<Welcome />} />
               <Route path="/FAQ" element={<FAQ />} />
               <Route path="/FAQ2" element={<FAQ2 />} />
@@ -141,35 +153,76 @@ function App() {
               <Route path="/purchaseConfirm" element={<PurchaseConfirm />} />
               <Route path="/purchaseResult" element={<PurchaseResult />} />
               <Route path="/cartSend" element={<CartSend />} />
-
             </Route>
 
-            <Route path="/banned" element={
-              <ProtectedRoute redirectPath="/" isAllowed={!!userAuthenticated && userAuthenticated.is_banned}>
-                <Banned />
-              </ProtectedRoute>
-            } />
+            <Route
+              path="/banned"
+              element={
+                <ProtectedRoute
+                  redirectPath="/"
+                  isAllowed={!!userAuthenticated && userAuthenticated.is_banned}
+                >
+                  <Banned />
+                </ProtectedRoute>
+              }
+            />
 
-            <Route element={<ProtectedRoute isAllowed={!!userAuthenticated && userAuthenticated.is_admin} />}>
-              <Route path="/admin/products/Allproducts" element={<AdminProducts />} />
-              <Route path="/admin/products/:category" element={<CategoryAdmin />} />
-              <Route path="/admin/products/createProduct" element={<ProductCreate />} />
-              <Route path="/admin/product/:name" element={<ProductDetailAdmin />} />
-              <Route path="/admin/product/update/:name" element={<UpdateProduct />} />
-              <Route path="/admin/search/:search" element={<ProductSearchedAdmin />} />
+            <Route
+              element={
+                <ProtectedRoute
+                  isAllowed={!!userAuthenticated && userAuthenticated.is_admin}
+                />
+              }
+            >
+              <Route
+                path="/admin/products/Allproducts"
+                element={<AdminProducts />}
+              />
+              <Route
+                path="/admin/products/:category"
+                element={<CategoryAdmin />}
+              />
+              <Route
+                path="/admin/products/createProduct"
+                element={<ProductCreate />}
+              />
+              <Route
+                path="/admin/product/:name"
+                element={<ProductDetailAdmin />}
+              />
+              <Route
+                path="/admin/product/update/:name"
+                element={<UpdateProduct />}
+              />
+              <Route
+                path="/admin/search/:search"
+                element={<ProductSearchedAdmin />}
+              />
               <Route path="/admin/categories" element={<AdminCategories />} />
               <Route path="/admin/shop/:id" element={<ShopDetails />} />
               <Route path="/admin/allorders" element={<ViewAllOrders />} />
-              <Route path="/admin/orderstogether/:id" element={<ViewOrdersTogether />} />
+              <Route
+                path="/admin/orderstogether/:id"
+                element={<ViewOrdersTogether />}
+              />
               <Route path="/admin/users" element={<Users />} />
             </Route>
 
-            <Route element={<ProtectedRoute isAllowed={!!userAuthenticated && userAuthenticated.is_admin_pro} />}>
+            <Route
+              element={
+                <ProtectedRoute
+                  isAllowed={
+                    !!userAuthenticated && userAuthenticated.is_admin_pro
+                  }
+                />
+              }
+            >
               <Route path="/admin/manager" element={<AdminManager />} />
-              <Route path="/admin/manager/:nickname" element={<AdminUpdate />} />
+              <Route
+                path="/admin/manager/:nickname"
+                element={<AdminUpdate />}
+              />
             </Route>
-
-
           </Routes>
         </BrowserRouter>
       </SnackbarProvider>

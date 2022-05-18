@@ -76,7 +76,7 @@ function ProductCard({
                 <div className={styles.cardsBtns}>
                     <button className={styles.addMore} onClick={() => addToCart(id)}><img onClick={addedAlert('success')} src={addmore} alt="add" /></button>
                     <button className={styles.subsBtn} onClick={() => delFromCart(id)}><img onClick={removedAlert('error')} src={substractmore} alt="substractmore" /></button>
-                    <button className={styles.dltAll} onClick={() => delFromCart(id, true)}><img onClick={removedAllAlert('warning')} src={deleteOne} alt="removeAll" /></button>
+                    <button className={styles.dltAll} onClick={() => delFromCart(id, true)}><img src={deleteOne} alt="removeAll" /></button>
                 </div>
               : null
             }
