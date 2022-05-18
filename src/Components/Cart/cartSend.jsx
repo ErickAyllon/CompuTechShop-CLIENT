@@ -94,10 +94,8 @@ export default function CartSend() {
     return (
       <div className={styles2.productNotFound}>
         <div className={styles2.productNotFoundContainer}>
-          <h1>Cart Empty</h1>
-          <div className={styles2.productNotFoundText}>
-            <p>You have to be registered in order to watch your cart</p>
-          </div>
+          <h1>You have to be registered in order to watch your cart</h1>
+          <div className={styles2.productNotFoundText}></div>
           <Button variant="outlined" onClick={() => navigate("/")}>
             Back to Products
           </Button>
