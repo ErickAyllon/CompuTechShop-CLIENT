@@ -55,8 +55,8 @@ const PurchaseSummary = () => {
     dispatch({ type: TYPES.CLEAR_CART });
   };
 
-let cartProducts = JSON.parse(localStorage.getItem('cart'))
-console.log(cartProducts)
+  let cartProducts = JSON.parse(localStorage.getItem('cart'))
+
 
 
 
@@ -69,7 +69,7 @@ console.log(cartProducts)
         <div>
           {
             cartProducts.length > 0 && arregloTotal.length !== 0 ?
-            cartProducts.map((el) => (
+              cartProducts.map((el) => (
                 <ProductCard
                   name={el.name}
                   price={el.price}
