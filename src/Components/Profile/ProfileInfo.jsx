@@ -74,7 +74,7 @@ function ProfileInfo() {
       <div className={styles.profileInfo2}>
         <NavBar />
         {isAuthenticated && (
-          <div className={styles.profileInfo}>
+          <div className={styles.profileInfo3}>
             <div>
               <img className={styles.img} src={user.picture} alt="Not found" />
             </div>
@@ -91,7 +91,7 @@ function ProfileInfo() {
             </div>
           </div>
         )}
-        <Footer/>
+        {/* <Footer/> */}
       </div>
     );
   }

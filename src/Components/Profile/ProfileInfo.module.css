@@ -4,15 +4,22 @@
     justify-content: center;
     min-height: 100vh;
     position: relative;
+    flex-direction: column;
 }
 
-.profileInfo2 {
+.profileInfo3 {
     justify-content: center;
     display: flex;
     flex-direction: column;
-    align-items: center;
     margin-bottom: 100px;
 }
+
+.profileInfo2 {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
 
 .profileInfo .h2Div {
     align-items: center;

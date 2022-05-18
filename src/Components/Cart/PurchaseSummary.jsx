@@ -12,6 +12,7 @@ import Footer from "../Footer/Footer";
 import { Button } from "@mui/material";
 import { useState } from "react";
 import { CircularProgress } from "@mui/material";
+import emptyCart from '../../Images/emptyCart.png'
 
 const PurchaseSummary = () => {
   const dispatch = useDispatch();
@@ -55,7 +56,24 @@ const PurchaseSummary = () => {
     dispatch({ type: TYPES.ADD_TO_CART, payload: id });
   };
   const clearCart = () => {
-    dispatch({ type: TYPES.CLEAR_CART });
+    Swal.fire({
+      title: 'Are you sure?',
+      text: "Do you want to clean your cart?",
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Yes, clean it!'
+    }).then((result) => {
+      if (result.isConfirmed) {
+        dispatch({ type: TYPES.CLEAR_CART });
+        Swal.fire(
+          'Cleaned!',
+          'Your cart has been celaned.',
+          'success'
+        )
+      }
+    })
   };
 
   const [load, setLoad] = useState(true)
@@ -96,10 +114,11 @@ const PurchaseSummary = () => {
 
               )) : (<div className={styles.productNotFound}>
                 <div className={styles.productNotFoundContainer}>
-                  <h1>Cart Empty</h1>
+                  <h1>Empty Cart</h1>
                   <div className={styles.productNotFoundText}>
-                    <p>Check all products</p>
-                    <p>Browse the categories to find a product</p>
+                    {/* <p>Check all products</p>
+                    <p>Browse the categories to find a product</p> */}
+                    <img alt="empty" src={emptyCart} />
                   </div>
                 </div>
               </div>)

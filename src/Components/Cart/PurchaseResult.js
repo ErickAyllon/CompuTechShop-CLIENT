@@ -3,7 +3,7 @@ import { useDispatch } from 'react-redux';
 import { useLocation, useNavigate } from 'react-router';
 import { useAuth0 } from '@auth0/auth0-react';
 import { getPayment } from '../../Redux/Actions/index';
-import styles from "./PurchaseSummary.module.css"
+import styles from "./PurchaseResult.module.css"
 import { Button } from '@mui/material';
 import { TYPES } from "../../Redux/Actions/shoppingCartActions";
 import { Link } from 'react-router-dom';
@@ -64,7 +64,6 @@ export const PurchaseResult = () => {
     <div className={styles.purchaseResult}>
       <div className={styles.productNotFound}>
         <div className={styles.productNotFoundContainer}>
-
           <h1>{mensaje}</h1>
           <div className={styles.productNotFoundText}>
           </div>
@@ -74,7 +73,7 @@ export const PurchaseResult = () => {
         </div>
       </div>
       <Link to="/">
-        <Button variant="contained" className={styles.backToSite} onClick={(e) => handleClick(e)}> Back to Site</Button>
+        <Button variant="outlined" className={styles.backToSite} onClick={(e) => handleClick(e)}> Back to Site</Button>
       </Link>
     </div>
   )

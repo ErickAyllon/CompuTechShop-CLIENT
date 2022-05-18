@@ -2,7 +2,6 @@
     margin: auto;
     width: 500px;
     text-align: left;
-    background-color: rgba(255, 255, 255, 0.806);
     border-radius: 50px;
     height: auto;
     display: flex;
@@ -11,13 +10,11 @@
     top: 40%;
     transform: translate(-50%, -50%);
     justify-content: center;
-    box-shadow: 0 0 5px 1px rgba(255, 255, 255, 0.486);
     padding: 10px;
 }
 
 .productNotFoundContainer {
     text-align: center;
-    color: black;
     height: 135px;
     justify-content: center;
 }
