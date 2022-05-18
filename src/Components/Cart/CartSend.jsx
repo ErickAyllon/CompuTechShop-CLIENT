@@ -1,53 +1,16 @@
-// import React, { useState } from 'react'
-// import { useDispatch } from 'react-redux';
-// import { useNavigate } from 'react-router-dom'
-
-// export default function CartSend() {
-//     const navigate = useNavigate()
-//     const [input, setInput] = useState({
-//         extraAdress: "",
-//         extraEmail: "",
-//     })
-//     function handleChange(e) {
-//         setInput({
-//             ...input,
-//             [e.target.name]: e.target.value
-//         })
-//     }
-
-//     function handleSubmit(e) {
-//         localStorage.setItem("extraAdress", input.extraAdress)
-//         localStorage.setItem("extraEmail", input.extraEmail)
-//         e.preventDefault();
-//         // navigate("/purchaseConfirm")
-
-//     }
-//     return (
-//         <>
-//             <div>
-//                 <form >
-
-//                     <input name="extraAdress" onChange={(e) => handleChange(e)} placeholder="Optional Adress" value={input.extraAdress}></input>
-//                     <input name="extraEmail" type="email" onChange={(e) => handleChange(e)} placeholder="Optional E-Mail" value={input.extraEmail}></input>
-//                     <button type="submit" onClick={(e) => handleSubmit(e)}>Continue</button>
-//                 </form>
-//             </div>
-//         </>
-//     )
-// }
-
 import React, { useEffect } from 'react';
 import { Formik } from "formik";
 import { useSelector, useDispatch } from "react-redux"
 import { getUser, postBuyCart } from '../../Redux/Actions';
 import { useAuth0 } from '@auth0/auth0-react';
 import { useNavigate } from 'react-router-dom';
-// import CartForm from './CartForm';
+import CartForm from './CartForm';
+import CartItem from './CartItem';
+import styles from "./CartSend.module.css";
+import Swal from 'sweetalert2'
+import NavBar from '../NavBar/Navbar';
 export default function CartSend() {
-    // Note that we have to initialize ALL of fields with values. These
-    // could come from props, but since we don’t want to prefill this form,
-    // we just use an empty string. If we don’t do this, React will yell
-    // at us.
+
     const dispatch = useDispatch();
     const navigate = useNavigate();
     let allUsers = useSelector((state) => state.users2);
@@ -72,9 +35,6 @@ export default function CartSend() {
     let address = filteredUser.map((el) => el.address);
     localStorage.setItem("address", address);
 
-
-    // const handleBuyCart = (e) => {
-
     const nuevoPost = productsFilter.map((el) => {
         return {
             picture_url: el.image,
@@ -88,40 +48,48 @@ export default function CartSend() {
     obj.price = nuevoPost.map((el) => Number(el.price));
     obj.quantity = nuevoPost.map((el) => el.quantity);
     JSON.stringify(obj);
-    // dispatch(postBuyCart(obj));
-    // setTimeout(function () {
-    //     navigate("/purchaseConfirm")
-    // }, 2000)
-    // };
-    // console.log(obj)
+
 
     return (
+        <>
+            <NavBar />
+            <div className={styles.containerForm}>
+                <Formik
+                    initialValues={{
+                        address: localStorage.getItem('address'),
+                        email: userLocal.email
+                    }}
+                    onSubmit={(values) => {
+                        if (user) {
 
-        <div>
-            <Formik
-                initialValues={{
-                    address: localStorage.getItem('address'),
-                    email: userLocal.email
-                }}
-                onSubmit={(values) => {
-                    localStorage.setItem("extraEmail", values.email)
-                    localStorage.setItem("extraAddress", values.address)
-                    dispatch(postBuyCart(obj));
-                    setTimeout(function () {
-                        navigate("/purchaseConfirm")
-                    }, 2000)
-                }}
+                            localStorage.setItem("extraEmail", values.email)
+                            localStorage.setItem("extraAddress", values.address)
+                            dispatch(postBuyCart(obj));
+                            setTimeout(function () {
+                                navigate("/purchaseConfirm")
+                            }, 2000)
+                        } else {
+                            Swal.fire({
+                                title: 'You must be logged to buy products!',
+                                icon: 'info',
+                                confirmButtonText: 'OK',
+                            })
+                        }
+                    }}
 
-            >
-                {/* {(props) => <CartForm {...props} />}     */}
-            </Formik>
-            <div>
-                {/* <CartItem>
+                >
+                    {(props) => <CartForm {...props} />}
+                </Formik>
+                <div className={styles.containerImg}>
+                    {productsFilter.map((el) => (
+                        <CartItem
+                            data={el}
 
-                </CartItem> */}
-            </div>
+                        />))}
+                </div>
 
 
-        </div >
+            </div >
+        </>
     );
 };
