@@ -81,9 +81,10 @@ export default function CartSend() {
                     {(props) => <CartForm {...props} />}
                 </Formik>
                 <div className={styles.containerImg}>
-                    {productsFilter.map((el) => (
+                    {productsFilter.map((el, index) => (
                         <CartItem
                             data={el}
+                            key={index}
 
                         />))}
                 </div>
