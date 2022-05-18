@@ -18,7 +18,8 @@ function ProductCard({
   quantity,
   delFromCart,
   priceTotal,
-  wishlist
+  wishlist,
+  whish
 }) {
   return (
     <div className={styles.productCardContainer}>
@@ -45,25 +46,25 @@ function ProductCard({
           />
           <div className={styles.superBtnsContainer}>
             <div className={styles.wishAndCartBtns}>
-              { delFromCart ?
-                null 
-              :
+              {delFromCart ?
+                null
+                :
                 <button className={styles.addBtn} onClick={() => addToCart(id)}><img src={add} alt="add" /></button>
-              } 
+              }
               {
                 wishlist ?
                   <Wishlist id={id} name={name} className={styles.wishlist} />
-                : null
+                  : null
               }
             </div>
             {
-              delFromCart ?
+              delFromCart && !whish ?
                 <div className={styles.cardsBtns}>
-                    <button className={styles.addMore} onClick={() => addToCart(id)}><img src={addmore} alt="add" /></button>
-                    <button className={styles.subsBtn} onClick={() => delFromCart(id)}><img src={substractmore} alt="substractmore" /></button>
-                    <button className={styles.dltAll} onClick={() => delFromCart(id, true)}><img src={deleteOne} alt="removeAll" /></button>
+                  <button className={styles.addMore} onClick={() => addToCart(id)}><img src={addmore} alt="add" /></button>
+                  <button className={styles.subsBtn} onClick={() => delFromCart(id)}><img src={substractmore} alt="substractmore" /></button>
+                  <button className={styles.dltAll} onClick={() => delFromCart(id, true)}><img src={deleteOne} alt="removeAll" /></button>
                 </div>
-              : null
+                : null
             }
           </div>
         </div>

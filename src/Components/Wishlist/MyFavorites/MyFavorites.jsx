@@ -16,43 +16,46 @@ function MyFavorites() {
     const [load, setLoad] = useState(true)
 
     setTimeout(function () {
-      setLoad(false)
+        setLoad(false)
     }, 1000)
-  return (
-    <div className={styles.myFavorites}>
-        <NavBar />
-        <Button variant='outlined' style={{margin:'10px auto 0 auto', display:'flex'}} onClick={() => navigate("/Allproducts")}>Back to Products</Button>
-        <div className={styles.favTitle}>
-            <h1>My favorites:</h1>
-        </div>
-        <div className={styles.myFavoritesContainer}>
-        {
-            load ?
-                <CircularProgress color="inherit" style={{ position: 'absolute', top: '50%', left: '50%' }} />
-            : 
-            myFavorites.length > 0 ?    
-                    <div className={styles.cardsContainer}>
-                        {   myFavorites.length > 0 ?
-                                myFavorites.map(e => {
-                                    return(
-                                        <ProductCard 
-                                            key={e.id}
-                                            name={e.product[0]} 
-                                            price={e.price[0]} 
-                                            image={e.image[0]} 
-                                            calification={e.calification[0]} 
-                                            wishlist={true}
-                                        />
-                                )})
+    return (
+        <div className={styles.myFavorites}>
+            <NavBar />
+            <Button variant='outlined' style={{ margin: '10px auto 0 auto', display: 'flex' }} onClick={() => navigate("/Allproducts")}>Back to Products</Button>
+            <div className={styles.favTitle}>
+                <h1>My favorites:</h1>
+            </div>
+            <div className={styles.myFavoritesContainer}>
+                {
+                    load ?
+                        <CircularProgress color="inherit" style={{ position: 'absolute', top: '50%', left: '50%' }} />
+                        :
+                        myFavorites.length > 0 ?
+                            <div className={styles.cardsContainer}>
+                                {myFavorites.length > 0 ?
+                                    myFavorites.map(e => {
+                                        return (
+                                            <ProductCard
+                                                key={e.id}
+                                                name={e.product[0]}
+                                                price={e.price[0]}
+                                                image={e.image[0]}
+                                                calification={e.calification[0]}
+                                                wishlist={true}
+                                                delFromCart={true}
+                                                whish={true}
+                                            />
+                                        )
+                                    })
+                                    : <NoFavoritesFound />
+                                }
+                            </div>
                             : <NoFavoritesFound />
-                        }
-                    </div>
-            : <NoFavoritesFound />
-        }
+                }
+            </div>
+            <Footer />
         </div>
-        <Footer />
-    </div>
-  )
+    )
 }
 
 export default MyFavorites
