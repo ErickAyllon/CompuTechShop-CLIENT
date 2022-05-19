@@ -24,11 +24,11 @@ const PurchaseSummary = () => {
   const { user } = useAuth0();
   if (arregloPrice.length > 0) { arregloTotal = arregloPrice.reduce(reducir) }
 
+  console.log(productsFilter)
   useEffect(() => {
     dispatch(getUser())
 
   }, [dispatch])
-
 
   const handleBuyCart = (e) => {
     e.preventDefault();
@@ -46,6 +46,9 @@ const PurchaseSummary = () => {
       })
     }
   };
+
+
+
   const delFromCart = (id, all = false) => {
     all
       ?
@@ -81,10 +84,20 @@ const PurchaseSummary = () => {
   //     :
   //     dispatch({ type: TYPES.REMOVE_ONE_FROM_CART, payload: id });
   // };
+
   const addToCart = (id) => {
     let mapeo = productsFilter.find((el) => el.id === id)
     console.log(mapeo.quantityCart)
-    if (mapeo.quantity > 0) { dispatch({ type: TYPES.ADD_TO_CART, payload: id }) }
+    if (mapeo.quantity > 0) {
+      dispatch({ type: TYPES.ADD_TO_CART, payload: id })
+    } else {
+      Swal.fire({
+        title: 'Stock reached!',
+        text: 'This product is out of stock, you cannot keep adding.',
+        icon: 'info'
+      }
+      )
+    }
   }
   const clearCart = () => {
     Swal.fire({

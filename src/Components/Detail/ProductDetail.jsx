@@ -18,7 +18,7 @@ function ProductDetail() {
   const { name } = useParams();
   const product = useSelector((state) => state.productDetail);
   const review = useSelector((state) => state.review);
-
+  const productsCart = useSelector((state) => state.cart)
   useEffect(() => {
     dispatch(getReview(name))
     dispatch(getDetail(name));
@@ -30,10 +30,13 @@ function ProductDetail() {
       : dispatch({ type: TYPES.REMOVE_ONE_FROM_CART, payload: id });
   };
 
+
   const addToCart = (id) => {
-    // console.log(id);
-    dispatch({ type: TYPES.ADD_TO_CART, payload: id });
-  };
+    let itemCarrito = productsCart.find(el => el.id === id)
+    if (!itemCarrito) {
+      dispatch({ type: TYPES.ADD_TO_CART, payload: id })
+    }
+  }
 
   const [load, setLoad] = useState(true)
 

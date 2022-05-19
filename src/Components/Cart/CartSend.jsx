@@ -66,9 +66,10 @@ export default function CartSend() {
       picture_url: el.image,
       name: el.name,
       price: el.price,
-      quantity: el.quantity,
+      quantity: el.quantityCart,
     };
   });
+
   obj.name = nuevoPost.map((el) => el.name);
   obj.picture_url = nuevoPost.map((el) => el.picture_url);
   obj.price = nuevoPost.map((el) => Number(el.price));
@@ -81,7 +82,7 @@ export default function CartSend() {
         <NavBar />
         <div className={styles.containerForm}>
           <div className={styles.containerImg}>
-            {productsFilter.map((el, index) => (
+            {nuevoPost.map((el, index) => (
               <CartItem data={el} key={index} />
             ))}
           </div>

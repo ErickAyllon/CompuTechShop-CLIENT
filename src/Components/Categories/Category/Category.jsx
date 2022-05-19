@@ -19,10 +19,10 @@ function Category() {
   const { category } = useParams();
   const dispatch = useDispatch();
   let products = useSelector((state) => state.products);
+  const productsCart = useSelector((state) => state.cart)
   let productsFilter = useSelector((state) => state.productsFilter);
   productsFilter = productsFilter.filter(e => e.quantity > 0)
   // products = productsFilter.length > 0 ? productsFilter : products;
-  console.log(productsFilter)
   const currentPage = useSelector((state) => state.currentPage);
   const productsPerPage = 6;
   const indexLastProduct = currentPage * productsPerPage;
@@ -38,8 +38,11 @@ function Category() {
   }, [dispatch, category]);
 
   const addToCart = (id) => {
-    dispatch({ type: TYPES.ADD_TO_CART, payload: id });
-  };
+    let itemCarrito = productsCart.find(el => el.id === id)
+    if (!itemCarrito) {
+      dispatch({ type: TYPES.ADD_TO_CART, payload: id })
+    }
+  }
 
   const [load, setLoad] = useState(true)
 
