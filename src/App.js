@@ -71,13 +71,13 @@ const getDesignTokens = (mode) => ({
     text: {
       ...(mode === "light"
         ? {
-            primary: "#000000",
-            secondary: "#000000",
-          }
+          primary: "#000000",
+          secondary: "#000000",
+        }
         : {
-            primary: "#ffffff",
-            secondary: grey[500],
-          }),
+          primary: "#ffffff",
+          secondary: grey[500],
+        }),
     },
   },
 });
