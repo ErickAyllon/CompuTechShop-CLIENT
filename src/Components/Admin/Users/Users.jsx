@@ -173,7 +173,7 @@ function Users() {
                         {columns.map((column) => {
                           const value = row[column.id];
                           return (
-                            <TableCell key={column.id} align={column.align} id={row.nickname} onClick={handleAdmin} style={{fontSize:'1rem', fontWeight:'600', color:'white'}} >
+                            <TableCell key={column.id} align={column.align} id={row.email} onClick={handleAdmin} style={{fontSize:'1rem', fontWeight:'600', color:'white'}} >
                               {column.format && typeof value === 'number'
                                 ? column.format(value)
                                 : value}

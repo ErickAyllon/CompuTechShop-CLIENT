@@ -13,9 +13,9 @@ import Swal from "sweetalert2";
 
 function AdminUpdate() {
     const dispatch = useDispatch();
-    const {nickname} = useParams();
+    const {email} = useParams();
     const admin = useSelector((state) => state.users);
-    const adminUpdate = admin.filter(admin => admin.nickname === nickname);
+    const adminUpdate = admin.filter(admin => admin.email === email);
     const navigate = useNavigate();
     const Swal = require('sweetalert2')
     

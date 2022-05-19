@@ -5,6 +5,8 @@
 
 .containerImgBtn button {
     margin: 10px 0;
+    width: 200px;
+    justify-content: center;
 }
 
 .title {
@@ -31,19 +33,23 @@
 .cardsContainer {
     border-radius: 50px;
     overflow: auto;  
+    max-width: 900px;
     min-width: 900px;
 }
 
 
 .text {
-    font-size: 52px;
-    width: 230px;
+    font-size: 2rem;
+    width: 300px;
+    font-family: 'Orbitron', sans-serif;
+    text-align: center;
 }
 
     .containerImgBtn{
         display: flex;
         flex-direction: column;
         position: relative;
+        align-items: center;
     }
 
     .productNotFound {
@@ -84,12 +90,31 @@
         margin: auto;
     }
 
+    .hideProduct {
+        display: none;
+    }
     
     @media only screen and (max-width: 768px) {
         .productNotFound {
             width: calc(100% - 30px);
         }
-    }
-    .hideProduct {
-        display: none;
+        .summaryContainer {
+            display: block;
+        }
+        .cardsContainer {
+            min-width: 0;
+        }
+        .containerImgBtn {
+            height: 200px;
+            text-align: center;
+            width: calc(100% - 30px);
+            margin: auto;
+        }
+        .containerImgBtn button {
+            margin: 5px auto;
+            width: 250px;
+        }
+        .text {
+            width: calc(100% - 30px);
+        }
     }

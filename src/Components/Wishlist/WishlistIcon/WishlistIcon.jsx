@@ -21,7 +21,6 @@ function Wishlist({ id, name }) {
   myWishlist?.map(e => e.product[0] === name ? whatIs = true : false)
   const [favorite, setFavorite] = useState(whatIs)
   const Swal = require('sweetalert2')
-  const navigate = useNavigate();
 
   const wishlist = {
     userId: userId?.id,

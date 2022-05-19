@@ -44,25 +44,32 @@ function MyOrdersTogether() {
 
   const columns = [
     { id: "id", label: "ID", minWidth: 100 },
-    { id: "userEmail", label: "Email", minWidth: 220 },
+    { id: "userEmail", label: "Email", minWidth: 150 },
+    {
+      id: "name",
+      label: "Name",
+      minWidth: 200,
+      align: "right",
+      format: (value) => `$${value.toLocaleString("en-US")}`,
+    },
     {
       id: "total_paid_amount",
       label: "Amount",
-      minWidth: 100,
+      minWidth: 200,
       align: "right",
       format: (value) => `$${value.toLocaleString("en-US")}`,
     },
     {
       id: "date",
       label: "Date",
-      minWidth: 220,
+      minWidth: 250,
       align: "right",
       format: (value) => value.toLocaleString("en-US"),
     },
     {
       id: "state",
       label: "State",
-      minWidth: 100,
+      minWidth: 125,
       align: "right",
       format: (value) => value.toFixed(2),
     },
@@ -96,10 +103,10 @@ function MyOrdersTogether() {
             <Paper
               sx={{
                 width: "100%",
-                borderTop: "1px solid black",
+                borderTop: "1px solid gray",
               }}
             >
-              <TableContainer sx={{ maxHeight: 440 }}>
+              <TableContainer sx={{ maxHeight: '100%', backgroundColor:'gray'}}>
                 <Table stickyHeader aria-label="sticky table">
                   <TableHead>
                     <TableRow>
@@ -112,7 +119,7 @@ function MyOrdersTogether() {
                           fontSize: "2rem",
                         }}
                       >
-                        My order {id}
+                        My order #{id}
                       </TableCell>
                     </TableRow>
                     <TableRow>

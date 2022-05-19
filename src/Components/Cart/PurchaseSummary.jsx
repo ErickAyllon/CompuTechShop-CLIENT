@@ -12,6 +12,7 @@ import Footer from "../Footer/Footer";
 import { Button } from "@mui/material";
 import { useState } from "react";
 import { CircularProgress } from "@mui/material";
+import emptyCart from '../../Images/emptyCart.png'
 
 const PurchaseSummary = () => {
   const dispatch = useDispatch();
@@ -47,7 +48,25 @@ const PurchaseSummary = () => {
   };
   const delFromCart = (id, all = false) => {
     all
-      ? dispatch({ type: TYPES.REMOVE_ALL_FROM_CART, payload: id })
+      ? 
+      Swal.fire({
+        title: 'Are you sure?',
+        text: "Do you want to delete all products?",
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'Yes, delete them!'
+      }).then((result) => {
+        if (result.isConfirmed) {
+          dispatch({ type: TYPES.REMOVE_ALL_FROM_CART, payload: id })
+          Swal.fire(
+            'Cleaned!',
+            'Your products has been deleted.',
+            'success'
+          )
+        }
+      })
       : dispatch({ type: TYPES.REMOVE_ONE_FROM_CART, payload: id });
   };
   const addToCart = (id) => {
@@ -55,7 +74,24 @@ const PurchaseSummary = () => {
     dispatch({ type: TYPES.ADD_TO_CART, payload: id });
   };
   const clearCart = () => {
-    dispatch({ type: TYPES.CLEAR_CART });
+    Swal.fire({
+      title: 'Are you sure?',
+      text: "Do you want to clean your cart?",
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Yes, clean it!'
+    }).then((result) => {
+      if (result.isConfirmed) {
+        dispatch({ type: TYPES.CLEAR_CART });
+        Swal.fire(
+          'Cleaned!',
+          'Your cart has been celaned.',
+          'success'
+        )
+      }
+    })
   };
 
   const [load, setLoad] = useState(true)
@@ -96,24 +132,28 @@ const PurchaseSummary = () => {
 
               )) : (<div className={styles.productNotFound}>
                 <div className={styles.productNotFoundContainer}>
-                  <h1>Cart Empty</h1>
+                  <h1>Empty Cart</h1>
                   <div className={styles.productNotFoundText}>
-                    <p>Check all products</p>
-                    <p>Browse the categories to find a product</p>
+                    {/* <p>Check all products</p>
+                    <p>Browse the categories to find a product</p> */}
+                    <img alt="empty" src={emptyCart} />
                   </div>
                 </div>
               </div>)
           }</div>
         {(arregloPrice.length !== 0 ?
-          <div className={styles.containerImgBtn}>
-            <label className={styles.text}>Total Price:  $ {new Intl.NumberFormat().format(arregloTotal)}</label>
-            <Button variant='outlined' className={styles.btn} onClick={handleBuyCart}>Buy cart</Button>
-            <Button
-              variant='outlined'
-              onClick={clearCart}
-            >
-              Clean Cart
-            </Button>
+          <div className={styles.buyCleanContainer}>
+            <div className={styles.containerImgBtn}>
+              <p className={styles.text}>Total price:</p>
+              <p className={styles.text}>$ {new Intl.NumberFormat().format(arregloTotal)}</p>
+              <Button variant='outlined' className={styles.btn} onClick={handleBuyCart}>Buy cart</Button>
+              <Button
+                variant='outlined'
+                onClick={clearCart}
+              >
+                Clean Cart
+              </Button>
+            </div>
           </div>
           : null)}
       </div>

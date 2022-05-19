@@ -19,7 +19,8 @@ function Category() {
   const { category } = useParams();
   const dispatch = useDispatch();
   let products = useSelector((state) => state.products);
-  const productsFilter = useSelector((state) => state.productsFilter);
+  let productsFilter = useSelector((state) => state.productsFilter);
+  productsFilter = productsFilter.filter(e => e.quantity > 0)
   // products = productsFilter.length > 0 ? productsFilter : products;
   console.log(productsFilter)
   const currentPage = useSelector((state) => state.currentPage);

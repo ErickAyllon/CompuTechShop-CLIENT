@@ -7,6 +7,7 @@ import Wishlist from "../Wishlist/WishlistIcon/WishlistIcon";
 import deleteOne from "../../Images/deleteOne.png"
 import addmore from "../../Images/addmore.png"
 import substractmore from "../../Images/substractmore.png"
+import { useSnackbar } from 'notistack';
 
 function ProductCard({
   name,
@@ -18,9 +19,22 @@ function ProductCard({
   quantity,
   delFromCart,
   priceTotal,
-  wishlist,
-  whish
+  wishlist
 }) {
+
+  const { enqueueSnackbar } = useSnackbar();
+
+  const removedAlert = (variant) => () => {
+    // variant could be success, error, warning, info, or default
+      enqueueSnackbar('Product removed from cart!', { variant });
+  };
+  const removedAllAlert = (variant) => () => {
+      enqueueSnackbar('All selected products removed from cart!', { variant });
+  };
+  const addedAlert = (variant) => () => {
+      enqueueSnackbar('Product added to cart!', { variant });
+  };
+
   return (
     <div className={styles.productCardContainer}>
       <div className={styles.productCard}>
@@ -46,25 +60,25 @@ function ProductCard({
           />
           <div className={styles.superBtnsContainer}>
             <div className={styles.wishAndCartBtns}>
-              {delFromCart ?
-                null
-                :
-                <button className={styles.addBtn} onClick={() => addToCart(id)}><img src={add} alt="add" /></button>
-              }
+              { delFromCart ?
+                null 
+              :
+                <button className={styles.addBtn} onClick={() => addToCart(id)}><img onClick={addedAlert('success')} src={add} alt="add" /></button>
+              } 
               {
                 wishlist ?
                   <Wishlist id={id} name={name} className={styles.wishlist} />
-                  : null
+                : null
               }
             </div>
             {
-              delFromCart && !whish ?
+              delFromCart ?
                 <div className={styles.cardsBtns}>
-                  <button className={styles.addMore} onClick={() => addToCart(id)}><img src={addmore} alt="add" /></button>
-                  <button className={styles.subsBtn} onClick={() => delFromCart(id)}><img src={substractmore} alt="substractmore" /></button>
-                  <button className={styles.dltAll} onClick={() => delFromCart(id, true)}><img src={deleteOne} alt="removeAll" /></button>
+                    <button className={styles.addMore} onClick={() => addToCart(id)}><img onClick={addedAlert('success')} src={addmore} alt="add" /></button>
+                    <button className={styles.subsBtn} onClick={() => delFromCart(id)}><img onClick={removedAlert('error')} src={substractmore} alt="substractmore" /></button>
+                    <button className={styles.dltAll} onClick={() => delFromCart(id, true)}><img src={deleteOne} alt="removeAll" /></button>
                 </div>
-                : null
+              : null
             }
           </div>
         </div>
