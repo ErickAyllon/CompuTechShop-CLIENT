@@ -81,9 +81,10 @@ const PurchaseSummary = () => {
   //     :
   //     dispatch({ type: TYPES.REMOVE_ONE_FROM_CART, payload: id });
   // };
+
   const addToCart = (id) => {
     let mapeo = productsFilter.find((el) => el.id === id)
-    console.log(mapeo.quantityCart)
+    // console.log(mapeo.quantityCart)
     if (mapeo.quantity > 0) { dispatch({ type: TYPES.ADD_TO_CART, payload: id }) }
   }
   const clearCart = () => {
