@@ -33,7 +33,9 @@ function ViewCategories() {
         icon: 'success',
         confirmButtonText: 'Ok',
       })
-      dispatch(getCategories())
+      setTimeout(() => {
+        dispatch(getCategories())
+    }, 1000)
   }
 
   return (

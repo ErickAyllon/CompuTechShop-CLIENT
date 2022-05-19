@@ -37,7 +37,6 @@
     min-width: 900px;
 }
 
-
 .text {
     font-size: 2rem;
     width: 300px;
@@ -61,7 +60,7 @@
         left: 50%;
         top: 50%;
         transform: translate(-50%,-50%);
-        width: 350px;
+        width: 500px;
         height: 250px;
         /* box-shadow: 0 0 5px 1px rgba(255, 255, 255, 0.218); */
     }

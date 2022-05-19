@@ -14,7 +14,7 @@ export const PurchaseConfirm = () => {
     <div className={styles.redirect}>
       <div className={styles.productNotFound}>
         <div className={styles.productNotFoundContainer}>
-          <h1>Redirecting to MercadoPago</h1>
+          <h1 className={styles.redirecting}>Redirecting to MercadoPago</h1>
           <Backdrop
             sx={{ color: '#fff', zIndex: (theme) => theme.zIndex.drawer + 1 }}
             open={true}
