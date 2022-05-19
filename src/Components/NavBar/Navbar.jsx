@@ -40,9 +40,9 @@ function NavBar() {
         <div className={styles.shoppignCartNav}>
           <ShoppingCart/>
         </div>
-        <IconButton className={styles.darkMode} onClick={(e) => changeTheme(e)} color="primary">
+        {/* <IconButton className={styles.darkMode} onClick={(e) => changeTheme(e)} color="primary">
           {isDarkTheme ? <Brightness4Icon className={styles.darkMode}/> : <Brightness7Icon className={styles.darkMode}/>}
-        </IconButton>
+        </IconButton> */}
         <div className={styles.auth0}>
           {isAuthenticated ? <Profile /> : <LoginButton />}
         </div>

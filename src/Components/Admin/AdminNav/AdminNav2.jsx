@@ -12,21 +12,21 @@ function AdminNav2() {
     <div className={styles.adminNavBar}>
         <div className={styles.adminButtons}>
           <Link to='/admin/products/Allproducts'>
-            <Button variant="outlined" style={{margin: '0 10px'}}>Products</Button>
+            <Button variant="outlined" >Products</Button>
           </Link>
           <Link to='/admin/categories'>
-            <Button variant="outlined" style={{margin: '0 10px'}}>Categories</Button>
+            <Button variant="outlined" >Categories</Button>
           </Link>
           <Link to='/admin/allorders'>
-            <Button variant="outlined" style={{margin: '0 10px'}}>Orders</Button>
+            <Button variant="outlined" >Orders</Button>
           </Link>
           <Link to='/admin/users'>
-            <Button variant="outlined" style={{margin: '0 10px'}}>Users</Button>
+            <Button variant="outlined" >Users</Button>
           </Link>
           {
           isAdminPro ? 
             <Link to='/admin/manager'>
-              <Button variant="outlined" style={{margin: '0 10px', color:'green', borderColor: 'green'}}>Admin manager</Button>
+              <Button variant="outlined" style={{color:'green', borderColor: 'green'}}>PRO</Button>
             </Link>
           : null
           }

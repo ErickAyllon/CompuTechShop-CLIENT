@@ -8,7 +8,7 @@ import { useDispatch } from "react-redux";
 import { deleteProduct, getProducts } from "../../../../Redux/Actions";
 import { useNavigate } from "react-router-dom";
 
-function ProductCardAdmin({ name, price, image, calification, id, update, delet }) {
+function ProductCardAdmin({ name, price, image, calification, id, update, delet, stock }) {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const Swal = require('sweetalert2')
@@ -62,6 +62,11 @@ function ProductCardAdmin({ name, price, image, calification, id, update, delet 
             readOnly
             className={styles.productCardCalification}
           />
+          { 
+            stock <= 0 ?
+              <button className={styles.noStock} disabled>NO STOCK</button>
+            : null
+          }
           <div className={styles.buttons}>
           {
           delet ?
