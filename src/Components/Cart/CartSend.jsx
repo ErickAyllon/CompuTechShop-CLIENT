@@ -11,6 +11,7 @@ import Swal from "sweetalert2";
 import NavBar from "../NavBar/Navbar";
 import { Button } from "@mui/material";
 import styles2 from "../Cart/PurchaseSummary.module.css";
+import Footer from "../Footer/Footer";
 
 const validation = (values) => {
   let errors = {};
@@ -76,9 +77,14 @@ export default function CartSend() {
 
   if (filteredUser.length !== 0) {
     return (
-      <>
+      <div className={styles.cartSendContainer}>
         <NavBar />
         <div className={styles.containerForm}>
+          <div className={styles.containerImg}>
+            {productsFilter.map((el, index) => (
+              <CartItem data={el} key={index} />
+            ))}
+          </div>
           <Formik
             initialValues={{
               address: localStorage.getItem("address"),
@@ -104,19 +110,15 @@ export default function CartSend() {
           >
             {(props) => <CartForm {...props} />}
           </Formik>
-          <div className={styles.containerImg}>
-            {productsFilter.map((el, index) => (
-              <CartItem data={el} key={index} />
-            ))}
-          </div>
         </div>
-      </>
+        <Footer />
+      </div>
     );
   } else {
     return (
       <div className={styles2.productNotFound}>
         <div className={styles2.productNotFoundContainer}>
-          <h1>You have to be registered in order to watch your cart</h1>
+          <h1>You must be registered in order to buy your cart</h1>
           <div className={styles2.productNotFoundText}></div>
           <Button variant="outlined" onClick={() => navigate("/")}>
             Back to Products
