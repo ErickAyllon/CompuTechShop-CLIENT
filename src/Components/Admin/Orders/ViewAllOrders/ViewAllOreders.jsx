@@ -31,7 +31,7 @@ function ViewAllOrders() {
 
 
   // const shops = useSelector((state) => state.shops);
-  const shops = useSelector((state) => state.orders);
+  const shops = useSelector((state) => state.shopsFiltered);
   // const orders = useSelector((state) => state.orders);
 
   function handleSortByEmail(e) {

@@ -297,6 +297,13 @@ export function sortOrderByAmount(payload) {
   };
 }
 
+export function handleSortUserByAmount(payload) {
+  return {
+    type: "SORT_USER_BY_AMOUNT",
+    payload,
+  };
+}
+
 export function updateShop(id, payload) {
   return async function (dispatch) {
     try {

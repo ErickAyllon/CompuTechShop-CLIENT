@@ -42,11 +42,10 @@ import Banned from "./Components/Banned/Banned";
 import Welcome from "./Components/Welcome/Welcome";
 import { SnackbarProvider } from "notistack";
 import Help from "./Components/Footer/Help";
-import CartSend from "./Components/Cart/CartSend";
 import ViewOrdersTogether from "./Components/Admin/Orders/ViewAllOrdersCart/ViewOrdersTogether";
 import MyOrdersTogether from "./Components/Profile/MyOrders/MyOrdersTogether/MyOrdersTogether";
 import MyOrders from "./Components/Profile/MyOrders/MyOrders.jsx";
-
+import CartSend from "./Components/Cart/CartSend"
 const getDesignTokens = (mode) => ({
   palette: {
     mode,
@@ -152,7 +151,8 @@ function App() {
               <Route path="/purchaseSummary" element={<PurchaseSummary />} />
               <Route path="/purchaseConfirm" element={<PurchaseConfirm />} />
               <Route path="/purchaseResult" element={<PurchaseResult />} />
-              <Route path="/cartSend" element={<CartSend />} />
+              <Route path="/CartSend" element={<CartSend />} />
+
             </Route>
 
             <Route

@@ -1,7 +1,7 @@
 import styles from "./CartItem.module.css"
 
 const CartItem = ({ data }) => {
-  let { name, price, quantity, image } = data;
+  let { name, price, quantity, picture_url } = data;
 
   return (
     <div className={styles.container}>
@@ -10,7 +10,7 @@ const CartItem = ({ data }) => {
         ${new Intl.NumberFormat().format(price)} x {quantity} = ${new Intl.NumberFormat().format(quantity * price)}
       </div>
       <div className={styles.containerImgBtn}>
-        <img className={styles.cartImg} src={image} alt={name} />
+        <img className={styles.cartImg} src={picture_url} alt={name} />
       </div>
     </div>
   );

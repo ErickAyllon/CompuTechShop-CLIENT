@@ -19,8 +19,7 @@ function MyFavorites() {
     const myFavorites = useSelector((state) => state.wishlist)
     const [load, setLoad] = useState(true)
     const productsFilter = useSelector((state) => state.products);
-    console.log(myFavorites[0].productId[0])
-    console.log("esta verga es el producto filtrado", productsFilter)
+
     setTimeout(function () {
         setLoad(false)
     }, 1000)

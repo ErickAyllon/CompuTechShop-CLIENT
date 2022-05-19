@@ -30,9 +30,9 @@ function AdminNav() {
         <div className={styles.searchBarCall}>
           <SearchBarAdmin/>
         </div>
-        <IconButton sx={{ ml: 1 }} onClick={changeTheme} color="primary">
+        {/* <IconButton sx={{ ml: 1 }} onClick={changeTheme} color="primary">
           {isDarkTheme ? <Brightness4Icon /> : <Brightness7Icon />}
-        </IconButton>
+        </IconButton> */}
         <div className={styles.auth0}>
           {isAuthenticated ? <Profile /> : <LoginButton />}
         </div>
