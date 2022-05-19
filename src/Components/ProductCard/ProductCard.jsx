@@ -26,13 +26,13 @@ function ProductCard({
 
   const removedAlert = (variant) => () => {
     // variant could be success, error, warning, info, or default
-      enqueueSnackbar('Product removed from wishlist!', { variant });
+      enqueueSnackbar('Product removed from cart!', { variant });
   };
   const removedAllAlert = (variant) => () => {
-      enqueueSnackbar('All selected products removed from wishlist!', { variant });
+      enqueueSnackbar('All selected products removed from cart!', { variant });
   };
   const addedAlert = (variant) => () => {
-      enqueueSnackbar('Product added to wishlist!', { variant });
+      enqueueSnackbar('Product added to cart!', { variant });
   };
 
   return (

@@ -219,7 +219,7 @@ function App() {
             >
               <Route path="/admin/manager" element={<AdminManager />} />
               <Route
-                path="/admin/manager/:nickname"
+                path="/admin/manager/:email"
                 element={<AdminUpdate />}
               />
             </Route>

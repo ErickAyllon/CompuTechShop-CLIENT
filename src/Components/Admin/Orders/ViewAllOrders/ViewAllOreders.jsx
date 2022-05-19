@@ -168,12 +168,12 @@ function handleDetail(e) {
 
     <div className={styles.tabla}>
       <Paper sx={{ width: '100%', background:'white'}}>
-          <TableContainer sx={{ maxHeight: 440 }}>
+        <TableContainer sx={{ maxHeight: '100%', backgroundColor:'gray'}}>
             <Table stickyHeader aria-label="sticky table">
               <TableHead>
                 <TableRow>
                   <TableCell align="center" colSpan={6} style={{color:'white', background:'black', fontSize:'2rem'}}>
-                    Orders
+                    All Orders
                   </TableCell>
                 </TableRow>
                 <TableRow>

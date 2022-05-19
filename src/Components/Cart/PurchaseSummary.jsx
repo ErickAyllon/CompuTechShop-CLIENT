@@ -142,15 +142,18 @@ const PurchaseSummary = () => {
               </div>)
           }</div>
         {(arregloPrice.length !== 0 ?
-          <div className={styles.containerImgBtn}>
-            <label className={styles.text}>Total Price:  $ {new Intl.NumberFormat().format(arregloTotal)}</label>
-            <Button variant='outlined' className={styles.btn} onClick={handleBuyCart}>Buy cart</Button>
-            <Button
-              variant='outlined'
-              onClick={clearCart}
-            >
-              Clean Cart
-            </Button>
+          <div className={styles.buyCleanContainer}>
+            <div className={styles.containerImgBtn}>
+              <p className={styles.text}>Total price:</p>
+              <p className={styles.text}>$ {new Intl.NumberFormat().format(arregloTotal)}</p>
+              <Button variant='outlined' className={styles.btn} onClick={handleBuyCart}>Buy cart</Button>
+              <Button
+                variant='outlined'
+                onClick={clearCart}
+              >
+                Clean Cart
+              </Button>
+            </div>
           </div>
           : null)}
       </div>

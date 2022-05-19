@@ -103,10 +103,10 @@ function MyOrdersTogether() {
             <Paper
               sx={{
                 width: "100%",
-                borderTop: "1px solid black",
+                borderTop: "1px solid gray",
               }}
             >
-              <TableContainer sx={{ maxHeight: 440 }}>
+              <TableContainer sx={{ maxHeight: '100%', backgroundColor:'gray'}}>
                 <Table stickyHeader aria-label="sticky table">
                   <TableHead>
                     <TableRow>
@@ -119,7 +119,7 @@ function MyOrdersTogether() {
                           fontSize: "2rem",
                         }}
                       >
-                        My order {id}
+                        My order #{id}
                       </TableCell>
                     </TableRow>
                     <TableRow>

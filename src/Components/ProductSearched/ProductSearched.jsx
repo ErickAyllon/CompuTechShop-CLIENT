@@ -14,7 +14,8 @@ import CircularProgress from '@mui/material/CircularProgress';
 
 function ProductSearched() {
   let products = useSelector((state) => state.allProducts); 
-  const productsFilter = useSelector((state) => state.productsFilter);
+  let productsFilter = useSelector((state) => state.productsFilter);
+  productsFilter = productsFilter.filter(e => e.quantity > 0)
   products = productsFilter.length > 0 ? productsFilter : products;
   const dispatch = useDispatch();
   const {search} = useParams();
