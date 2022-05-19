@@ -90,6 +90,7 @@ function rootReducer(state = initialState, action) {
         ...state,
         productDetail: action.payload,
         products: [],
+
       };
     case "FILTER_BY_CATEGORY":
       let orderedC = action.payload.sort(
@@ -196,35 +197,37 @@ function rootReducer(state = initialState, action) {
       };
 
     case TYPES.ADD_TO_CART: {
-      let newItem = state.products.find(
-        (product) => product.id === action.payload
-      );
+      let newItem = state.allProducts.find(
+        (product) => product.id === action.payload);
       let itemInCart = state.cart.find((item) => item.id === newItem.id);
-      return itemInCart
-        ? {
+      return itemInCart ?
+        {
           ...state,
           cart: state.cart.map((item) =>
             item.id === newItem.id
               ? {
                 ...item,
-                quantity: item.quantity + 1,
+                quantityCart: item.quantityCart + 1,
+                quantity: item.quantity - 1
+                // price: Number(item.price),
+                // total: item.price * item.cuantity,
               }
               : item
           ),
         }
         : {
           ...state,
-          cart: [...state.cart, { ...newItem, quantity: 1 }],
+          cart: [...state.cart, { ...newItem, quantityCart: 1, quantity: newItem.quantity - 1 }],
         };
     }
     case TYPES.REMOVE_ONE_FROM_CART: {
       let itemToDelete = state.cart.find((item) => item.id === action.payload);
-      return itemToDelete.quantity > 1
+      return itemToDelete.quantityCart > 1
         ? {
           ...state,
           cart: state.cart.map((item) =>
             item.id === action.payload
-              ? { ...item, quantity: item.quantity - 1 }
+              ? { ...item, quantityCart: item.quantityCart - 1, quantity: item.quantity + 1 }
               : item
           ),
         }
