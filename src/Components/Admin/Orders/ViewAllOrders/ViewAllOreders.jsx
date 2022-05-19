@@ -16,7 +16,7 @@ import TableRow from '@mui/material/TableRow';
 import { useNavigate } from 'react-router-dom';
 
 
-function ViewAllOrders(){
+function ViewAllOrders() {
   const dispatch = useDispatch();
   const [orderByEmail, setOrderByEmail] = useState('')
   const [orderByAmount, setOrderByAmount] = useState('')
@@ -46,7 +46,7 @@ function ViewAllOrders(){
     setOrderByAmount(e.target.value)
   }
 
-  function handleFilterByState(e){
+  function handleFilterByState(e) {
     e.preventDefault()
     dispatch(filterOrderByState(e.target.value))
     setFilterByState(e.target.value)
@@ -64,115 +64,115 @@ function ViewAllOrders(){
     setPage(0);
   };
 
-const columns = [
-  { id: 'idTogether', label: 'Cart ID ', minWidth: 100 },
-  // { id: 'id', label: 'ID', minWidth: 100 },
-  { id: 'email', label: 'Email', minWidth: 220 },
-  {
-    id: 'totalCarrito',
-    label: 'Amount',
-    minWidth: 220,
-    align: 'right',
-    format: (value) => `$${value.toLocaleString('en-US')}`,
-  },
-  {
-    id: 'date',
-    label: 'Date',
-    minWidth: 220,
-    align: 'right',
-    format: (value) => value.toLocaleString('en-US'),
-  },
-  {
-    id: 'state',
-    label: 'State',
-    minWidth: 220,
-    align: 'right',
-    format: (value) => value.toFixed(2),
-  },
-];
+  const columns = [
+    { id: 'idTogether', label: 'Cart ID ', minWidth: 100 },
+    // { id: 'id', label: 'ID', minWidth: 100 },
+    { id: 'email', label: 'Email', minWidth: 220 },
+    {
+      id: 'totalCarrito',
+      label: 'Amount',
+      minWidth: 220,
+      align: 'right',
+      format: (value) => `$${value.toLocaleString('en-US')}`,
+    },
+    {
+      id: 'date',
+      label: 'Date',
+      minWidth: 220,
+      align: 'right',
+      format: (value) => value.toLocaleString('en-US'),
+    },
+    {
+      id: 'state',
+      label: 'State',
+      minWidth: 220,
+      align: 'right',
+      format: (value) => value.toFixed(2),
+    },
+  ];
 
-// const order = orders
-// console.log(orders[0].payments)
-// const Cart = shops.map(e => )
-// const shopping = shops
-// const shopsIdTogether = shops
-//                           .filter(e => e.idTogether)
-//                           .map(e => e.payments)
-//                           .map(e => e
-//                             .reduce((a, b) => a.total_paid_amount + b.total_paid_amount))
+  // const order = orders
+  // console.log(orders[0].payments)
+  // const Cart = shops.map(e => )
+  // const shopping = shops
+  // const shopsIdTogether = shops
+  //                           .filter(e => e.idTogether)
+  //                           .map(e => e.payments)
+  //                           .map(e => e
+  //                             .reduce((a, b) => a.total_paid_amount + b.total_paid_amount))
 
-console.log(shops)
-// console.log(shopsIdTogether)
+  // console.log(shops)
+  // console.log(shopsIdTogether)
 
-const rows = shops
+  const rows = shops
 
-function handleDetail(e) {
-  e.preventDefault()
-  navigate(`/admin/orderstogether/${e.target.id}`)
-}
+  function handleDetail(e) {
+    e.preventDefault()
+    navigate(`/admin/orderstogether/${e.target.id}`)
+  }
 
   return (
     <div className={styles.viewAllOrders}>
-      <AdminNav/>
+      <AdminNav />
       <AdminNav2 />
-    <div className={styles.filterOrders}>
-      <TextField
-        sx={{
-          '& > :not(style)': { m: 1, display: 'flex', width: '13ch',fontSize:'1rem', color:'white' },
-        }}
-        variant="outlined"
-        id="outlined-select-currency"
-        select
-        label="State"
-        value={filterByState}
-        onChange={(e) => handleFilterByState(e)}
-      > 
-        <MenuItem value='All orders'>All orders</MenuItem>
-        <MenuItem value='In process'>In process</MenuItem>
-        <MenuItem value='Paid'>Paid</MenuItem>
-        <MenuItem value='On its way'>On its way</MenuItem>
-        <MenuItem value='Canceled'>Canceled</MenuItem>
-        <MenuItem value='Received'>Received</MenuItem>
-      </TextField>
+      <div className={styles.filterOrders}>
+        <TextField
+          sx={{
+            '& > :not(style)': { m: 1, display: 'flex', width: '13ch', fontSize: '1rem', color: 'white' },
+          }}
+          variant="outlined"
+          id="outlined-select-currency"
+          select
+          label="State"
+          value={filterByState}
+          onChange={(e) => handleFilterByState(e)}
+        >
+          <MenuItem value='All orders'>All orders</MenuItem>
+          <MenuItem value='In process'>In process</MenuItem>
+          <MenuItem value='Paid'>Paid</MenuItem>
+          <MenuItem value='On its way'>On its way</MenuItem>
+          <MenuItem value='Canceled'>Canceled</MenuItem>
+          <MenuItem value='Received'>Received</MenuItem>
+        </TextField>
 
-      <TextField
-        sx={{
-          '& > :not(style)': { m: 1, display: 'flex', width: '13ch',fontSize:'1rem', color:'white' },
-        }}
-        variant="outlined"
-        id="outlined-select-currency"
-        select
-        label="Email"
-        value={orderByEmail}
-        onChange={(e) => handleSortByEmail(e)}
-      > 
-        <MenuItem value='a-z'>A-Z</MenuItem>
-        <MenuItem value='z-a'>Z-A</MenuItem>
-      </TextField>
+        <TextField
+          sx={{
+            '& > :not(style)': { m: 1, display: 'flex', width: '13ch', fontSize: '1rem', color: 'white' },
+          }}
+          variant="outlined"
+          id="outlined-select-currency"
+          select
+          label="Email"
+          value={orderByEmail}
+          onChange={(e) => handleSortByEmail(e)}
+        >
+          <MenuItem value='a-z'>A-Z</MenuItem>
+          <MenuItem value='z-a'>Z-A</MenuItem>
+        </TextField>
 
-      <TextField
-        sx={{
-          '& > :not(style)': { m: 1, display: 'flex', width: '13ch',fontSize:'1rem', color:'white' },
-        }}
-        variant="outlined"
-        id="outlined-select-currency"
-        select
-        label="Amount"
-        value={orderByAmount}
-        onChange={(e) => handleSortByAmount(e)}
-      > 
-        <MenuItem value='higher-amount'>Higher</MenuItem>
-        <MenuItem value='lower-amount'>Lower</MenuItem>
-      </TextField>
-    </div>
+        <TextField
+          sx={{
+            '& > :not(style)': { m: 1, display: 'flex', width: '13ch', fontSize: '1rem', color: 'white' },
+          }}
+          variant="outlined"
+          id="outlined-select-currency"
+          select
+          label="Amount"
+          value={orderByAmount}
+          onChange={(e) => handleSortByAmount(e)}
+        >
+          <MenuItem value='higher-amount'>Higher</MenuItem>
+          <MenuItem value='lower-amount'>Lower</MenuItem>
+        </TextField>
+      </div>
 
-    <div className={styles.tabla}>
-      <Paper sx={{ width: '100%', background:'white'}}>
-        <TableContainer sx={{ maxHeight: '100%', backgroundColor:'gray'}}>
+      <div className={styles.tabla}>
+        <Paper sx={{ width: '100%', background: 'white' }}>
+          <TableContainer sx={{ maxHeight: '100%', backgroundColor: 'gray' }}>
             <Table stickyHeader aria-label="sticky table">
               <TableHead>
                 <TableRow>
-                  <TableCell align="center" colSpan={6} style={{color:'white', background:'black', fontSize:'2rem'}}>
+                  <TableCell align="center" colSpan={6} style={{ color: 'white', background: 'black', fontSize: '2rem' }}>
                     All Orders
                   </TableCell>
                 </TableRow>
@@ -188,29 +188,29 @@ function handleDetail(e) {
                   ))}
                 </TableRow>
               </TableHead>
-              { 
-              shops.length ? 
-              <TableBody>
-                {rows
-                  .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
-                  .map((row) => {
-                    return (
-                      <TableRow hover role="checkbox" tabIndex={-1} key={row.code} style={{color:'white', background:'gray'}} >
-                        {columns.map((column) => {
-                          const value = row[column.id];
-                          return (
-                            <TableCell key={column.id} align={column.align} id={row.idTogether} onClick={handleDetail} style={{fontSize:'1rem', fontWeight:'600', color:'white'}}>
-                              {column.format && typeof value === 'number'
-                                ? column.format(value)
-                                : value}
-                            </TableCell>
-                          );
-                        })}
-                        {/* <Button variant="contained" className={styles.tableBtn} value={row.id} onClick={handleDetail}>Details</Button> */}
-                      </TableRow>
-                    );
-                  })}
-              </TableBody>
+              {
+                shops.length ?
+                  <TableBody>
+                    {rows
+                      .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
+                      .map((row) => {
+                        return (
+                          <TableRow hover role="checkbox" tabIndex={-1} key={row.code} style={{ color: 'white', background: 'gray' }} >
+                            {columns.map((column) => {
+                              const value = row[column.id];
+                              return (
+                                <TableCell key={column.id} align={column.align} id={row.idTogether} onClick={handleDetail} style={{ fontSize: '1rem', fontWeight: '600', color: 'white' }}>
+                                  {column.format && typeof value === 'number'
+                                    ? column.format(value)
+                                    : value}
+                                </TableCell>
+                              );
+                            })}
+                            {/* <Button variant="contained" className={styles.tableBtn} value={row.id} onClick={handleDetail}>Details</Button> */}
+                          </TableRow>
+                        );
+                      })}
+                  </TableBody>
                   : null
               }
             </Table>
@@ -223,7 +223,7 @@ function handleDetail(e) {
             page={page}
             onPageChange={handleChangePage}
             onRowsPerPageChange={handleChangeRowsPerPage}
-            style={{color:'white', background:'gray', borderBottom: '1px solid gray'}}
+            style={{ color: 'white', background: 'gray', borderBottom: '1px solid gray' }}
           />
         </Paper>
       </div>

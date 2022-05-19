@@ -56,7 +56,7 @@ export default function CartSend() {
 
   let filteredUser = allUsers.filter((el) => el.email === userLocal.email);
 
-  console.log(filteredUser);
+  // console.log(filteredUser);
 
   let address = filteredUser.map((el) => el.address);
   localStorage.setItem("address", address);
