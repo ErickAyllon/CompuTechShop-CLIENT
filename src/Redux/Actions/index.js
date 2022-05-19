@@ -319,7 +319,7 @@ export function updateShop(id, payload) {
 }
 
 export const getPayment = (payload) => {
-  console.log(payload);
+  // console.log(payload);
 
   const { payment, email, extraEmail, extraAddress } = payload;
   return async function (dispatch) {
