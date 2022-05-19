@@ -43,7 +43,6 @@ function AllProductsAdmin() {
    setLoad(false)
  }, 1000)
 
-
   return (
     <div className={styles.viewProducts}>
       <CategoriesAdmin/>
@@ -73,6 +72,7 @@ function AllProductsAdmin() {
                       quantity={el.quantity}
                       update={true}
                       delet={true}
+                      stock={el.quantity}
                     />
                   );
                 })

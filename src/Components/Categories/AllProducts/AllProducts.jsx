@@ -18,7 +18,7 @@ function AllProducts() {
   let products = useSelector((state) => state.allProducts);
   const productsFilter = useSelector((state) => state.productsFilter);
   // const userActive = useSelector((state) => state.userActive);
-  products = productsFilter.length > 0 ? productsFilter : products;
+  products = productsFilter.length > 0 ? productsFilter.filter(e => e.quantity > 0) : products;
   const dispatch = useDispatch();
   // const category = "allproducts";
   const category = "Allproducts";

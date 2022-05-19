@@ -88,7 +88,7 @@ function MyOrderDetail() {
     function handleClick(e){
       e.preventDefault()
       newCalification(newCalification(newInput.calification))
-      dispatch(updateProduct(product[0].id, {calification: newCalification(newInput.calification)}))
+      dispatch(updateProduct(product[0].id, {calification: newCalification(newInput?.calification)}))
       dispatch(postReview({comment: newInput.comment, userId: userId.id, productId: product[0].id, calification: newInput.calification}))
       dispatch(updateShop(id, {state: 'Received'}))
       Swal.fire({
@@ -97,7 +97,7 @@ function MyOrderDetail() {
         confirmButtonText: 'OK',
       })
       dispatch(getShopById(id))
-      navigate('/profile')
+      navigate('/profile/myorders')
     }
 
     const [load, setLoad] = useState(true)
@@ -228,12 +228,12 @@ function MyOrderDetail() {
               value={input.comment}
             />
             </div>
-              <Button variant="outlined" onClick={(e) => handleClick(e)} style={{width:'40ch', margin: '15px auto 30px auto'}}
+              <Button variant="outlined" onClick={(e) => handleClick(e)} style={{width:'40ch', margin: '15px auto 30px auto', display:'flex'}}
                 disabled={!newInput.calification  || !newInput.comment ? true : false} >Product Received</Button>
 
               </div>
           : <div style={{display: 'flex', alignContent:'center', alignItems:'center', margin:'5px 0'}}>
-              <Button variant="outlined" onClick={(e) => handleClick(e)} style={{width:'40ch', margin: '15px auto 30px auto'}}
+              <Button variant="outlined" onClick={(e) => handleClick(e)} style={{width:'40ch', margin: '15px auto 30px auto', display: 'flex'}}
                 disabled>Thank you for shopping! <img style={{width:'30px', height:'auto', marginLeft:'15px'}} src={anonymous}/> </Button>
           </div>
         }

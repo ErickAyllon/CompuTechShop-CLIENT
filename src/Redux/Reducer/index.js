@@ -54,6 +54,7 @@ function rootReducer(state = initialState, action) {
       return {
         ...state,
         categories: action.payload,
+        // allProducts:action.payload
       };
     }
     case "POST_PRODUCT":
@@ -89,6 +90,7 @@ function rootReducer(state = initialState, action) {
         ...state,
         productDetail: action.payload,
         products: [],
+
       };
     case "FILTER_BY_CATEGORY":
       let orderedC = action.payload.sort(
@@ -195,11 +197,11 @@ function rootReducer(state = initialState, action) {
       };
 
     case TYPES.ADD_TO_CART: {
-      let newItem = state.products.find(
+      let newItem = state.allProducts.find(
         (product) => product.id === action.payload);
       let itemInCart = state.cart.find((item) => item.id === newItem.id);
-      return itemInCart ? 
-       {
+      return itemInCart ?
+        {
           ...state,
           cart: state.cart.map((item) =>
             item.id === newItem.id
@@ -294,28 +296,29 @@ function rootReducer(state = initialState, action) {
         state.shopsFiltered.length > 0
           ? action.payload === "a-z"
             ? state.shopsFiltered.sort((a, b) =>
-              a.userEmail.localeCompare(b.userEmail)
+              a.email.localeCompare(b.email)
             )
             : action.payload === "z-a"
               ? state.shopsFiltered.sort((a, b) =>
-                b.userEmail.localeCompare(a.userEmail)
+                b.email.localeCompare(a.email)
               )
               : state.shopsFiltered
           : null;
       return {
         ...state,
-        usersFiltered: sortOrder,
+        // usersFiltered: sortOrder,
+        shopsFiltered: sortOrder
       };
     case "SORT_ORDER_BY_AMOUNT":
       const sortAmount =
         state.shopsFiltered.length > 0
           ? action.payload === "lower-amount"
             ? state.shopsFiltered.sort(
-              (a, b) => a.total_paid_amount - b.total_paid_amount
+              (a, b) => a.totalCarrito - b.totalCarrito
             )
             : action.payload === "higher-amount"
               ? state.shopsFiltered.sort(
-                (a, b) => b.total_paid_amount - a.total_paid_amount
+                (a, b) => b.totalCarrito - a.totalCarrito
               )
               : state.shopsFiltered
           : null;
@@ -323,19 +326,36 @@ function rootReducer(state = initialState, action) {
         ...state,
         usersFiltered: sortAmount,
       };
+    case "SORT_USER_BY_AMOUNT":
+      const sortUserAmount =
+        state.users.length > 0
+          ? action.payload === "lower-amount"
+            ? state.users.sort(
+              (a, b) => a.totalAmount - b.totalAmount
+            )
+            : action.payload === "higher-amount"
+              ? state.users.sort(
+                (a, b) => b.totalAmount - a.totalAmount
+              )
+              : state.users
+          : null;
+      return {
+        ...state,
+        users: sortUserAmount,
+      };
     case "FILTER_ORDER_BY_STATE":
       const orders =
         action.payload === "In process"
-          ? state.shops.filter((el) => el.state === "In process")
+          ? state.orders.filter((el) => el.state === "In process")
           : action.payload === "Paid"
-            ? state.shops.filter((el) => el.state === "Paid")
+            ? state.orders.filter((el) => el.state === "Paid")
             : action.payload === "On its way"
-              ? state.shops.filter((el) => el.state === "On its way")
+              ? state.orders.filter((el) => el.state === "On its way")
               : action.payload === "Cancelled"
-                ? state.shops.filter((el) => el.state === "Cancelled")
+                ? state.orders.filter((el) => el.state === "Cancelled")
                 : action.payload === "Received"
-                  ? state.shops.filter((el) => el.state === "Received")
-                  : state.shops;
+                  ? state.orders.filter((el) => el.state === "Received")
+                  : state.orders;
       return {
         ...state,
         shopsFiltered: orders,
@@ -377,6 +397,7 @@ function rootReducer(state = initialState, action) {
     case "GET_ORDERS": {
       return {
         ...state,
+        shopsFiltered: action.payload,
         orders: action.payload,
       };
     }
@@ -422,7 +443,8 @@ function rootReducer(state = initialState, action) {
     case 'GET_PRODUCTS_SEARCHBAR': {
       return {
         ...state,
-        searchBar: action.payload
+        searchBar: action.payload,
+        allProducts: action.payload
       }
     }
     default:

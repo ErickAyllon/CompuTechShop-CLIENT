@@ -21,7 +21,6 @@ function Wishlist({ id, name }) {
   myWishlist?.map(e => e.product[0] === name ? whatIs = true : false)
   const [favorite, setFavorite] = useState(whatIs)
   const Swal = require('sweetalert2')
-  const navigate = useNavigate();
 
   const wishlist = {
     userId: userId?.id,
@@ -60,7 +59,7 @@ function Wishlist({ id, name }) {
   }
 
   function handleFavoriteDelete() {
-    console.log('wishlist delete: ', wishlist)
+    // console.log('wishlist delete: ', wishlist)
     const wishlistId = myWishlist?.filter(e => e.product[0] === name)[0].id
     if (whatIs === true) {
       dispatch(deleteWishlist(wishlistId))

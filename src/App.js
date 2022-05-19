@@ -42,11 +42,10 @@ import Banned from "./Components/Banned/Banned";
 import Welcome from "./Components/Welcome/Welcome";
 import { SnackbarProvider } from "notistack";
 import Help from "./Components/Footer/Help";
-import CartSend from "./Components/Cart/cartSend";
 import ViewOrdersTogether from "./Components/Admin/Orders/ViewAllOrdersCart/ViewOrdersTogether";
 import MyOrdersTogether from "./Components/Profile/MyOrders/MyOrdersTogether/MyOrdersTogether";
 import MyOrders from "./Components/Profile/MyOrders/MyOrders.jsx";
-
+import CartSend from "./Components/Cart/CartSend"
 const getDesignTokens = (mode) => ({
   palette: {
     mode,
@@ -71,13 +70,13 @@ const getDesignTokens = (mode) => ({
     text: {
       ...(mode === "light"
         ? {
-            primary: "#000000",
-            secondary: "#000000",
-          }
+          primary: "#000000",
+          secondary: "#000000",
+        }
         : {
-            primary: "#ffffff",
-            secondary: grey[500],
-          }),
+          primary: "#ffffff",
+          secondary: grey[500],
+        }),
     },
   },
 });
@@ -152,7 +151,8 @@ function App() {
               <Route path="/purchaseSummary" element={<PurchaseSummary />} />
               <Route path="/purchaseConfirm" element={<PurchaseConfirm />} />
               <Route path="/purchaseResult" element={<PurchaseResult />} />
-              <Route path="/cartSend" element={<CartSend />} />
+              <Route path="/CartSend" element={<CartSend />} />
+
             </Route>
 
             <Route
@@ -219,7 +219,7 @@ function App() {
             >
               <Route path="/admin/manager" element={<AdminManager />} />
               <Route
-                path="/admin/manager/:nickname"
+                path="/admin/manager/:email"
                 element={<AdminUpdate />}
               />
             </Route>

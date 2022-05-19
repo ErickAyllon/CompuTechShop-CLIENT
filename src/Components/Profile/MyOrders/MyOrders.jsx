@@ -16,6 +16,8 @@ import { useAuth0 } from "@auth0/auth0-react";
 import NavBar from "../../NavBar/Navbar";
 import Footer from "../../Footer/Footer";
 import { CircularProgress } from "@mui/material";
+import notOrders from '../../../Images/notOrders.png'
+import { Link } from "react-router-dom";
 
 function MyOrders() {
   const dispatch = useDispatch();
@@ -116,7 +118,7 @@ function MyOrders() {
                 borderTop: "1px solid gray",
               }}
             >
-              <TableContainer sx={{ maxHeight: 440 }}>
+              <TableContainer sx={{ maxHeight: '100%', backgroundColor:'gray'}}>
                 <Table stickyHeader aria-label="sticky table">
                   <TableHead>
                     <TableRow>
@@ -204,7 +206,14 @@ function MyOrders() {
               />
             </Paper>
           </div>
-        ) : null}
+        ) : <div className={styles.notFound}>
+              <h1>Not orders found</h1>
+              <img src={notOrders} alt='' />
+              <Link to="/profile">
+                  <Button variant="outlined">Back to profile</Button>
+              </Link>            
+            </div>
+            }
       </div>
       <Footer />
     </div>

@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
 import AdminNav from '../../Admin/AdminNav/AdminNav';
 import { useDispatch } from 'react-redux';
-import { getUser, sortUsersByLastName } from '../../../Redux/Actions/index';
+import { getUser, handleSortUserByAmount, sortUsersByLastName } from '../../../Redux/Actions/index';
 import styles from './Users.module.css'
 import AdminNav2 from '../AdminNav/AdminNav2';
 import { TextField, MenuItem, Button } from '@mui/material/';
@@ -20,6 +20,7 @@ import { useNavigate } from 'react-router-dom';
 function Users() {
   const dispatch = useDispatch();
   const [order, setOrder] = useState('')
+  const [orderAmount, setOrderAmount] = useState('')
   const navigate = useNavigate();
   const authenticated = useSelector((state) => state.authenticated)
   const isAdminPro = authenticated.is_admin_pro
@@ -34,6 +35,12 @@ function Users() {
     e.preventDefault()
     dispatch(sortUsersByLastName(e.target.value))
     setOrder(e.target.value)
+  }
+
+  function handleSortByAmount(e) {
+    e.preventDefault()
+    dispatch(handleSortUserByAmount(e.target.value))
+    setOrderAmount(e.target.value)
   }
 
   const [page, setPage] = React.useState(0);
@@ -115,11 +122,11 @@ function Users() {
           id="outlined-select-currency"
           select
           label="Purchase value"
-          // value={order}
-          // onChange={(e) => handleSortByLastName(e)}
+          value={orderAmount}
+          onChange={(e) => handleSortByAmount(e)}
         > 
-          <MenuItem value='higher-value'>Higher value</MenuItem>
-          <MenuItem value='lower-value'>Lower value</MenuItem>
+          <MenuItem value='higher-amount'>Higher value</MenuItem>
+          <MenuItem value='lower-amount'>Lower value</MenuItem>
         </TextField>
 
         <TextField
@@ -173,7 +180,7 @@ function Users() {
                         {columns.map((column) => {
                           const value = row[column.id];
                           return (
-                            <TableCell key={column.id} align={column.align} id={row.nickname} onClick={handleAdmin} style={{fontSize:'1rem', fontWeight:'600', color:'white'}} >
+                            <TableCell key={column.id} align={column.align} id={row.email} onClick={handleAdmin} style={{fontSize:'1rem', fontWeight:'600', color:'white'}} >
                               {column.format && typeof value === 'number'
                                 ? column.format(value)
                                 : value}

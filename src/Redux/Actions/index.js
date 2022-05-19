@@ -297,6 +297,13 @@ export function sortOrderByAmount(payload) {
   };
 }
 
+export function handleSortUserByAmount(payload) {
+  return {
+    type: "SORT_USER_BY_AMOUNT",
+    payload,
+  };
+}
+
 export function updateShop(id, payload) {
   return async function (dispatch) {
     try {
@@ -312,7 +319,7 @@ export function updateShop(id, payload) {
 }
 
 export const getPayment = (payload) => {
-  console.log(payload);
+  // console.log(payload);
 
   const { payment, email, extraEmail, extraAddress } = payload;
   return async function (dispatch) {

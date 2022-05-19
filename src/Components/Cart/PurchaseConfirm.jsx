@@ -1,11 +1,8 @@
 import React from 'react'
 import { useSelector } from 'react-redux';
-import { useParams } from 'react-router-dom';
 import styles from "./PurchaseSummary.module.css"
 import Backdrop from '@mui/material/Backdrop';
 import CircularProgress from '@mui/material/CircularProgress';
-import Button from '@mui/material/Button';
-
 
 export const PurchaseConfirm = () => {
   const ca = useSelector(state => state.shopping)
