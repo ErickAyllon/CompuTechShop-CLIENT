@@ -24,7 +24,7 @@ const PurchaseSummary = () => {
   const { user } = useAuth0();
   if (arregloPrice.length > 0) { arregloTotal = arregloPrice.reduce(reducir) }
 
-  console.log(productsFilter)
+  // console.log(productsFilter)
   useEffect(() => {
     dispatch(getUser())
 

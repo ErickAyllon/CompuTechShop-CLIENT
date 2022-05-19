@@ -10,7 +10,8 @@ import filterOn from '../../Images/filterOn.png'
 import filterOff from '../../Images/filterOff.png'
 
 function Filter() {
-  const products = useSelector((state) => state.products);
+  let products = useSelector((state) => state.products);
+  products = products.filter(e => e.quantity > 0)
   const dispatch = useDispatch();
 
   const location = useLocation();
@@ -25,7 +26,8 @@ function Filter() {
     return acc;
   }, []);
 
-  const brandMap = unicBrand.map((el) => el.brand);
+  let brandMap = unicBrand.map((el) => el.brand);
+  console.log(brandMap)
 
   const [input, setInput] = useState({
     min: '',

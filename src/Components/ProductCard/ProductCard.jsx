@@ -8,6 +8,7 @@ import deleteOne from "../../Images/deleteOne.png"
 import addmore from "../../Images/addmore.png"
 import substractmore from "../../Images/substractmore.png"
 import { useSnackbar } from 'notistack';
+import { useSelector } from "react-redux";
 
 function ProductCard({
   name,
@@ -21,7 +22,7 @@ function ProductCard({
   priceTotal,
   wishlist,
 }) {
-
+  const productsFilter = useSelector((state) => state.cart);
   const { enqueueSnackbar } = useSnackbar();
 
   const removedAlert = (variant) => () => {
@@ -32,7 +33,11 @@ function ProductCard({
     enqueueSnackbar('All selected products removed from cart!', { variant });
   };
   const addedAlert = (variant) => () => {
-    enqueueSnackbar('Product added to cart!', { variant });
+    let mapeo = productsFilter.find((el) => el.id === id)
+    console.log(mapeo.quantityCart)
+    if (mapeo.quantity > 0) {
+      enqueueSnackbar('Product added to cart!', { variant });
+    }
   };
 
   return (

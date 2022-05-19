@@ -65,13 +65,13 @@ function MyOrders() {
       align: "right",
       format: (value) => value.toLocaleString("en-US"),
     },
-    // {
-    //   id: "state",
-    //   label: "State",
-    //   minWidth: 100,
-    //   align: "right",
-    //   format: (value) => value.toFixed(2),
-    // },
+    {
+      id: "state",
+      label: "State",
+      minWidth: 100,
+      align: "right",
+      format: (value) => value.toFixed(2),
+    },
   ];
 
   //   const thisUserOrders = orders.filter(e => e.userEmail === user.userEmail ? e : false)

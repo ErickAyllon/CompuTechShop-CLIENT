@@ -27,7 +27,9 @@ function SearchBar() {
     setName("");
     navigate("/search/" + name);
   }
-  const products = useSelector((state) => state.searchBar)
+  let products = useSelector((state) => state.searchBar)
+  products = products.filter(e => e.quantity > 0)
+  // console.log(products)
 
   return (
     <div className={styles.searchBarContainer}>

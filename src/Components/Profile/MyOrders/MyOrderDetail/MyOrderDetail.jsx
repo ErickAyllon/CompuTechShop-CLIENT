@@ -234,7 +234,7 @@ function MyOrderDetail() {
               </div>
           : <div style={{display: 'flex', alignContent:'center', alignItems:'center', margin:'5px 0'}}>
               <Button variant="outlined" onClick={(e) => handleClick(e)} style={{width:'40ch', margin: '15px auto 30px auto', display: 'flex'}}
-                disabled>Thank you for shopping! <img style={{width:'30px', height:'auto', marginLeft:'15px'}} src={anonymous}/> </Button>
+                disabled>Thank you for shopping!</Button>
           </div>
         }
             </div>
