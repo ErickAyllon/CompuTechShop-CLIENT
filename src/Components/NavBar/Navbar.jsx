@@ -30,7 +30,7 @@ function NavBar() {
       <nav className={styles.NavBar}>
         <Link to="/">
           <div className={styles.logo} />
-        </Link>
+        </Link> 
         <div className={styles.searchBarCall}>
           <SearchBar />
         </div>

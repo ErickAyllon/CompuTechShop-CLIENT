@@ -312,13 +312,13 @@ export function updateShop(id, payload) {
 }
 
 export const getPayment = (payload) => {
-  // console.log(payload.email)
+  console.log(payload);
 
-  const { payment, email } = payload;
+  const { payment, email, extraEmail, extraAddress } = payload;
   return async function (dispatch) {
     try {
       const json = await axios.get(
-        `/success?id=${payment}&successEmail=${email}`
+        `/success?id=${payment}&successEmail=${email}&extraEmail=${extraEmail}&extraAddress=${extraAddress}`
       );
       return dispatch({
         type: "GET_PAYMENT",
@@ -405,9 +405,7 @@ export function postReview(payload) {
 export function getReview(name) {
   return async function (dispatch) {
     try {
-      let json = await axios.get(
-        "/reviews?productName=" + name
-      );
+      let json = await axios.get("/reviews?productName=" + name);
       return dispatch({
         type: "GET_REVIEW",
         payload: json.data,
@@ -437,9 +435,7 @@ export function getWishlist(id) {
   // console.log('getWhishlist: ', id)
   return async function (dispatch) {
     try {
-      const json = await axios.get(
-        "/wishlist?userId=" + id
-      );
+      const json = await axios.get("/wishlist?userId=" + id);
       return dispatch({
         type: "GET_WISHLIST",
         payload: json.data,
@@ -490,4 +486,3 @@ export function getProductsSearchbar() {
     });
   };
 }
-

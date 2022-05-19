@@ -19,7 +19,7 @@ export default function Profile() {
   useEffect(() => {
     dispatch(getUser())
     dispatch(authenticate(userLogged))
-    dispatch(getOrdersByEmail(user.email));
+    dispatch(getOrdersByEmail(user?.email));
   }, [dispatch])
   // console.log(user);
 

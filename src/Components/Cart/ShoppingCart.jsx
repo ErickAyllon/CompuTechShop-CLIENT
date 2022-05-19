@@ -1,17 +1,10 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { TYPES } from "../../Redux/Actions/shoppingCartActions";
-import CartItem from "./CartItem";
-import { Dropdown } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
 import { postBuyCart } from "../../Redux/Actions";
 import { Link, useNavigate } from "react-router-dom";
-import Loader from "../Loader/Loader";
-
-// import styles from './ShoppingCart.module.css'
-import styles from "./CartItem.module.css";
+import styles from "./ShoppingCart.module.css";
 import shop from "../../Images/shop.png";
-import { Button } from "@mui/material";
-import style from "./ShoppingCart.module.css";
 import Badge from "@mui/material/Badge";
 import { styled } from "@mui/material/styles";
 
@@ -95,7 +88,7 @@ const ShoppingCart = () => {
         <Dropdown.Toggle variant="Secondary" id="dropdown-basic"> */}
       <Link to="/purchaseSummary">
         <StyledBadge badgeContent={Number(cart.length)} color="info">
-          <img src={shop} alt="profileImg" className={style.img} />
+          <img src={shop} alt="profileImg" className={styles.img} />
         </StyledBadge>
       </Link>
     </div>
