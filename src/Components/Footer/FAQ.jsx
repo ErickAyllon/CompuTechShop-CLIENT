@@ -2,6 +2,9 @@ import React from 'react';
 import FAQ2 from "./FAQ2" 
 import {Link} from 'react-router-dom'
 import styles from './FAQ.module.css'
+import { Button } from "@mui/material";
+
+
 const FAQ = () => {
 
   const accordionData = [
@@ -25,29 +28,18 @@ const FAQ = () => {
 
 
   return (
-    <div > 
-    <div  > 
-      
-      <h1 className={styles.title}>Frequently Asked Questions</h1>
-    </div > 
-
-      <div >
-       
+    <div className={styles.faq}> 
+      <div> 
+        <h1 className={styles.title}>Frequently Asked Questions</h1>
+      </div> 
+      <div>
         {accordionData.map(({ title, content }) => (
-         
-          <FAQ2 title={title}  content={content} />
-        
+          <FAQ2 title={title} content={content} />
         ))}
-     
-      <Link to='/'> 
-    
-      <button className={styles.button} >Back</button>
-      </Link>
+        <Link to='/'> 
+          <Button variant='outlined' style={{textAlign:'center', margin:'auto', display:'flex'}} className={styles.button}>Back Home</Button>
+        </Link>
       </div>
-       
-        
-      
-     
     </div>
   );
 };

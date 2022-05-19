@@ -8,7 +8,7 @@ import Button from '@mui/material/Button';
 import styles from './UpdateProduct.module.css'
 import AdminNav from '../../AdminNav/AdminNav';
 import ProductCardAdmin from '../ProductCardAdmin/ProductCardAdmin';
-import { useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import AdminNav2 from '../../AdminNav/AdminNav2';
 import ProductDetailAdminCard from '../Detail/ProductDetailAdminCard'
 import Swal from 'sweetalert2'
@@ -22,6 +22,7 @@ function UpdateProduct() {
   const product = useSelector ((state) => state.productDetail);
   const categories = useSelector((state) => state.categories)
   const [errors, setErrors] = useState({})
+  const navigate = useNavigate();
 
   const Swal = require('sweetalert2')
 

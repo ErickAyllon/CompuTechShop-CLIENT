@@ -27,7 +27,7 @@ function Filter() {
   }, []);
 
   let brandMap = unicBrand.map((el) => el.brand);
-  console.log(brandMap)
+  // console.log(brandMap)
 
   const [input, setInput] = useState({
     min: '',

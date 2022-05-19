@@ -56,7 +56,7 @@ function UserAdmins() {
   ];
 
   admins.map(e => e.is_admin_pro ? e.is_admin_pro = 'Yes' : null)
-  console.log(admins);
+  // console.log(admins);
 
   const rows = admins
 

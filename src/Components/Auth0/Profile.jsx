@@ -13,6 +13,7 @@ export default function Profile() {
   const users = useSelector((state) => state.users)
   const auth0Email = user?.email
   const userLogged = users?.length > 0 ? users?.find(e => (e.email === auth0Email)) : false;
+  // console.log(userLogged)
 
   let myUsers = useSelector((state) => state.users2);
 
@@ -50,9 +51,13 @@ export default function Profile() {
             focusFirstItemOnShow="false"
             variant="dark"
           >
-            <Dropdown.Item href={"/profile"}>My Profile</Dropdown.Item>
+            <Dropdown.Item href={"/profile"} >My Profile</Dropdown.Item>
             <Dropdown.Item href={"/profile/myorders"}>My Orders</Dropdown.Item>
-
+            {
+              userLogged?.is_admin ?
+                <Dropdown.Item href={"/admin"}>Admin</Dropdown.Item>
+              : null
+            }
             {/* <Dropdown.Item href="/admin">My Orders</Dropdown.Item> */}
             <Dropdown.Divider />
             <Dropdown.Item href="" className={styles.logOutMenu}>

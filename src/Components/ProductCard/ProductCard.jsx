@@ -29,12 +29,16 @@ function ProductCard({
     // variant could be success, error, warning, info, or default
     enqueueSnackbar('Product removed from cart!', { variant });
   };
-  const removedAllAlert = (variant) => () => {
-    enqueueSnackbar('All selected products removed from cart!', { variant });
+  const addedAlertfromProducts = (variant) => () => {
+    // console.log(mapeo.quantityCart)
+    let itemCarrito = productsFilter.find(el => el.id === id)
+    if (!itemCarrito) {
+      enqueueSnackbar('Product added to cart!', { variant });
+    }
   };
   const addedAlert = (variant) => () => {
     let mapeo = productsFilter.find((el) => el.id === id)
-    console.log(mapeo.quantityCart)
+    // console.log(mapeo.quantityCart)
     if (mapeo.quantity > 0) {
       enqueueSnackbar('Product added to cart!', { variant });
     }
@@ -68,7 +72,7 @@ function ProductCard({
               {delFromCart ?
                 null
                 :
-                <button className={styles.addBtn} onClick={() => addToCart(id)}><img onClick={addedAlert('success')} src={add} alt="add" /></button>
+                <button className={styles.addBtn} onClick={() => addToCart(id)}><img onClick={addedAlertfromProducts('success')} src={add} alt="add" /></button>
               }
               {
                 wishlist ?

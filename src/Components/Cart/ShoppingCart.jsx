@@ -10,7 +10,7 @@ import { styled } from "@mui/material/styles";
 
 const ShoppingCart = () => {
   const allProducts = useSelector((state) => state.allProducts)
-  console.log(allProducts)
+  // console.log(allProducts)
   const obj = {};
   const navigate = useNavigate();
   const dispatch = useDispatch();

@@ -18,7 +18,7 @@ function MyFavorites() {
     const dispatch = useDispatch();
     const myFavorites = useSelector((state) => state.wishlist)
     const [load, setLoad] = useState(true)
-    const productsFilter = useSelector((state) => state.products);
+    const productsCart = useSelector((state) => state.cart)
 
     setTimeout(function () {
         setLoad(false)
@@ -29,10 +29,11 @@ function MyFavorites() {
     }, [dispatch])
 
     const addToCart = (id) => {
-        let mapeo = productsFilter.find((el) => el.id === id)
-        // // console.log(mapeo.quantityCart)
-        if (mapeo.quantity > 0) { dispatch({ type: TYPES.ADD_TO_CART, payload: id }) }
-    }
+        let itemCarrito = productsCart.find(el => el.id === id)
+        if (!itemCarrito) {
+          dispatch({ type: TYPES.ADD_TO_CART, payload: id })
+        }
+      };
 
     // const delFromCart = (id, all = false) => {
     //     all
