@@ -17,7 +17,7 @@ import emptyCart from '../../Images/emptyCart.png'
 const PurchaseSummary = () => {
   const dispatch = useDispatch();
   const productsFilter = useSelector((state) => state.cart);
-  const arregloPrice = productsFilter.map((el) => el.price * el.quantity);
+  const arregloPrice = productsFilter.map((el) => el.price * el.quantityCart);
   const reducir = (accumulator, curr) => accumulator + curr;
   let arregloTotal
   const navigate = useNavigate()
@@ -48,7 +48,7 @@ const PurchaseSummary = () => {
   };
   const delFromCart = (id, all = false) => {
     all
-      ? 
+      ?
       Swal.fire({
         title: 'Are you sure?',
         text: "Do you want to delete all products?",
@@ -69,10 +69,23 @@ const PurchaseSummary = () => {
       })
       : dispatch({ type: TYPES.REMOVE_ONE_FROM_CART, payload: id });
   };
+  // const addToCart = (id) => {
+
+  //   dispatch({ type: TYPES.ADD_TO_CART, payload: id });
+  // };
+
+  // const delFromCart = (id, all = false) => {
+  //   all
+  //     ?
+  //     dispatch({ type: TYPES.REMOVE_ALL_FROM_CART, payload: id })
+  //     :
+  //     dispatch({ type: TYPES.REMOVE_ONE_FROM_CART, payload: id });
+  // };
   const addToCart = (id) => {
-    // console.log(id);
-    dispatch({ type: TYPES.ADD_TO_CART, payload: id });
-  };
+    let mapeo = productsFilter.find((el) => el.id === id)
+    console.log(mapeo.quantityCart)
+    if (mapeo.quantity > 0) { dispatch({ type: TYPES.ADD_TO_CART, payload: id }) }
+  }
   const clearCart = () => {
     Swal.fire({
       title: 'Are you sure?',
@@ -103,43 +116,43 @@ const PurchaseSummary = () => {
   return (
     <div className={styles.purchaseSummary}>
       <NavBar />
-      <Button variant='outlined' style={{margin:'10px auto 0 auto', display:'flex'}} onClick={() => navigate("/Allproducts")}>Back to Products</Button>
+      <Button variant='outlined' style={{ margin: '10px auto 0 auto', display: 'flex' }} onClick={() => navigate("/Allproducts")}>Back to Products</Button>
       <h1 className={styles.title}>My cart:</h1>
       <div className={styles.summaryContainer} >
         <div className={styles.cardsContainer}>
 
-        {
+          {
             load ?
-                <CircularProgress color="inherit" style={{ position: 'absolute', top: '50%', left: '50%' }} />
-            : 
-            productsFilter.length > 0 && arregloTotal.length !== 0 ?
-              productsFilter.map((el) => (
-                <ProductCard
-                  name={el.name}
-                  price={el.price}
-                  image={el.image}
-                  key={el.id}
-                  id={el.id}
-                  brand={el.brand}
-                  description={el.description}
-                  calification={el.calification}
-                  quantity={el.quantity}
-                  addToCart={addToCart}
-                  delFromCart={delFromCart}
-                  priceTotal={true}
-                  wishlist={false}
-                />
+              <CircularProgress color="inherit" style={{ position: 'absolute', top: '50%', left: '50%' }} />
+              :
+              productsFilter.length > 0 && arregloTotal.length !== 0 ?
+                productsFilter.map((el) => (
+                  <ProductCard
+                    name={el.name}
+                    price={el.price}
+                    image={el.image}
+                    key={el.id}
+                    id={el.id}
+                    brand={el.brand}
+                    description={el.description}
+                    calification={el.calification}
+                    quantity={el.quantityCart}
+                    addToCart={addToCart}
+                    delFromCart={delFromCart}
+                    priceTotal={true}
+                    wishlist={false}
+                  />
 
-              )) : (<div className={styles.productNotFound}>
-                <div className={styles.productNotFoundContainer}>
-                  <h1>Empty Cart</h1>
-                  <div className={styles.productNotFoundText}>
-                    {/* <p>Check all products</p>
+                )) : (<div className={styles.productNotFound}>
+                  <div className={styles.productNotFoundContainer}>
+                    <h1>Empty Cart</h1>
+                    <div className={styles.productNotFoundText}>
+                      {/* <p>Check all products</p>
                     <p>Browse the categories to find a product</p> */}
-                    <img alt="empty" src={emptyCart} />
+                      <img alt="empty" src={emptyCart} />
+                    </div>
                   </div>
-                </div>
-              </div>)
+                </div>)
           }</div>
         {(arregloPrice.length !== 0 ?
           <div className={styles.buyCleanContainer}>

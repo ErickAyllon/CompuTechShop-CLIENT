@@ -22,7 +22,7 @@ function Category() {
   let productsFilter = useSelector((state) => state.productsFilter);
   productsFilter = productsFilter.filter(e => e.quantity > 0)
   // products = productsFilter.length > 0 ? productsFilter : products;
-
+  console.log(productsFilter)
   const currentPage = useSelector((state) => state.currentPage);
   const productsPerPage = 6;
   const indexLastProduct = currentPage * productsPerPage;
@@ -44,44 +44,44 @@ function Category() {
   const [load, setLoad] = useState(true)
 
   setTimeout(function () {
-   setLoad(false)
- }, 1000)
+    setLoad(false)
+  }, 1000)
 
   return (
     <div className={styles.category}>
-      <NavBar/>
+      <NavBar />
       <Categories />
       {products.length > 0 ? (
         <>
           <div className={styles.productsContainer}>
             <Filter />
             <div className={styles.productsCardsContainer}>
-            {          
-              load ? 
-              <CircularProgress color="inherit" style={{position:'absolute', top:'50%', left:'50%'}}/>
-            : productsFilter.length > 0 ? (
-                currentProducts.map((el) => {
-                  return (
-                    <ProductCard
-                      name={el.name}
-                      price={el.price}
-                      image={el.image}
-                      id={el.id}
-                      key={el.id}
-                      brand={el.brand}
-                      description={el.description}
-                      calification={el.calification}
-                      quantity={el.quantity}
-                      addToCart={addToCart}
-                      wishlist={true}
-                    />
-                  );
-                })
-              ) :            
-              load ? 
-                <CircularProgress color="inherit" style={{position:'absolute', top:'50%', left:'50%'}}/>
-              : 
-                <ProductNotFound />
+              {
+                load ?
+                  <CircularProgress color="inherit" style={{ position: 'absolute', top: '50%', left: '50%' }} />
+                  : productsFilter.length > 0 ? (
+                    currentProducts.map((el) => {
+                      return (
+                        <ProductCard
+                          name={el.name}
+                          price={el.price}
+                          image={el.image}
+                          id={el.id}
+                          key={el.id}
+                          brand={el.brand}
+                          description={el.description}
+                          calification={el.calification}
+                          quantity={el.quantity}
+                          addToCart={addToCart}
+                          wishlist={true}
+                        />
+                      );
+                    })
+                  ) :
+                    load ?
+                      <CircularProgress color="inherit" style={{ position: 'absolute', top: '50%', left: '50%' }} />
+                      :
+                      <ProductNotFound />
               }
             </div>
           </div>
@@ -89,11 +89,11 @@ function Category() {
             <PaginationC category={category} totalPages={totalPages} />
           ) : null}
         </>
-      ) : load ? 
-      <CircularProgress color="inherit" style={{position:'absolute', top:'50%', left:'50%'}}/>
-    : 
-      <ProductNotFound />
-    }
+      ) : load ?
+        <CircularProgress color="inherit" style={{ position: 'absolute', top: '50%', left: '50%' }} />
+        :
+        <ProductNotFound />
+      }
       <Footer />
     </div>
   );
