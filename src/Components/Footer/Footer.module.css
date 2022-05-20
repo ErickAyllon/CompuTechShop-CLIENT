@@ -62,14 +62,14 @@ a {
         margin: 0;
         font-size: .8rem;
     }
-    .extrasFooter {
-        display: none;
-    }
+    /* .extrasFooter { */
+    /* } */
     .copyrightFooter {
         justify-content: center;
         margin: auto;
         width: 350px;
         margin-left: 30px;
+        display: none;
 
     }
     .socialMedia {

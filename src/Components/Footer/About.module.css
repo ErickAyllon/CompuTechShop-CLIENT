@@ -3,7 +3,18 @@
   flex-direction: column;
   min-height: 100vh;
 }  
+
+.cardsContainerProfiles {
+  margin: auto;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  max-width: 1400px;
+}
   
+.cardsContainerProfiles p{
+  line-height: 1;
+}
   .column {
     float: left;
     width: 30%;
@@ -20,11 +31,12 @@
     padding: 10px;
     border-width: 20px;
     align-items: center;
+    max-width: 370px;
+    max-height: 450px;
   }
 
   .aboutSection {
     text-align: center;
-    margin-top: 50px;
     color: rgb(5, 5, 5);
   }
 
@@ -32,6 +44,18 @@
     background-color: rgba(0,0,0,.5);
     color: #ffffff;
     border-radius: 10%;
+}
+
+.aboutText {
+  color: white;
+  padding: 10px;
+  border-bottom: 1px solid rgb(3, 26, 158);
+  box-shadow: 0 0 10px 1px rgba(3, 26, 158, 0.537);
+  margin-bottom: 25px;
+}
+.aboutText h1 {
+  color: rgb(3, 26, 158);
+  font-weight: bold;
 }
   
   .container {
@@ -67,7 +91,6 @@
   }
 
   .img {
-    border-radius: 48px;
       width: 200px;
       height: 200px;
       border-radius: 100%;
@@ -85,4 +108,14 @@
         display: flex;
         position: relative;
         justify-content: center;
+        align-items: center;
+        align-self: center;
+    }
+    .div img {
+      transition: .5s;
+      border-radius: 100%;
+    }
+    .div img:hover {
+      background-color: rgb(7, 24, 120); 
+      border-radius: 100%;
     }

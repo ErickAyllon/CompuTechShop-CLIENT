@@ -59,8 +59,8 @@ function Home() {
                   alt="Two"
                 />
                 <Carousel.Caption>
-                  <h3>Label for first slide</h3>
-                  <p>Sample Text for Image One</p>
+                  {/* <h3>Label for first slide</h3> */}
+                  {/* <p>Sample Text for Image One</p> */}
                 </Carousel.Caption>
               </Carousel.Item>
               <Carousel.Item interval={3000}>
@@ -70,8 +70,8 @@ function Home() {
                   alt="One"
                 />
                 <Carousel.Caption>
-                  <h3>Label for second slide</h3>
-                  <p>Sample Text for Image Two</p>
+                  {/* <h3>Label for second slide</h3> */}
+                  {/* <p>Sample Text for Image Two</p> */}
                 </Carousel.Caption>
               </Carousel.Item>
               <Carousel.Item interval={3000}>
@@ -81,8 +81,8 @@ function Home() {
                   alt="Two"
                 />
                 <Carousel.Caption>
-                  <h3>Label for third slide</h3>
-                  <p>Sample Text for Image Three</p>
+                  {/* <h3>Label for third slide</h3> */}
+                  {/* <p>Sample Text for Image Three</p> */}
                 </Carousel.Caption>
               </Carousel.Item>
               <Carousel.Item interval={3000}>
@@ -92,8 +92,8 @@ function Home() {
                   alt="Two"
                 />
                 <Carousel.Caption>
-                  <h3>Label for forth slide</h3>
-                  <p>Sample Text for Image Four</p>
+                  {/* <h3>Label for forth slide</h3> */}
+                  {/* <p>Sample Text for Image Four</p> */}
                 </Carousel.Caption>
               </Carousel.Item>
               <Carousel.Item interval={3000}>
@@ -103,8 +103,8 @@ function Home() {
                   alt="Two"
                 />
                 <Carousel.Caption>
-                  <h3>Label for fifth slide</h3>
-                  <p>Sample Text for Image Five</p>
+                  {/* <h3>Label for fifth slide</h3> */}
+                  {/* <p>Sample Text for Image Five</p> */}
                 </Carousel.Caption>
               </Carousel.Item>
               <Carousel.Item interval={3000}>
@@ -114,8 +114,8 @@ function Home() {
                   alt="Two"
                 />
                 <Carousel.Caption>
-                  <h3>Label for sixth slide</h3>
-                  <p>Sample Text for Image Six</p>
+                  {/* <h3>Label for sixth slide</h3> */}
+                  {/* <p>Sample Text for Image Six</p> */}
                 </Carousel.Caption>
               </Carousel.Item>
             </Carousel>

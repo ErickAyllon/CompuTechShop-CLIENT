@@ -27,11 +27,11 @@ function Footer() {
             </li> */}
           </div>
           <div className={styles.extrasFooter}>
-          <Link to='/Help'>
-            <p>Help</p>
-            </Link>
            <Link to='/FAQ'>
             <p>FAQ's</p>
+            </Link>
+          <Link to='/Help'>
+            <p>Help</p>
             </Link>
             <Link to='/WorkWithUs'> 
             <p>Work with us</p>

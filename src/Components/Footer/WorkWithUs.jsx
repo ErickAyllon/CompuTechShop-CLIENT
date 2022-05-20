@@ -12,7 +12,7 @@ export default function WorkWithUs() {
           If you are interested in working at Compu Tech Shop, please attach your resume or cv, and a video telling us why we should hire you to computechshop@computechshop.com
         </h2>
         <Link to='/'>
-          <Button variant='contained'>Back Home</Button>
+          <Button variant='contained' style={{color: 'white', backgroundColor:'blue', marginTop:'10px'}}>Back Home</Button>
         </Link>
       </div>
     </div>

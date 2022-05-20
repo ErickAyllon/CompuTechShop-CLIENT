@@ -13,17 +13,17 @@ export default function About() {
    <div className={styles.aboutContainer}> 
 
     <div className={styles.aboutSection}>
-      <div className={styles.box1}> 
+      <div className={styles.aboutText}> 
         <h1>This is the CompuTechShop Dreamteam!</h1>
           <h2>We are a young company made by young people who are passionate about technology. 
                 Our mission is to bring options to those who seek it and to provide them with the best possible experience!
           </h2>
+    </div>
           <div className={styles.box1}>
           <h2>Our Team</h2>
       </div>
-    </div>
   </div>
-      <div>
+      <div className={styles.cardsContainerProfiles}>
         <div className={styles.column}>
           <div className={styles.card}>
             <div className={styles.container}> 
@@ -55,7 +55,6 @@ export default function About() {
                 <p>Back End Developer</p>
                 <p>CTO of CompuTechShop.</p>
                 <p>lucasmandirola@hotmail.com</p>
-           
                       <div className={styles.div}>
                         <a target="_blank" href='https://github.com/lucasmandirola'> 
                         <img src={GitHubIcon} alt="Not found" />

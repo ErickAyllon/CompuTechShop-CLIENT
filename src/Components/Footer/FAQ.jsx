@@ -29,10 +29,10 @@ const FAQ = () => {
 
   return (
     <div className={styles.faq}> 
-      <div> 
+      <div className={styles.faqText}> 
         <h1 className={styles.title}>Frequently Asked Questions</h1>
       </div> 
-      <div>
+      <div className={styles.accordionContainer}>
         {accordionData.map(({ title, content }) => (
           <FAQ2 title={title} content={content} />
         ))}
