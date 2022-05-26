@@ -74,7 +74,7 @@ export default function About() {
           <img className={styles.img} src={Martin} alt="not found"   />
         <div className={styles.box1}> 
           <h2>Martin Raschinsky</h2>
-          <p>An amazing geek &#129299;</p>
+          <p>An amazing geek</p>
           <p>General Manager.</p>
           <p>jane@example.com</p>
           <div className={styles.div}>
@@ -98,7 +98,7 @@ export default function About() {
           <img className={styles.img} src="https://media-exp1.licdn.com/dms/image/C4D03AQGjmDV9hvrp8w/profile-displayphoto-shrink_800_800/0/1648278379780?e=1658361600&v=beta&t=jVXIZzXIOdhiii_ghlTinVyXqqi42H0yaFhpZv3GLm8" alt="Jane" />
         <div className={styles.box1}> 
           <h2>Erick Ayllon</h2>
-          <p>An amazing geek &#129299;</p>
+          <p>Front End Developer</p>
           <p>Shipping Manager.</p>
           <p>erickayllon@gmail.com</p>
           <div className={styles.div}>
@@ -121,7 +121,7 @@ export default function About() {
           <div className={styles.box1}> 
 
           <h2>Jesús Rafael Matute Díaz </h2>
-          <p>An amazing geek &#129299;</p>
+          <p>Front End Developer</p>
           <p>Executive Chairman</p>
           <p>mttrox@gmail.com</p>
           <div className={styles.div}>

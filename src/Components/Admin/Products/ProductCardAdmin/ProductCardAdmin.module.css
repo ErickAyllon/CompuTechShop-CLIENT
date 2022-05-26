@@ -11,6 +11,7 @@
     border-radius: 50px;
     animation-name: appear;
     animation-duration: .5s;
+    position: relative;
 }
 
 .productCardContainer {
@@ -117,6 +118,9 @@
       background-color: rgba(255, 0, 0, 0.814);
       color: white;
       border-radius: 10px;
+      position: absolute;
+      left: 50%;
+      top: 50%;
   }
 
 
@@ -173,10 +177,9 @@
     }
     .noStock {
         position: absolute;
-        left: 45%;
-        margin-top: -40px;
-        width: 100px;
-        height: 50px;
+        width: 80px;
+        top: 80%;
+        height: 30px;
     }
 }
 
